@@ -1,5 +1,4 @@
 import { lazy, Suspense } from 'react';
-import { withAuthenticator } from '@aws-amplify/ui-react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,4 +19,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App);
+export default App;
