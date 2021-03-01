@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Amplify from "aws-amplify";
+import awsExports from "./aws-exports";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -13,6 +15,8 @@ import { apiMiddleware } from './redux/api/middleware.api';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist'
+
+Amplify.configure(awsExports);
 
 const store = createStore(rootReducer, applyMiddleware(thunk, apiMiddleware))
 const persistor = persistStore(store)
