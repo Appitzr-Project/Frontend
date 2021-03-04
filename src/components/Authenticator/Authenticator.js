@@ -3,15 +3,8 @@ import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify';
 import { styBtnFacebook, styBtnGoogle } from './styles';
 
-function Authenticator() {
+const Authenticator = ({ children }) => {
   return (
-    <div
-      className="App"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
       <AmplifyAuthenticator>
         <AmplifySignIn
           headerText="Login"
@@ -34,9 +27,9 @@ function Authenticator() {
             </button>
           </div>
         </AmplifySignIn>
+        {children}
       </AmplifyAuthenticator>
-    </div>
   );
-}
+};
 
 export default Authenticator;
