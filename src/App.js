@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 const HomePage = lazy(() => import('./components/HomePage'))
+const Notification = lazy(() => import('./components/Notification/Notification'))
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>} >
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/notification" component={Notification} />
         </Switch>
       </Suspense>
     </Router>
