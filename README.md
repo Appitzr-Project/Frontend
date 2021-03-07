@@ -34,8 +34,8 @@ amplify pull --appId dtggcy24dmivj --envName dev
 $ amplify pull --appId dtggcy24dmivj --envName dev
 Opening link: https://ap-southeast-2.admin.amplifyapp.com/admin/dtggcy24dmivj/dev/verify/
 ✔ Successfully received Amplify Admin tokens.
-Amplify AppID found: dtggcy24dmivj. Amplify App name is: appetizr <= Input nama akun AWS sesuai yang anda set pertama pada step 1
-Backend environment dev found in Amplify Console app: appetizr <= Input nama akun AWS sesuai yang anda set pertama pada step 1
+Amplify AppID found: dtggcy24dmivj. Amplify App name is: appetizr
+Backend environment dev found in Amplify Console app: appetizr
 ? Choose your default editor: Visual Studio Code
 ? Choose the type of app that you're building javascript
 Please tell us about your project
