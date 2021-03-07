@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,11 +10,10 @@ const Scan = lazy(() => import('./components/Scan/index.js'));
 const Notification = lazy(() => import('./components/Notification/Notification'))
 const OrderThankYou = lazy(() => import('./components/OrderThankYou/OrderThankYou'))
 
-
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>} >
+      <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/scan" component={Scan} />
