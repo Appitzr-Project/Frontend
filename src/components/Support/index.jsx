@@ -18,7 +18,8 @@ const SubmitButton = withStyles((theme) => ({
         width: '100%',
         height: '58px',
         fontSize: '18px',
-        borderRadius: '18px'
+        borderRadius: '18px',
+        textTransform: 'capitalize'
     }
 }))(Button);
 
