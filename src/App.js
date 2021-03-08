@@ -2,9 +2,9 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
 
-const MenuOption = lazy(() => import("./Components/MenuOption/MenuOption"));
-const Reviews = lazy(() => import("./Components/Reviews/Reviews"));
-const Profile = lazy(() => import("./Components/Profile/Profile"));
+const MenuOption = lazy(() => import("./components/MenuOption/MenuOption"));
+const Reviews = lazy(() => import("./components/Reviews/Reviews"));
+const Profile = lazy(() => import("./components/Profile/Profile"));
 const HomePage = lazy(() => import("./components/HomePage"));
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/venue" component={MenuOption} />
-            <Route path="/venue/reviews" component={Reviews} />
-            <Route path="/venue/profile" component={Profile} />
+            <Route path="/reviews" component={Reviews} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </Suspense>
       </Router>

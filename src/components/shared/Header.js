@@ -1,8 +1,28 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Typography, Avatar, Container, Grid } from "@material-ui/core";
+import { Typography, Avatar, Grid } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import useStyle from "../../style";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyle = makeStyles((theme) => ({
+  wrapHeaderContent: {
+    height: "130px",
+  },
+  arrowBack: {
+    color: "#fff",
+    fontSize: "21px",
+    fontWeight: "600",
+    cursor: "pointer",
+  },
+  wrapTitle: {
+    color: "#fff",
+    fontSize: "26px",
+  },
+  sizeAvatar: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+  },
+}));
 
 const Header = (props) => {
   const classes = useStyle();
@@ -13,7 +33,7 @@ const Header = (props) => {
       <Grid item xs={props.isBack && 2}>
         {props.isBack && (
           <ArrowBackIosIcon
-            onClick={() => history.push("/")}
+            onClick={() => history.push("/venue")}
             className={classes.arrowBack}
           />
         )}
