@@ -1,13 +1,16 @@
 # Frontend
 
-
-## 1. AWS Amplify
+## 1. Setup AWS CLI dan AWS Amplify
 
 Sebelum anda melakukan installasi, silahkan setting **aws cli** dan **aws amplify** terlebih dahulu, setting ini hanya pertama kali saja, selanjutnya tidak perlu melakukan setting ini.
 
 Tutorial: https://github.com/base-pojokan/documentation/blob/main/aws-amplify.md
 
+**Jika ini pertama kali anda melakukan setup, silahkan ikuti step 1, jika anda langsung ke step 2 tanpa melakukan step 1 untuk pertama kali, maka akan muncul error2 yang lainnya**
+
 ## 2. Development
+
+**Jika anda muncul "Please choose the profile you want to use default", Pilih "AWS Profile" sama dengan Profile yang dibuat pada step 1.**
 
 - Clone Repository
 
@@ -54,4 +57,4 @@ Run 'amplify pull' to sync upstream changes.
 
 ![](aws-amplify.png)
 
-- Setelah melakukan **amplify pull**, sekarang di folder **src** akan muncul file **aws-exports.js**
+- Setelah melakukan **amplify pull --appId dtggcy24dmivj --envName dev**, sekarang di folder **src** akan muncul file **aws-exports.js**
