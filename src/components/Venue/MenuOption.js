@@ -20,7 +20,6 @@ const useStyle = makeStyles((theme) => ({
 
 const MenuOption = () => {
   const classes = useStyle();
-  console.log(useHistory());
   return (
     <>
       <Wrapper
