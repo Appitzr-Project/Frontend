@@ -6,7 +6,7 @@ class HomePage extends Component {
       <div className="App">
         <div className="collapse" id="navbarToggleExternalContent">
           <div className="bg-dark p-4">
-            <h5 className="text-white h4">Welcome to Pojok Project</h5>
+            <h5 className="text-white h4">Welcome to Appetizr</h5>
             <span className="text-muted">Ready to Develop</span>
           </div>
         </div>
