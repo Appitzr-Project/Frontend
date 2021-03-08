@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { TextField, Typography, Button } from "@material-ui/core";
-import Wrapper from "../shared/Wrapper";
-import useStyle from "../../style";
+import Wrapper from "../../shared/Wrapper";
+import useStyle from "../../../style";
 
 const Profile = () => {
   const classes = useStyle();

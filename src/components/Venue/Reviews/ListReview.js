@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
-import useStyle from "../../style";
+import useStyle from "../../../style";
 
 const ListReview = () => {
   const classes = useStyle();
