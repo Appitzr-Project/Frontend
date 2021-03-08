@@ -1,12 +1,17 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { lazy, Suspense } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
 
+
+const HomePage = lazy(() => import('./components/HomePage'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Notification = lazy(() => import('./components/Notification/Notification'));
 const Venue = lazy(() => import("./components/Venue"));
-const HomePage = lazy(() => import("./components/HomePage"));
 
 function App() {
   return (
