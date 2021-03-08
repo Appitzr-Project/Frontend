@@ -4,7 +4,19 @@ import { useHistory } from "react-router-dom";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { Link } from "react-router-dom";
 import Wrapper from "../shared/Wrapper";
-import useStyle from "../../style";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyle = makeStyles((theme) => ({
+  btnMO: {
+    borderRadius: "20px",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
+    height: "60px",
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "0 25px",
+    marginBottom: "30px",
+  },
+}));
 
 const MenuOption = () => {
   const classes = useStyle();
