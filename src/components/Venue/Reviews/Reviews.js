@@ -1,9 +1,29 @@
 import React from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
 import Wrapper from "../../shared/Wrapper";
-import useStyle from "../../../style";
 import StarIcon from "@material-ui/icons/Star";
 import ListReview from "./ListReview";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyle = makeStyles((theme) => ({
+  rating: {
+    fontSize: "72px",
+    fontWeight: "600",
+  },
+
+  pnBtn: {
+    width: "5em",
+    height: "26px",
+    borderRadius: "15px",
+  },
+
+  bar: {
+    background: "#FF7F23",
+    height: "14px",
+    borderRadius: "15px",
+    margin: "2px 0",
+  },
+}));
 
 const Reviews = () => {
   const classes = useStyle();
@@ -40,15 +60,7 @@ const Reviews = () => {
               </Typography>
             </Grid>
             <Grid item xs={9}>
-              <div
-                style={{
-                  background: "#FF7F23",
-                  width: d.count,
-                  height: "14px",
-                  borderRadius: "15px",
-                  margin: "2px 0",
-                }}
-              ></div>
+              <div className={classes.bar} style={{ width: d.count }}></div>
             </Grid>
             <Grid item xs={1}>
               <Typography style={{ fontSize: "11px", fontWeight: "700" }}>
