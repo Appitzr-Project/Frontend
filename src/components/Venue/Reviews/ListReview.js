@@ -71,14 +71,6 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 ",
   },
 
-  replyBtn: {
-    fontSize: "14px",
-    fontWeight: "600",
-    marginTop: "15px",
-    float: "right",
-    color: "#5263C8",
-    cursor: "pointer",
-  },
 }));
 
 const ListReview = () => {
