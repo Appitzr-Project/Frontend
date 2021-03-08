@@ -14,9 +14,28 @@ const Chart = () => {
     ],
   };
 
-  const options = {};
-
-  return <Line data={data} legend={{ display: false }} />;
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+          gridLines:{
+            display:false
+          }
+        },
+      ],
+      xAxes:[
+        {
+          gridLines:{
+            display:false
+          }
+        },
+      ]
+    },
+  }
+  return <Line data={data} legend={{ display: false }} options={options} />;
 };
 
 export default Chart;
