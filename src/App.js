@@ -13,6 +13,7 @@ const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Notification = lazy(() => import('./components/Notification/Notification'));
 const Venue = lazy(() => import("./components/Venue"));
 const Support = lazy(() => import('./components/Support'));
+const ProfileEdit = lazy(() => import('./components/ProfileEdit'));
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/notification" component={Notification} />
             <Route exact path="/support" component={Support} />
             <Route path="/venue" component={Venue} />
+            <Route path="/profile-edit" component={ProfileEdit} />
           </Switch>
         </Suspense>
       </Router>
