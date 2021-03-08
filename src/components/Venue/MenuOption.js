@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { Link } from "react-router-dom";
 import Wrapper from "../shared/Wrapper";
