@@ -2,7 +2,33 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { TextField, Typography, Button } from "@material-ui/core";
 import Wrapper from "../../shared/Wrapper";
-import useStyle from "../../../style";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyle = makeStyles((theme) => ({
+  inputLabel: {
+    fontSize: "16px",
+    fontWeight: "400",
+    marginBottom: "5px",
+  },
+  formControl: {
+    marginBottom: "20px",
+  },
+
+  input: {
+    background: "#f3f3f3",
+  },
+
+  submitBtn: {
+    backgroundColor: "#20D3C2",
+    borderRadius: "18px",
+    height: "71px",
+    fontSize: "18px",
+    fontWeight: "600",
+    "&:hover": {
+      backgroundColor: "#20D3C2",
+    },
+  },
+}));
 
 const Profile = () => {
   const classes = useStyle();
@@ -17,11 +43,21 @@ const Profile = () => {
         <form>
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Name</Typography>
-            <TextField className={classes.input} variant="outlined" fullWidth />
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
           </div>
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Email</Typography>
-            <TextField className={classes.input} variant="outlined" fullWidth />
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
           </div>
 
           <Typography
@@ -36,19 +72,34 @@ const Profile = () => {
 
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Account Name</Typography>
-            <TextField className={classes.input} variant="outlined" fullWidth />
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
           </div>
 
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Bank</Typography>
-            <TextField className={classes.input} variant="outlined" fullWidth />
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
           </div>
 
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>
               Account Number
             </Typography>
-            <TextField className={classes.input} variant="outlined" fullWidth />
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
           </div>
 
           <Button
