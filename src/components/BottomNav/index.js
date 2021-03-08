@@ -10,7 +10,7 @@ import IconUser from './Icons/IconUser';
 const useStyles = makeStyles({
   root: {
     bottom: 0,
-    position: 'absolute',
+    position: 'fixed',
     width: '100%',
     maxWidth: '600px',
     boxShadow: '0px -5px 5px rgb(119 118 118 / 21%)',
@@ -64,7 +64,7 @@ export default function BottomNav({ ActiveMenu }) {
       <BottomNavigationAction
         classes={{ root: classes.BottomNavigationActionRoot }}
         icon={<IconUser color={getStroke(MENU.USER)} />}
-        onClick={() => handleClick('/')}
+        onClick={() => handleClick('/member')}
       />
     </BottomNavigation>
   );
