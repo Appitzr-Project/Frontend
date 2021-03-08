@@ -3,7 +3,12 @@ import { Avatar, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
-  
+  wrap:{
+    background: "#272D51",
+    borderRadius: "15px",
+    padding: "10px",
+    marginTop: "25px",
+  }
 }));
 
 const DashboardCard = () => {
@@ -11,12 +16,7 @@ const DashboardCard = () => {
   return (
     <Grid
       container
-      style={{
-        background: "#272D51",
-        borderRadius: "15px",
-        padding: "10px",
-        marginTop: "25px",
-      }}
+      className={classes.wrap}
     >
       <Grid item xs={2}>
         <Avatar
