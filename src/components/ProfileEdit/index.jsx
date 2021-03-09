@@ -1,9 +1,9 @@
 import React from "react";
 
 import { 
-    withStyles
+    withStyles,
+    makeStyles
 } from '@material-ui/core/styles';
-import classes from './index.module.css';
 import Container from '@material-ui/core/Container';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import InputBase from '@material-ui/core/InputBase';
@@ -54,7 +54,57 @@ const CustomLabel = withStyles(() => ({
     }
 }))(InputLabel);
 
+const useStyles = makeStyles({
+    container: {
+        background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        paddingTop: '30px',
+    },
+    header: {
+        paddingLeft: '24px',
+        paddingRight: '24px',
+    },
+    backIcon: {
+        color: '#ffffff',
+        fontSize: '30px',
+    },
+    title: {
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '30px',
+        color: '#ffffff',
+    },
+    content: {
+        fontSize:'30px',
+        marginTop:'50px',
+    },
+    profileBox: {
+        background: '#ffffff',
+        paddingLeft: '24px',
+        paddingRight: '24px',
+        paddingBottom: '24px',
+        borderRadius: '50px 50px 0px 0px',
+        boxShadow: 'none',
+    },
+    profileItem: {
+        textAlign: 'left',
+        marginTop:'46px',
+        background:'#ffffff',
+        paddingBottom: '32px',
+    },
+    profileTextWelcome:{
+        fontSize: '16px',
+        color: '#464646',
+    },
+    profileSectionTitle:{
+        fontSize: '18px',
+        marginBottom: '25px'
+    }
+});
+
 const Profile = () => {
+    const classes = useStyles();
     return (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>
