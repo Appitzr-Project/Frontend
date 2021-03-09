@@ -9,26 +9,9 @@ import CheckTwoToneIcon from '@material-ui/icons/CheckTwoTone';
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
-  content: {
-    fontSize: '22px',
-    color: '#ffffff',
-  },
-  notificationBox: {
-    background: '#ffffff',
-    paddingLeft: '24px',
-    paddingRight: '24px',
-    paddingBottom: '24px',
-    borderRadius: '50px 50px 0px 0px',
-    boxShadow: 'none',
-  },
   notificationItem: {
-    textAlign: 'left',
     marginTop: '24px',
-    background: '#ffffff',
-    paddingTop: '12px',
-    paddingRight: '12px',
-    paddingBottom: '12px',
-    paddingLeft: '12px',
+    padding: '12px',
     borderRadius: '15px',
     boxShadow: '0px 4px 4px rgba(71, 71, 71, 0.1)',
   }, 
@@ -55,11 +38,12 @@ const useStyle = makeStyles((theme) => ({
   notificationTitle: {
     color: '#0E0E0E',
     fontWeight: '700',
-    fontSize: '22px',
+    fontSize: '24px',
   },
   notificationText: {
     color: '#999999',
     fontWeight: '400',
+    fontSize: '24px',
   }
 }));
 
@@ -73,9 +57,9 @@ const Notification = () => {
             isBack
           >          
             <Grid container spacing={0}>
-              <Grid item xs={12} className={classes.content}>
+              <Grid item xs={12}>
                 
-                  <Grid container spacing={0} className={classes.notificationBox}>
+                  <Grid container spacing={0}>
 
                     <Grid item xs={12} className={classes.notificationItem}>                     
                       <Grid container spacing={0}>
