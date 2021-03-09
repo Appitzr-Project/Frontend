@@ -12,6 +12,7 @@ const Scan = lazy(() => import('./components/Scan/index.js'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Notification = lazy(() => import('./components/Notification/Notification'));
 const Venue = lazy(() => import("./components/Venue"));
+const Support = lazy(() => import('./components/Support'));
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/scan" component={Scan} />
             <Route path="/member" component={MemberLazy} />
             <Route exact path="/notification" component={Notification} />
+            <Route exact path="/support" component={Support} />
             <Route path="/venue" component={Venue} />
           </Switch>
         </Suspense>
