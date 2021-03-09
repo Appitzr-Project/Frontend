@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const MenuOption = lazy(() => import("./MenuOption"));
 const Profile = lazy(() => import("./Profile/Profile"));
 const Reviews = lazy(() => import("./Reviews/Reviews"));
+const Dashboard = lazy(() => import("./Dashboard/Dashboard"));
 
 const Venue = () => {
   return (
@@ -12,6 +13,7 @@ const Venue = () => {
           <Route exact path="/venue" component={MenuOption} />
           <Route path="/venue/profile" component={Profile} />
           <Route path="/venue/reviews" component={Reviews} />
+          <Route path="/venue/dashboard" component={Dashboard} />
         </Switch>
       </Suspense>
     </Router>
