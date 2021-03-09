@@ -10,24 +10,25 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+import Items from './Items';
+
 const CustomInput = withStyles((theme) => ({
     root: {
-        backgroundColor: '#F3F3F3',
         height: '66px',
         borderRadius: '15px',
-        backgroundColor: '#CFE2E7',
-        padding: '20px 25px'
+        padding: '0 25px',
+        backgroundColor: 'white',
+        margin: '0 24px'
     },
     input: {
         borderRadius: 4,
         position: 'relative',
         border: 'none',
-        fontSize: 16,
+        fontSize: 14,
         width: '100%',
         padding: '10px 12px',
         height: '27px',
@@ -35,32 +36,42 @@ const CustomInput = withStyles((theme) => ({
     },
 }))(InputBase);
 
-const CustomSearchIcon = withStyles((theme) => ({
+const CustomSearchIcon = withStyles(() => ({
     root: {
         color: '#A3A3A3',
         fontSize: '33px'
     }
 }))(SearchIcon);
 
-const CustomSelect = withStyles((theme) => ({
-    root: {
-        width: '130px'
+const SelectInput = withStyles((theme) => ({
+    input: {
+        borderRadius: 13,
+        position: 'relative',
+        backgroundColor: theme.palette.background.paper,
+        border: '1px solid #ced4da',
+        fontSize: 16,
+        padding: '10px 26px 10px 12px',
+        borderColor: '#FF3974',
+        color: '#59495F',
+        '&:focus': {
+            borderRadius: 13,
+        }
     }
-}))(Select);
+}))(InputBase);
 
 const useStyles = makeStyles({
     container : {
         paddingLeft: '0px',
         paddingRight: '0px',
-        paddingtop: '30px',
-        backgroundColor: 'white',
+        paddingTop: '30px',
+        background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)'
     },
     header : {
         paddingLeft: '24px',
         paddingRight: '24px',
     },
     backIcon : {
-        color: '#0E0E0E',
+        color: '#fff',
         fontSize: '30px',
         flex: '0 1 auto',
         marginRight: 'auto,  ' 
@@ -69,24 +80,25 @@ const useStyles = makeStyles({
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: '30px',
-        color: '#0E0E0E',
+        color: '#fff',
         position: 'relative',
-    },
-    content : {
-        fontSize: '30px',
-        margintop: '30px',
     },
     venuesBox : {
         paddingLeft: '24px',
         paddingRight: '24px',
         paddingBottom: '24px',
+        paddingTop: '30px',
         boxShadow: 'none',
+        borderRadius: '50px 50px 0px 0px',
+        backgroundColor: 'white',
+        minHeight: '100vh'
     },
-    venuesItem : {
-        paddingBottom: '32px',
+    venuesSorting : {
+        paddingBottom: '30px',
     },
     venuesSearchContainer : {
         paddingBottom: '32px',
+        marginTop: '50px'
     },
     venuesTextWelcome: {
         fontSize: '16px',
@@ -103,7 +115,11 @@ const useStyles = makeStyles({
         transform: 'translateX(-50%)',
     },
     venuesShowingText: {
-        fontSize: '18px'
+        fontSize: '18px',
+        margin: 0
+    },
+    selectIcon: {
+        fill: '#FF3974',
     }
 });
 
@@ -122,47 +138,54 @@ const Venues = () => {
                     <Grid item xs={13} className={classes.title} 
                         alignItems="center" 
                         container
-                        justify="flexStart">
+                        justify="space-between">
                         <NavigateBeforeIcon className={classes.backIcon} />
-                        <span className={classes.titleText}>
-                            Profile
+                        <span>
+                            Venue
                         </span>
+                        <img src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
-            
-                <Grid container spacing={0}>
-                    <Grid item xs={12} className={classes.content}>
-                        <Grid container spacing={0} className={classes.venuesBox}>
-                            <Grid item xs={12} className={classes.venuesSearchContainer}>  
-                                <FormControl fullWidth>
-                                    <CustomInput 
-                                        id="bootstrap-input"
-                                        placeholder="Search Here"
-                                        endAdornment={<InputAdornment position="end"><CustomSearchIcon /></InputAdornment>}
-                                    />
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12} className={classes.venuesItem} container justify="space-between">  
-                                <p className={classes.venuesShowingText}>Showing 430 Foods</p>
-                                <FormControl variant="outlined" className={classes.formControl}>
-                                    <CustomSelect
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={age}
-                                        onChange={handleChange}
-                                        label="Age"
-                                    >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                    </CustomSelect>
-                                </FormControl>
-                            </Grid>
 
-                        </Grid>
+                <Grid item xs={12} className={classes.venuesSearchContainer}>  
+                    <FormControl fullWidth>
+                        <CustomInput 
+                            id="bootstrap-input"
+                            placeholder="Search Here"
+                            endAdornment={<InputAdornment position="end"><CustomSearchIcon /></InputAdornment>}
+                        />
+                    </FormControl>
+                </Grid>
+            
+                <Grid spacing={0} item xs={12} className={classes.venuesBox}>
+                    <Grid item xs={12} className={classes.venuesSorting} container justify="space-between" alignItems="center">  
+                        <p className={classes.venuesShowingText}>Showing 430 Foods</p>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <Select
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                value={age}
+                                onChange={handleChange}
+                                label="Age"
+                                input={<SelectInput />}
+                                className={classes.select}
+                                inputProps={{
+                                    classes: {
+                                        icon: classes.selectIcon,
+                                    },
+                                }}
+                            >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>  
+                        <Items />
                     </Grid>
                 </Grid>
             </Container>
