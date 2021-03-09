@@ -36,7 +36,8 @@ const CustomListItem = withStyles(() => ({
     root: {
         borderRadius: '15px',
         boxShadow: '0px 4px 4px rgba(71, 71, 71, 0.1)',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        padding: '15px'
     }
 }))(ListItem);
 
