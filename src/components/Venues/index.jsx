@@ -1,9 +1,9 @@
 import React from "react";
 
 import { 
-    withStyles
+    withStyles,
+    makeStyles
 } from '@material-ui/core/styles';
-import classes from './index.module.css';
 import Container from '@material-ui/core/Container';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import SearchIcon from '@material-ui/icons/Search';
@@ -31,7 +31,7 @@ const CustomInput = withStyles((theme) => ({
         width: '100%',
         padding: '10px 12px',
         height: '27px',
-        transition: theme.transitions.create(['border-color', 'box-shadow'])
+        transition: theme.transitions.create(['border-color', 'boxShadow'])
     },
 }))(InputBase);
 
@@ -48,13 +48,73 @@ const CustomSelect = withStyles((theme) => ({
     }
 }))(Select);
 
+const useStyles = makeStyles({
+    container : {
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        paddingtop: '30px',
+        backgroundColor: 'white',
+    },
+    header : {
+        paddingLeft: '24px',
+        paddingRight: '24px',
+    },
+    backIcon : {
+        color: '#0E0E0E',
+        fontSize: '30px',
+        flex: '0 1 auto',
+        marginRight: 'auto,  ' 
+    },
+    title : {
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '30px',
+        color: '#0E0E0E',
+        position: 'relative',
+    },
+    content : {
+        fontSize: '30px',
+        margintop: '30px',
+    },
+    venuesBox : {
+        paddingLeft: '24px',
+        paddingRight: '24px',
+        paddingBottom: '24px',
+        boxShadow: 'none',
+    },
+    venuesItem : {
+        paddingBottom: '32px',
+    },
+    venuesSearchContainer : {
+        paddingBottom: '32px',
+    },
+    venuesTextWelcome: {
+        fontSize: '16px',
+        color: '#464646',
+    },
+    venuesSectionTitle: {
+        fontSize: '18px',
+        marginBottom: '25px',
+    },
+    titleText: {
+        flex: '0 1 auto',
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
+    },
+    venuesShowingText: {
+        fontSize: '18px'
+    }
+});
+
 const Venues = () => {
 
     const [age, setAge] = React.useState('');
     const handleChange = (event) => {
         setAge(event.target.value);
-      };
+    };
 
+    const classes = useStyles();
     return (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>
@@ -62,7 +122,7 @@ const Venues = () => {
                     <Grid item xs={13} className={classes.title} 
                         alignItems="center" 
                         container
-                        justify="flex-start">
+                        justify="flexStart">
                         <NavigateBeforeIcon className={classes.backIcon} />
                         <span className={classes.titleText}>
                             Profile
