@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
-import { withStyles } from '@material-ui/core/styles';
-import classes from './index.module.css';
+
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -24,7 +24,74 @@ const SubmitButton = withStyles((theme) => ({
     }
 }))(Button);
 
+const useStyles = makeStyles({
+    container : {
+        background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        paddingTop: '30px',
+    },
+    header : {
+        paddingLeft:'24px',
+        paddingRight: '24px',
+    },
+    backIconBox : {
+        fontSize: '30px',
+    },
+    backIcon : {
+        color: '#ffffff',
+        fontSize: '30px',
+    },
+    title : {
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: '30px',
+        lineHeight: '41px',
+        color: '#ffffff',
+        textAlign: 'center',
+    },
+    content : {
+        fontSize: '30px',
+        color: '#ffffff',
+        marginTop: '50px',
+    },
+    supportBox : {
+        background: '#ffffff',
+        paddingLeft: '24px',
+        paddingRight: '24px',
+        paddingBottom: '24px',
+        borderRadius: '50px 50px 0px 0px',
+        boxShadow: 'none',
+        height: '100vh',
+    },
+    supportItem : {
+        textAlign: 'left',
+        marginTop: '24px',
+        background: '#ffffff',
+        paddingTop: '12px',
+        paddingRight: '12px',
+        paddingBottom: '12px',
+        paddingLeft: '12px',
+    },
+    supportTextarea: {
+        border: 'none',
+        backgroundColor: '#F3F3F3',
+        borderRadius:' 5px',
+        padding: '13px',
+        fontSize: '16px',
+        width: '100%',
+        minHeight: '195px',
+        maxHeight: '195px',
+        resize: 'none',
+    },
+    supportTextWelcome: {
+        fontSize: '16px',
+        color: '#464646'
+    }
+});
+
 const Support = () => {
+    const classes = useStyles();
     return (
         <div className="App" style={{background:'#E5E5E5'}}>        
             <Container maxWidth="sm" className={classes.container}>
