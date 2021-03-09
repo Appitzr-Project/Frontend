@@ -1,0 +1,71 @@
+.container {
+    background: linear-gradient(90deg, #5263C8 0%, #303C83 100%);
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top:30px;
+}
+.header {
+    padding-left:24px;
+    padding-right: 24px;
+}
+
+.backIconBox {
+    font-size: 30px;
+}
+
+.backIcon {
+    color: #ffffff !important;
+    font-size: 30px !important;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 41px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.content {
+    font-size:30px;
+    color: #ffffff;
+    margin-top:50px !important;
+}
+
+.supportBox {
+    background: #ffffff;
+    padding-left:24px;
+    padding-right:24px;
+    padding-bottom:24px;
+    border-radius: 50px 50px 0px 0px !important;
+    box-shadow: none !important;
+    height: 100vh;
+}
+
+.supportItem {
+    text-align: left;
+    margin-top:24px !important;
+    background:#ffffff;
+    padding-top: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    padding-left:12px;
+}
+
+.supportTextarea{
+    border: none;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+    padding: 13px;
+    font-size: 16px;
+    width: 100%;
+    min-height: 195px;
+    max-height: 195px;
+    resize: none;
+}
+
+.supportTextWelcome{
+    font-size: 16px;
+    color: #464646;
+}
