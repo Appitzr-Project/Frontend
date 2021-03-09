@@ -1,7 +1,6 @@
 import React from "react";
 
 import { 
-    fade,
     withStyles
 } from '@material-ui/core/styles';
 import classes from './index.module.css';
