@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 const MemberPage = lazy(() => import('./Home/index.js'));
 const MemberOrderSummary = lazy(() => import('./OrderSummary/index.js'));
+const OrderHistory=lazy(() => import('./OrderHistory/OrderHistory.jsx'));
 
 function Member() {
   return (
@@ -10,6 +11,7 @@ function Member() {
         <Switch>
           <Route exact path="/member" component={MemberPage} />
           <Route path="/member/order-summary" component={MemberOrderSummary} />
+          <Route path="/member/order/history" component={OrderHistory} />
         </Switch>
       </Suspense>
     </Router>
