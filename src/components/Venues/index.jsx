@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
+
 import InputAdornment from '@material-ui/core/InputAdornment';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -131,6 +132,7 @@ const Venues = () => {
     };
 
     const classes = useStyles();
+
     return (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>
