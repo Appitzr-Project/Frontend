@@ -2,10 +2,11 @@ import { Box, Card, Container, Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
+import NavBar from '../../NavBar';
 import ContactsIcon from './assets/ic-contacts.svg';
 import HistoryIcon from './assets/ic-history.svg';
 import ProfileIcon from './assets/ic-profile.svg';
-import BellSVG from './assets/ic-bell.svg';
+import Pencils from './assets/pencils.svg';
 import Profile from './assets/profile.png';
 import QRCodeIcon from './assets/qr-profile.svg';
 
@@ -19,11 +20,11 @@ const useStyles = makeStyles({
     marginTop: '24px',
     borderRadius: '50px 50px 0 0',
   },
+  profileGrid: {
+    marginTop: '-75px',
+  },
   desc: {
     color: '#878787',
-  },
-  topContent: {
-    padding: '55px 24px 35px',
   },
   pb30: {
     paddingBottom: '30px',
@@ -46,23 +47,7 @@ const MemberHome = () => {
         maxWidth="sm"
         disableGutters
       >
-      <Grid container spacing={2} className={classes.topContent} justify="space-between">
-        <Grid item xs>
-          <div>
-            <img alt="notification" src={BellSVG} />
-          </div>
-        </Grid>
-        <Grid item xs>
-          <div>
-            <img alt="profile" src={Profile} />
-          </div>
-        </Grid>
-      </Grid>
-        <Grid container spacing={2} className={classes.topContent} justify="space-between">
-          <Grid item xs>
-           <Box>Hi John</Box>
-          </Grid>
-        </Grid>
+        <NavBar title="" />
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <Grid container spacing={2} className={classes.pb30}>
             <Grid item xs>
@@ -71,9 +56,14 @@ const MemberHome = () => {
               </Box>
               <Box fontSize={14}>Tone_ross@hotmail.com</Box>
             </Grid>
-            <Grid item xs>
+            <Grid item xs className={classes.profileGrid}>
               <div>
                 <img alt="profile" src={Profile} />
+              </div>
+            </Grid>
+            <Grid item xs>
+              <div>
+                <img alt="edit" src={Pencils} />
               </div>
             </Grid>
           </Grid>
