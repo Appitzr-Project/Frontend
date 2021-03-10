@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "./Header";
 
@@ -14,11 +14,10 @@ const useStyle = makeStyles((theme) => ({
     minHeight: "180px",
     maxHeight: "180px",
   },
-
   wrapMain: {
     minHeight: "606px",
     background: theme.palette.background.paper,
-    padding: "50px 25px",
+    padding: props => props.spacing ? props.spacing : '50px 24px',
     borderTopLeftRadius: "50px",
     borderTopRightRadius: "50px",
     marginTop: "-50px",
@@ -26,13 +25,16 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Wrapper = (props) => {
-  const classes = useStyle();
+  const classes = useStyle(props);
   return (
     <>
       <Container maxWidth="sm" className={classes.wrapper}>
         <header className={classes.wrapHeader}>
           <Container>
             <Header {...props} />
+            {/* <Typography variant='subtitle2' gutterBottom>
+                tes
+            </Typography> */}
           </Container>
         </header>
         <main className={classes.wrapMain}>{props.children}</main>
