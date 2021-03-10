@@ -27,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: "15px",
   },
 
-  replyBtn: {
+  submitReply: {
     background: "#20D3C2",
     width: "82px",
     height: "27px",
@@ -71,6 +71,14 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 ",
   },
 
+  replyBtn:{
+    fontSize: "14px",
+    fontWeight: "600",
+    marginTop: "15px",
+    float: "right",
+    color: "#5263C8",
+    cursor: "pointer",
+  }
 }));
 
 const ListReview = () => {
@@ -118,7 +126,7 @@ const ListReview = () => {
               fullWidth
               variant="outlined"
             />
-            <Button variant="contained" className={classes.replyBtn}>
+            <Button variant="contained" className={classes.submitReply}>
               Reply
             </Button>
           </>
