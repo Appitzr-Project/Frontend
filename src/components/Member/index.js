@@ -9,7 +9,7 @@ function Member() {
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/member" component={MemberPage} />
+          <Route exact path="/" component={MemberPage} />
           <Route exact path="/member/profile" component={ProfilePage} />
           <Route path="/member/order-summary" component={MemberOrderSummary} />
         </Switch>
