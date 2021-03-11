@@ -105,6 +105,7 @@ const useStyles = makeStyles({
 
 const Profile = () => {
     const classes = useStyles();
+
     return (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>
