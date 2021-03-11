@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Container, makeStyles } from '@material-ui/core'
 import NavBar from '../../NavBar'
 import { IMSpaghetti } from './assets'
-import { SendButton } from './components'
+import { SendButton, MenuCard } from './components'
 
 const useStyles = (img) =>
   makeStyles({
@@ -13,6 +13,7 @@ const useStyles = (img) =>
       padding: '24px 24px 140px 24px',
       marginTop: '24px',
       borderRadius: '50px 50px 0 0',
+      height: '100vh'
     },
   })
 
@@ -26,13 +27,12 @@ const MemberOrderMenu = () => {
     >
       <NavBar title='Menu' />
       <Card classes={{ root: classes.cardRoot }} elevation={0}>
-        {/* <MenuCard />
-        <CouponApply />
-        <PaymentSummary /> */}
+        <MenuCard />
+        {/* <CouponApply /> */}
+        {/* <PaymentSummary /> */}
       </Card>
 
       <SendButton />
-      {/* <BottomNav ActiveMenu={MENU.CART} /> */}
     </Container>
   )
 }
