@@ -1,5 +1,7 @@
-import { Box, Card, Container, Grid, makeStyles } from '@material-ui/core';
+import { Box, Card, Container, Grid,makeStyles } from '@material-ui/core';
 import React from 'react';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import NavBar from '../../NavBar';
@@ -39,7 +41,7 @@ const useStyles = makeStyles({
 
 const MemberHome = () => {
   const classes = useStyles();
-
+  const history=useHistory()
   return (
     <>
       <Container
@@ -47,7 +49,7 @@ const MemberHome = () => {
         maxWidth="sm"
         disableGutters
       >
-        <NavBar title="" />
+          <NavBar title="" IconNav={()=>history.push('/')} />
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <Grid container spacing={2} className={classes.pb30}>
             <Grid item xs>
@@ -75,23 +77,28 @@ const MemberHome = () => {
               </Box>
             </Grid>
           </Grid>
-
-          <Grid container alignItems="center" className={classes.pb30}>
+          <Link to='/member/profile-edit' style={{color:'black'}}>
+            <Grid container alignItems="center" className={classes.pb30}>
+              <Grid item xs={1}>
+                <img alt="edit" src={ProfileIcon} />
+              </Grid>
+              <Grid item xs>
+                <Box fontSize={15}>Edit Profile</Box>
+              </Grid>
+            </Grid>
+          </Link>
+          
+          <Link to='/member/order/history' style={{color:'black'}}>
+            <Grid container alignItems="center" className={classes.pb30}>
             <Grid item xs={1}>
-              <img alt="edit" src={ProfileIcon} />
+                  <img alt="history" src={HistoryIcon} />
+              </Grid>
+              <Grid item xs>
+                <Box fontSize={15}>History</Box>
+              </Grid>
             </Grid>
-            <Grid item xs>
-              <Box fontSize={15}>Edit Profile</Box>
-            </Grid>
-          </Grid>
-          <Grid container alignItems="center" className={classes.pb30}>
-            <Grid item xs={1}>
-              <img alt="history" src={HistoryIcon} />
-            </Grid>
-            <Grid item xs>
-              <Box fontSize={15}>History</Box>
-            </Grid>
-          </Grid>
+          </Link>
+          <Link to='/member/contact/support' style={{color:'black'}}>
           <Grid container alignItems="center" className={classes.pb30}>
             <Grid item xs={1}>
               <img alt="contact" src={ContactsIcon} />
@@ -100,6 +107,8 @@ const MemberHome = () => {
               <Box fontSize={15}>Contact Support</Box>
             </Grid>
           </Grid>
+          </Link>
+         
 
           <Grid container>
             <Grid item className={classes.centered}>
