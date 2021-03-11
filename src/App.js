@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
 
-const HomePage = lazy(() => import('./components/HomePage'))
+const HomePage = lazy(() => import('./components/Member'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Venue = lazy(() => import("./components/Venue"));

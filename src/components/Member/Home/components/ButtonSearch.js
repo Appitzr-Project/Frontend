@@ -1,4 +1,4 @@
-import { Box, Button, Grid, makeStyles } from '@material-ui/core';
+import { Box, Button, makeStyles } from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles({
@@ -19,21 +19,18 @@ const useStyles = makeStyles({
   },
 });
 
-const SendButton = () => {
+const ButtonSearch = () => {
   const classes = useStyles();
 
   return (
-    <Button variant="contained" className={classes.btnSendOrder}>
-      <Grid container justify="space-between" alignItems="center">
+    <Box pl="24px" pr="24px">
+      <Button variant="contained" fullWidth className={classes.btnSendOrder}>
         <Box fontWeight={600} fontSize={20}>
-          Send Order
+          Search
         </Box>
-        <Box fontWeight="fontWeightBold" fontSize={24} color="#000000">
-          $103
-        </Box>
-      </Grid>
-    </Button>
+      </Button>
+    </Box>
   );
 };
 
-export default SendButton;
+export default ButtonSearch;
