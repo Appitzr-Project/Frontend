@@ -11,6 +11,7 @@ import {
   TextField
 } from '@material-ui/core';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import BellSVG from './assets/ic-bell.svg';
@@ -76,11 +77,14 @@ const MemberHome = () => {
           className={classes.topContent}
           justify="space-between"
         >
+          <Link to="/member/notification">
           <Grid item xs>
             <div>
               <img alt="notification" src={BellSVG} />
             </div>
           </Grid>
+          </Link>
+          
           <Grid item>
             <div>
               <img alt="profile" src={Profile} />
