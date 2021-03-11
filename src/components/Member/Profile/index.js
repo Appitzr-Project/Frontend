@@ -20,8 +20,18 @@ const useStyles = makeStyles({
     marginTop: '24px',
     borderRadius: '50px 50px 0 0',
   },
+  alignRight: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    alignItems: 'baseline',
+  },
   profileGrid: {
     marginTop: '-75px',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    alignItems: 'baseline',
   },
   desc: {
     color: '#878787',
@@ -49,7 +59,12 @@ const MemberHome = () => {
       >
         <NavBar title="" />
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
-          <Grid container spacing={2} className={classes.pb30}>
+          <Grid
+            container
+            spacing={2}
+            className={classes.pb30}
+            justify="space-between"
+          >
             <Grid item xs>
               <Box fontSize={20} fontWeight={500}>
                 My account
@@ -61,7 +76,7 @@ const MemberHome = () => {
                 <img alt="profile" src={Profile} />
               </div>
             </Grid>
-            <Grid item xs>
+            <Grid item xs={1}  className={classes.alignRight}>
               <div>
                 <img alt="edit" src={Pencils} />
               </div>
