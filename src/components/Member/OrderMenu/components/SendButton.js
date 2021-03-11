@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     textTransform: 'none',
     height: '55px',
     color: '#ffffff',
-    bottom: 56,
+    bottom: 15,
     width: 'calc(100vw - 48px)',
     margin: '5% auto',
     left: 0,
