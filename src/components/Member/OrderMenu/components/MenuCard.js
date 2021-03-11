@@ -55,12 +55,12 @@ const MenuCard = () => {
   return (
     <Grid container spacing={0} direction='column'>
       {Array.from({ length: 5 }).map((item, index) =>
-        <Grid item className={classes.gridWrapper} key={index + 1}>
+        <Grid item className={classes.gridWrapper} key={index}>
           <Card elevation={0} className={classes.cardContainer}>
             <Grid container className={classes.gridContainer}>
               <Grid item xs={3} className={classes.menuWrapper}>
                 <Box p={1} mb={7}>
-                  <IHeart color={'#F1608A'} />
+                  <IHeart color={index < 1 ? '#F1608A' : '#FFFFFF'} />
                 </Box>
                 <Box p={1} mb={1} className={classes.processFood}>
                   Processed food
