@@ -83,11 +83,10 @@ const useStyle = makeStyles((theme) => ({
 
 const ListReview = () => {
   const classes = useStyle();
-  const [showReply, setShowReply] = useState(false);
 
   return (
     <Grid container spacing={2} className={classes.listReview}>
-      <Grid item xs={2} onClick={() => setShowReply(false)}>
+      <Grid item xs={2} >
         <div className={classes.leftEl}>
           <Avatar
             alt=""
@@ -116,28 +115,6 @@ const ListReview = () => {
           delicious dishes, beautiful presentation, wide wine list and wonderful
           dessert.
         </Typography>
-
-        {showReply ? (
-          <>
-            <TextField
-              className={classes.replyInput}
-              multiline
-              rows={2}
-              fullWidth
-              variant="outlined"
-            />
-            <Button variant="contained" className={classes.submitReply}>
-              Reply
-            </Button>
-          </>
-        ) : (
-          <Badge
-            onClick={() => setShowReply(true)}
-            className={classes.replyBtn}
-          >
-            Reply
-          </Badge>
-        )}
       </Grid>
     </Grid>
   );
