@@ -55,6 +55,13 @@ const MenuOption = () => {
           <span style={{ fontSize: "18px" }}>Discount</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
+
+        <Link to="/venue/dashboard">
+          <Button variant="outlined" fullWidth className={classes.btnMO}>
+            <span style={{ fontSize: "18px" }}>Dashboard</span>
+            <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+          </Button>
+        </Link>
       </Wrapper>
     </>
   );
