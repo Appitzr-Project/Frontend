@@ -105,6 +105,7 @@ const useStyles = makeStyles({
 
 const Profile = () => {
     const classes = useStyles();
+
     return (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>
@@ -117,7 +118,7 @@ const Profile = () => {
                         <span>
                             Profile
                         </span>
-                        <img src="/src/img/imgadmin.png" />
+                        <img alt="admin" src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
             
