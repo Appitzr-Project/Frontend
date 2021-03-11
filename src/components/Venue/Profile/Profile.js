@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Typography, Button } from "@material-ui/core";
+import { TextField, Typography, Button, Grid } from "@material-ui/core";
 import Wrapper from "../../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -23,9 +23,23 @@ const useStyle = makeStyles((theme) => ({
     height: "71px",
     fontSize: "18px",
     fontWeight: "600",
+    color: "#fff",
+    marginTop: "20px",
     "&:hover": {
       backgroundColor: "#20D3C2",
     },
+  },
+
+  qrcode :{
+    margin: "60px 0 30px 0"
+  },
+
+  sendEmail:{
+    fontWeight: "600",
+    fontSize: "15px",
+    color: "#540174",
+    cursor: "pointer",
+    textDecoration : "underline"
   },
 }));
 
@@ -49,8 +63,39 @@ const Profile = () => {
               size="small"
             />
           </div>
+
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Email</Typography>
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </div>
+
+          <div className={classes.formControl}>
+            <Typography className={classes.inputLabel}>Phone Number</Typography>
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </div>
+
+          <div className={classes.formControl}>
+            <Typography className={classes.inputLabel}>Postal Code</Typography>
+            <TextField
+              className={classes.input}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </div>
+
+          <div className={classes.formControl}>
+            <Typography className={classes.inputLabel}>Location</Typography>
             <TextField
               className={classes.input}
               variant="outlined"
@@ -70,7 +115,7 @@ const Profile = () => {
           </Typography>
 
           <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Account Name</Typography>
+            <Typography className={classes.inputLabel}>Bank Bsb</Typography>
             <TextField
               className={classes.input}
               variant="outlined"
@@ -80,7 +125,7 @@ const Profile = () => {
           </div>
 
           <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Bank</Typography>
+            <Typography className={classes.inputLabel}>Account Name</Typography>
             <TextField
               className={classes.input}
               variant="outlined"
@@ -100,6 +145,17 @@ const Profile = () => {
               size="small"
             />
           </div>
+          
+          <Grid container direction="column" alignItems="center" justify="center" className={classes.qrcode}>
+            <Grid item>
+              <img alt="mantap" src="/src/img/QRCODE.svg" />
+            </Grid>
+            <Grid item>
+              <div className={classes.sendEmail}>
+              Send to email
+              </div>
+            </Grid>
+          </Grid>
 
           <Button
             variant="outlined"
