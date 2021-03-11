@@ -32,9 +32,6 @@ const Wrapper = (props) => {
         <header className={classes.wrapHeader}>
           <Container>
             <Header {...props} />
-            {/* <Typography variant='subtitle2' gutterBottom>
-                tes
-            </Typography> */}
           </Container>
         </header>
         <main className={classes.wrapMain}>{props.children}</main>

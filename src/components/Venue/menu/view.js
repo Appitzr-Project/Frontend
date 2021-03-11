@@ -16,9 +16,6 @@ const View = () => {
           </Typography>
         </Grid>
         <Grid item xs={4} align='right'>
-          {/* <Typography variant='subtitle2' gutterBottom align='right'>
-            Select
-          </Typography> */}
           <select name='cars' className={classes.select}>
             <option value='volvo'>Volvo</option>
             <option value='saab'>Saab</option>
