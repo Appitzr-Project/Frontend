@@ -1,6 +1,7 @@
-import { Box, Button, Card, Collapse, Container, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, Card, Container, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import React from 'react';
+import { useHistory } from 'react-router';
 import NavBar from '../../NavBar';
 
 const useStyles=makeStyles((theme)=>({
@@ -28,11 +29,7 @@ const useStyles=makeStyles((theme)=>({
 
 const OrderHistory = () => {
   const classes = useStyles();
-  const [addReview, setAddReview] = React.useState(false);
-
-  const handleReview = () => {
-    setAddReview(!addReview);
-  };
+  const history=useHistory()
   return (
     <>
       <div className="App">
@@ -41,7 +38,7 @@ const OrderHistory = () => {
         maxWidth="sm"
         disableGutters
       >
-        <NavBar title="Order History" />
+        <NavBar title="Order History" IconNav={()=>history.push('/member/profile')} />
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
         <Typography variant="caption" display="block" gutterBottom>February 28, 2020</Typography>
           <Grid container >
@@ -148,29 +145,10 @@ const OrderHistory = () => {
                   justify="flex-end"
                   alignItems="center"
                 >
-                  <Button variant="contained" color="primary" onClick={handleReview} style={{borderRadius:'50px 50px 50px 50px',fontSize:'14px',marginTop:'2px'}}>
+                  <Button variant="contained" color="primary" onClick={()=>history.push()} style={{borderRadius:'50px 50px 50px 50px',fontSize:'14px',marginTop:'2px'}}>
                     add review
                   </Button>
                 </Grid>
-                <Box
-                 ml={3}
-                 fontSize={14}
-                  mt={2}
-                >
-                 <Collapse in={addReview} timeout="auto" unmountOnExit>  
-                  <textarea id="reviewOrder" name="reviewOrder" rows="4" cols="50" placeholder="Write a reply" />
-                  <Grid
-                  container
-                  direction="row"
-                  justify="flex-end"
-                  alignItems="center"
-                >
-                  <Button variant="contained" style={{backgroundColor:"#20D3C2", color:'white'}}>
-                    Send
-                  </Button>
-                </Grid>
-                  </Collapse>
-                </Box>
                 
             </Grid>
           </Grid>
@@ -206,12 +184,6 @@ const OrderHistory = () => {
                 >
                   Completed
                 </Grid>
-                <Box ml={3}>
-                <Typography>Review</Typography>
-                </Box>
-                <Box ml={3} fontSize={14} style={{borderStyle:'solid',height:100}}>
-                  this food is delicious
-                </Box>
             </Grid>
           </Grid>
         </Card>
