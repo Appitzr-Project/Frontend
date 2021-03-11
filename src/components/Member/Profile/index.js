@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     padding: '24px 24px 100px 24px',
     marginTop: '24px',
     borderRadius: '50px 50px 0 0',
+    height: 'calc(100vh - 70px)',
   },
   alignRight: {
     display: 'flex',
