@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     textTransform: 'none',
     height: '55px',
     color: '#ffffff',
-    bottom: 56,
+    bottom: 24,
     width: 'calc(100% - 48px)',
     margin: '5% auto',
     left: 0,
