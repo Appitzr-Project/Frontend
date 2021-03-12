@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { MemberOrderMenu } from './OrderMenu/routes';
+
 const MemberPage = lazy(() => import('./Home/index.js'));
+const MemberOrderMenu = lazy(() => import('./OrderMenu'));
 const ProfilePage = lazy(() => import('./Profile/index.js'));
 const MemberOrderSummary = lazy(() => import('./OrderSummary/index.js'));
 const OrderHistory=lazy(() => import('./OrderHistory/OrderHistory.jsx'));
