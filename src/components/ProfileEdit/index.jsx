@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import { Link } from "react-router-dom";
 
 const SubmitButton = withStyles(() => ({
     root: {
@@ -114,10 +115,12 @@ const Profile = () => {
                         alignItems="center" 
                         container
                         justify="space-between">
-                        <NavigateBeforeIcon className={classes.backIcon} />
+                        <Link to='/member/profile'>
+                            <NavigateBeforeIcon className={classes.backIcon} />
+                        </Link>
                         <span>
-                            Profile
-                        </span>
+                                Profile
+                            </span>
                         <img alt="admin" src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
