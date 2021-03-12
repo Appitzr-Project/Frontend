@@ -1,8 +1,3 @@
-// import { lazy } from 'react'
-
-// export const Add = lazy(() => import('./add'))
-// export const View = lazy(() => import('./view'))
-
 import React from 'react'
 import { Card, Container, makeStyles } from '@material-ui/core'
 import NavBar from '../../NavBar'
