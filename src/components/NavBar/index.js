@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    navbar: {
+      background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
+    },
   })
 );
 
@@ -25,7 +28,7 @@ export default function NavBar({ title }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0} className={classes.navbar}>
         <Toolbar>
           <IconButton
             edge="start"
