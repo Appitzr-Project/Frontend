@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Grid }
+import { AppBar, Toolbar, IconButton, Typography, Grid, Container }
   from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -32,7 +32,7 @@ const Orders = () => {
   const onBack = () => history.push('/venue')
 
   return (
-    <Grid container xs={12} direction='column' justify='flex-start' className={classes.wrapper}>
+    <Container maxWidth='sm'  justify='flex-start' className={classes.wrapper}>
       <Grid item   >
         <AppBar position='static' color='transparent' className={classes.appBar} >
           <Toolbar>
@@ -53,7 +53,7 @@ const Orders = () => {
           </Switch>
         </Suspense>
       </Router>
-    </Grid>
+    </Container>
   );
 };
 

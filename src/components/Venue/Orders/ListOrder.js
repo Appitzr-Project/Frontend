@@ -95,7 +95,7 @@ const ListOrders = () => {
                                 <Typography className={classes.headOrderItem} >{order.qty} Items</Typography>
                             </Grid>
                             <Grid item container xs alignItems='center' justify='center' direction='row' >
-                                <Grid item direction='column' xs spacing={3} style={{ marginLeft: '10px' }} >
+                                <Grid item  xs style={{ marginLeft: '10px' }} >
                                     <Typography className={classes.headOrderPrice} >{order.title}</Typography>
                                     <Typography className={classes.headOrderItem} variant='body2' >{order.updatedAt}</Typography>
                                 </Grid>
@@ -117,7 +117,7 @@ const ListOrders = () => {
                                 <Typography className={classes.headOrderItem} >{order.qty} Items</Typography>
                             </Grid>
                             <Grid item container xs alignItems='center' justify='center' direction='row' >
-                                <Grid item direction='column' xs spacing={3} style={{ marginLeft: '10px' }} >
+                                <Grid item  xs style={{ marginLeft: '10px' }} >
                                     <Typography className={classes.headOrderPrice} >{order.title}</Typography>
                                     <Typography className={classes.headOrderItem} variant='body2' >{order.updatedAt}</Typography>
                                 </Grid>
