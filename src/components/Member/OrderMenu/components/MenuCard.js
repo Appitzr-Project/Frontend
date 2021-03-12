@@ -5,7 +5,13 @@ import {
   Grid,
   makeStyles
 } from '@material-ui/core'
-import { IButtonAdd, IClose, IHeart, IMSpaghetti, IButtonSub } from '../assets'
+import { 
+  IButtonAdd,
+  IClose,
+  IHeart, 
+  IMSpaghetti,
+  IButtonSub
+} from '../assets'
 
 const useStyles = (img) =>
   makeStyles({
