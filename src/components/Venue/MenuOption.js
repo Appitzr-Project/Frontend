@@ -37,10 +37,12 @@ const MenuOption = () => {
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
 
-        <Button variant="outlined" fullWidth className={classes.btnMO}>
-          <span style={{ fontSize: "18px" }}>Menu</span>
-          <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
-        </Button>
+        <Link to="/venue/menu">
+          <Button variant="outlined" fullWidth className={classes.btnMO}>
+            <span style={{ fontSize: "18px" }}>Menu</span>
+            <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+          </Button>
+        </Link>
 
         <Link to="/venue/reviews">
           <Button variant="outlined" fullWidth className={classes.btnMO}>

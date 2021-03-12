@@ -48,7 +48,7 @@ const Header = (props) => {
           {props.title}
         </Typography>
       </Grid>
-
+        
       <Grid item xs={2}>
         <div style={{ float: "right" }}>
           {props.image && (

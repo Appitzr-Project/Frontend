@@ -119,8 +119,13 @@ const Profile = () => {
                             <NavigateBeforeIcon className={classes.backIcon} />
                         </Link>
                         <span>
+<<<<<<< HEAD
                                 Profile
                             </span>
+=======
+                            Profile
+                        </span>
+>>>>>>> fix unused import and alt on img
                         <img alt="admin" src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
