@@ -7,6 +7,7 @@ import LocalAtmTwoToneIcon from '@material-ui/icons/LocalAtmTwoTone';
 import LocalOfferTwoToneIcon from '@material-ui/icons/LocalOfferTwoTone';
 import { useHistory } from 'react-router';
 import Wrapper from "../../shared/NavbarWithProfile/Wrapper";
+import Wrapper from "../../shared/Wrapper";
 
 const useStyle = makeStyles((theme) => ({
   notificationItem: {
