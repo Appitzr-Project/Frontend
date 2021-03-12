@@ -15,6 +15,8 @@ const Venue = () => {
           <Route path="/venue/profile" component={Profile} />
           <Route path="/venue/reviews" component={Reviews} />
           <Route path="/venue/dashboard" component={Dashboard} />
+          <Route exact path="/venue/menu" component={View} />
+          <Route path="/venue/menu/add" component={Add} />
           <Route path="/venue/detail" component={Detail} />
         </Switch>
       </Suspense>
