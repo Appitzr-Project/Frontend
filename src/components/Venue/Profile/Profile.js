@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, Typography, Button, Grid } from "@material-ui/core";
-import Wrapper from "../../shared/Wrapper";
+import Wrapper from "../../shared/NavbarWithProfile/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
