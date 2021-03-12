@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState, Fragment } from 'react'
 import { Typography, Grid, Button, TextField } from '@material-ui/core'
 import Wrapper from '../../shared/Wrapper'
 import { makeStyles } from '@material-ui/core/styles'
-import { string } from './strings'
+import { strings } from './utils'
 
-const Add = () => {
+const MenuAdd = () => {
   const [state, setState] = useState({
     name: '',
     description: '',
@@ -42,7 +42,7 @@ const Add = () => {
 
   return (
     <Wrapper
-      title={string.add_menu}
+      title={strings.add_menu}
       image='https://source.unsplash.com/random'
       spacing='26px'
       isBack
@@ -52,7 +52,7 @@ const Add = () => {
           type='text'
           name='name'
           value={state.name}
-          label={string.label_name}
+          label={strings.label_name}
           ref={inputFocus}
           onChange={onChange}
           className={classes.input}
@@ -61,7 +61,7 @@ const Add = () => {
           <Typography
             gutterBottom
             className={classes.label}>
-            {string.label_category}
+            {strings.label_category}
           </Typography>
           <select name='cars' className={classes.select}>
             <option value='volvo'>Volvo</option>
@@ -74,7 +74,7 @@ const Add = () => {
           <Typography
             gutterBottom
             className={classes.label}>
-            {string.label_desc}
+            {strings.label_desc}
           </Typography>
           <textarea
             name='description'
@@ -96,7 +96,7 @@ const Add = () => {
           <Typography
             gutterBottom
             className={classes.label}>
-            {string.label_picture}
+            {strings.label_picture}
           </Typography>
           {picturePreview === null && (
             <input
@@ -120,7 +120,7 @@ const Add = () => {
               <button
                 className={classes.btnImg}
               >
-                {string.add_img}
+                {strings.add_img}
               </button>
             </div>
           </>
@@ -129,7 +129,7 @@ const Add = () => {
           <Typography
             gutterBottom
             className={classes.label}>
-            {string.label_protein_type}
+            {strings.label_protein_type}
           </Typography>
           <select name='cars' className={classes.select}>
             <option value='volvo'>Volvo</option>
@@ -146,7 +146,7 @@ const Add = () => {
               className={classes.bold}
               style={{ color: 'white', textTransform: 'capitalize' }}
             >
-              {string.save_menu}
+              {strings.save_menu}
             </Typography>
           </Button>
         </Grid>
@@ -261,7 +261,7 @@ const useStyle = makeStyles((theme) => ({
   btnImg: {
     border: 'none',
     padding: '10px',
-    fontSize: '3vh',
+    fontSize: 14,
     borderRadius: '15px',
     backgroundColor: '#4F147B',
     color: 'white'
@@ -269,4 +269,4 @@ const useStyle = makeStyles((theme) => ({
   
 }))
 
-export default Add
+export default MenuAdd

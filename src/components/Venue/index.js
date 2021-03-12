@@ -1,14 +1,13 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Add, View } from './menu'
 const MenuOption = lazy(() => import("./MenuOption"));
 const Profile = lazy(() => import("./Profile/Profile"));
 const Reviews = lazy(() => import("./Reviews/Reviews"));
 const Dashboard = lazy(() => import("./Dashboard/Dashboard"));
 const Detail = lazy(() => import("./Detail"));
 const Orders = lazy(() => import("./Orders"));
-// const Menu = lazy(() => import("./menu"));
-// const MenuAdd = lazy(() => import("./menu/add.js"));
+const MenuList = lazy(() => import("./menu"));
+const MenuAdd = lazy(() => import("./menu/MenuAdd"));
 
 const Venue = () => {
   return (
@@ -19,10 +18,10 @@ const Venue = () => {
           <Route path="/venue/profile" component={Profile} />
           <Route path="/venue/reviews" component={Reviews} />
           <Route path="/venue/dashboard" component={Dashboard} />
-          <Route path="/venue/detail" component={Detail} />
           <Route path="/venue/orders" component={Orders} />
-          <Route exact path="/venue/menu" component={View} />
-          <Route path="/venue/menu/add" component={Add} />
+          <Route exact path="/venue/menu" component={MenuList} />
+          <Route path="/venue/menu/add" component={MenuAdd} />
+          <Route path="/venue/detail" component={Detail} />
         </Switch>
       </Suspense>
     </Router>
