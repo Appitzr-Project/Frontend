@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { Link } from "react-router-dom";
-import Wrapper from "../shared/Wrapper";
+import Wrapper from "../shared/VenueHeader/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
