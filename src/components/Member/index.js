@@ -13,6 +13,7 @@ function Member() {
         <Switch>
           <Route exact path="/" component={MemberPage} />
           <Route exact path="/member/" component={ProfilePage} />
+          <Route exact path="/member/profile" component={ProfilePage} />
           <Route path="/member/order-summary" component={MemberOrderSummary} />
           <Route path="/member/order/history" component={OrderHistory} />
           <Route path="/member/notification" component={Notification} />
