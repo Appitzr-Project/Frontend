@@ -8,6 +8,7 @@ const Notification = lazy(() => import('./Notification/Notification'));
 const ProfileEdit = lazy(() => import('../ProfileEdit/index'));
 const Support = lazy(() => import('../Support/index'));
 const OrderThankYou = lazy(() => import('./OrderThankYou/OrderThankYou'));
+const Review = lazy(() => import('./Review/Review'));
 
 function Member() {
   return (
@@ -22,6 +23,7 @@ function Member() {
           <Route path="/member/profile-edit" component={ProfileEdit} />
           <Route exact path="/member/contact/support" component={Support} />
           <Route path="/member/thank-you" component={OrderThankYou} />
+          <Route path="/member/review" component={Review} />
         </Switch>
       </Suspense>
     </Router>
