@@ -103,7 +103,7 @@ const Support = () => {
                         Contact Support
                     </Grid>
                     <Grid item xs={2}>
-                        <img src="/src/img/imgadmin.png" />
+                        <img alt="admin" src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
             

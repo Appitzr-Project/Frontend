@@ -145,7 +145,7 @@ const Venues = () => {
                         <span>
                             Venue
                         </span>
-                        <img src="/src/img/imgadmin.png" />
+                        <img alt="admin" src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
 

@@ -1,12 +1,11 @@
-import { Component } from 'react';
 import Container from '@material-ui/core/Container';
-import Wrapper from "../../shared/Wrapper";
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from "@material-ui/core/styles";
+import CheckTwoToneIcon from '@material-ui/icons/CheckTwoTone';
 import LocalAtmTwoToneIcon from '@material-ui/icons/LocalAtmTwoTone';
 import LocalOfferTwoToneIcon from '@material-ui/icons/LocalOfferTwoTone';
-import CheckTwoToneIcon from '@material-ui/icons/CheckTwoTone';
-import { makeStyles } from "@material-ui/core/styles";
+import Wrapper from "../../shared/Wrapper";
 
 const useStyle = makeStyles((theme) => ({
   notificationItem: {

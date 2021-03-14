@@ -20,7 +20,6 @@ const MenuButton = withStyles((theme) => ({
         '&:hover': {
             backgroundColor: '#20D3C2',
         },
-        width: 'inherit',
         height: '58px',
         fontSize: '18px',
         borderRadius: '18px',
@@ -211,12 +210,6 @@ const useStyles = makeStyles({
 });
 
 const Detail = () => {
-
-    const [age, setAge] = React.useState('');
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
-
     const classes = useStyles();
     return (
         <div className="App">        
@@ -244,7 +237,7 @@ const Detail = () => {
                             </div>
                         </div>
                         <div className={classes.venueRate}>
-                            <img className={classes.venueImg} src="/src/img/imgadmin.png" alt="Venue Image" />
+                            <img className={classes.venueImg} src="/src/img/imgadmin.png" alt="venue" />
                             <div>
                                 <span className={classes.venueCurrentStar}><StarIcon className={classes.venueStar} /> 4</span><span className={classes.venueMaxStar}>/5</span> 
                             </div>
@@ -266,7 +259,7 @@ const Detail = () => {
                         </h3>
                         <div>
                             <div className={classes.reviewContainer}>
-                                <img className={classes.reviewerImage} src="/src/img/imgadmin.png" alt="Reviewer Image" />
+                                <img className={classes.reviewerImage} src="/src/img/imgadmin.png" alt="reviewer" />
                                 <div>
                                     <p className={classes.reviewTitleContainer}>
                                         <span className={classes.reviewerName}>John Doe</span>
@@ -278,7 +271,7 @@ const Detail = () => {
                                 </div>
                             </div>
                             <div className={classes.reviewContainer}>
-                                <img className={classes.reviewerImage} src="/src/img/imgadmin.png" alt="Reviewer Image" />
+                                <img className={classes.reviewerImage} src="/src/img/imgadmin.png" alt="reviewer" />
                                 <div>
                                     <p className={classes.reviewTitleContainer}>
                                         <span className={classes.reviewerName}>John Doe</span>
