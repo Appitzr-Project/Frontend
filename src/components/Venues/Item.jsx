@@ -60,7 +60,8 @@ const useStyles = makeStyles({
         fontSize: '14px',
         color: '#7B00AB',
         fontWeight: 600,
-        display: 'block'
+        display: 'flex',
+        justifyContent: 'space-between'
     },
     venueCategory: {
         fontWeight: 700,
@@ -78,6 +79,16 @@ const useStyles = makeStyles({
         position: 'absolute',
         zIndex: 1,
         top: '6px',
+    },
+    discountTag: {
+        width: 55,
+        height: 20,
+        borderRadius: 5,
+        backgroundColor: '#02A1F3',
+        fontSize: 10,
+        color: 'white',
+        textAlign: 'center',
+        padding: 3
     }
 });
 
@@ -91,7 +102,7 @@ const Item = () => {
             </ListItemAvatar>
             <CustomListItemText primary={
                 <React.Fragment>  
-                    <span className={classes.venueName}>Restaurant Hubert</span>
+                    <span className={classes.venueName}>Restaurant Hubert <span className={classes.discountTag}>10% OFF</span></span>
                     <span className={classes.venueCategory}>$$$ French</span>
                 </React.Fragment>
             } secondary={
