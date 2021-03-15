@@ -9,6 +9,7 @@ const ProfileEdit = lazy(() => import('../ProfileEdit/index'));
 const Support = lazy(() => import('../Support/index'));
 const OrderThankYou = lazy(() => import('./OrderThankYou/OrderThankYou'));
 const Review = lazy(() => import('./Review/Review'));
+const OrderDetail = lazy(()=> import("./OrderDetail"));
 
 function Member() {
   return (
@@ -18,6 +19,7 @@ function Member() {
           <Route exact path="/" component={MemberPage} />
           <Route exact path="/member" component={ProfilePage} />
           <Route path="/member/order-summary" component={MemberOrderSummary} />
+          <Route path="/member/order-detail" component={OrderDetail} />
           <Route path="/member/order/history" component={OrderHistory} />
           <Route path="/member/notification" component={Notification} />
           <Route path="/member/profile-edit" component={ProfileEdit} />
