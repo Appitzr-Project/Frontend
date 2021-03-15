@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 
+
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -102,7 +103,7 @@ const Support = () => {
                         Contact Support
                     </Grid>
                     <Grid item xs={2}>
-                        <img src="/src/img/imgadmin.png" />
+                        <img alt="admin" src="/src/img/imgadmin.png" />
                     </Grid>
                 </Grid>
             

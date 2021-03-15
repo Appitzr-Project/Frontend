@@ -1,14 +1,9 @@
-import React, { useState } from "react";
 import {
-  Typography,
-  Grid,
-  Button,
-  Avatar,
-  Badge,
-  TextField,
+  Avatar, Grid, Typography
 } from "@material-ui/core";
-import StarIcon from "@material-ui/icons/Star";
 import { makeStyles } from "@material-ui/core/styles";
+import StarIcon from "@material-ui/icons/Star";
+import React from "react";
 const useStyle = makeStyles((theme) => ({
   listReview: {
     borderRadius: "20px",
@@ -27,7 +22,7 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: "15px",
   },
 
-  replyBtn: {
+  submitReply: {
     background: "#20D3C2",
     width: "82px",
     height: "27px",
@@ -71,15 +66,22 @@ const useStyle = makeStyles((theme) => ({
     fontWeight: "400 ",
   },
 
+  replyBtn:{
+    fontSize: "14px",
+    fontWeight: "600",
+    marginTop: "15px",
+    float: "right",
+    color: "#5263C8",
+    cursor: "pointer",
+  }
 }));
 
 const ListReview = () => {
   const classes = useStyle();
-  const [showReply, setShowReply] = useState(false);
 
   return (
     <Grid container spacing={2} className={classes.listReview}>
-      <Grid item xs={2} onClick={() => setShowReply(false)}>
+      <Grid item xs={2} >
         <div className={classes.leftEl}>
           <Avatar
             alt=""
@@ -108,28 +110,6 @@ const ListReview = () => {
           delicious dishes, beautiful presentation, wide wine list and wonderful
           dessert.
         </Typography>
-
-        {showReply ? (
-          <>
-            <TextField
-              className={classes.replyInput}
-              multiline
-              rows={2}
-              fullWidth
-              variant="outlined"
-            />
-            <Button variant="contained" className={classes.replyBtn}>
-              Reply
-            </Button>
-          </>
-        ) : (
-          <Badge
-            onClick={() => setShowReply(true)}
-            className={classes.replyBtn}
-          >
-            Reply
-          </Badge>
-        )}
       </Grid>
     </Grid>
   );

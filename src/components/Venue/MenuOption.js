@@ -14,7 +14,13 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "space-between",
     padding: "0 25px",
     marginBottom: "30px",
+    textTransform: "capitalize"
   },
+
+  textMenu:{
+    fontSize: "18px",
+    fontWeight: "600",
+  }
 }));
 
 const MenuOption = () => {
@@ -25,34 +31,54 @@ const MenuOption = () => {
         title="Venue Dashboard"
         image="https://source.unsplash.com/random"
       >
+        <Link to="/venue/dashboard">
+          <Button variant="outlined" fullWidth className={classes.btnMO}>
+            <span className={classes.textMenu}>Dashboard</span>
+            <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+          </Button>
+        </Link>
+
         <Link to="/venue/profile">
           <Button variant="outlined" fullWidth className={classes.btnMO}>
-            <span style={{ fontSize: "18px" }}>Profile</span>
+            <span className={classes.textMenu}>Profile</span>
             <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
           </Button>
         </Link>
 
         <Button variant="outlined" fullWidth className={classes.btnMO}>
-          <span style={{ fontSize: "18px" }}>Orders</span>
+          <span className={classes.textMenu}>Scan</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
+
+        <Link to="/venue/orders">
+          <Button variant="outlined" fullWidth className={classes.btnMO}>
+            <span className={classes.textMenu}>Orders</span>
+            <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+          </Button>
+        </Link>
 
         <Button variant="outlined" fullWidth className={classes.btnMO}>
-          <span style={{ fontSize: "18px" }}>Menu</span>
+          <span className={classes.textMenu}>Menu</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
-
+        
         <Link to="/venue/reviews">
           <Button variant="outlined" fullWidth className={classes.btnMO}>
-            <span style={{ fontSize: "18px" }}>Reviews</span>
+            <span className={classes.textMenu}>Reviews</span>
             <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
           </Button>
         </Link>
 
         <Button variant="outlined" fullWidth className={classes.btnMO}>
-          <span style={{ fontSize: "18px" }}>Discount</span>
+          <span className={classes.textMenu}>Discount</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
+
+        <Button variant="outlined" fullWidth className={classes.btnMO}>
+          <span className={classes.textMenu}>Logout</span>
+          <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+        </Button>
+        
       </Wrapper>
     </>
   );

@@ -1,7 +1,8 @@
 import React from "react";
-import { TextField, Typography, Button } from "@material-ui/core";
+import { TextField, Typography, Button, Grid, InputAdornment } from "@material-ui/core";
 import Wrapper from "../../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const useStyle = makeStyles((theme) => ({
   inputLabel: {
@@ -15,6 +16,16 @@ const useStyle = makeStyles((theme) => ({
 
   input: {
     background: "#f3f3f3",
+    borderRadius: "5px",
+    padding: "20 15px"
+  },
+
+  startIcon:{ 
+    backgroundColor: '#E4E4E4',
+    marginLeft: '-9px',
+    padding: "9px 13px",
+    width: "47px",
+    color: '#A3A3A3' 
   },
 
   submitBtn: {
@@ -23,11 +34,27 @@ const useStyle = makeStyles((theme) => ({
     height: "71px",
     fontSize: "18px",
     fontWeight: "600",
+    color: "#fff",
+    marginTop: "20px",
     "&:hover": {
       backgroundColor: "#20D3C2",
     },
   },
+
+  qrcode :{
+    margin: "60px 0 30px 0"
+  },
+
+  sendEmail:{
+    fontWeight: "600",
+    fontSize: "15px",
+    color: "#540174",
+    cursor: "pointer",
+    textDecoration : "underline"
+  },
 }));
+
+const inputStyle = {fontSize:21, padding:"5px 10px"}
 
 const Profile = () => {
   const classes = useStyle();
@@ -43,17 +70,54 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Name</Typography>
             <TextField
-              className={classes.input}
-              variant="outlined"
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
               fullWidth
               size="small"
             />
           </div>
+
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Email</Typography>
             <TextField
-              className={classes.input}
-              variant="outlined"
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
+              fullWidth
+              size="small"
+            />
+          </div>
+
+          <div className={classes.formControl}>
+            <Typography className={classes.inputLabel}>Phone Number</Typography>
+            <TextField
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
+              fullWidth
+              size="small"
+            />
+          </div>
+
+          <div className={classes.formControl}>
+            <Typography className={classes.inputLabel}>Postal Code</Typography>
+            <TextField
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
+              fullWidth
+              size="small"
+            />
+          </div>
+
+          <div className={classes.formControl}>
+            <Typography className={classes.inputLabel}>Location</Typography>
+            <TextField
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true, startAdornment:(
+                <InputAdornment position="start" component="div">
+                  <div className={classes.startIcon}>
+                    <LocationOnIcon />
+                  </div>
+                </InputAdornment>
+              )}}
+              variant="standard"
               fullWidth
               size="small"
             />
@@ -70,20 +134,20 @@ const Profile = () => {
           </Typography>
 
           <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Account Name</Typography>
+            <Typography className={classes.inputLabel}>Bank BSB</Typography>
             <TextField
-              className={classes.input}
-              variant="outlined"
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
               fullWidth
               size="small"
             />
           </div>
 
           <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Bank</Typography>
+            <Typography className={classes.inputLabel}>Account Name</Typography>
             <TextField
-              className={classes.input}
-              variant="outlined"
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
               fullWidth
               size="small"
             />
@@ -94,12 +158,23 @@ const Profile = () => {
               Account Number
             </Typography>
             <TextField
-              className={classes.input}
-              variant="outlined"
+              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
+              variant="standard"
               fullWidth
               size="small"
             />
           </div>
+          
+          <Grid container direction="column" alignItems="center" justify="center" className={classes.qrcode}>
+            <Grid item>
+              <img alt="mantap" src="/src/img/QRCODE.svg" />
+            </Grid>
+            <Grid item>
+              <div className={classes.sendEmail}>
+              Send to email
+              </div>
+            </Grid>
+          </Grid>
 
           <Button
             variant="outlined"

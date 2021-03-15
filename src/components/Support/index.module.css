@@ -19,7 +19,6 @@
 }
 
 .title {
-    /* font-family: Open Sans; */
     font-style: normal;
     font-weight: 600;
     font-size: 30px;
@@ -34,16 +33,17 @@
     margin-top:50px !important;
 }
 
-.notificationBox {
+.supportBox {
     background: #ffffff;
     padding-left:24px;
     padding-right:24px;
     padding-bottom:24px;
     border-radius: 50px 50px 0px 0px !important;
     box-shadow: none !important;
+    height: 100vh;
 }
 
-.notificationItem {
+.supportItem {
     text-align: left;
     margin-top:24px !important;
     background:#ffffff;
@@ -51,33 +51,21 @@
     padding-right: 12px;
     padding-bottom: 12px;
     padding-left:12px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(71, 71, 71, 0.1);
 }
 
-.notificationIconBox {
-    text-align: center;
-    padding-left: 16px;
-    padding-right: 16px;
+.supportTextarea{
+    border: none;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+    padding: 13px;
+    font-size: 16px;
+    width: 100%;
+    min-height: 195px;
+    max-height: 195px;
+    resize: none;
 }
 
-.notificationIconBackground {
-    border-radius: 50% !important;
-    padding-top: 1px;
-    padding-bottom: 8px;
-    box-shadow: none !important;
-}
-
-.notificationIcon {
-    font-size: 40px !important;
-}
-
-.notificationTitle {
-    color:#0E0E0E !important;
-    font-weight: 700;
-}
-
-.notificationText {
-    color: #999999 !important;
-    font-weight: 400;
+.supportTextWelcome{
+    font-size: 16px;
+    color: #464646;
 }

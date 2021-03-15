@@ -1,0 +1,53 @@
+.container {
+    background: linear-gradient(90deg, #5263C8 0%, #303C83 100%);
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top:30px;
+}
+.header {
+    padding-left:24px;
+    padding-right: 24px;
+}
+
+.backIcon {
+    color: #ffffff !important;
+    font-size: 30px !important;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.content {
+    font-size:30px;
+    margin-top:50px !important;
+}
+
+.profileBox {
+    background: #ffffff;
+    padding-left:24px;
+    padding-right:24px;
+    padding-bottom:24px;
+    border-radius: 50px 50px 0px 0px !important;
+    box-shadow: none !important;
+}
+
+.profileItem {
+    text-align: left;
+    margin-top:46px !important;
+    background:#ffffff;
+    padding-bottom: 32px;
+}
+
+.profileTextWelcome{
+    font-size: 16px;
+    color: #464646;
+}
+
+.profileSectionTitle{
+    font-size: 18px;
+    margin-bottom: 25px;
+}
