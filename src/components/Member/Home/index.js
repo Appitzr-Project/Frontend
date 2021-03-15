@@ -188,12 +188,12 @@ const MemberHome = () => {
               label="Postal Codes"
               defaultValue="6283"
             />
+            <ButtonSearch />
           </form>
-          <Box pt="20px">
+          <Box>
             <VenueCard />
           </Box>
         </Card>
-        <ButtonSearch />
         <BottomNav ActiveMenu={MENU.HOME} />
       </Container>
     </>
