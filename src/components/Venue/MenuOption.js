@@ -49,6 +49,13 @@ const MenuOption = () => {
           <span className={classes.textMenu}>Scan</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
+    
+        <Link to="/venue/orders">
+          <Button variant="outlined" fullWidth className={classes.btnMO}>
+            <span style={{ fontSize: "18px" }}>Orders</span>
+            <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+          </Button>
+        </Link>
 
         <Button variant="outlined" fullWidth className={classes.btnMO}>
           <span className={classes.textMenu}>Orders</span>
@@ -59,7 +66,7 @@ const MenuOption = () => {
           <span className={classes.textMenu}>Menu</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>
-
+        
         <Link to="/venue/reviews">
           <Button variant="outlined" fullWidth className={classes.btnMO}>
             <span className={classes.textMenu}>Reviews</span>
