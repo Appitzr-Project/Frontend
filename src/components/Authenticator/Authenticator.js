@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 const Authenticator = ({ children }) => {
   const classes = useStyles();
   return (
-    <AmplifyAuthenticator>
+    <AmplifyAuthenticator usernameAlias='email'>
       <AmplifySignIn
         headerText="Login"
         federated-buttons={false}
