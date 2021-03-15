@@ -4,6 +4,7 @@ import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import NavBar from '../../NavBar';
 import ContactsIcon from './assets/ic-contacts.svg';
+import LogoutIcon from './assets/ic-logout.svg';
 import HistoryIcon from './assets/ic-history.svg';
 import ProfileIcon from './assets/ic-profile.svg';
 import Pencils from './assets/pencils.svg';
@@ -114,6 +115,14 @@ const MemberHome = () => {
             </Grid>
             <Grid item xs>
               <Box fontSize={15}>Contact Support</Box>
+            </Grid>
+          </Grid>
+          <Grid container alignItems="center" className={classes.pb30}>
+            <Grid item xs={1}>
+              <img alt="contact" src={LogoutIcon} />
+            </Grid>
+            <Grid item xs>
+              <Box fontSize={15}>Logout</Box>
             </Grid>
           </Grid>
 
