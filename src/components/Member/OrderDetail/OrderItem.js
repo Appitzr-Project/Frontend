@@ -58,7 +58,7 @@ const OrderItem = () => {
   return (
     <div className={classes.order}>
       <div className={classes.image}>
-        <img src="/src/img/spageti.png" style={{width:"100%", height:"100%"}}/>
+        <img alt="" src="/src/img/spageti.png" style={{width:"100%", height:"100%"}}/>
       </div>
 
       <Typography align="center" className={classes.category}>Spaghetti</Typography>
