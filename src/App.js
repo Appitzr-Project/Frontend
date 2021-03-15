@@ -13,6 +13,7 @@ const Venue = lazy(() => import("./components/Venue"));
 const Venues = lazy(() => import("./components/Venues"));
 const Support = lazy(() => import('./components/Support'));
 const ProfileEdit = lazy(() => import('./components/ProfileEdit'));
+const DiscountInfo = lazy(() => import('./components/DiscountInfo'))
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/venue" component={Venue} />
             <Route path="/venues" component={Venues} />
             <Route path="/profile-edit" component={ProfileEdit} />
+            <Route path="/promo" component={DiscountInfo} />
           </Switch>
         </Suspense>
       </Router>
