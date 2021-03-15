@@ -46,7 +46,7 @@ const MemberOrderDetail = () => {
       <OrderItem />
 
       <div className={classes.qrCode} >
-        <img alt="mantap" src="/src/img/QRCODE.svg" style={{width:"100%", height:"100%"}} />
+        <img alt="" src="/src/img/QRCODE.svg" style={{width:"100%", height:"100%"}} />
       </div>
 
     </Wrapper>
