@@ -12,7 +12,7 @@ const OrderThankYou = lazy(() => import('./OrderThankYou/OrderThankYou'));
 const Review = lazy(() => import('./Review/Review'));
 const MemberOrderMenu = lazy(() => import('../Member/OrderMenu')) 
 
-function Member() {
+function Member () {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
