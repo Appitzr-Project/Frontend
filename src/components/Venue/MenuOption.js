@@ -120,7 +120,7 @@ const MenuOption = () => {
 
         <Link to="/venue/menu">
           <Button variant="outlined" fullWidth className={classes.btnMO}>
-            <span style={{ fontSize: "18px" }}>Menu</span>
+            <span className={classes.textMenu}>Menu</span>
             <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
           </Button>
         </Link>
