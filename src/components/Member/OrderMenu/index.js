@@ -28,8 +28,6 @@ const MemberOrderMenu = () => {
       <NavBar title='Menu' />
       <Card classes={{ root: classes.cardRoot }} elevation={0}>
         <MenuCard />
-        {/* <CouponApply /> */}
-        {/* <PaymentSummary /> */}
       </Card>
 
       <SendButton />

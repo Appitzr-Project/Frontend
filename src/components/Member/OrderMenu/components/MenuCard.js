@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
-import { 
+import {
   Box,
   Card,
   Grid,
-  makeStyles
+  makeStyles,
+  withStyles
 } from '@material-ui/core'
-import { 
+import {
   IButtonAdd,
   IClose,
   IHeart, 
   IMSpaghetti,
   IButtonSub
 } from '../assets'
+import Rating from '@material-ui/lab/Rating'
+import { strings } from '../utils'
 
 const useStyles = (img) =>
   makeStyles({
     gridWrapper: {
       height: '100%',
-      marginBottom: 16  
+      marginBottom: 16
     },
     cardContainer: {
       boxShadow: '0px 4px 4px rgba(71, 71, 71, 0.1)',
@@ -45,21 +48,49 @@ const useStyles = (img) =>
       fontWeight: 'normal',
       color: '#ffffff'
     },
-    more: {
-      height: '4.5em',
-      overflow: 'hidden',
-      display: '-webkit-box',
-      webkitBoxOrient: 'vertical',
-      webkitLineClamp: 3
+    readMoreLine: {
+      color: 'black',
+      textDecoration: 'underline',
+      letterSpacing: '1px',
+      cursor: 'pointer',
+      fontWeight: 'bold'
     }
   })
 
+const CustomRating = withStyles(() => ({
+  root: {
+    fontSize: 24
+  }
+}))(Rating)
+
 const MenuCard = () => {
   const [more, setMore] = useState(true)
-  const classes = useStyles(IMSpaghetti)();
-
+  const classes = useStyles(IMSpaghetti)()
   return (
     <Grid container spacing={0} direction='column'>
+      <Grid item xs={12}>
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          flexWrap='wrap'
+          alignItems='center'
+          mb={3}
+        >
+          <Box fontSize={16} fontWeight='600' color='#0E0E0E' flexGrow={1}>
+            Opera Bar
+          </Box>
+          <Box m={0.5}>
+            <CustomRating readOnly name='size-small' defaultValue={1} max={1} />
+          </Box>
+          <Box m={0.5} color='#373737'>
+            4,6
+          </Box>
+          <Box m={0.5} color='rgb(193 193 193)'>
+            (45)
+          </Box>
+        </Box>
+      </Grid>
       {Array.from({ length: 5 }).map((item, index) =>
         <Grid item className={classes.gridWrapper} key={index}>
           <Card elevation={0} className={classes.cardContainer}>
@@ -92,7 +123,19 @@ const MenuCard = () => {
                   Medium Spicy Spaghetti
                 </Box>
                 <Box ml={2} fontSize={12} textAlign='justify' color='#9A9A9A'>
-                  Lorem ipsum dolor, sit cupiditate nostrum voluptate minima...
+                  <span
+                    dangerouslySetInnerHTML={{ 
+                      __html: more ? `${strings.text.slice(0, 50)}...` : strings.text
+                    }}
+                  />
+                  <a
+                    href='#' 
+                    rel='noopener noreferrer'
+                    style={{ color: 'black', cursor: 'pointer' }}
+                    onClick={(e) => {e.preventDefault(); setMore(!more)}}
+                  >
+                    &nbsp;<b><u>{more ? strings.show_more : strings.show_less}</u></b>
+                  </a>
                 </Box>
                 <Grid
                   container

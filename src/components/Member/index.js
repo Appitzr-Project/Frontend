@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { MemberOrderMenu } from './OrderMenu/routes';
+
 const MemberPage = lazy(() => import('./Home/index.js'));
 const ProfilePage = lazy(() => import('./Profile/index.js'));
 const MemberOrderSummary = lazy(() => import('./OrderSummary/index.js'));
@@ -10,6 +10,7 @@ const ProfileEdit = lazy(() => import('../ProfileEdit/index'));
 const Support = lazy(() => import('../Support/index'));
 const OrderThankYou = lazy(() => import('./OrderThankYou/OrderThankYou'));
 const Review = lazy(() => import('./Review/Review'));
+const MemberOrderMenu = lazy(() => import('../Member/OrderMenu')) 
 
 function Member() {
   return (
@@ -18,6 +19,7 @@ function Member() {
         <Switch>
           <Route exact path="/" component={MemberPage} />
           <Route exact path="/member" component={ProfilePage} />
+          <Route exact path="/member/order-menu" component={MemberOrderMenu} />
           <Route path="/member/order-summary" component={MemberOrderSummary} />
           <Route path="/member/order/history" component={OrderHistory} />
           <Route path="/member/notification" component={Notification} />
