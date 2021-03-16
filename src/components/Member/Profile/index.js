@@ -1,5 +1,6 @@
 import { Box, Card, Container, Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import NavBar from '../../NavBar';
@@ -93,6 +94,7 @@ const MemberHome = () => {
             </Grid>
           </Grid>
 
+          
           <Grid container alignItems="center" className={classes.pb30}>
             <Grid item xs={1}>
               <img alt="edit" src={ProfileIcon} />
@@ -101,6 +103,8 @@ const MemberHome = () => {
               <Box fontSize={15}>Edit Profile</Box>
             </Grid>
           </Grid>
+
+          <Link to='/member/order/history' style={{color:'black'}}>
           <Grid container alignItems="center" className={classes.pb30}>
             <Grid item xs={1}>
               <img alt="history" src={HistoryIcon} />
@@ -109,6 +113,7 @@ const MemberHome = () => {
               <Box fontSize={15}>History</Box>
             </Grid>
           </Grid>
+          </Link>
           <Grid container alignItems="center" className={classes.pb30}>
             <Grid item xs={1}>
               <img alt="contact" src={ContactsIcon} />
