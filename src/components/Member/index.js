@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 const MemberPage = lazy(() => import('./Home/index.js'));
 const ProfilePage = lazy(() => import('./Profile/index.js'));
 const MemberOrderSummary = lazy(() => import('./OrderSummary/index.js'));
@@ -12,7 +11,7 @@ const OrderThankYou = lazy(() => import('./OrderThankYou/OrderThankYou'));
 const Review = lazy(() => import('./Review/Review'));
 const MemberOrderMenu = lazy(() => import('../Member/OrderMenu')) 
 
-function Member () {
+function Member() {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
