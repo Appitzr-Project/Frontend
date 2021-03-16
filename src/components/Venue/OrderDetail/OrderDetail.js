@@ -1,134 +1,108 @@
 import React from 'react';
-import { AppBar, Container, Tabs, Tab, Grid, IconButton, Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import useStyle from './listOrderStyle';
-
-const orderData = [
-    {
-        price: '$443',
-        qty: 3,
-        title: 'Tony Ross',
-        updatedAt: '5-march-2021, 19:54 PM'
-    },
-    {
-        price: '$678',
-        qty: 5,
-        title: 'John Cena',
-        updatedAt: '5-march-2021, 19:54 PM'
-    },
-    {
-        price: '$225',
-        qty: 2,
-        title: 'liliana west',
-        updatedAt: '5-march-2021, 19:54 PM'
-    },
-    {
-        price: '$225',
-        qty: 2,
-        title: 'Asep',
-        updatedAt: '5-march-2021, 19:54 PM'
-    }
-]
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role='tabpanel'
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <>
-                    {children}
-                </>
-            )}
-        </div>
-    );
-}
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-
+import { Container, Grid } from '@material-ui/core';
+import useStyles from './indexStyle';
+import { VariantListItemText  } from './indexStyle';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const OrderDetail = () => {
-    const classes = useStyle();
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const classes = useStyles();
+    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Container >
-            <AppBar position='static' color='transparent' className={classes.appBar}  >
-                <Tabs value={value}
-                    onChange={handleChange}
-                    variant='scrollable'
-                    classes={{ indicator: classes.indicatorColor }}
-                    aria-label='simple tabs example'>
-                    <Tab label='On Progress' {...a11yProps(0)} classes={{ root: classes.textColor , selected: classes.selected }} />
-                    <Tab label='Completed' {...a11yProps(1)} classes={{ root: classes.textColor , selected: classes.selected }} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                <Grid container direction='column'  >
-                    <br />
-                    {orderData.map((order, key) => (
-                        <Grid key={key} container direction='row' className={classes.order} >
-                            <Grid container item direction='column' justify='center' alignItems='center' className={classes.headOrder + ' ' + classes.orderOnProgress } >
-                                <Typography className={classes.headOrderPrice} >{order.price}</Typography>
-                                <Typography className={classes.headOrderItem} >{order.qty} Items</Typography>
-                            </Grid>
-                            <Grid item container xs alignItems='center' justify='center' direction='row' >
-                                <Grid item  xs style={{ marginLeft: '10px' }} >
-                                    <Typography className={classes.headOrderPrice} >{order.title}</Typography>
-                                    <Typography className={classes.headOrderItem} variant='body2' >{order.updatedAt}</Typography>
-                                </Grid>
-                                <IconButton edge='start' className={classes.menuButton} color='inherit' >
-                                    <ArrowForwardIosIcon />
-                                </IconButton>
-                            </Grid>
-                        </Grid>
-                    ))}
+            <Grid container direction='column'>
+                <Card className={classes.root}>
+                    <CardContent className={classes.cardContent}>
+                        <Typography className={classes.title} component="h2">
+                            <span>#Tony Ross</span>
+                            <span className={classes.orderDate}>5-march-2021, 19:54 PM</span>
+                        </Typography>
+                        <div>
+                            <List dense={false}>
+                                <ListItem divider className={classes.listitemOutbox}>
+                                    <ListItemText
+                                        primary={<span className={classes.amountTitle}>Amount of People</span>}
+                                        secondary='4'
+                                    />
+                                </ListItem>
+                                <ListItem divider>
+                                    <VariantListItemText
+                                        primary={<span className={classes.foodName}>Spaghetti</span>}
+                                        secondary={
+                                            <React.Fragment>
+                                                <span className={classes.itemVariantPrice}>
+                                                    <span>Medium Spicy Spaghetti</span>
+                                                    <span>$43</span>
+                                                </span>
+                                                <span className={classes.itemTotalPerVariant}>1 item $43</span>
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </ListItem>
+                                <ListItem divider>
+                                    <VariantListItemText
+                                        primary={<span className={classes.foodName}>Deserts</span>}
+                                        secondary={
+                                            <React.Fragment>
+                                                <span className={classes.itemVariantPrice}>
+                                                    <span>Ice Cream Cone</span>
+                                                    <span>$30</span>
+                                                </span>
+                                                <span className={classes.itemTotalPerVariant}>1 item $43</span>
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText
+                                        primary={
+                                            <span className={classes.subTotalContainer}>
+                                                <span>Sub Total</span>
+                                                <span>$73</span>
+                                            </span>
+                                        }
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText
+                                        primary={
+                                            <span className={classes.discountContainer}>
+                                                <span>Discount</span>
+                                                <span>-</span>
+                                            </span>
+                                        }
+                                    />
+                                </ListItem>
+                                <ListItem className={classes.outBoxTotal}>
+                                    <ListItemText
+                                        primary={
+                                            <span className={classes.totalContainer}>
+                                                <span>Total payment</span>
+                                                <span>$73</span>
+                                            </span>
+                                        }
+                                    />
+                                </ListItem>
+                            </List>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Grid container className={classes.orderActionContainer} justify="center">
+                    <div className={classes.orderAction}>
+                        <span>
+                            Placed
+                            {/* or Done */}
+                        </span>
+                    </div>
                 </Grid>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-            <Grid container direction='column'  >
-                    <br />
-                    {orderData.map((order, key) => (
-                        <Grid key={key} container direction='row' className={classes.order} >
-                            <Grid container item direction='column' justify='center' alignItems='center' className={classes.headOrder + ' ' + classes.orderCompleted } >
-                                <Typography className={classes.headOrderPrice} >{order.price}</Typography>
-                                <Typography className={classes.headOrderItem} >{order.qty} Items</Typography>
-                            </Grid>
-                            <Grid item container xs alignItems='center' justify='center' direction='row' >
-                                <Grid item  xs style={{ marginLeft: '10px' }} >
-                                    <Typography className={classes.headOrderPrice} >{order.title}</Typography>
-                                    <Typography className={classes.headOrderItem} variant='body2' >{order.updatedAt}</Typography>
-                                </Grid>
-                                <IconButton edge='start' className={classes.menuButton} color='inherit' >
-                                    <ArrowForwardIosIcon />
-                                </IconButton>
-                            </Grid>
-                        </Grid>
-                    ))}
-                </Grid>
-        </TabPanel>
+            </Grid>
         </Container>
     );
 };
