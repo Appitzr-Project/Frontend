@@ -6,6 +6,7 @@ const Reviews = lazy(() => import("./Reviews/Reviews"));
 const Dashboard = lazy(() => import("./Dashboard/Dashboard"));
 const Detail = lazy(() => import("./Detail"));
 const Orders = lazy(() => import("./Orders"));
+const Scan = lazy(() => import("./Scan"));
 
 const Venue = () => {
   return (
@@ -18,6 +19,7 @@ const Venue = () => {
           <Route path="/venue/dashboard" component={Dashboard} />
           <Route path="/venue/detail" component={Detail} />
           <Route path="/venue/orders" component={Orders} />
+          <Route path="/venue/scan" component={Scan} />
         </Switch>
       </Suspense>
     </Router>
