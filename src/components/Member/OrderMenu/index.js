@@ -29,7 +29,6 @@ const MemberOrderMenu = () => {
       <Card classes={{ root: classes.cardRoot }} elevation={0}>
         <MenuCard />
       </Card>
-
       <SendButton />
     </Container>
   )
