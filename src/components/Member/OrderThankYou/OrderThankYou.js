@@ -43,7 +43,7 @@ const useStyle = makeStyles((theme) => ({
         padding: "50px 25px",
         borderTopLeftRadius: "50px",
         borderTopRightRadius: "50px",
-        minHeight: "86vh",
+        minHeight: "90vh",
     },
     closeIconBox: {
         marginTop: '-25px',
@@ -65,17 +65,8 @@ const useStyle = makeStyles((theme) => ({
         fontSize: '16px',
         fontWeight: '400',
     },
-    tableBox: {        
-        textAlign: 'left',
-        marginTop: '35px',
-    },
-    tableText: {
-        color: '#4F147B',
-        fontSize: '22px',
-        fontWeight: '600',
-    },
     contentBox: {        
-        marginTop: '35px',
+        marginTop: '90px',
         textAlign: 'center',
     },
     content: {
@@ -162,10 +153,6 @@ const OrderThankYou = () => {
                         <Grid item xs={12} className={classes.headingBox}>                     
                             <h2 className={classes.headingTitle}>Your done!</h2>
                             <p className={classes.headingText}>We’ve sent your order to the kitchen.</p>
-                        </Grid>
-
-                        <Grid item xs={12} className={classes.tableBox}>                     
-                            <p className={classes.tableText}>Table #23</p>
                         </Grid>
 
                         <Grid item xs={12} className={classes.contentBox}>                                      
