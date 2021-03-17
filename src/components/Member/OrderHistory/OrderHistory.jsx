@@ -36,8 +36,7 @@ const OrderHistory = () => {
   return(
     <Container maxWidth="sm">
     <Wrapper
-    isBack
-    NavIcon={()=>history.push('/member')}
+    isBack={()=>history.push('/member')}
     title="Order History"
     image="https://source.unsplash.com/random"
     >
