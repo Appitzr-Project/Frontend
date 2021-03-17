@@ -16,7 +16,7 @@ const useStyles = (img) =>
       background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
     },
     cardRoot: {
-      padding: '24px 24px 200px 24px',
+      padding: '32px 24px 200px 24px',
       marginTop: '24px',
       borderRadius: '50px 50px 0 0',
     },
