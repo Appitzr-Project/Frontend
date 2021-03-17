@@ -1,5 +1,5 @@
 import { Box, Card, Container, Grid, makeStyles } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import NavBar from '../../NavBar';
@@ -10,6 +10,7 @@ import ProfileIcon from './assets/ic-profile.svg';
 import Pencils from './assets/pencils.svg';
 import Profile from './assets/profile.png';
 import QRCodeIcon from './assets/qr-profile.svg';
+import ConfirmationDialog from './components/ConfirmationDialog';
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -51,6 +52,7 @@ const useStyles = makeStyles({
 
 const MemberHome = () => {
   const classes = useStyles();
+  const [displayDialog, setDisplayDialog] = useState(false);
 
   return (
     <>
@@ -78,7 +80,7 @@ const MemberHome = () => {
                 <img alt="profile" src={Profile} />
               </div>
             </Grid>
-            <Grid item xs={1}  className={classes.alignRight}>
+            <Grid item xs={1} className={classes.alignRight}>
               <div>
                 <img alt="edit" src={Pencils} />
               </div>
@@ -117,7 +119,12 @@ const MemberHome = () => {
               <Box fontSize={15}>Contact Support</Box>
             </Grid>
           </Grid>
-          <Grid container alignItems="center" className={classes.pb30}>
+          <Grid
+            container
+            alignItems="center"
+            className={classes.pb30}
+            onClick={() => setDisplayDialog(true)}
+          >
             <Grid item xs={1}>
               <img alt="contact" src={LogoutIcon} />
             </Grid>
@@ -132,6 +139,13 @@ const MemberHome = () => {
             </Grid>
           </Grid>
         </Card>
+
+        <ConfirmationDialog
+          id="ringtone-menu"
+          keepMounted
+          open={displayDialog}
+          onClose={() => setDisplayDialog(false)}
+        />
 
         <BottomNav ActiveMenu={MENU.USER} />
       </Container>
