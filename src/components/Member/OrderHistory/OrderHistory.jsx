@@ -38,7 +38,7 @@ const OrderHistory = () => {
         maxWidth="sm"
         disableGutters
       >
-        <NavBar title="Order History" NavIcon={()=>history.push('/member/profile')} />
+        <NavBar title="Order History" NavIcon={()=>history.push('/member')} />
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
         <Typography variant="caption" display="block" gutterBottom>February 28, 2020</Typography>
           <Grid container >
