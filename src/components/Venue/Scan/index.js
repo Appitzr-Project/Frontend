@@ -51,7 +51,7 @@ const VenueScan = () => {
     <Wrapper
         title="Scan QR Code"
         image="https://source.unsplash.com/random"
-        isBack
+        isBack="/venue"
     > 
       <Typography align="center" className={classes.title}>Scan Order</Typography>
       <QrReader

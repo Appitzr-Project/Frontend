@@ -64,7 +64,7 @@ const Profile = () => {
       <Wrapper
         title="Profile"
         image="https://source.unsplash.com/random"
-        isBack
+        isBack="/venue"
       >
         <form>
           <div className={classes.formControl}>

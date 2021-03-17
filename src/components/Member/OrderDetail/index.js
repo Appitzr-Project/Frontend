@@ -37,7 +37,7 @@ const MemberOrderDetail = () => {
     <Wrapper 
       title="Order Detail"
       image="https://source.unsplash.com/random"
-      isBack
+      isBack="/member/order/history"
     >
       <Typography align="center" className={classes.title}>Restaurant Hubert</Typography>
       <Typography align="center" className={classes.subtitle}>26-february-2021, 19:54 PM</Typography>

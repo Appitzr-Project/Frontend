@@ -30,7 +30,7 @@ const DiscountInfo = () => {
     <Wrapper
       title="Discount Info"
       image="https://source.unsplash.com/random"
-      isBack 
+      isBack="/venue/detail"
     >
       <Grid container spacing={2}>
         <Grid item xs={12}>
