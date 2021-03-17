@@ -29,7 +29,7 @@ const Reviews = () => {
   const classes = useStyle();
   return (
     <>
-      <Wrapper title="Reviews" isBack>
+      <Wrapper title="Reviews" isBack="/venue" >
         {/* review statistic */}
         <Typography variant="h1" align="center" className={classes.rating}>
           4.3

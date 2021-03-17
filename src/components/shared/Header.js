@@ -33,7 +33,7 @@ const Header = (props) => {
       <Grid item xs={props.isBack && 2}>
         {props.isBack && (
           <ArrowBackIosIcon
-            onClick={props.NavIcon}
+            onClick={() => history.push(props.isBack)}
             className={classes.arrowBack}
           />
         )}

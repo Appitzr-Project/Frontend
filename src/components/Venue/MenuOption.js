@@ -120,10 +120,12 @@ const MenuOption = () => {
           </Button>
         </Link>
 
-        <Button variant="outlined" fullWidth className={classes.btnMO}>
-          <span className={classes.textMenu}>Menu</span>
-          <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
-        </Button>
+        <Link to="/venue/menu/list">
+          <Button variant="outlined" fullWidth className={classes.btnMO}>
+            <span className={classes.textMenu}>Menu</span>
+            <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
+          </Button>
+        </Link>
         
         <Link to="/venue/reviews">
           <Button variant="outlined" fullWidth className={classes.btnMO}>

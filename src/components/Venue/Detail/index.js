@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { 
     withStyles,
@@ -206,6 +207,21 @@ const useStyles = makeStyles({
     },
     reviewSectionTitle: {
         marginBottom: 20,
+    },
+    discountContainer: {
+        backgroundColor: '#02A1F3',
+        fontSize: 18,
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: 18,
+        fontWeight: 700,
+        borderRadius: 5,
+        color: 'white',
+        '& a': {
+            fontWeight: 400,
+            color: 'white',
+            fontSize: 14
+        }
     }
 });
 
@@ -251,6 +267,12 @@ const Detail = () => {
                             We’re proud of Sydney, it’s the most beautiful city in the world. Yes, we may be biased but grab a seat at Opera Bar on a sunny day with a cold glass of something delicious, take in the view and you decide. Pure joy.
 
                             We’re proud of Sydney, it’s the most beautiful city in the world. Yes, we may be biased but grab a seat at Opera Bar 
+                        </p>
+                    </Grid>
+                    <Grid item xs={12}>  
+                        <p className={classes.discountContainer}>
+                            <span>20% OFF</span>
+                            <Link to="/promo">See Details &gt;&gt;</Link>
                         </p>
                     </Grid>
                     <Grid item xs={12}>  
