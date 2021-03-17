@@ -34,6 +34,7 @@ const Header = (props) => {
         {props.isBack && (
           <ArrowBackIosIcon
             onClick={() => history.push("/venue")}
+            onClick={props.NavIcon}
             className={classes.arrowBack}
           />
         )}
