@@ -10,9 +10,10 @@ const useStyles = (img) =>
       background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
     },
     cardRoot: {
-      padding: '32px 24px 200px 24px',
-      marginTop: '24px',
-      borderRadius: '50px 50px 0 0',
+        padding: '32px 24px 0 24px',
+        marginTop: '24px',
+        borderRadius: '50px 50px 0 0',
+        height: 'calc(100vh - 105px)',
     },
     bgPercentage: {
       backgroundColor: '#40F27C',

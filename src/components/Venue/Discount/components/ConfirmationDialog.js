@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   btnCancel: {
     textTransform: 'none',
     height: '55px',
-    color: '#ffffff',
+    color: '#C1C1C1',
     margin: '5% auto',
     maxWidth: '568px',
     background: '#EBEBEB',
