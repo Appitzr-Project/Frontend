@@ -31,7 +31,8 @@ const useStyles = (img) =>
     },
     menuWrapper: {
       backgroundImage: `url(${img})`,
-      background: 'no-repeat'
+      background: 'no-repeat',
+      position: 'relative'
     },
     alignRight: {
       display: 'flex',
@@ -42,11 +43,13 @@ const useStyles = (img) =>
     processFood: {
       backgroundColor: '#313D84',
       borderRadius: 16,
-      padding: 2,
+      padding: 4,
       textAlign: 'center',
       fontSize: 10,
       fontWeight: 'normal',
-      color: '#ffffff'
+      color: '#ffffff',
+      position: 'absolute',
+      bottom: 16
     },
     readMoreLine: {
       color: 'black',
@@ -54,7 +57,13 @@ const useStyles = (img) =>
       letterSpacing: '1px',
       cursor: 'pointer',
       fontWeight: 'bold'
-    }
+    },
+    select: {
+      position: 'relative',
+      borderRadius: '10px',
+      padding: '8px',
+      border: '1px solid #FF3974'
+    },
   })
 
 const CustomRating = withStyles(() => ({
@@ -78,16 +87,15 @@ const MenuCard = () => {
           mb={3}
         >
           <Box fontSize={16} fontWeight='600' color='#0E0E0E' flexGrow={1}>
-            Opera Bar
+            Show 345 List
           </Box>
           <Box m={0.5}>
-            <CustomRating readOnly name='size-small' defaultValue={1} max={1} />
-          </Box>
-          <Box m={0.5} color='#373737'>
-            4,6
-          </Box>
-          <Box m={0.5} color='rgb(193 193 193)'>
-            (45)
+            <select name='cars' className={classes.select}>
+              <option value='volvo'>Volvo</option>
+              <option value='saab'>Saab</option>
+              <option value='mercedes'>Mercedes</option>
+              <option value='audi'>Audi</option>
+            </select>
           </Box>
         </Box>
       </Grid>
@@ -96,9 +104,6 @@ const MenuCard = () => {
           <Card elevation={0} className={classes.cardContainer}>
             <Grid container className={classes.gridContainer}>
               <Grid item xs={3} className={classes.menuWrapper}>
-                <Box p={1} mb={7}>
-                  <IHeart color={index < 1 ? '#F1608A' : '#FFFFFF'} />
-                </Box>
                 <Box p={1} mb={1} className={classes.processFood}>
                   Processed food
                 </Box>
@@ -115,8 +120,8 @@ const MenuCard = () => {
                   <Box color='#7B00AB'>
                     Spagetthi
                   </Box>
-                  <Box>
-                    <img alt='close' src={IClose} />
+                  <Box color='#7B00AB'>
+                    Change
                   </Box>
                 </Box>
                 <Box ml={2} mb={1} fontWeight={600} fontSize={16} color='#0E0E0E'>
@@ -137,26 +142,9 @@ const MenuCard = () => {
                     &nbsp;<b><u>{more ? strings.show_more : strings.show_less}</u></b>
                   </a>
                 </Box>
-                <Grid
-                  container
-                  justify='flex-end'
-                  className={classes.gridContainer}
-                >
-                  <Grid item>
-                    <IButtonSub
-                      fill={'#EAEAEA'}
-                      stroke={'#BFBFBF'}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Box fontWeight={700} fontStyle={16} mb={2} ml={3} mr={3}>
-                      1
-                    </Box>
-                  </Grid>
-                  <Grid item>
-                    <img alt='add' src={IButtonAdd} />
-                  </Grid>
-                </Grid>
+                <Box ml={2} my={2} fontSize={16} textAlign='justify' color='#5E4E63'>
+                  $46
+                </Box>
               </Grid>
             </Grid>
           </Card>

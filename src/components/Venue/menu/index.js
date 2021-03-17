@@ -12,12 +12,11 @@ const useStyles = (img) =>
     cardRoot: {
       padding: '24px 24px 140px 24px',
       marginTop: '24px',
-      borderRadius: '50px 50px 0 0',
-      height: '100vh'
-    },
+      borderRadius: '50px 50px 0 0'
+    }
   })
 
-const MemberOrderMenu = () => {
+const MenuList = () => {
   const classes = useStyles(IMSpaghetti)()
   return (
     <Container
@@ -34,4 +33,4 @@ const MemberOrderMenu = () => {
   )
 }
 
-export default MemberOrderMenu
+export default MenuList

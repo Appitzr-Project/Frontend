@@ -11,6 +11,7 @@ import {
   TextField
 } from '@material-ui/core';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import BellSVG from './assets/ic-bell.svg';
@@ -29,6 +30,13 @@ const useStyles = makeStyles({
     padding: '33px 24px 150px 24px',
     marginTop: '24px',
     borderRadius: '50px 50px 0 0',
+    height: 'calc(100vh - 70px)',
+  },
+  alignRight: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    alignItems: 'baseline',
   },
   venueCardContainer: {
     flexWrap: 'nowrap',
@@ -76,11 +84,14 @@ const MemberHome = () => {
           className={classes.topContent}
           justify="space-between"
         >
+          <Link to="/member/notification">
           <Grid item xs>
             <div>
               <img alt="notification" src={BellSVG} />
             </div>
           </Grid>
+          </Link>
+          
           <Grid item>
             <div>
               <img alt="profile" src={Profile} />
@@ -188,12 +199,12 @@ const MemberHome = () => {
               label="Postal Codes"
               defaultValue="6283"
             />
-            <ButtonSearch />
           </form>
-          <Box>
+          <Box pt="20px">
             <VenueCard />
           </Box>
         </Card>
+        <ButtonSearch />
         <BottomNav ActiveMenu={MENU.HOME} />
       </Container>
     </>

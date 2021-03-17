@@ -1,8 +1,7 @@
 import React from "react";
-import { TextField, Typography, Button, Grid, InputAdornment } from "@material-ui/core";
-import Wrapper from "../../shared/Wrapper";
+import { TextField, Typography, Button, Grid } from "@material-ui/core";
+import Wrapper from "../../shared/NavbarWithProfile/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const useStyle = makeStyles((theme) => ({
   inputLabel: {
@@ -16,16 +15,6 @@ const useStyle = makeStyles((theme) => ({
 
   input: {
     background: "#f3f3f3",
-    borderRadius: "5px",
-    padding: "20 15px"
-  },
-
-  startIcon:{ 
-    backgroundColor: '#E4E4E4',
-    marginLeft: '-9px',
-    padding: "9px 13px",
-    width: "47px",
-    color: '#A3A3A3' 
   },
 
   submitBtn: {
@@ -54,8 +43,6 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const inputStyle = {fontSize:21, padding:"5px 10px"}
-
 const Profile = () => {
   const classes = useStyle();
 
@@ -70,8 +57,8 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Name</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -80,8 +67,8 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Email</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -90,8 +77,8 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Phone Number</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -100,8 +87,8 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Postal Code</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -110,14 +97,8 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Location</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true, startAdornment:(
-                <InputAdornment position="start" component="div">
-                  <div className={classes.startIcon}>
-                    <LocationOnIcon />
-                  </div>
-                </InputAdornment>
-              )}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -134,10 +115,10 @@ const Profile = () => {
           </Typography>
 
           <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Bank BSB</Typography>
+            <Typography className={classes.inputLabel}>Bank Bsb</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -146,8 +127,8 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Account Name</Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />
@@ -158,8 +139,8 @@ const Profile = () => {
               Account Number
             </Typography>
             <TextField
-              InputProps={{style:inputStyle, className: classes.input, disableUnderline: true,}}
-              variant="standard"
+              className={classes.input}
+              variant="outlined"
               fullWidth
               size="small"
             />

@@ -24,19 +24,9 @@ const SendButton = () => {
   const classes = useStyles();
 
   return (
-    <Link to='/member/order-summary'>
+    <Link to='/venue/menu/add'>
       <Button variant='contained' className={classes.btnSendOrder}>
-        <Grid container justify='space-between' alignItems='center'>
-          <Box fontWeight={600} fontSize={20}>
-            Order
-          </Box>
-          <Box fontWeight={400} fontSize={14} color='#4F147B' p={2}>
-            (2 Items)
-          </Box>
-          <Box fontWeight='fontWeightBold' fontSize={24} color='#000000' flexGrow={2}>
-            <span style={{ float: 'right' }}>$103</span>
-          </Box>
-        </Grid>
+        Add New Menu
       </Button>
     </Link>
   );
