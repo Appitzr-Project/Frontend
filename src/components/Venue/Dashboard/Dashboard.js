@@ -37,7 +37,7 @@ const Dashboard = () => {
   };
   return (
     <Container maxWidth="sm" className={classes.dashboardContainer}>
-      <Header isBack title="Dashboard" />
+      <Header isBack="/venue" title="Dashboard" />
 
       <Grid container style={{ marginTop: "20px" }} justify="space-between">
         <Typography variant="h6">Week ending</Typography>
