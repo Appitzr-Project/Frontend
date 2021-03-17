@@ -8,6 +8,9 @@ const Detail = lazy(() => import("./Detail"));
 const Orders = lazy(() => import("./Orders"));
 const Scan = lazy(() => import("./Scan"));
 const OrderDetail = lazy(() => import("./OrderDetail"));
+const MenuList = lazy(() => import("./Menu"));
+const MenuAdd = lazy(() => import("./MenuForm"))
+const MenuEdit = lazy(() => import("./MenuForm/edit"))
 
 const Venue = () => {
   return (
@@ -22,6 +25,9 @@ const Venue = () => {
           <Route path="/venue/orders" component={Orders} />
           <Route path="/venue/scan" component={Scan} />
           <Route path="/venue/order-detail" component={OrderDetail} />
+          <Route path="/venue/menu/list" component={MenuList} />
+          <Route path="/venue/menu/add" component={MenuAdd} />
+          <Route path="/venue/menu/edit" component={MenuEdit} />
         </Switch>
       </Suspense>
     </Router>
