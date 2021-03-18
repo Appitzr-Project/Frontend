@@ -1,10 +1,10 @@
 import {
-    Box,
-    Button,
-    Card,
-    Container,
-    makeStyles,
-    TextField
+  Box,
+  Button,
+  Card,
+  Container,
+  makeStyles,
+  TextField,
 } from '@material-ui/core';
 import React, { useState } from 'react';
 import NavBar from '../../NavBar';
@@ -17,10 +17,11 @@ const useStyles = (img) =>
       background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
     },
     cardRoot: {
-        padding: '32px 24px 0 24px',
-        marginTop: '24px',
-        borderRadius: '50px 50px 0 0',
-        height: 'calc(100vh - 105px)',
+      padding: '32px 24px 0 24px',
+      marginTop: '24px',
+      borderRadius: '50px 50px 0 0',
+      height: 'calc(100vh - 105px)',
+      minHeight: '600px',
     },
     bgPercentage: {
       backgroundColor: '#40F27C',
@@ -89,7 +90,7 @@ const DiscountEdit = () => {
               id="startDate"
               label="Start Date"
               type="date"
-              defaultValue="01/03/2021"
+              defaultValue="2021-03-01"
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
@@ -99,7 +100,7 @@ const DiscountEdit = () => {
               id="endDate"
               label="End Date"
               type="date"
-              defaultValue="31/03/2021"
+              defaultValue="2021-03-31"
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,

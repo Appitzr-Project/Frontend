@@ -20,6 +20,7 @@ const useStyles = (img) =>
       marginTop: '24px',
       borderRadius: '50px 50px 0 0',
       height: 'calc(100vh - 105px)',
+      minHeight: '600px',
     },
     bgPercentage: {
       backgroundColor: '#40F27C',
