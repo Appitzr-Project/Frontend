@@ -34,6 +34,11 @@ const Chart = () => {
         },
       ]
     },
+    elements: {
+      point:{
+          radius: 0
+      }
+  }
   }
   return <Line data={data} legend={{ display: false }} options={options} />;
 };
