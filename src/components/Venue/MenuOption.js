@@ -134,7 +134,7 @@ const MenuOption = () => {
           </Button>
         </Link>
 
-        <Button variant="outlined" fullWidth className={classes.btnMO}>
+        <Button variant="outlined" fullWidth className={classes.btnMO} onClick={() => window ? (window.location.href = '/venue/discount') : {}}>
           <span className={classes.textMenu}>Discount</span>
           <ArrowForwardIosIcon style={{ fontSize: "12px" }} />
         </Button>

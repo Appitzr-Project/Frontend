@@ -11,6 +11,7 @@ const OrderDetail = lazy(() => import("./OrderDetail"));
 const MenuList = lazy(() => import("./Menu"));
 const MenuAdd = lazy(() => import("./MenuForm"))
 const MenuEdit = lazy(() => import("./MenuForm/edit"))
+const DiscountLazy = lazy(() => import("./Discount/Lazy"))
 
 const Venue = () => {
   return (
@@ -28,6 +29,7 @@ const Venue = () => {
           <Route path="/venue/menu/list" component={MenuList} />
           <Route path="/venue/menu/add" component={MenuAdd} />
           <Route path="/venue/menu/edit" component={MenuEdit} />
+          <Route path="/venue/discount" component={DiscountLazy} />
         </Switch>
       </Suspense>
     </Router>

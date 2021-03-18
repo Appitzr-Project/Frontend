@@ -44,10 +44,10 @@ const ConfirmationDialog = ({ id, keepMounted, open, onClick, onClose }) => {
       aria-labelledby="confirmation-dialog-title"
       open={open}
     >
-      <DialogTitle id="confirmation-dialog-title">Logout</DialogTitle>
+      <DialogTitle id="confirmation-dialog-title">Delete Coupon</DialogTitle>
       <DialogContent>
         <Box fontSize="16px" className={classes.question}>
-          Are you sure you want to logout now?
+          are you sure want delete this item?
         </Box>
       </DialogContent>
       <DialogActions className={classes.btnActionGroup}>
@@ -59,7 +59,7 @@ const ConfirmationDialog = ({ id, keepMounted, open, onClick, onClose }) => {
           </Grid>
           <Grid item xs={5}>
             <Button fullWidth onClick={onClose} className={classes.btnOk}>
-              OK
+              Delete
             </Button>
           </Grid>
         </Grid>
