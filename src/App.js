@@ -11,10 +11,6 @@ const Scan = lazy(() => import('./components/Scan/index.js'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Venue = lazy(() => import("./components/Venue"));
 const Venues = lazy(() => import("./components/Venues"));
-const Support = lazy(() => import('./components/Support'));
-const ProfileEdit = lazy(() => import('./components/ProfileEdit'));
-const DiscountInfo = lazy(() => import('./components/DiscountInfo'))
-
 function App() {
   return (
     <>
@@ -25,11 +21,8 @@ function App() {
             <Route exact path="/" component={HomePage} />
             <Route path="/scan" component={Scan} />
             <Route path="/member" component={MemberLazy} />
-            <Route exact path="/support" component={Support} />
             <Route path="/venue" component={Venue} />
             <Route path="/venues" component={Venues} />
-            <Route path="/profile-edit" component={ProfileEdit} />
-            <Route path="/promo" component={DiscountInfo} />
           </Switch>
         </Suspense>
       </Router>

@@ -5,7 +5,6 @@ import { MENU } from '../../BottomNav/const';
 import NavBar from '../../NavBar';
 import Spaghetti from './assets/spaghetti.png';
 import CouponApply from './components/CouponApply';
-import InputField from './components/InputField';
 import MenuCard from './components/MenuCard';
 import PaymentSummary from './components/PaymentSummary';
 import SendButton from './components/SendButton';
@@ -16,7 +15,7 @@ const useStyles = (img) =>
       background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
     },
     cardRoot: {
-      padding: '24px 24px 200px 24px',
+      padding: '24px 24px 140px 24px',
       marginTop: '24px',
       borderRadius: '50px 50px 0 0',
     },
@@ -36,7 +35,6 @@ const MemberOrderSummary = () => {
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <MenuCard />
           <CouponApply />
-          <InputField />
           <PaymentSummary />
         </Card>
 

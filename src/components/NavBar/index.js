@@ -23,9 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function NavBar({ title }) {
+export default function NavBar({ title ,IconNav}) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <AppBar position="static" elevation={0} className={classes.navbar}>
@@ -35,6 +34,7 @@ export default function NavBar({ title }) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={IconNav}
           >
             <ArrowBackIos />
           </IconButton>

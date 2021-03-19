@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
-import Wrapper from "../../shared/Wrapper";
+import Wrapper from "../../shared/VenueHeader/Wrapper";
 import StarIcon from "@material-ui/icons/Star";
 import ListReview from "./ListReview";
 import { makeStyles } from "@material-ui/core/styles";

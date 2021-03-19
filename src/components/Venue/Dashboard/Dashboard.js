@@ -6,7 +6,7 @@ import {
   NativeSelect,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Header from "../../shared/Header";
+import Header from "../../shared/VenueHeader/Header";
 import Chart from "./Chart";
 import DashboardCard from "./DashboardCard";
 import { makeStyles } from "@material-ui/core/styles";

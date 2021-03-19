@@ -1,4 +1,4 @@
-import { Button, Card, Grid, makeStyles, TextField } from '@material-ui/core';
+import { Button, Card, Grid, InputBase, makeStyles } from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles({
@@ -6,11 +6,16 @@ const useStyles = makeStyles({
     height: '55px',
   },
   couponWrapper: {
+    background: 'rgba(243, 243, 243, 0.7)',
     borderRadius: '10px',
+  },
+  input: {
+    marginTop: '11px',
+    marginLeft: '11px',
   },
   apply: {
     textTransform: 'none',
-    height: '48px',
+    height: '55px',
     backgroundColor: '#7B00AB',
     color: '#ffffff',
   },
@@ -29,10 +34,10 @@ const CouponApply = () => {
     <Card elevation={0} component="form">
       <Grid container className={classes.coupon}>
         <Grid item xs className={classes.couponWrapper}>
-          <TextField
+          <InputBase
             className={classes.input}
             fullWidth
-            label="Enter your coupon"
+            placeholder="Enter your coupon"
           />
         </Grid>
         <Grid item xs={3} className={classes.alignRight}>

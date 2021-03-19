@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CheckTwoToneIcon from '@material-ui/icons/CheckTwoTone';
 import LocalAtmTwoToneIcon from '@material-ui/icons/LocalAtmTwoTone';
 import LocalOfferTwoToneIcon from '@material-ui/icons/LocalOfferTwoTone';
-import Wrapper from "../../shared/Wrapper";
+import { useHistory } from 'react-router';
+import Wrapper from "../../shared/NavbarWithProfile/Wrapper";
 
 const useStyle = makeStyles((theme) => ({
   notificationItem: {
@@ -48,12 +49,15 @@ const useStyle = makeStyles((theme) => ({
 
 const Notification = () => {
   const classes = useStyle();
+  const history=useHistory()
     return (       
         <Container maxWidth="sm" className={classes.container}>
+          
           <Wrapper
             title="Notification"
             image="https://source.unsplash.com/random"
             isBack
+            icon={()=>history.push('/')}
           >          
             <Grid container spacing={0}>
               <Grid item xs={12}>

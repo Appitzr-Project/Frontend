@@ -3,15 +3,13 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import Wrapper from '../../shared/Wrapper'
 import { makeStyles } from '@material-ui/core/styles'
 import { strings } from './utils'
-import { InputForm } from './components'
-import { Link } from 'react-router-dom'
 
 const MenuAdd = () => {
   const [state, setState] = useState({
     name: '',
     description: '',
     category: '',
-    price: '',
+    price: 0,
     picture: null,
     protein: ''
   })
@@ -57,6 +55,7 @@ const MenuAdd = () => {
           label={strings.label_name}
           ref={inputFocus}
           onChange={onChange}
+          className={classes.input}
         />
         <div className={classes.formGroup}>
           <Typography
@@ -91,6 +90,7 @@ const MenuAdd = () => {
           label='Price'
           ref={inputFocus}
           onChange={onChange}
+          className={classes.input}
         />
         <div className={classes.formGroup}>
           <Typography
@@ -140,24 +140,60 @@ const MenuAdd = () => {
         </div>
         <br /><br /><br />
         <Grid item xs={12}>
-          <Link to='/venue/menu/list'>
-            <Button className={classes.submitBtn} fullWidth>
-              <Typography
-                variant='subtitle2'
-                className={classes.bold}
-                style={{ color: 'white', textTransform: 'capitalize' }}
-              >
-                {strings.save_menu}
-              </Typography>
-            </Button>
-          </Link>
+          <Button className={classes.submitBtn} fullWidth>
+            <Typography
+              variant='subtitle2'
+              className={classes.bold}
+              style={{ color: 'white', textTransform: 'capitalize' }}
+            >
+              {strings.save_menu}
+            </Typography>
+          </Button>
         </Grid>
       </form>
     </Wrapper>
   )
 }
 
+const InputForm = ({
+  label,
+  type,
+  value,
+  name,
+  ref,
+  onChange,
+  className
+}) => {
+  const classes = useStyle({ value })
+  return (
+    <div className={classes.formGroup}>
+      <Typography
+        gutterBottom
+        className={classes.label}
+      >
+        {label}
+      </Typography>
+      <input
+        name={name}
+        type={type}
+        className={className}
+        ref={ref}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  )
+}
+
 const useStyle = makeStyles((theme) => ({
+  label: {
+    color: value => value !== '' ? '#464646' : '#3f51b5',
+    fontSize: '16px',
+    fontWeight: '400',
+    [theme.breakpoints.down('xs')] : {
+      fontSize: '3.5vw'
+    }
+  },
   bold: {
     fontWeight: 'bold'
   },
@@ -183,6 +219,7 @@ const useStyle = makeStyles((theme) => ({
     outline: 0,
     boxShadow: 'none',
     padding: '12px',
+    marginBottom: '8px',
     '&:focus': {
       border: '2px solid #3f51b5'
     }
@@ -224,11 +261,12 @@ const useStyle = makeStyles((theme) => ({
   btnImg: {
     border: 'none',
     padding: '10px',
-    fontSize: 14,
+    fontSize: 16,
     borderRadius: '15px',
     backgroundColor: '#4F147B',
     color: 'white'
   }
+  
 }))
 
 export default MenuAdd
