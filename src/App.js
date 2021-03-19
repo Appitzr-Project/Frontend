@@ -7,6 +7,7 @@ import {
 import { CssBaseline } from "@material-ui/core";
 
 const HomePage = lazy(() => import('./components/Member'))
+const Welcome = lazy(()=>import('./components/WelcomeScreen/Welcome.jsx'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Venue = lazy(() => import("./components/Venue"));
@@ -30,6 +31,7 @@ function App() {
             <Route path="/venues" component={Venues} />
             <Route path="/profile-edit" component={ProfileEdit} />
             <Route path="/promo" component={DiscountInfo} />
+            <Route path="/welcome" component={Welcome} />
           </Switch>
         </Suspense>
       </Router>
