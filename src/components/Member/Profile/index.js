@@ -18,10 +18,9 @@ const useStyles = makeStyles({
   },
   cardRoot: {
     overflow: 'unset',
-    padding: '24px 24px 100px 24px',
+    padding: '24px 24px 57px 24px',
     marginTop: '24px',
     borderRadius: '50px 50px 0 0',
-    height: 'calc(100vh - 70px)',
   },
   alignRight: {
     display: 'flex',
@@ -53,6 +52,10 @@ const useStyles = makeStyles({
 const MemberHome = () => {
   const classes = useStyles();
   const [displayDialog, setDisplayDialog] = useState(false);
+  const handleOnClick = (target) => {
+    if (window) window.location.href = target;
+    return;
+  };
 
   return (
     <>
@@ -95,7 +98,12 @@ const MemberHome = () => {
             </Grid>
           </Grid>
 
-          <Grid container alignItems="center" className={classes.pb30}>
+          <Grid
+            container
+            alignItems="center"
+            className={classes.pb30}
+            onClick={() => handleOnClick('/member/profile-edit')}
+          >
             <Grid item xs={1}>
               <img alt="edit" src={ProfileIcon} />
             </Grid>
@@ -103,7 +111,12 @@ const MemberHome = () => {
               <Box fontSize={15}>Edit Profile</Box>
             </Grid>
           </Grid>
-          <Grid container alignItems="center" className={classes.pb30}>
+          <Grid
+            container
+            alignItems="center"
+            className={classes.pb30}
+            onClick={() => handleOnClick('/member/order/history')}
+          >
             <Grid item xs={1}>
               <img alt="history" src={HistoryIcon} />
             </Grid>
@@ -111,7 +124,12 @@ const MemberHome = () => {
               <Box fontSize={15}>History</Box>
             </Grid>
           </Grid>
-          <Grid container alignItems="center" className={classes.pb30}>
+          <Grid
+            container
+            alignItems="center"
+            className={classes.pb30}
+            onClick={() => handleOnClick('/member/contact/support')}
+          >
             <Grid item xs={1}>
               <img alt="contact" src={ContactsIcon} />
             </Grid>
