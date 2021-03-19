@@ -6,7 +6,7 @@ import {
   NativeSelect,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Header from "../../shared/VenueHeader/Header";
+import Header from "../../shared/Header";
 import Chart from "./Chart";
 import DashboardCard from "./DashboardCard";
 import { makeStyles } from "@material-ui/core/styles";
@@ -37,7 +37,7 @@ const Dashboard = () => {
   };
   return (
     <Container maxWidth="sm" className={classes.dashboardContainer}>
-      <Header isBack title="Dashboard" />
+      <Header isBack="/venue" title="Dashboard" />
 
       <Grid container style={{ marginTop: "20px" }} justify="space-between">
         <Typography variant="h6">Week ending</Typography>

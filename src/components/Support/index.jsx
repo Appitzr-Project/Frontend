@@ -7,7 +7,6 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
 
 const SubmitButton = withStyles((theme) => ({
     root: {
@@ -98,10 +97,7 @@ const Support = () => {
             <Container maxWidth="sm" className={classes.container}>
                 <Grid container spacing={0} className={classes.header} >
                     <Grid item xs={2} className={classes.backIconBox}>
-                    <Link to='/member/profile'>
-                            <NavigateBeforeIcon className={classes.backIcon} />
-                    </Link>
-                    
+                        <NavigateBeforeIcon className={classes.backIcon} />
                     </Grid>
                     <Grid item xs={8} className={classes.title}>
                         Contact Support

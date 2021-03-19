@@ -2,7 +2,6 @@ import { Button, Container, Grid } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
-import { useHistory } from 'react-router';
 import BottomNav from '../BottomNav';
 import { MENU } from '../BottomNav/const';
 import NavBar from '../NavBar';
@@ -30,11 +29,10 @@ const Scan = () => {
     console.error(err);
   };
 
-  const history=useHistory()
   return (
     <>
       <Container maxWidth="sm" disableGutters>
-        <NavBar title="Scan QR Code" IconNav={()=>history.push('/')}/>
+        <NavBar title="Scan QR Code" />
         <Grid
           container
           spacing={0}
