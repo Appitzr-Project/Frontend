@@ -34,7 +34,7 @@ const VenueCard = () => {
   return (
     <Grid container spacing={0} direction="column">
       {Array.from({ length: 5 }).map((i, index) => (
-        <Box pb="20px">
+        <Box pb="20px" key={index}>
           <Grid item className={classes.gridWrapper}>
             <Card elevation={0} className={classes.cardContainer}>
               <Grid container className={classes.gridContainer}>
@@ -62,14 +62,17 @@ const VenueCard = () => {
                   >
                     $$$ French
                   </Box>
-                  <Box ml="21px" fontSize={12} color="#59495F" pb="7px">
-                    Dine-in | Takeaway
-                  </Box>
-                  <Grid container justify="space-between" alignItems="center" wrap="nowrap">
+                  <Grid
+                    container
+                    justify="space-between"
+                    alignItems="center"
+                    wrap="nowrap"
+                  >
                     <Grid item>
                       <Box
                         ml="21px"
                         mb="14px"
+                        pt="7px"
                         fontWeight={600}
                         fontSize={12}
                         color="#0E0E0E"
@@ -85,8 +88,8 @@ const VenueCard = () => {
                         fontSize={16}
                         color="#5E4E63"
                       >
-                        {Array.from({ length: 5 }).map((i) => (
-                          <img alt="star" src={StarSVG} />
+                        {Array.from({ length: 5 }).map((i, index) => (
+                          <img key={index} alt="star" src={StarSVG} />
                         ))}
                       </Box>
                     </Grid>

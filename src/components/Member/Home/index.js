@@ -8,17 +8,16 @@ import {
   makeStyles,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from '@material-ui/core';
 import React, { useState } from 'react';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import BellSVG from './assets/ic-bell.svg';
-import StarSVG from './assets/ic-star.svg';
 import Profile from './assets/profile.png';
-import VenuePNG from './assets/venue.png';
 import ButtonSearch from './components/ButtonSearch';
 import VenueCard from './components/VenueCard';
+import VenueCarousel from './components/VenueCarousel';
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -81,7 +80,10 @@ const MemberHome = () => {
               <img alt="notification" src={BellSVG} />
             </div>
           </Grid>
-          <Grid item>
+          <Grid
+            item
+            onClick={() => (window ? (window.location.href = '/member') : {})}
+          >
             <div>
               <img alt="profile" src={Profile} />
             </div>
@@ -99,71 +101,7 @@ const MemberHome = () => {
             </Box>
           </Grid>
         </Grid>
-        <Grid container className={classes.venueCardContainer}>
-          {Array.from({ length: 10 }).map((i, index) => (
-            <Grid item>
-              <Box
-                p="0 0 21px 0"
-                pl={index === 0 ? '24px' : '18px'}
-                pr={
-                  index === Array.from({ length: 10 }).length - 1 ? '24px' : '0'
-                }
-                borderRadius={30}
-              >
-                <Card classes={{ root: classes.venueCard }}>
-                  <img alt="venue" src={VenuePNG} />
-                  <Box
-                    ml="21px"
-                    fontSize={14}
-                    fontWeight={600}
-                    pb="5px"
-                    color="#7B00AB"
-                  >
-                    Restaurant Hubert
-                  </Box>
-                  <Box
-                    ml="21px"
-                    fontWeight={700}
-                    fontSize={16}
-                    pb="5px"
-                    color="#0E0E0E"
-                  >
-                    $$$ French
-                  </Box>
-                  <Box ml="21px" fontSize={12} color="#59495F" pb="7px">
-                    Dine-in | Takeaway
-                  </Box>
-                  <Grid container justify="space-between" alignItems="center">
-                    <Grid item>
-                      <Box
-                        ml="21px"
-                        mb="14px"
-                        fontWeight={600}
-                        fontSize={12}
-                        color="#0E0E0E"
-                      >
-                        Sydney NSW
-                      </Box>
-                    </Grid>
-                    <Grid item>
-                      <Box
-                        mr="21px"
-                        mb="14px"
-                        fontWeight={600}
-                        fontSize={16}
-                        color="#5E4E63"
-                      >
-                        {Array.from({ length: 5 }).map((i) => (
-                          <img alt="star" src={StarSVG} />
-                        ))}
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Card>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+        <VenueCarousel />
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <Box pb="16px">
             <FormControl fullWidth>
