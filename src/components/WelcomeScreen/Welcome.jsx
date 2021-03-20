@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 const useStyles=makeStyles((theme)=>({
     containerRoot: {
         backgroundColor:'white',
-        padding: '32px 24px 140px 24px',
+        padding: '32px 24px 250px 24px',
       },
     buttonRoot:{
         width: '367px',
