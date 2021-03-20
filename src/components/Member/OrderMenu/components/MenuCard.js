@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Card, Grid, makeStyles, withStyles } from '@material-ui/core';
-import { IButtonAdd, IClose, IHeart, IMSpaghetti, IButtonSub } from '../assets';
+import { IButtonAdd, IClose, IHeart, IMSpaghetti } from '../assets';
 import Rating from '@material-ui/lab/Rating';
 import { strings } from '../utils';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ const useStyles = (img) =>
     },
     menuWrapper: {
       backgroundImage: `url(${img})`,
-      background: 'no-repeat',
+      background: 'no-repeat'
     },
     alignRight: {
       display: 'flex',
@@ -44,6 +44,9 @@ const useStyles = (img) =>
       cursor: 'pointer',
       fontWeight: 'bold',
     },
+    margin: {
+      margin: '8px 0px 6px 18px'
+    }
   });
 
 const CustomRating = withStyles(() => ({
@@ -124,11 +127,11 @@ const MenuCard = () => {
                     }}
                   />
                   <Link
-                    to=""
+                    to=''
                     style={{ color: 'black', cursor: 'pointer' }}
                     onClick={(e) => {
-                      e.preventDefault();
-                      setMore(!more);
+                      e.preventDefault()
+                      setMore(!more)
                     }}
                   >
                     &nbsp;
@@ -137,23 +140,20 @@ const MenuCard = () => {
                     </b>
                   </Link>
                 </Box>
-                <Grid
-                  container
-                  justify="flex-end"
-                  className={classes.gridContainer}
+                <Box
+                  display='flex'
+                  flexDirection='row'
+                  justifyContent='space-between'
+                  alignItems='center'
+                  className={classes.margin}
                 >
-                  <Grid item>
-                    <IButtonSub fill={'#EAEAEA'} stroke={'#BFBFBF'} />
-                  </Grid>
-                  <Grid item>
-                    <Box fontWeight={700} fontStyle={16} mb={2} ml={3} mr={3}>
-                      1
-                    </Box>
-                  </Grid>
-                  <Grid item>
-                    <img alt="add" src={IButtonAdd} />
-                  </Grid>
-                </Grid>
+                  <Box fontSize={16} textAlign='justify' color='#5E4E63'>
+                    $46
+                  </Box>
+                  <Box>
+                    <img alt='add' src={IButtonAdd} />
+                  </Box>
+                </Box>
               </Grid>
             </Grid>
           </Card>
