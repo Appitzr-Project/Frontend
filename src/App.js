@@ -1,10 +1,13 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentUserAction } from './redux/actions/auth.action';
 
 const HomePage = lazy(() => import('./components/Member'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
@@ -14,22 +17,42 @@ const Venues = lazy(() => import("./components/Venues"));
 const Support = lazy(() => import('./components/Support'));
 const ProfileEdit = lazy(() => import('./components/ProfileEdit'));
 const DiscountInfo = lazy(() => import('./components/DiscountInfo'))
+const Login = lazy(() => import('./components/Authenticator/Login'))
+
+function ProtectedRoute({ component: Component , ...restProps }) {
+  const auth = useSelector(state => state.auth )
+
+  return(<Route {...restProps } render={() => {
+    if(auth.user) 
+      return <Component />
+    else
+      return <Redirect to='/login' />
+  }} />)
+}
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCurrentUserAction())
+  }, [])
+
   return (
     <>
       <CssBaseline />
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/scan" component={Scan} />
-            <Route path="/member" component={MemberLazy} />
-            <Route exact path="/support" component={Support} />
-            <Route path="/venue" component={Venue} />
-            <Route path="/venues" component={Venues} />
-            <Route path="/profile-edit" component={ProfileEdit} />
-            <Route path="/promo" component={DiscountInfo} />
+            <ProtectedRoute exact path="/" component={HomePage} />
+            <ProtectedRoute path="/scan" component={Scan} />
+            <ProtectedRoute path="/member" component={MemberLazy} />
+            <ProtectedRoute exact path="/support" component={Support} />
+            <ProtectedRoute path="/venue" component={Venue} />
+            <ProtectedRoute path="/venues" component={Venues} />
+            <ProtectedRoute path="/profile-edit" component={ProfileEdit} />
+            <ProtectedRoute path="/promo" component={DiscountInfo} />
+            <Route path="/login" component={Login} />
+            {/* <Route path="*" component={NotFound} /> */}
           </Switch>
         </Suspense>
       </Router>

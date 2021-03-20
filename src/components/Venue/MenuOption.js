@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import { Button, Modal, Backdrop, Fade, Grid, Typography } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { Link } from "react-router-dom";
+import { Link , useHistory } from "react-router-dom";
 import Wrapper from "../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
+import { signOutAction } from "../../redux/actions/auth.action";
+import { useDispatch } from 'react-redux'
 
 const useStyle = makeStyles((theme) => ({
   btnMO: {
@@ -77,6 +79,8 @@ const useStyle = makeStyles((theme) => ({
 const MenuOption = () => {
   const classes = useStyle();
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const handleOpen = () => {
     setOpen(true);
@@ -85,6 +89,12 @@ const MenuOption = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const onLogout = () => {
+    dispatch(signOutAction())
+    history.push('/login')
+    setOpen(false)
+  }
 
   return (
     <>
@@ -172,7 +182,7 @@ const MenuOption = () => {
 
                 <Grid container item justify="space-between">
                   <Button variant="outlined" color="inherit" className={classes.cancelBtn} onClick={handleClose}>Cancel</Button>
-                  <Button variant="outlined" color="inherit" className={classes.okBtn}>OK</Button>
+                  <Button variant="outlined" color="inherit" className={classes.okBtn} onClick={onLogout} >OK</Button>
                 </Grid>
 
               </Grid>

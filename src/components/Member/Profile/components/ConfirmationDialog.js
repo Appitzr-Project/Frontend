@@ -5,6 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { signOutAction } from '../../../../redux/actions/auth.action';
 
 const useStyles = makeStyles({
   btnActionGroup: {
@@ -36,6 +39,15 @@ const useStyles = makeStyles({
 
 const ConfirmationDialog = ({ id, keepMounted, open, onClick, onClose }) => {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const onLogout = () => {
+    dispatch(signOutAction())
+    onClose()
+    history.push('/login')
+  }
+
   return (
     <Dialog
       disableBackdropClick
@@ -58,7 +70,7 @@ const ConfirmationDialog = ({ id, keepMounted, open, onClick, onClose }) => {
             </Button>
           </Grid>
           <Grid item xs={5}>
-            <Button fullWidth onClick={onClose} className={classes.btnOk}>
+            <Button fullWidth onClick={onLogout} className={classes.btnOk}>
               OK
             </Button>
           </Grid>
