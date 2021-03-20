@@ -43,7 +43,7 @@ export const customSignInApi = ( provider ) => (
 // }
 
 export const getCurrentUser = async () => {
-    await Auth.currentAuthenticatedUser()
+    return await Auth.currentAuthenticatedUser()
 }
 
 export const  signOutApi = async () => {
