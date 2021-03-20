@@ -3,18 +3,45 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import Wrapper from '../../shared/Wrapper'
 import { makeStyles } from '@material-ui/core/styles'
 import { strings } from './utils'
-import { InputForm } from './components'
+import { InputForm, SelectOption } from './components'
 import { Link } from 'react-router-dom'
 
 const MenuAdd = () => {
   const [state, setState] = useState({
     name: '',
     description: '',
-    category: '',
+    category: [
+      {
+        id: 1,
+        name: 'Dessert'
+      },
+      {
+        id: 2,
+        name: 'Sphagetti'
+      },
+      {
+        id: 3,
+        name: 'Drink'
+      }
+    ],
     price: '',
     picture: null,
-    protein: ''
+    protein: [
+      {
+        id: 1,
+        name: 'Vegan'
+      },
+      {
+        id: 2,
+        name: 'Meat'
+      },
+      {
+        id: 3,
+        name: 'Vegetables'
+      }
+    ]
   })
+
   const [picturePreview, setPicturePriview] = useState(null)
   const classes = useStyle()
   const inputFocus = useRef(null)
@@ -47,31 +74,29 @@ const MenuAdd = () => {
       title={strings.add_menu}
       image='https://source.unsplash.com/random'
       spacing='26px'
-      isBack
+      isBack='/venue/menu/list'
     >
       <form>
-        <InputForm
-          type='text'
-          name='name'
-          value={state.name}
-          label={strings.label_name}
-          ref={inputFocus}
-          onChange={onChange}
-        />
-        <div className={classes.formGroup}>
-          <Typography
-            gutterBottom
-            className={classes.label}>
-            {strings.label_category}
-          </Typography>
-          <select name='cars' className={classes.select}>
-            <option value='volvo'>Volvo</option>
-            <option value='saab'>Saab</option>
-            <option value='mercedes'>Mercedes</option>
-            <option value='audi'>Audi</option>
-          </select>
-        </div>
-        <div className={classes.formGroup}>
+        <Grid container direction='column'>
+          <Grid item xs={12}>
+            <InputForm
+              type='text'
+              name='name'
+              value={state.name}
+              label={strings.label_name}
+              ref={inputFocus}
+              onChange={onChange}
+            />
+          </Grid>
+        </Grid>
+        <Grid item xs={12} style={{ marginBottom: 8 }}>
+          <SelectOption
+            label={strings.label_category}
+            className={classes.label}
+            data={state.category}
+          />
+        </Grid>
+        <Grid item xs={12}>
           <Typography
             gutterBottom
             className={classes.label}>
@@ -83,16 +108,18 @@ const MenuAdd = () => {
             className={classes.input}
             ref={inputFocus}
           />
-        </div>
-        <InputForm
-          type='text'
-          name='price'
-          value={state.price}
-          label='Price'
-          ref={inputFocus}
-          onChange={onChange}
-        />
-        <div className={classes.formGroup}>
+        </Grid>
+        <Grid item xs={12}>
+          <InputForm
+            type='text'
+            name='price'
+            value={state.price}
+            label='Price'
+            ref={inputFocus}
+            onChange={onChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
           <Typography
             gutterBottom
             className={classes.label}>
@@ -106,7 +133,7 @@ const MenuAdd = () => {
               className={classes.inputFile}
             />
           )}
-        </div>
+        </Grid>
         {picturePreview !== null && (
           <>
             <div className={classes.formGroup}>
@@ -119,26 +146,20 @@ const MenuAdd = () => {
             <div className={classes.formGroup}>
               <button
                 className={classes.btnImg}
+                onClick={_handleChangePicture}
               >
                 {strings.add_img}
               </button>
             </div>
           </>
         )}
-        <div className={classes.formGroup}>
-          <Typography
-            gutterBottom
-            className={classes.label}>
-            {strings.label_protein_type}
-          </Typography>
-          <select name='cars' className={classes.select}>
-            <option value='volvo'>Volvo</option>
-            <option value='saab'>Saab</option>
-            <option value='mercedes'>Mercedes</option>
-            <option value='audi'>Audi</option>
-          </select>
-        </div>
-        <br /><br /><br />
+        <Grid item xs={12} style={{ margin: '10px 0px 54px 0px' }}>
+          <SelectOption
+            label={strings.label_protein_type}
+            className={classes.label}
+            data={state.protein}
+          />
+        </Grid>
         <Grid item xs={12}>
           <Link to='/venue/menu/list'>
             <Button className={classes.submitBtn} fullWidth>
@@ -163,7 +184,8 @@ const useStyle = makeStyles((theme) => ({
   },
   formGroup: {
     position: 'relative',
-    marginBottom: '16px'
+    marginBottom: '16px',
+    width: '100%'
   },
   submitBtn: {
     backgroundColor: '#20D3C2',
@@ -194,7 +216,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: '10px',
     padding: '16px',
     border: 'none',
-    [theme.breakpoints.down('xs')] : {
+    [theme.breakpoints.down('xs')]: {
       padding: '14px'
     },
     '&:focus': {
