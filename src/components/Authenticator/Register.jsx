@@ -2,24 +2,28 @@ import React from 'react';
 import Wrapper from '../shared/Wrapper';
 import { Grid, Typography, FormControl, Input, InputAdornment, Button, IconButton, FormHelperText, CircularProgress, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { PersonOutline, LockOutlined, Visibility, VisibilityOff, ArrowForward } from '@material-ui/icons'
+import { PersonOutline, LockOutlined, Visibility, VisibilityOff, ArrowForward , MailOutline } from '@material-ui/icons'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { signInAction, customSignInAction } from '../../redux/actions/auth.action';
+import { customSignInAction, signUpAction } from '../../redux/actions/auth.action';
 import { Link, useHistory } from 'react-router-dom'
-import { useStyle } from './LoginStyle'
+import { useStyle } from './RegisterStyle'
 
-const Login = () => {
+const Register = () => {
   const classes = useStyle()
   const dispatch = useDispatch()
   const history = useHistory()
   const [form, setForm] = useState({
-    username: '',
-    password: ''
-  })
+    username: '' ,
+    password: '',
+    attributes: {
+        email : ''     
+    }
+})
   const [states, setStates] = useState({
     showPassword: false,
     errorUsername: null,
+    errorEmail: null,
     errorPassword: null,
     errorLogin: null,
     isLoading: false
@@ -28,7 +32,7 @@ const Login = () => {
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
   const setErrorLogin = (errorLogin) => setStates({ ...states, errorLogin, isLoading: false })
 
-  const onChange = name => ev => {
+  const onChangeForm = name => ev => {
     setForm({
       ...form,
       [name]: ev.target.value
@@ -36,14 +40,23 @@ const Login = () => {
     setStates({ ...states, errorUsername: null, errorPassword: null })
   }
 
+  const onChangeFormAttribute = name => ev => {
+    setForm({
+      ...form,
+      attributes: { [name]: ev.target.value }
+    })
+    setStates({ ...states, errorUsername: null, errorPassword: null })
+  }
+
   const onLogin = (ev) => {
     ev.preventDefault()
+    
     if (validationState()) {
       setLoading(true)
-      dispatch(signInAction(form.username, form.password))
+      dispatch(signUpAction(form))
         .then(() => {
           setLoading(false)
-          history.push('/')
+          history.push('/confirmation-code', { username: form.username })
         })
         .catch(err => {
           setErrorLogin(err.message)
@@ -55,9 +68,10 @@ const Login = () => {
     setStates({
       ...states,
       errorUsername: form.username === '' ? 'This field is required ' : null,
+      errorEmail: form.attributes.email === '' ? 'This field is required ' : null,
       errorPassword: form.password === '' ? 'This field is required ' : null
     })
-    return form.username !== '' && form.password !== ''
+    return form.username !== '' && form.password !== '' && form.attributes.email !== ''
   }
 
   const onLoginFB = () => {
@@ -79,15 +93,15 @@ const Login = () => {
 
   const renderSnackbar = () => (
     <Snackbar open={states.errorLogin !== null} anchorOrigin={{ vertical: 'top' , horizontal: 'center' }} autoHideDuration={6000} onClose={() => setErrorLogin(null)}>
-      <Alert elevation={6} variant="filled"  onClose={() => setErrorLogin(null)} severity="error" >
+      <Alert elevation={6} variant="filled" onClose={() => setErrorLogin(null)} severity="error" >
         {states.errorLogin}
       </Alert>
     </Snackbar>
   )
 
   const renderFieldUsername = () => (
-    <Grid container item justify='center' xs md={8} >
-      <FormControl fullWidth className={classes.fieldText} >
+    <Grid container item  justify='center' xs md={8} >
+      <FormControl fullWidth className={classes.fieldText + ' ' + classes.fieldUsername } >
         <Input
           error={states.errorUsername ? true : false}
           fullWidth
@@ -96,9 +110,27 @@ const Login = () => {
               <PersonOutline />
             </InputAdornment>
           }
-          onChange={onChange('username')}
+          onChange={onChangeForm('username')}
         />
         {(states.errorUsername && <FormHelperText error >{states.errorUsername}</FormHelperText>) || ''}
+      </FormControl>
+    </Grid>
+  )
+
+  const renderFieldEmail = () => (
+    <Grid container item justify='center' xs md={8} >
+      <FormControl fullWidth className={classes.fieldText} >
+        <Input
+          error={states.errorEmail ? true : false}
+          fullWidth
+          startAdornment={
+            <InputAdornment position="start">
+              <MailOutline />
+            </InputAdornment>
+          }
+          onChange={onChangeFormAttribute('email')}
+        />
+        {(states.errorEmail && <FormHelperText error >{states.errorEmail}</FormHelperText>) || ''}
       </FormControl>
     </Grid>
   )
@@ -127,7 +159,7 @@ const Login = () => {
               </IconButton>
             </InputAdornment>
           }
-          onChange={onChange('password')}
+          onChange={onChangeForm('password')}
         />
         {(states.errorPassword && <FormHelperText error >{states.errorPassword}</FormHelperText>) || ''}
       </FormControl>
@@ -135,14 +167,14 @@ const Login = () => {
 
   )
 
-  const renderButtonLogin = () => (
+  const renderButtonRegister = () => (
     <Grid container item direction='column' alignItems='center' justify='center' xs md={8} >
       <Button type='submit' fullWidth variant="contained" color="primary"
         classes={{
-          root: classes.buttonLogin,
-          label: classes.buttonLabelLogin
+          root: classes.buttonRegister,
+          label: classes.buttonLabelRegister
         }} >
-        <span>LOGIN</span>
+        <span>Register</span>
         {states.isLoading ? <CircularProgress /> : <ArrowForward />}
       </Button>
     </Grid>
@@ -157,40 +189,34 @@ const Login = () => {
         <form onSubmit={onLogin}>
           <Grid container direction='column' justify='center' alignItems='center' >
             <Grid item xsmd={8} >
-              <Typography variant='h4' align='center' >Login</Typography>
-            </Grid>
-            {renderFieldUsername()}
-            {renderFieldPassword()}
-            {renderButtonLogin()}
-            <Grid container direction='column' item justify='center' xs md={8} >
-              <Typography align='right'  >
-                <Link to='/forgot-password' >Forgot your password?</Link>
-              </Typography>
-              <Typography align='center' >
-                OR
-              </Typography>
+              <Typography variant='h4' align='center' >Create your account</Typography>
+              <Typography variant='body2'  align='center' className={classes.subtitle} >Register using your prefered social account</Typography>
             </Grid>
 
-            <Grid container item direction='column' alignItems='center' justify='center' xs md={8} >
-              <Button fullWidth variant="contained" color="primary" onClick={onLoginFB}
+            <Grid container item alignItems='center' spacing={2} justify='center' xs md={8} >
+              <Button fullWidth  variant="contained" color="primary" onClick={onLoginFB}
                 className={classes.buttonLoginFB} >
-                Login With Facebook
+                Facebook
               </Button>
-            </Grid>
-
-            <Grid container item direction='column' alignItems='center' justify='center' xs md={8} >
+              &nbsp;&nbsp;
               <Button fullWidth variant="contained" color="primary" onClick={onLoginGoogle}
                 className={classes.buttonLoginGoogle} >
-                Login With Google
+                Google
               </Button>
             </Grid>
-            <br />
+            <Grid item xsmd={8} >
+              <br />
+              <Typography variant='h6' align='center' >OR</Typography>
+            </Grid>
+            {renderFieldUsername()}
+            {renderFieldEmail()}
+            {renderFieldPassword()}
+            {renderButtonRegister()}
             <Grid container direction='column' item justify='center' xs md={8} >
               <Typography align='center'  >
-                Need an account? <Link to='/register' >Sign up</Link>
+                Already have an account? <Link to='/login' >Sign in</Link>
               </Typography>
-            </Grid>
-
+            </Grid>                    
           </Grid>
         </form>
         {renderSnackbar()}
@@ -200,4 +226,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

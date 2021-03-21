@@ -1,4 +1,4 @@
-import { signInApi, customSignInApi, signOutApi, getCurrentUser as getCurrentUserApi } from "../api/auth.api"
+import { signInApi, customSignInApi, signOutApi, getCurrentUserApi , signUpApi, confirmSignUp, resendConfirmationCodeApi } from "../api/auth.api"
 import { SIGNIN , SIGNOUT } from "../types/auth.type"
 
 export const signInAction = (username, password) => {
@@ -44,5 +44,38 @@ export const signOutAction = () => async dispatch => {
         dispatch({ type: SIGNOUT })
     } catch (error) {
         console.log('[Error signin out ]', error)
+    }
+}
+
+export const signUpAction = (attributes) => {
+    return async () => {
+        try {
+            await signUpApi(attributes)
+        } catch (error) {
+            console.log('[Error Signup ]', error)
+            throw Error(error.message)
+        }
+    }
+}
+
+export const confirmSignUpAction = ({ username , code }) => {
+    return async () => {
+        try {
+            await confirmSignUp( username , code )
+        } catch (error) {
+            console.log('[Error Confirm SignUp ]', error)
+            throw Error(error.message)
+        }
+    }
+}
+
+export const resendConfirmationCodeAction = (username) => {
+    return async () => {
+        try {
+            await resendConfirmationCodeApi(username)
+        } catch (error) {
+            console.log('[Error Signup ]', error)
+            throw Error(error.message)
+        }
     }
 }

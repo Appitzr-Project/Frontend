@@ -1,28 +1,13 @@
 import { Auth } from 'aws-amplify'
 
-// export const  signUp = () => {
-//     try {
-//         const { user } = await Auth.signUp({
-//             username,
-//             password,
-//             attributes: {
-//                 email,         
-//                 phone_number,  
-//             }
-//         });
-//         console.log(user);
-//     } catch (error) {
-//         console.log('error signing up:', error);
-//     }
-// }
 
-// async function confirmSignUp() {
-//     try {
-//       await Auth.confirmSignUp(username, code);
-//     } catch (error) {
-//         console.log('error confirming sign up', error);
-//     }
-// }
+export const signUpApi = async (attributes) => (
+    await Auth.signUp(attributes)
+)
+
+export const confirmSignUp = async ( username , code ) => (
+      await Auth.confirmSignUp(username, code)
+)
 
 export const signInApi = async (username, password) => (
          await Auth.signIn(username, password)
@@ -33,16 +18,11 @@ export const customSignInApi = ( provider ) => (
 )
 
 
-// async function resendConfirmationCode() {
-//     try {
-//         await Auth.resendSignUp(username);
-//         console.log('code resent successfully');
-//     } catch (err) {
-//         console.log('error resending code: ', err);
-//     }
-// }
+export const resendConfirmationCodeApi = async ( username ) => (
+        await Auth.resendSignUp(username)
+)
 
-export const getCurrentUser = async () => {
+export const getCurrentUserApi = async () => {
     return await Auth.currentAuthenticatedUser()
 }
 

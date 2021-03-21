@@ -18,6 +18,8 @@ const Support = lazy(() => import('./components/Support'));
 const ProfileEdit = lazy(() => import('./components/ProfileEdit'));
 const DiscountInfo = lazy(() => import('./components/DiscountInfo'))
 const Login = lazy(() => import('./components/Authenticator/Login'))
+const Register = lazy(() => import('./components/Authenticator/Register'))
+const ConfirmationCode = lazy(() => import('./components/Authenticator/ConfirmationCode'))
 
 function ProtectedRoute({ component: Component , ...restProps }) {
   const auth = useSelector(state => state.auth )
@@ -52,6 +54,8 @@ function App() {
             <ProtectedRoute path="/profile-edit" component={ProfileEdit} />
             <ProtectedRoute path="/promo" component={DiscountInfo} />
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/confirmation-code" component={ConfirmationCode} />
             {/* <Route path="*" component={NotFound} /> */}
           </Switch>
         </Suspense>
