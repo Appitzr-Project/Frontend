@@ -13,7 +13,7 @@ import { apiMiddleware } from './redux/api/middleware.api';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
-import Authenticator from './components/Authenticator/Authenticator';
+// import Authenticator from './components/Authenticator/Authenticator';
 import Amplify from 'aws-amplify';
 import awsExports from './aws-exports';
 
@@ -26,9 +26,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={<div>Loading..</div>}>
-        <Authenticator> 
+        {/* <Authenticator>  */}
           <App />
-        </Authenticator>
+        {/* </Authenticator> */}
       </PersistGate>
     </Provider>
   </React.StrictMode>,

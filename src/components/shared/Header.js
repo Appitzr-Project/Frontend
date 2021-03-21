@@ -30,7 +30,7 @@ const Header = (props) => {
 
   return (
     <Grid container className={classes.wrapHeaderContent} alignItems="center">
-      <Grid item xs={props.isBack && 2}>
+      <Grid item >
         {props.isBack && (
           <ArrowBackIosIcon
             onClick={() => history.push(props.isBack)}
@@ -39,17 +39,17 @@ const Header = (props) => {
         )}
       </Grid>
 
-      <Grid item xs={props.isBack ? 8 : 10}>
+      <Grid item xs >
         <Typography
           variant="h5"
           className={classes.wrapTitle}
-          align={props.isBack ? "center" : "left"}
+          align={props.isBack || props.textCenter ? "center" : "left"}
         >
           {props.title}
         </Typography>
       </Grid>
 
-      <Grid item xs={2}>
+      <Grid item >
         <div style={{ float: "right" }}>
           {props.image && (
             <Avatar alt="" src={props.image} className={classes.sizeAvatar} />

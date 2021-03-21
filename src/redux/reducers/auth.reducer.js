@@ -1,21 +1,33 @@
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { SIGNIN , SIGNOUT } from '../types/auth.type'
 
 const initialState = {
-    user: '',
-    token: null,
-    isLoading: false,
-    errMessage: null,
+    user: null,
 }
 
 const persistConfig = {
     key: 'auth',
     storage,
-    whitelist: ['token', 'user' ]
+    whitelist: ['user' ]
 }
 
-export default persistReducer(persistConfig, (state = initialState, action = {}) => {
-    switch (action.type) {
+export default persistReducer(persistConfig, (state = initialState, { type , payload = {} } ) => {
+    switch (type) {
+        case SIGNIN : {
+            return {
+                ...state ,
+                user : payload.user
+            }
+        }
+
+        case SIGNOUT : {
+            return {
+                ...state ,
+                user : null
+            }
+        }
+
         default: return state
     }
 
