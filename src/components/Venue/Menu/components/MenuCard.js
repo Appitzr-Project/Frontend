@@ -3,7 +3,12 @@ import {
   Box,
   Card,
   Grid,
-  makeStyles
+  makeStyles,
+  FormControl,
+  Select,
+  withStyles,
+  InputBase,
+  MenuItem
 } from '@material-ui/core'
 import {
   IHeart, 
@@ -28,7 +33,8 @@ const useStyles = (img) =>
     menuWrapper: {
       backgroundImage: `url(${img})`,
       background: 'no-repeat',
-      position: 'relative'
+      height: 90,
+      marginBottom: 8
     },
     alignRight: {
       display: 'flex',
@@ -43,9 +49,7 @@ const useStyles = (img) =>
       textAlign: 'center',
       fontSize: 10,
       fontWeight: 'normal',
-      color: '#ffffff',
-      position: 'absolute',
-      bottom: 16
+      color: '#ffffff'
     },
     readMoreLine: {
       color: 'black',
@@ -54,48 +58,59 @@ const useStyles = (img) =>
       cursor: 'pointer',
       fontWeight: 'bold'
     },
-    select: {
-      position: 'relative',
-      borderRadius: '10px',
-      padding: '8px',
-      border: '1px solid #FF3974'
-    },
   })
+
+const SelectInput = withStyles((theme) => ({
+  input: {
+    borderRadius: 13,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    borderColor: '#FF3974',
+    color: '#59495F',
+    '&:focus': {
+      borderRadius: 13
+    }
+  }
+}))(InputBase)
 
 const MenuCard = () => {
   const [more, setMore] = useState(true)
   const classes = useStyles(IMSpaghetti)()
   return (
     <Grid container spacing={0} direction='column'>
-      <Grid item xs={12}>
-        <Box
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-between'
-          flexWrap='wrap'
-          alignItems='center'
-          mb={3}
-        >
-          <Box fontSize={16} fontWeight='600' color='#0E0E0E' flexGrow={1}>
-            Show 345 List
-          </Box>
-          <Box m={0.5}>
-            <select name='cars' className={classes.select}>
-              <option value='volvo'>Volvo</option>
-              <option value='saab'>Saab</option>
-              <option value='mercedes'>Mercedes</option>
-              <option value='audi'>Audi</option>
-            </select>
-          </Box>
-        </Box>
+      <Grid spacing={0} item xs={12}>
+        <Grid item xs={12} container justify='space-between' alignItems='center'>  
+          <p>Showing 430 Foods</p>
+          <FormControl variant='outlined'>
+            <Select
+              labelId='demo-simple-select-outlined-label'
+              id='demo-simple-select-outlined'
+              defaultValue='Dessert'
+              onChange={(e) => (
+                e.target.value
+              )}
+              label='category'
+              input={<SelectInput />}
+            >
+              <MenuItem value={'Dessert'}>Dessert</MenuItem>
+              <MenuItem value={'Sphagetti'}>Sphagetti</MenuItem>
+              <MenuItem value={'Drink'}>Drink</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
       </Grid>
       {Array.from({ length: 5 }).map((item, index) =>
         <Grid item className={classes.gridWrapper} key={index}>
           <Card elevation={0} className={classes.cardContainer}>
             <Grid container className={classes.gridContainer}>
-              <Grid item xs={3} className={classes.menuWrapper}>
-                <Box p={1}>
-                  <IHeart color={index < 1 ? '#F1608A' : '#FFFFFF'} />
+              <Grid item xs={3}>
+                <Box className={classes.menuWrapper}>
+                  <Box p={1}>
+                    <IHeart color={index < 1 ? '#F1608A' : '#FFFFFF'} />
+                  </Box>
                 </Box>
                 <Box p={1} mb={1} className={classes.processFood}>
                   Processed food
@@ -127,6 +142,7 @@ const MenuCard = () => {
                     dangerouslySetInnerHTML={{ 
                       __html: more ? `${strings.text.slice(0, 50)}...` : strings.text
                     }}
+                    
                   />
                   <Link
                     to=''

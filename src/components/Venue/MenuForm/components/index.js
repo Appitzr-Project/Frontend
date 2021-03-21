@@ -1,5 +1,7 @@
 import InputForm from './InputForm'
+import SelectOption from './SelectOption'
 
 export {
-  InputForm
+  InputForm,
+  SelectOption
 }
