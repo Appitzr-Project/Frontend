@@ -28,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   notificationIcon: {
-    fontSize: '40px',
+    fontSize: '36px',
     verticalAlign: 'middle',
   },
   notificationTextBox: {
@@ -37,12 +37,12 @@ const useStyle = makeStyles((theme) => ({
   notificationTitle: {
     color: '#0E0E0E',
     fontWeight: '700',
-    fontSize: '24px',
+    fontSize: '20px',
   },
   notificationText: {
     color: '#999999',
     fontWeight: '400',
-    fontSize: '24px',
+    fontSize: '20px',
   }
 }));
 
