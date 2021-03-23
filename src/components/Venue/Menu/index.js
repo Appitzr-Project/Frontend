@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { Card, Container, makeStyles } from '@material-ui/core'
 import NavBar from '../../NavBar'
 import { IMSpaghetti } from './assets'
 import { SendButton, MenuCard } from './components'
+import axios from "axios"
+import { useSelector }  from "react-redux"
 
 const useStyles = (img) =>
   makeStyles({
@@ -18,6 +20,30 @@ const useStyles = (img) =>
 
 const MenuList = () => {
   const classes = useStyles(IMSpaghetti)()
+  const auth = useSelector(state => state.auth)
+  const [items, setItems] = useState([])
+
+  useEffect(()=>{
+    let isActive = true
+    axios.get("https://api.dev.appetizr.co/products/venue",
+    {
+      headers:{
+        Authorization: auth.user.signInUserSession.idToken.jwtToken
+      }
+    })
+    .then(res=>{
+      if(isActive){
+        setItems(res.data.data)
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+
+    return () => {
+      isActive=false;
+    }
+  },[auth.user.signInUserSession.idToken.jwtToken])
+
   return (
     <Container
       classes={{ root: classes.containerRoot }}
@@ -26,7 +52,7 @@ const MenuList = () => {
     >
       <NavBar title='Menu' />
       <Card classes={{ root: classes.cardRoot }} elevation={0}>
-        <MenuCard />
+        <MenuCard items={items} />
       </Card>
       <SendButton />
     </Container>

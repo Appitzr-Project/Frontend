@@ -76,14 +76,14 @@ const SelectInput = withStyles((theme) => ({
   }
 }))(InputBase)
 
-const MenuCard = () => {
+const MenuCard = ({items}) => {
   const [more, setMore] = useState(true)
   const classes = useStyles(IMSpaghetti)()
-  return (
+  return items.length ?  (
     <Grid container spacing={0} direction='column'>
       <Grid spacing={0} item xs={12}>
         <Grid item xs={12} container justify='space-between' alignItems='center'>  
-          <p>Showing 430 Foods</p>
+          <p>Showing {items.length} Foods</p>
           <FormControl variant='outlined'>
             <Select
               labelId='demo-simple-select-outlined-label'
@@ -102,7 +102,7 @@ const MenuCard = () => {
           </FormControl>
         </Grid>
       </Grid>
-      {Array.from({ length: 5 }).map((item, index) =>
+      {items.map((item, index) =>
         <Grid item className={classes.gridWrapper} key={index}>
           <Card elevation={0} className={classes.cardContainer}>
             <Grid container className={classes.gridContainer}>
@@ -126,7 +126,7 @@ const MenuCard = () => {
                   justifyContent='space-between'
                 >
                   <Box color='#7B00AB'>
-                    Spagetthi
+                    {item.category}
                   </Box>
                   <Link to='/venue/menu/edit'>
                     <Box color='#7B00AB'>
@@ -135,12 +135,12 @@ const MenuCard = () => {
                   </Link>
                 </Box>
                 <Box ml={2} mb={1} fontWeight={600} fontSize={16} color='#0E0E0E'>
-                  Medium Spicy Spaghetti
+                  {item.productName}
                 </Box>
                 <Box ml={2} fontSize={12} textAlign='justify' color='#9A9A9A'>
                   <span
                     dangerouslySetInnerHTML={{ 
-                      __html: more ? `${strings.text.slice(0, 50)}...` : strings.text
+                      __html: more ? `${item.description.slice(0, 50)}...` : item.description
                     }}
                     
                   />
@@ -153,7 +153,7 @@ const MenuCard = () => {
                   </Link>
                 </Box>
                 <Box ml={2} my={2} fontSize={16} textAlign='justify' color='#5E4E63'>
-                  $46
+                  ${item.price}
                 </Box>
               </Grid>
             </Grid>
@@ -161,7 +161,7 @@ const MenuCard = () => {
         </Grid>
       )}
     </Grid>
-  )
+  ):"Loading..."
 }
 
 export default MenuCard
