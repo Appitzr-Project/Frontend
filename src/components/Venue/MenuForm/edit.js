@@ -153,6 +153,7 @@ const MenuEdit = () => {
                 variant='contained'
                 component='label'
                 className={classes.btnImg}
+                onClick={_handleChangePicture}
               >
                 {strings.add_img}
                 <input
