@@ -148,12 +148,19 @@ const MenuEdit = () => {
               />
             </div>
             <div className={classes.formGroup}>
-              <button
+              <Button
+                onChange={_handleChangePicture}
+                variant='contained'
+                component='label'
                 className={classes.btnImg}
-                onClick={_handleChangePicture}
               >
                 {strings.add_img}
-              </button>
+                <input
+                  type='file'
+                  name={state.picture}
+                  hidden
+                />
+              </Button>
             </div>
           </>
         )}

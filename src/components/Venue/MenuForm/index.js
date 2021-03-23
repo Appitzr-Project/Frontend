@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { strings } from './utils'
 import { InputForm, SelectOption } from './components'
 import { Link } from 'react-router-dom'
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 
 const MenuAdd = () => {
   const [state, setState] = useState({
@@ -41,9 +42,8 @@ const MenuAdd = () => {
       }
     ]
   })
-
-  const [picturePreview, setPicturePriview] = useState(null)
   const classes = useStyle()
+  const [picturePreview, setPicturePriview] = useState(null)
   const inputFocus = useRef(null)
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const MenuAdd = () => {
   }
 
   const _handleChangePicture = (event) => {
-    event.persist()
+    event.preventDefault()
     setState(prevState => ({
       ...prevState,
       picture: event.target.files[0]
@@ -126,12 +126,20 @@ const MenuAdd = () => {
             {strings.label_picture}
           </Typography>
           {picturePreview === null && (
-            <input
-              type='file'
-              name='picture'
+            <Button
               onChange={_handleChangePicture}
-              className={classes.inputFile}
-            />
+              variant='contained'
+              component='label'
+              startIcon={<PhotoLibraryIcon style={{ fontSize: 100, color: '#979797' }} />}
+              className={classes.btnPreview}
+              disableElevation
+            >
+              <input
+                type='file'
+                name={state.picture}
+                hidden
+              />
+            </Button>
           )}
         </Grid>
         {picturePreview !== null && (
@@ -144,12 +152,19 @@ const MenuAdd = () => {
               />
             </div>
             <div className={classes.formGroup}>
-              <button
+              <Button
+                onChange={_handleChangePicture}
+                variant='contained'
+                component='label'
                 className={classes.btnImg}
-                onClick={_handleChangePicture}
               >
                 {strings.add_img}
-              </button>
+                <input
+                  type='file'
+                  name={state.picture}
+                  hidden
+                />
+              </Button>
             </div>
           </>
         )}
@@ -239,6 +254,16 @@ const useStyle = makeStyles((theme) => ({
     border: '1px solid #f3f3f3',
     padding: '16px',
     borderRadius: '10px',
+    '&:focus': {
+      border: '2px solid #3f51b5'
+    }
+  },
+  btnPreview: {
+    width: '100%',
+    height: '200px',
+    background: '#f3f3f3',
+    borderRadius: '10px',
+    boxShadow: 'none',
     '&:focus': {
       border: '2px solid #3f51b5'
     }
