@@ -5,7 +5,6 @@ import IconCart from './Icons/IconCart';
 import IconHeart from './Icons/IconHeart';
 import IconHome from './Icons/IconHome';
 import IconScan from './Icons/IconScan';
-import IconUser from './Icons/IconUser';
 
 const useStyles = makeStyles({
   root: {
@@ -60,12 +59,7 @@ export default function BottomNav({ ActiveMenu }) {
         classes={{ root: classes.BottomNavigationActionRoot }}
         icon={<IconHeart color={getStroke(MENU.HEART)} />}
         onClick={() => handleClick('/')}
-      />
-      <BottomNavigationAction
-        classes={{ root: classes.BottomNavigationActionRoot }}
-        icon={<IconUser color={getStroke(MENU.USER)} />}
-        onClick={() => handleClick('/member')}
-      />
+      />  
     </BottomNavigation>
   );
 }

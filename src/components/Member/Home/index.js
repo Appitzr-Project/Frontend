@@ -18,6 +18,7 @@ import Profile from './assets/profile.png';
 import ButtonSearch from './components/ButtonSearch';
 import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
+import VenueSVG from './assets/venue.svg';
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -74,12 +75,15 @@ const MemberHome = () => {
           spacing={2}
           className={classes.topContent}
           justify="space-between"
+          alignItems="center"
         >
           <Grid item xs>
             <div>
               <img alt="notification" src={BellSVG} />
             </div>
           </Grid>
+          <Box pr="23px">
+            <img src={VenueSVG} alt="venue" /></Box>
           <Grid
             item
             onClick={() => (window ? (window.location.href = '/member') : {})}
