@@ -157,7 +157,7 @@ const MenuAdd = () => {
                 variant='contained'
                 component='label'
                 className={classes.btnImg}
-                onClick={_handleChangePicture}
+                onChange={_handleChangePicture}
               >
                 {strings.add_img}
                 <input

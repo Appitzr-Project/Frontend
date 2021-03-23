@@ -81,7 +81,7 @@ const MenuCard = () => {
   const classes = useStyles(IMSpaghetti)()
   return (
     <Grid container spacing={0} direction='column'>
-      <Grid spacing={0} item xs={12}>
+      <Grid spacing={0} item xs={12} style={{ marginBottom: 16 }}>
         <Grid item xs={12} container justify='space-between' alignItems='center'>  
           <p>Showing 430 Foods</p>
           <FormControl variant='outlined'>
