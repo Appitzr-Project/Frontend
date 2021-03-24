@@ -6,6 +6,7 @@ import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/venue.api"
 
 const MenuAdd = () => {
   const auth = useSelector((state) => state.auth);
@@ -81,17 +82,7 @@ const MenuAdd = () => {
     let formData = new FormData();
     formData.append("data", file);
 
-    const rawResponse = await fetch(
-      "https://api.dev.appetizr.co/products/venue/upload",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${auth.user.signInUserSession.idToken.jwtToken}`,
-        },
-        body: formData,
-      }
-    );
-    const result = await rawResponse.json();
+    const result = await submitNewMenuApi(auth.user.signInUserSession.idToken.jwtToken, formData);
 
     setState((prevState) => ({
       ...prevState,
@@ -102,18 +93,7 @@ const MenuAdd = () => {
   };
 
   const handleSaveMenu = async () => {
-    const rawResponse = await fetch(
-      "https://api.dev.appetizr.co/products/venue",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.user.signInUserSession.idToken.jwtToken}`,
-        },
-        body: JSON.stringify(state),
-      }
-    );
-    const result = await rawResponse.json();
+    const result = await uploadImageAddVenueApi(auth.user.signInUserSession.idToken.jwtToken, state);
     if (result.code === 200 && result.message === "success") {
       history.push("/venue/menu/list");
     }
