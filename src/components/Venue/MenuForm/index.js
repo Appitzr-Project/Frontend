@@ -79,10 +79,9 @@ const MenuAdd = () => {
 
     const file = event.target.files[0];
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("data", file);
-
-    const result = await submitNewMenuApi(auth.user.signInUserSession.idToken.jwtToken, formData);
+    const result = await uploadImageAddVenueApi(auth.user.signInUserSession.idToken.jwtToken, formData);
 
     setState((prevState) => ({
       ...prevState,
@@ -93,7 +92,7 @@ const MenuAdd = () => {
   };
 
   const handleSaveMenu = async () => {
-    const result = await uploadImageAddVenueApi(auth.user.signInUserSession.idToken.jwtToken, state);
+    const result = await submitNewMenuApi(auth.user.signInUserSession.idToken.jwtToken, state);
     if (result.code === 200 && result.message === "success") {
       history.push("/venue/menu/list");
     }
