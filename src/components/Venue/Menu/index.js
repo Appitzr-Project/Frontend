@@ -3,8 +3,8 @@ import { Card, Container, makeStyles } from '@material-ui/core'
 import NavBar from '../../NavBar'
 import { IMSpaghetti } from './assets'
 import { SendButton, MenuCard } from './components'
-import axios from "axios"
 import { useSelector }  from "react-redux"
+import {productsVenueList} from "../../../redux/api/products.api"
 
 const useStyles = (img) =>
   makeStyles({
@@ -14,7 +14,8 @@ const useStyles = (img) =>
     cardRoot: {
       padding: '24px 24px 140px 24px',
       marginTop: '24px',
-      borderRadius: '50px 50px 0 0'
+      borderRadius: '50px 50px 0 0',
+      minHeight: "100vh"
     }
   })
 
@@ -26,22 +27,15 @@ const MenuList = () => {
 
   useEffect(()=>{
     let isActive = true
-    setLoading(true)
-    axios.get("https://api.dev.appetizr.co/products/venue",
-    {
-      headers:{
-        Authorization: auth.user.signInUserSession.idToken.jwtToken
-      }
-    })
-    .then(res=>{
+    const http = async () => {
+      setLoading(true)
+      const res = await productsVenueList(auth.user.signInUserSession.idToken.jwtToken)
       if(isActive){
-        setItems(res.data.data)
+        setItems(res.data)
         setLoading(false)
       }
-    }).catch(err => {
-      console.log(err)
-    })
-
+    }
+    http()
     return () => {
       isActive=false;
     }
