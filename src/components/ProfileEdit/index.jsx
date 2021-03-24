@@ -121,6 +121,7 @@ const Profile = () => {
         memberName: '',
         email,
         mobileNumber: '(+61) ',
+        isNew: true,
       }
   );
 
