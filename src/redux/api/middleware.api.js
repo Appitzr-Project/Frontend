@@ -8,7 +8,6 @@ export const API = axios.create({
 export const apiMiddleware = store => next => action => {
   API.interceptors.request.use(
     config => {
-
       return config;
     },
     error => {
@@ -18,11 +17,9 @@ export const apiMiddleware = store => next => action => {
 
   API.interceptors.response.use(
     response => {
-
       return response;
     },
     error => {
-
       return Promise.reject(error);
     }
   );
