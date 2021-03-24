@@ -11,7 +11,7 @@ import Wrapper from "../../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getCurrentProductVenueApi,
   uploadImageAddVenueApi,
@@ -26,7 +26,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 const MenuEdit = () => {
   const auth = useSelector((state) => state.auth);
   const { menuId } = useParams();
-  let history = useHistory();
 
   const rawData = {
     name: "",
@@ -261,20 +260,19 @@ const MenuEdit = () => {
               ))}
             </div>
             <div className={classes.formGroup}>
-              <label for="upload-photo" className={classes.btnImg}>
-                {strings.add_img}
-              </label>
-              <input
-                type="file"
-                id="upload-photo"
-                name="picture"
+              <Button
                 onChange={_handleChangePicture}
-                style={{
-                  opacity: 0,
-                  position: "absolute",
-                  zIndex: -1,
-                }}
-              />
+                variant='contained'
+                component='label'
+                className={classes.btnImg}
+              >
+                {strings.add_img}
+                <input
+                  type='file'
+                  name={state.picture}
+                  hidden
+                />
+              </Button>
             </div>
           </>
         ) : null}
