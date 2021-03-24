@@ -28,11 +28,16 @@ const MenuList = () => {
   useEffect(()=>{
     let isActive = true
     const http = async () => {
-      setLoading(true)
-      const res = await productsVenueList(auth.user.signInUserSession.idToken.jwtToken)
-      if(isActive){
-        setItems(res.data)
-        setLoading(false)
+      try {
+        setLoading(true)
+        const res = await productsVenueList(auth.user.signInUserSession.idToken.jwtToken)
+        if(isActive){
+          setItems(res.data)
+          setLoading(false)
+        }
+      } catch (error) {
+        console.log(error)
+        console.log(error.response)
       }
     }
     http()
