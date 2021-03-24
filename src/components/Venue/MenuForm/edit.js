@@ -260,19 +260,20 @@ const MenuEdit = () => {
               ))}
             </div>
             <div className={classes.formGroup}>
-              <Button
-                onChange={_handleChangePicture}
-                variant='contained'
-                component='label'
-                className={classes.btnImg}
-              >
+              <label for="upload-photo" className={classes.btnImg}>
                 {strings.add_img}
-                <input
-                  type='file'
-                  name={state.picture}
-                  hidden
-                />
-              </Button>
+              </label>
+              <input
+                type="file"
+                id="upload-photo"
+                name="picture"
+                onChange={_handleChangePicture}
+                style={{
+                  opacity: 0,
+                  position: "absolute",
+                  zIndex: -1,
+                }}
+              />
             </div>
           </>
         ) : null}
