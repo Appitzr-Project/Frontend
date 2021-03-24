@@ -1,25 +1,28 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  ResponseType: 'json',
+  ResponseType: "json"
 });
 
-export const apiMiddleware = (store) => (next) => (action) => {
+export const apiMiddleware = store => next => action => {
   API.interceptors.request.use(
-    (config) => {
+    config => {
+
       return config;
     },
-    (error) => {
+    error => {
       return Promise.reject(error);
     }
   );
 
   API.interceptors.response.use(
-    (response) => {
+    response => {
+
       return response;
     },
-    (error) => {
+    error => {
+
       return Promise.reject(error);
     }
   );
