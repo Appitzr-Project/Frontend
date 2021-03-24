@@ -1,14 +1,18 @@
 import { Box, Card, Container, Grid, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getProfileAction,
+  postProfileChange,
+} from '../../../redux/actions/profile.action';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import NavBar from '../../NavBar';
 import ContactsIcon from './assets/ic-contacts.svg';
-import LogoutIcon from './assets/ic-logout.svg';
 import HistoryIcon from './assets/ic-history.svg';
+import LogoutIcon from './assets/ic-logout.svg';
 import ProfileIcon from './assets/ic-profile.svg';
 import Pencils from './assets/pencils.svg';
-import Profile from './assets/profile.png';
 import QRCodeIcon from './assets/qr-profile.svg';
 import ConfirmationDialog from './components/ConfirmationDialog';
 
@@ -47,6 +51,36 @@ const useStyles = makeStyles({
   centered: {
     margin: '0 auto',
   },
+  selectFileBtnWrapper: {
+    width: '35px',
+    position: 'relative',
+    display: 'inline-block',
+  },
+  inputRoot: {
+    fontSize: '0.1px',
+    position: 'absolute',
+    left: '0',
+    top: '0',
+    opacity: '0',
+    cursor: 'pointer',
+    width: '100%',
+    height: '100%',
+  },
+  inputFile: {
+    fontSize: '0.1px',
+    position: 'absolute',
+    left: '0',
+    top: '0',
+    opacity: '0',
+    cursor: 'pointer',
+    width: '100%',
+    height: '100%',
+  },
+  imgContainer: {
+    width: '127px',
+    height: '127px',
+    borderRadius: '60px',
+  },
 });
 
 const MemberHome = () => {
@@ -55,6 +89,35 @@ const MemberHome = () => {
   const handleOnClick = (target) => {
     if (window) window.location.href = target;
     return;
+  };
+
+  const jwtToken = useSelector(
+    (state) => state.auth.user.signInUserSession.idToken.jwtToken
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProfileAction(jwtToken));
+  }, [dispatch, jwtToken]);
+
+  const profile = useSelector(
+    (state) =>
+      state.profile.profile?.data || {
+        memberName: '',
+        email: '',
+        profilePicture: null,
+      }
+  );
+  const profileChange = useSelector(
+    (state) => state.profile.postProfileChange?.data || { profilePicture: null }
+  );
+
+  const handleChange = (e) => {
+    const profilePicture = e.target.files[0];
+    const formData = new FormData();
+    formData.append('profilePicture', profilePicture);
+    dispatch(postProfileChange(jwtToken, formData));
   };
 
   return (
@@ -76,24 +139,33 @@ const MemberHome = () => {
               <Box fontSize={20} fontWeight={500}>
                 My account
               </Box>
-              <Box fontSize={14}>Tone_ross@hotmail.com</Box>
+              <Box fontSize={14}>{profile.email}</Box>
             </Grid>
             <Grid item xs className={classes.profileGrid}>
               <div>
-                <img alt="profile" src={Profile} />
+                <img
+                  alt="profile"
+                  src={profileChange.profilePicture || profile.profilePicture}
+                  className={classes.imgContainer}
+                />
               </div>
             </Grid>
             <Grid item xs={1} className={classes.alignRight}>
-              <div>
+              <div className={classes.selectFileBtnWrapper}>
                 <img alt="edit" src={Pencils} />
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  className={classes.inputFile}
+                  onChange={(e) => handleChange(e)}
+                />
               </div>
             </Grid>
           </Grid>
           <Grid container spacing={3} className={classes.pb30}>
             <Grid item xs>
               <Box fontSize={14} className={classes.desc}>
-                Hello, My Name is tone rose. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s,
+                Hello, My Name is {profile.memberName}
               </Box>
             </Grid>
           </Grid>
