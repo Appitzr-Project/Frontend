@@ -4,7 +4,7 @@ import Wrapper from "../../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/venue.api"
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
