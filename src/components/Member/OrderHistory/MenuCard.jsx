@@ -146,9 +146,7 @@ const MenuCard= () => {
                   Completed
                 </Box>
               </Grid>
-              <Grid container item 
-                justify='flex-end'
-              >
+              <Grid container item justify='flex-end'>
                 <Box fontWeight={600} fontStyle='normal' mb={2} ml={10} mr={10} style={{color:'#FFCC47'}}>
                     <Button variant="contained" color="primary" onClick={()=>history.push('/member/review')}style={{borderRadius:'50px 50px 50px 50px',fontSize:'12px',marginTop:'2px', background: '#20D3C2'}}>
                         Add Review
