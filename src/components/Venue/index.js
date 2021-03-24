@@ -1,5 +1,7 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 const MenuOption = lazy(() => import("./MenuOption"));
 const Profile = lazy(() => import("./Profile/Profile"));
 const Reviews = lazy(() => import("./Reviews/Reviews"));
@@ -13,23 +15,42 @@ const MenuAdd = lazy(() => import("./MenuForm"))
 const MenuEdit = lazy(() => import("./MenuForm/edit"))
 const DiscountLazy = lazy(() => import("./Discount/Lazy"))
 
+
+function ProtectedRouteVenue({ component: Component , ...restProps }) {
+  const auth = useSelector(state => state.auth );
+
+  return(<Route {...restProps } render={() => {
+    if(auth.user) {
+      const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
+
+      if(groupUser && groupUser.includes('venue')) {
+        return <Component />
+      } else {
+        return window.location.href = '/';
+      }
+    } else {
+      return window.location.href = '/login';
+    }
+  }} />)
+}
+
 const Venue = () => {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/venue" component={MenuOption} />
+          <ProtectedRouteVenue exact path="/venue" component={MenuOption} />
           <Route path="/venue/profile" component={Profile} />
-          <Route path="/venue/reviews" component={Reviews} />
-          <Route path="/venue/dashboard" component={Dashboard} />
-          <Route path="/venue/detail" component={Detail} />
-          <Route path="/venue/orders" component={Orders} />
-          <Route path="/venue/scan" component={Scan} />
-          <Route path="/venue/order-detail" component={OrderDetail} />
-          <Route path="/venue/menu/list" component={MenuList} />
-          <Route path="/venue/menu/add" component={MenuAdd} />
-          <Route path="/venue/menu/edit" component={MenuEdit} />
-          <Route path="/venue/discount" component={DiscountLazy} />
+          <ProtectedRouteVenue path="/venue/reviews" component={Reviews} />
+          <ProtectedRouteVenue path="/venue/dashboard" component={Dashboard} />
+          <ProtectedRouteVenue path="/venue/detail" component={Detail} />
+          <ProtectedRouteVenue path="/venue/orders" component={Orders} />
+          <ProtectedRouteVenue path="/venue/scan" component={Scan} />
+          <ProtectedRouteVenue path="/venue/order-detail" component={OrderDetail} />
+          <ProtectedRouteVenue path="/venue/menu/list" component={MenuList} />
+          <ProtectedRouteVenue path="/venue/menu/add" component={MenuAdd} />
+          <ProtectedRouteVenue path="/venue/menu/edit" component={MenuEdit} />
+          <ProtectedRouteVenue path="/venue/discount" component={DiscountLazy} />
         </Switch>
       </Suspense>
     </Router>

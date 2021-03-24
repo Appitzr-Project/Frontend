@@ -11,7 +11,7 @@ import {
   TextField,
   IconButton
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import BellSVG from './assets/ic-bell.svg';
@@ -20,6 +20,7 @@ import ButtonSearch from './components/ButtonSearch';
 import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
 import VenueSVG from './assets/venue.svg';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -60,9 +61,21 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 const MemberHome = () => {
+  const auth = useSelector(state => state.auth);
   const [category, setCategory] = useState();
+  const [urlVenue, setUrlVenue] = useState();
   const classes = useStyles();
+
+  useEffect( () => {
+    if(auth.user && auth.user.signInUserSession.idToken.payload['cognito:groups']) {
+      setUrlVenue('/venue');
+    } else {
+      setUrlVenue('/venue/profile');
+    }
+  }, []);
 
   return (
     <>
@@ -84,9 +97,9 @@ const MemberHome = () => {
             </div>
           </Grid>
           <Box pr="23px">
-            <IconButton onClick={() => (window ? (window.location.href = '/venue/profile') : {})} >
-              <img src={VenueSVG} alt="venue" />
-            </IconButton>
+          <IconButton onClick={() => (window ? ( window.location.href = urlVenue ) : {})} >
+            <img src={VenueSVG} alt="venue" />
+          </IconButton>  
           </Box>
           <Grid
             item
