@@ -28,7 +28,7 @@ const Venue = () => {
           <Route path="/venue/order-detail" component={OrderDetail} />
           <Route path="/venue/menu/list" component={MenuList} />
           <Route path="/venue/menu/add" component={MenuAdd} />
-          <Route path="/venue/menu/edit" component={MenuEdit} />
+          <Route path="/venue/menu/edit/:menuId" component={MenuEdit} />
           <Route path="/venue/discount" component={DiscountLazy} />
         </Switch>
       </Suspense>

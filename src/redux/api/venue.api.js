@@ -30,3 +30,32 @@ export const submitNewMenuApi = ( token, payload  )=> (
   }
   }).then(res => res.data )
 )
+
+export const submitEditMenuApi = ( token, payload, id  )=> (
+  Axios.put( `${process.env.REACT_APP_API_URL}products/venue/${id}`, {
+    ...payload,
+  }, {
+    headers : {
+      'Authorization': token ,
+      'Content-Type': 'application/json'
+  }
+  }).then(res => res.data )
+)
+
+export const submitDeleteMenuApi = ( token, id  )=> (
+  Axios.delete( `${process.env.REACT_APP_API_URL}products/venue/${id}`, {
+    headers : {
+      'Authorization': token ,
+      'Content-Type': 'application/json'
+  }
+  }).then(res => res.data )
+)
+
+export const getCurrentProductVenueApi = ( token, id  )=> (
+  Axios.get( `${process.env.REACT_APP_API_URL}products/venue/${id}`, {
+    headers : {
+        'Authorization': token ,
+        'Content-Type': 'application/json'
+    }
+}).then(res => res.data )
+)
