@@ -24,7 +24,7 @@ const SelectInput = withStyles((theme) => ({
 }))(InputBase);
 
 const SelecOption = (props) => {
-  const { label, className, data, onHandleChange, inputName } = props;
+  const { label, className, data, onHandleChange, inputName, currentValue } = props;
   return (
     <>
       <Typography gutterBottom className={className}>
@@ -38,6 +38,7 @@ const SelecOption = (props) => {
           defaultValue={label === "Category" ? "Dessert" : "Vegan"}
           onChange={(e) => onHandleChange(e)}
           label="category"
+          value={currentValue}
           input={<SelectInput />}
         >
           {data.map((item) => (

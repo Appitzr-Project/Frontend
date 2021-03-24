@@ -16,7 +16,7 @@ const strings = {
   label_picture: 'Pictures',
   label_protein_type: 'Protein Type',
   add_img: 'Add Image',
-  modal_desc: 'are you sure want delete this item?',
+  modal_desc: 'Are You sure want delete this item?',
   ok: 'Ok',
   cancel: 'Cancel'
 }

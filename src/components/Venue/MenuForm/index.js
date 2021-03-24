@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
 import { Link, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/venue.api"
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 
@@ -51,10 +51,11 @@ const MenuAdd = () => {
   const [state, setState] = useState({
     productName: "",
     description: "",
-    category: "",
+    category: "Dessert",
     price: 0,
     images: [],
-    proteinType: "",
+    proteinType: "Vegan",
+    isActive: true
   });
 
   const [picturePreview, setPicturePreview] = useState([]);
@@ -309,6 +310,7 @@ const useStyle = makeStyles((theme) => ({
   btnImg: {
     border: "none",
     padding: "10px",
+    cursor: 'pointer',
     fontSize: 14,
     borderRadius: "15px",
     backgroundColor: "#4F147B",
