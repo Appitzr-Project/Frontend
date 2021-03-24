@@ -22,9 +22,11 @@ const MenuList = () => {
   const classes = useStyles(IMSpaghetti)()
   const auth = useSelector(state => state.auth)
   const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
     let isActive = true
+    setLoading(true)
     axios.get("https://api.dev.appetizr.co/products/venue",
     {
       headers:{
@@ -34,6 +36,7 @@ const MenuList = () => {
     .then(res=>{
       if(isActive){
         setItems(res.data.data)
+        setLoading(false)
       }
     }).catch(err => {
       console.log(err)
@@ -52,7 +55,7 @@ const MenuList = () => {
     >
       <NavBar title='Menu' />
       <Card classes={{ root: classes.cardRoot }} elevation={0}>
-        <MenuCard items={items} />
+        {loading ? "Loading..." : <MenuCard items={items} />}
       </Card>
       <SendButton />
     </Container>

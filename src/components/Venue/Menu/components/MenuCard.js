@@ -161,7 +161,7 @@ const MenuCard = ({items}) => {
         </Grid>
       )}
     </Grid>
-  ):"Loading..."
+  ):"You don't have a menu yet"
 }
 
 export default MenuCard
