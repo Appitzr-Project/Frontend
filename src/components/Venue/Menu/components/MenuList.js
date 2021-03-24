@@ -71,7 +71,7 @@ const MenuList = ({item, index}) => {
                   </Box>
                 </Box>
                 <Box p={1} mb={1} className={classes.processFood}>
-                  Processed food
+                  {item.proteinType}
                 </Box>
               </Grid>
               <Grid item xs={9}>
