@@ -62,6 +62,7 @@ export const getProfileAction = (jwtToken) => {
 };
 
 export const putProfileAction = (jwtToken, params) => {
+  delete params.email;
   return async () => {
     try {
       const putProfile = await putProfileApi(jwtToken, params);

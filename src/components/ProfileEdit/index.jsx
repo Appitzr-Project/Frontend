@@ -111,11 +111,20 @@ const Profile = () => {
   const jwtToken = useSelector(
     (state) => state.auth.user.signInUserSession.idToken.jwtToken
   );
-  const profile = useSelector((state) => state.profile.profile.data);
 
-  const putProfile = useSelector(
-    (state) => state?.profile?.putProfile || state
+  const email = useSelector(
+    (state) => state.auth.user.signInUserSession.idToken.payload.email || ''
   );
+  const profile = useSelector(
+    (state) =>
+      state.profile?.profile?.data || {
+        memberName: '',
+        email,
+        mobileNumber: '(+61) ',
+      }
+  );
+
+  const putProfile = useSelector((state) => state?.profile?.putProfile);
 
   const dispatch = useDispatch();
 

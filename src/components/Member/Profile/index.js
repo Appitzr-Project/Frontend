@@ -14,6 +14,7 @@ import LogoutIcon from './assets/ic-logout.svg';
 import ProfileIcon from './assets/ic-profile.svg';
 import Pencils from './assets/pencils.svg';
 import QRCodeIcon from './assets/qr-profile.svg';
+import Placeholder from './assets/placeholder.svg';
 import ConfirmationDialog from './components/ConfirmationDialog';
 
 const useStyles = makeStyles({
@@ -95,6 +96,10 @@ const MemberHome = () => {
     (state) => state.auth.user.signInUserSession.idToken.jwtToken
   );
 
+  const email = useSelector(
+    (state) => state.auth.user.signInUserSession.idToken.payload.email || ''
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -105,12 +110,12 @@ const MemberHome = () => {
     (state) =>
       state.profile.profile?.data || {
         memberName: '',
-        email: '',
-        profilePicture: null,
+        email,
+        profilePicture: Placeholder,
       }
   );
   const profileChange = useSelector(
-    (state) => state.profile.postProfileChange?.data || { profilePicture: null }
+    (state) => state.profile.postProfileChange?.data || { profilePicture: Placeholder }
   );
 
   const handleChange = (e) => {
