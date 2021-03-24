@@ -7,6 +7,7 @@ import { InputForm, SelectOption } from "./components";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/venue.api"
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 
 const MenuAdd = () => {
   const auth = useSelector((state) => state.auth);
@@ -103,7 +104,7 @@ const MenuAdd = () => {
       title={strings.add_menu}
       image="https://source.unsplash.com/random"
       spacing="26px"
-      isBack="/venue/menu/list"
+      isBack="/venue"
     >
       <form>
         <Grid container direction="column">
@@ -155,12 +156,20 @@ const MenuAdd = () => {
             {strings.label_picture}
           </Typography>
           {!picturePreview.length && (
+            <Button
+            onChange={_handleChangePicture}
+            variant='contained'
+            component='label'
+            startIcon={<PhotoLibraryIcon style={{ fontSize: 100, color: '#979797' }} />}
+            className={classes.btnPreview}
+            disableElevation
+          >
             <input
-              type="file"
+              type='file'
               name="picture"
-              onChange={_handleChangePicture}
-              className={classes.inputFile}
+              hidden
             />
+          </Button>
           )}
         </Grid>
         {picturePreview.length ? (
@@ -286,6 +295,16 @@ const useStyle = makeStyles((theme) => ({
     "&:focus": {
       border: "2px solid #3f51b5",
     },
+  },
+  btnPreview: {
+    width: '100%',
+    height: '200px',
+    background: '#f3f3f3',
+    borderRadius: '10px',
+    boxShadow: 'none',
+    '&:focus': {
+      border: '2px solid #3f51b5'
+    }
   },
   btnImg: {
     border: "none",
