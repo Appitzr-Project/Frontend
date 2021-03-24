@@ -29,3 +29,18 @@ export const getCurrentUserApi = async () => {
 export const  signOutApi = async () => {
         await Auth.signOut();
 }
+
+export const refreshTokenApi =  () => (
+    new Promise( async (resolve , reject ) => {
+        const cognitoUser = await Auth.currentAuthenticatedUser()
+        const session = await Auth.currentSession()
+        const refreshToken = session.getRefreshToken()
+        cognitoUser.refreshSession( refreshToken , (error , session ) => {
+            if(error){
+                reject(error)
+            }else{
+                resolve(session)
+            }
+        } )
+    })
+)

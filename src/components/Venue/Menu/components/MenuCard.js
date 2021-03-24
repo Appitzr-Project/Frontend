@@ -81,7 +81,7 @@ const MenuCard = ({items}) => {
   const classes = useStyles(IMSpaghetti)()
   return items.length ?  (
     <Grid container spacing={0} direction='column'>
-      <Grid spacing={0} item xs={12}>
+      <Grid spacing={0} item xs={12} style={{ marginBottom: 16 }}>
         <Grid item xs={12} container justify='space-between' alignItems='center'>  
           <p>Showing {items.length} Foods</p>
           <FormControl variant='outlined'>

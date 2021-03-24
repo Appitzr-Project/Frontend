@@ -64,7 +64,7 @@ const MenuEdit = () => {
   }
 
   const _handleChangePicture = (event) => {
-    event.persist()
+    event.preventDefault()
     setState(prevState => ({
       ...prevState,
       picture: event.target.files[0]
@@ -148,12 +148,20 @@ const MenuEdit = () => {
               />
             </div>
             <div className={classes.formGroup}>
-              <button
+              <Button
+                onChange={_handleChangePicture}
+                variant='contained'
+                component='label'
                 className={classes.btnImg}
-                onClick={_handleChangePicture}
+                onChange={_handleChangePicture}
               >
                 {strings.add_img}
-              </button>
+                <input
+                  type='file'
+                  name={state.picture}
+                  hidden
+                />
+              </Button>
             </div>
           </>
         )}

@@ -3,11 +3,12 @@ import Wrapper from '../shared/Wrapper';
 import { Grid, Typography, FormControl, Input, InputAdornment, Button, IconButton, FormHelperText, CircularProgress, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { PersonOutline, LockOutlined, Visibility, VisibilityOff, ArrowForward } from '@material-ui/icons'
-import { useState } from 'react';
+import { useState  } from 'react';
 import { useDispatch } from 'react-redux'
-import { signInAction, customSignInAction } from '../../redux/actions/auth.action';
+import { signInAction, customSignInAction , getCurrentUserAction } from '../../redux/actions/auth.action';
 import { Link, useHistory } from 'react-router-dom'
 import { useStyle } from './LoginStyle'
+import { useEffect } from 'react';
 
 const Login = () => {
   const classes = useStyle()
@@ -25,9 +26,14 @@ const Login = () => {
     isLoading: false
   })
 
+  useEffect(() => {
+    dispatch(getCurrentUserAction())
+  }, [])
+
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
   const setErrorLogin = (errorLogin) => setStates({ ...states, errorLogin, isLoading: false })
 
+  
   const onChange = name => ev => {
     setForm({
       ...form,
