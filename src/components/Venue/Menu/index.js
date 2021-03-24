@@ -32,7 +32,6 @@ const MenuList = () => {
         setLoading(true)
         const res = await productsVenueList(auth.user.signInUserSession.idToken.jwtToken)
         if(isActive){
-          console.log(res.data)
           setItems(res.data)
           setLoading(false)
         }

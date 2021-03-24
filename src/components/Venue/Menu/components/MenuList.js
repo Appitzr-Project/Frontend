@@ -4,8 +4,6 @@ import {
   Card,
   Grid,
   makeStyles,
-  withStyles,
-  InputBase,
 } from '@material-ui/core'
 import {
   IHeart
@@ -28,9 +26,12 @@ const useStyles = (img) =>
     },
     menuWrapper: {
       backgroundImage: `url(${img})`,
-      background: 'no-repeat',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: "center",
+      backgroundSize: "cover",
       height: 90,
-      marginBottom: 8
+      marginBottom: 8,
+      borderRadius: "18px"
     },
     alignRight: {
       display: 'flex',
