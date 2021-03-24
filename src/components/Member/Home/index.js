@@ -70,7 +70,8 @@ const MemberHome = () => {
   const classes = useStyles();
 
   useEffect( () => {
-    if(auth.user && auth.user.signInUserSession.idToken.payload['cognito:groups']) {
+    const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
+    if(auth.user && groupUser && groupUser.includes('venue')) {
       setUrlVenue('/venue');
     } else {
       setUrlVenue('/venue/profile');
