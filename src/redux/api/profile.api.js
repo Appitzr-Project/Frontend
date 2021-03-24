@@ -22,36 +22,35 @@ export const getVenueProfileApi = (token) =>
     },
   }).then((res) => res.data);
 
-export const getProfileApi = (jwtToken) => {
+export const getProfileApi = (jwtToken) =>
   Axios.get(process.env.REACT_APP_API_URL + 'profile', {
     headers: {
       Authorization: `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json',
     },
   }).then((res) => res.data);
-};
 
-export const putProfileApi = (jwtToken, params) => {
+export const putProfileApi = (jwtToken, params) =>
   Axios.put(process.env.REACT_APP_API_URL + 'profile', params, {
     headers: {
       Authorization: `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json',
     },
   }).then((res) => res.data);
-};
 
-export const postProfileApi = (jwtToken, params) => {
+export const postProfileApi = (jwtToken, params) =>
   Axios.post(process.env.REACT_APP_API_URL + 'profile', params, {
     headers: {
       Authorization: `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json',
     },
   }).then((res) => res.data);
-};
 
 // upload profile picture
-export const postProfileChangeApi = (jwtToken, profilePicture) => {
+export const postProfileChangeApi = (jwtToken, profilePicture) =>
   Axios.post(process.env.REACT_APP_API_URL + 'profile/change', profilePicture, {
     headers: {
       Authorization: `Bearer ${jwtToken}`,
       'content-type': 'multipart/form-data',
     },
   }).then((res) => res.data);
-};

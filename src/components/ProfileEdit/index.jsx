@@ -116,47 +116,56 @@ const Profile = () => {
   const email = useSelector(
     (state) => state.auth.user.signInUserSession.idToken.payload.email || ''
   );
-  const profile = useSelector(
-    (state) =>
-      state.profile?.profile?.data || {
-        memberName: '',
-        email,
-        mobileNumber: '(+61) ',
-        isNew: true,
-      }
-  );
 
-  const putProfile = useSelector((state) => state?.profile?.putProfile);
+  const [state, setState] = useState({
+    profile: {
+      memberName: '',
+      email,
+      mobileNumber: '(+61) ',
+      isNew: true,
+    },
+    profileStatus: {
+      code: 0,
+    },
+  });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfileAction(jwtToken));
-  }, [dispatch, jwtToken]);
+    if (state.profile.isNew) {
+      dispatch(getProfileAction(jwtToken)).then((res) => {
+        setState({ ...state, profile: { ...res.data, isNew: false } });
+      });
+    }
+  }, [dispatch, jwtToken, state]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (profile.isNew) {
-      dispatch(postProfileAction(jwtToken, form));
+    if (state.profile.isNew) {
+      dispatch(postProfileAction(jwtToken, state.profile)).then((res) => {
+        setState({ ...state, profileStatus: res.data });
+      });
     } else {
-      dispatch(putProfileAction(jwtToken, form));
+      dispatch(putProfileAction(jwtToken, state.profile)).then((res) => {
+        setState({ ...state, profileStatus: res });
+      });
     }
-
-    if (putProfile?.code === 200 && window) window.location.href = '/member';
   };
 
-  const [form, setForm] = useState({
-    memberName: profile.memberName,
-    email: profile.email,
-    mobileNumber: profile.mobileNumber,
-  });
+  useEffect(() => {
+    if (state.profileStatus?.code === 200 && window)
+      window.location.href = '/member';
+  }, [state.profileStatus?.code]);
 
   const onChangeForm = (event) => {
     const { name, value } = event.target;
-    setForm((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setState({
+      ...state,
+      profile: {
+        ...state.profile,
+        [name]: value,
+      },
+    });
   };
 
   return (
@@ -199,7 +208,7 @@ const Profile = () => {
                       <CustomInput
                         id="memberName"
                         name="memberName"
-                        value={form.memberName}
+                        value={state.profile.memberName}
                         onChange={(e) => onChangeForm(e)}
                       />
                     </FormControl>
@@ -210,7 +219,7 @@ const Profile = () => {
                       <CustomInput
                         id="email"
                         name="email"
-                        value={form.email}
+                        value={state.profile.email}
                         onChange={(e) => onChangeForm(e)}
                         disabled
                       />
@@ -222,7 +231,7 @@ const Profile = () => {
                       <CustomInput
                         id="mobileNumber"
                         name="mobileNumber"
-                        value={form.mobileNumber}
+                        value={state.profile.mobileNumber}
                         onChange={(e) => onChangeForm(e)}
                       />
                     </FormControl>
