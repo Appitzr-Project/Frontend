@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../shared/Wrapper';
 import { Grid, Typography, FormControl, Input, InputAdornment, Button, IconButton, FormHelperText, CircularProgress, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { PersonOutline, LockOutlined, Visibility, VisibilityOff, ArrowForward , MailOutline } from '@material-ui/icons'
+import { LockOutlined, Visibility, VisibilityOff, ArrowForward , MailOutline } from '@material-ui/icons'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { customSignInAction, signUpAction } from '../../redux/actions/auth.action';
@@ -14,7 +14,7 @@ const Register = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [form, setForm] = useState({
-    username: '' ,
+    username: '-' ,
     password: '',
     attributes: {
         email : ''     
@@ -26,6 +26,8 @@ const Register = () => {
     errorEmail: null,
     errorPassword: null,
     errorLogin: null,
+    errorReEnterPassword: null,
+    reEnterPassword: null,
     isLoading: false
   })
 
@@ -53,10 +55,10 @@ const Register = () => {
     
     if (validationState()) {
       setLoading(true)
-      dispatch(signUpAction(form))
+      dispatch(signUpAction({ ...form , username: form.attributes.email }))
         .then(() => {
           setLoading(false)
-          history.push('/confirmation-code', { username: form.username })
+          history.push('/confirmation-code', { username: form.attributes.email })
         })
         .catch(err => {
           setErrorLogin(err.message)
@@ -69,9 +71,12 @@ const Register = () => {
       ...states,
       errorUsername: form.username === '' ? 'This field is required ' : null,
       errorEmail: form.attributes.email === '' ? 'This field is required ' : null,
+      errorReEnterPassword: states.reEnterPassword === '' ? 'This field is required ' : 
+                              form.password !== states.reEnterPassword ? 'Password incorrect' : null,
       errorPassword: form.password === '' ? 'This field is required ' : null
     })
-    return form.username !== '' && form.password !== '' && form.attributes.email !== ''
+    return (form.username !== '' && form.password !== '' && form.attributes.email !== '' && states.reEnterPassword !== ''
+            && states.reEnterPassword === form.password )
   }
 
   const onLoginFB = () => {
@@ -99,23 +104,23 @@ const Register = () => {
     </Snackbar>
   )
 
-  const renderFieldUsername = () => (
-    <Grid container item  justify='center' xs md={8} >
-      <FormControl fullWidth className={classes.fieldText + ' ' + classes.fieldUsername } >
-        <Input
-          error={states.errorUsername ? true : false}
-          fullWidth
-          startAdornment={
-            <InputAdornment position="start">
-              <PersonOutline />
-            </InputAdornment>
-          }
-          onChange={onChangeForm('username')}
-        />
-        {(states.errorUsername && <FormHelperText error >{states.errorUsername}</FormHelperText>) || ''}
-      </FormControl>
-    </Grid>
-  )
+  // const renderFieldUsername = () => (
+  //   <Grid container item  justify='center' xs md={8} >
+  //     <FormControl fullWidth className={classes.fieldText + ' ' + classes.fieldUsername } >
+  //       <Input
+  //         error={states.errorUsername ? true : false}
+  //         fullWidth
+  //         startAdornment={
+  //           <InputAdornment position="start">
+  //             <PersonOutline />
+  //           </InputAdornment>
+  //         }
+  //         onChange={onChangeForm('username')}
+  //       />
+  //       {(states.errorUsername && <FormHelperText error >{states.errorUsername}</FormHelperText>) || ''}
+  //     </FormControl>
+  //   </Grid>
+  // )
 
   const renderFieldEmail = () => (
     <Grid container item justify='center' xs md={8} >
@@ -128,6 +133,7 @@ const Register = () => {
               <MailOutline />
             </InputAdornment>
           }
+          placeholder="Enter Email"
           onChange={onChangeFormAttribute('email')}
         />
         {(states.errorEmail && <FormHelperText error >{states.errorEmail}</FormHelperText>) || ''}
@@ -140,8 +146,9 @@ const Register = () => {
       <FormControl fullWidth className={classes.fieldText} >
         <Input
           error={states.errorPassword ? true : false}
-          fullWidth
+          fullWidth          
           type={states.showPassword ? 'text' : 'password'}
+          placeholder="Enter Password"
           startAdornment={
             <InputAdornment position="start">
               <LockOutlined />
@@ -166,6 +173,28 @@ const Register = () => {
     </Grid>
 
   )
+
+  const renderFieldRePassword = () => (
+    <Grid container item justify='center' xs md={8} >
+      <FormControl fullWidth className={classes.fieldText} >
+        <Input
+          error={states.errorReEnterPassword ? true : false}
+          fullWidth
+          type={states.showPassword ? 'text' : 'password'}
+          placeholder="Re enter Password"
+          startAdornment={
+            <InputAdornment position="start">
+              <LockOutlined />
+            </InputAdornment>
+          }
+          onChange={({ target }) => setStates({ ...states , reEnterPassword : target.value }) }
+        />
+        {(states.errorReEnterPassword && <FormHelperText error >{states.errorReEnterPassword}</FormHelperText>) || ''}
+      </FormControl>
+    </Grid>
+
+  )
+
 
   const renderButtonRegister = () => (
     <Grid container item direction='column' alignItems='center' justify='center' xs md={8} >
@@ -208,9 +237,10 @@ const Register = () => {
               <br />
               <Typography variant='h6' align='center' >OR</Typography>
             </Grid>
-            {renderFieldUsername()}
+            {/* {renderFieldUsername()} */}
             {renderFieldEmail()}
             {renderFieldPassword()}
+            {renderFieldRePassword()}
             {renderButtonRegister()}
             <Grid container direction='column' item justify='center' xs md={8} >
               <Typography align='center'  >

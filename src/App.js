@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,8 +6,8 @@ import {
   Redirect
 } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
-import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentUserAction } from './redux/actions/auth.action';
+import { useSelector } from 'react-redux';
+
 
 const HomePage = lazy(() => import('./components/Member'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
@@ -32,12 +32,9 @@ function ProtectedRoute({ component: Component , ...restProps }) {
   }} />)
 }
 
-function App() {
-  const dispatch = useDispatch()
+function App() { 
 
-  useEffect(() => {
-    dispatch(getCurrentUserAction())
-  }, [])
+
 
   return (
     <>
