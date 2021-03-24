@@ -5,6 +5,7 @@ import {
   postProfileChangeApi,
   putProfileApi,
   updateVenueProfileApi,
+  postProfileApi
 } from '../api/profile.api';
 
 export const createVenueProfileAction = (idToken, profile) => {
@@ -67,6 +68,18 @@ export const putProfileAction = (jwtToken, params) => {
     try {
       const putProfile = await putProfileApi(jwtToken, params);
       return putProfile;
+    } catch (error) {
+      console.log('[Error Put Profile ]', error);
+    }
+  };
+};
+
+export const postProfileAction = (jwtToken, params) => {
+  delete params.email;
+  return async () => {
+    try {
+      const postProfile = await postProfileApi(jwtToken, params);
+      return postProfile;
     } catch (error) {
       console.log('[Error Put Profile ]', error);
     }

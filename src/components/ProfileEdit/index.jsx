@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getProfileAction,
   putProfileAction,
+  postProfileAction,
 } from '../../redux/actions/profile.action';
 
 const SubmitButton = withStyles(() => ({
@@ -135,7 +136,11 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(putProfileAction(jwtToken, form));
+    if (profile.isNew) {
+      dispatch(postProfileAction(jwtToken, form));
+    } else {
+      dispatch(putProfileAction(jwtToken, form));
+    }
 
     if (putProfile?.code === 200 && window) window.location.href = '/member';
   };
