@@ -106,9 +106,7 @@ const Profile = () => {
   const createNewVenue = () => {
     dispatch(createVenueProfileAction(idToken, { ...form }))
       .then(() => {
-        setLoading(false)
         refreshTokenAction()
-        history.push('/venue')
       })
       .catch(err => {
         setErrorSave(err.message || 'An error occured')
@@ -117,7 +115,10 @@ const Profile = () => {
 
   const refreshTokenAction = () => {
     dispatch(getRefreshTokenAction())
-    .then().catch(() => false  )    
+    .then(() => {
+      setLoading(false)
+      history.push('/venue')
+    }).catch(() => false  )    
   }
 
   const updateVenue = () => {
