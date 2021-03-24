@@ -1,13 +1,13 @@
-import { signInApi, customSignInApi, signOutApi, getCurrentUserApi , signUpApi, confirmSignUp, resendConfirmationCodeApi } from "../api/auth.api"
+import { signInApi, customSignInApi, signOutApi, getCurrentUserApi , signUpApi, confirmSignUp, resendConfirmationCodeApi, refreshTokenApi } from "../api/auth.api"
 import { SIGNIN , SIGNOUT } from "../types/auth.type"
 
 export const signInAction = (username, password) => {
     return async dispatch => {
         try {
-            const user = await signInApi(username, password)
+            const { attributes , signInUserSession } = await signInApi(username, password)
             dispatch({
                 type: SIGNIN,
-                payload: { user }
+                payload: { user : { attributes , signInUserSession } }
             })
         } catch (error) {
             console.log('[Error Signin ]', error)
@@ -19,10 +19,24 @@ export const signInAction = (username, password) => {
 export const getCurrentUserAction = () => {
     return async dispatch => {
         try {
-            const user = await getCurrentUserApi()
+            const { attributes , signInUserSession } = await getCurrentUserApi()
             dispatch({
                 type: SIGNIN,
-                payload: { user }
+                payload: { user : { attributes , signInUserSession } }
+            })
+        } catch (error) {
+            dispatch({ type: SIGNOUT })
+        }
+    }
+}
+
+export const getRefreshTokenAction = () => {
+    return async dispatch => {
+        try {
+            const signInUserSession = await refreshTokenApi()
+            dispatch({
+                type: SIGNIN,
+                payload: { user : { signInUserSession } }
             })
         } catch (error) {
             dispatch({ type: SIGNOUT })

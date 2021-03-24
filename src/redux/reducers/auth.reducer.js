@@ -17,7 +17,7 @@ export default persistReducer(persistConfig, (state = initialState, { type , pay
         case SIGNIN : {
             return {
                 ...state ,
-                user : payload.user
+                user : { ...state.user , ...payload.user }
             }
         }
 

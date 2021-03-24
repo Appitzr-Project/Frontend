@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  IconButton
 } from '@material-ui/core';
 import React, { useState } from 'react';
 import BottomNav from '../../BottomNav';
@@ -83,7 +84,10 @@ const MemberHome = () => {
             </div>
           </Grid>
           <Box pr="23px">
-            <img src={VenueSVG} alt="venue" /></Box>
+            <IconButton onClick={() => (window ? (window.location.href = '/venue/profile') : {})} >
+              <img src={VenueSVG} alt="venue" />
+            </IconButton>
+          </Box>
           <Grid
             item
             onClick={() => (window ? (window.location.href = '/member') : {})}
