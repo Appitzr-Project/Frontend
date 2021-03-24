@@ -82,6 +82,9 @@ const useStyles = makeStyles({
     height: '127px',
     borderRadius: '60px',
   },
+  cursorPointer:{
+    cursor: 'pointer',  
+  }
 });
 
 const MemberHome = () => {
@@ -185,7 +188,7 @@ const MemberHome = () => {
               <img alt="edit" src={ProfileIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>Edit Profile</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>Edit Profile</Box>
             </Grid>
           </Grid>
           <Grid
@@ -198,7 +201,7 @@ const MemberHome = () => {
               <img alt="history" src={HistoryIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>History</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>History</Box>
             </Grid>
           </Grid>
           <Grid
@@ -211,7 +214,7 @@ const MemberHome = () => {
               <img alt="contact" src={ContactsIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>Contact Support</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>Contact Support</Box>
             </Grid>
           </Grid>
           <Grid
@@ -224,7 +227,7 @@ const MemberHome = () => {
               <img alt="contact" src={LogoutIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>Logout</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>Logout</Box>
             </Grid>
           </Grid>
 
