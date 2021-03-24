@@ -21,14 +21,25 @@ const Login = lazy(() => import('./components/Authenticator/Login'))
 const Register = lazy(() => import('./components/Authenticator/Register'))
 const ConfirmationCode = lazy(() => import('./components/Authenticator/ConfirmationCode'))
 
-function ProtectedRoute({ component: Component , ...restProps }) {
-  const auth = useSelector(state => state.auth )
+function ProtectedRoute({ component: Component , levelAccess = null, ...restProps }) {
+  const auth = useSelector(state => state.auth );
 
   return(<Route {...restProps } render={() => {
-    if(auth.user) 
-      return <Component />
-    else
+    if(auth.user) {
+      const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
+
+      if(levelAccess && groupUser && groupUser.includes('venue')) {
+        return <Component />
+      } else if(!levelAccess && groupUser && groupUser.includes('venue')) {
+        return <Redirect to='/venue' />
+      } else if(!levelAccess && !groupUser && !groupUser.includes('venue')) {
+        return <Component />
+      } else {
+        return <Redirect to='/' />
+      }
+    } else {
       return <Redirect to='/login' />
+    }
   }} />)
 }
 
@@ -46,7 +57,7 @@ function App() {
             <ProtectedRoute path="/scan" component={Scan} />
             <ProtectedRoute path="/member" component={MemberLazy} />
             <ProtectedRoute exact path="/support" component={Support} />
-            <ProtectedRoute path="/venue" component={Venue} />
+            <ProtectedRoute path="/venue" component={Venue} levelAccess="venue" />
             <ProtectedRoute path="/venues" component={Venues} />
             <ProtectedRoute path="/profile-edit" component={ProfileEdit} />
             <ProtectedRoute path="/promo" component={DiscountInfo} />
