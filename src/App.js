@@ -32,10 +32,8 @@ function ProtectedRoute({ component: Component , levelAccess = null, ...restProp
         return <Component />
       } else if(!levelAccess && groupUser && groupUser.includes('venue')) {
         return <Redirect to='/venue' />
-      } else if(!levelAccess && !groupUser) {
-        return <Component />
       } else {
-        return <Redirect to='/' />
+        return <Component />
       }
     } else {
       return <Redirect to='/login' />
