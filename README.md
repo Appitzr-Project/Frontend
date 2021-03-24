@@ -58,3 +58,12 @@ Run 'amplify pull' to sync upstream changes.
 ![](aws-amplify.png)
 
 - Setelah melakukan **amplify pull --appId dtggcy24dmivj --envName dev**, sekarang di folder **src** akan muncul file **aws-exports.js**
+
+## 3. Environment Variables
+
+Untuk terhubung ke API, maka harus set file **.env** terlebih dahulu.
+
+1. Copy file **.env.example** ke **.env**
+2. Jalankan seperti biasa **yarn start** atau **npm run start**
+
+Secara default, file **.env** sudah di masukkan kedalam **.gitignore**, karena deployer akan set di background secara automatis.
