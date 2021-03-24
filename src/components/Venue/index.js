@@ -49,7 +49,7 @@ const Venue = () => {
           <ProtectedRouteVenue path="/venue/order-detail" component={OrderDetail} />
           <ProtectedRouteVenue path="/venue/menu/list" component={MenuList} />
           <ProtectedRouteVenue path="/venue/menu/add" component={MenuAdd} />
-          <ProtectedRouteVenue path="/venue/menu/edit/:idMenu" component={MenuEdit} />
+          <ProtectedRouteVenue path="/venue/menu/edit/:menuId" component={MenuEdit} />
           <ProtectedRouteVenue path="/venue/discount" component={DiscountLazy} />
         </Switch>
       </Suspense>
