@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import { useHistory } from 'react-router-dom';
 
 const SubmitButton = withStyles(() => ({
     root: {
@@ -53,6 +54,12 @@ const CustomLabel = withStyles(() => ({
         color: '#464646'
     }
 }))(InputLabel);
+
+const CustomNavigateBeforeIcon = withStyles(() => ({
+  root: {
+      cursor: 'pointer'
+  }
+}))(NavigateBeforeIcon);
 
 const useStyles = makeStyles({
     container: {
@@ -104,7 +111,8 @@ const useStyles = makeStyles({
 });
 
 const Profile = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const history = useHistory();
 
     return (
         <div className="App">        
@@ -114,7 +122,7 @@ const Profile = () => {
                         alignItems="center" 
                         container
                         justify="space-between">
-                        <NavigateBeforeIcon className={classes.backIcon} />
+                        <CustomNavigateBeforeIcon className={classes.backIcon} onClick={() => history.push('/member')} />
                         <span>
                             Profile
                         </span>
