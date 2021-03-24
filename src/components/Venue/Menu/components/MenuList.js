@@ -86,7 +86,7 @@ const MenuList = ({item, index}) => {
                   <Box color='#7B00AB'>
                     {item.category}
                   </Box>
-                  <Link to='/venue/menu/edit'>
+                  <Link to={"/venue/menu/edit/"+item.id}>
                     <Box color='#7B00AB'>
                       Update
                     </Box>
