@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getProfileAction,
@@ -56,12 +55,6 @@ const CustomLabel = withStyles(() => ({
   },
 }))(InputLabel);
 
-const CustomNavigateBeforeIcon = withStyles(() => ({
-  root: {
-    cursor: 'pointer',
-  },
-}))(NavigateBeforeIcon);
-
 const useStyles = makeStyles({
   container: {
     background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
@@ -76,6 +69,7 @@ const useStyles = makeStyles({
   backIcon: {
     color: '#ffffff',
     fontSize: '30px',
+    cursor: 'pointer',
   },
   title: {
     fontStyle: 'normal',
