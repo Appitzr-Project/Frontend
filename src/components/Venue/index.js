@@ -26,10 +26,10 @@ function ProtectedRouteVenue({ component: Component , ...restProps }) {
       if(groupUser && groupUser.includes('venue')) {
         return <Component />
       } else {
-        return <Redirect to='/' />
+        return window.location.href = '/';
       }
     } else {
-      return <Redirect to='/login' />
+      return window.location.href = '/login';
     }
   }} />)
 }
