@@ -14,6 +14,7 @@ import LogoutIcon from './assets/ic-logout.svg';
 import ProfileIcon from './assets/ic-profile.svg';
 import Pencils from './assets/pencils.svg';
 import QRCodeIcon from './assets/qr-profile.svg';
+import Placeholder from './assets/placeholder.svg';
 import ConfirmationDialog from './components/ConfirmationDialog';
 
 const useStyles = makeStyles({
@@ -81,6 +82,9 @@ const useStyles = makeStyles({
     height: '127px',
     borderRadius: '60px',
   },
+  cursorPointer: {
+    cursor: 'pointer',
+  },
 });
 
 const MemberHome = () => {
@@ -95,29 +99,41 @@ const MemberHome = () => {
     (state) => state.auth.user.signInUserSession.idToken.jwtToken
   );
 
+  const email = useSelector(
+    (state) => state.auth.user.signInUserSession.idToken.payload.email || ''
+  );
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProfileAction(jwtToken));
-  }, [dispatch, jwtToken]);
+  const [state, setState] = useState({
+    profile: {
+      memberName: '',
+      email,
+      mobileNumber: '(+61) ',
+      profilePicture: Placeholder,
+      isNew: true,
+    },
+  });
 
-  const profile = useSelector(
-    (state) =>
-      state.profile.profile?.data || {
-        memberName: '',
-        email: '',
-        profilePicture: null,
-      }
-  );
-  const profileChange = useSelector(
-    (state) => state.profile.postProfileChange?.data || { profilePicture: null }
-  );
+  console.log('state: ', state);
+  useEffect(() => {
+    if (state.profile.isNew) {
+      dispatch(getProfileAction(jwtToken)).then((res) => {
+        setState({ ...state, profile: { ...res.data, isNew: false } });
+      });
+    }
+  }, [dispatch, jwtToken, state]);
 
   const handleChange = (e) => {
     const profilePicture = e.target.files[0];
     const formData = new FormData();
     formData.append('profilePicture', profilePicture);
-    dispatch(postProfileChange(jwtToken, formData));
+    dispatch(postProfileChange(jwtToken, formData)).then((res) => {
+      setState({
+        ...state,
+        profile: { ...state.profile, profilePicture: res.data.profilePicture },
+      });
+    });
   };
 
   return (
@@ -139,13 +155,13 @@ const MemberHome = () => {
               <Box fontSize={20} fontWeight={500}>
                 My account
               </Box>
-              <Box fontSize={14}>{profile.email}</Box>
+              <Box fontSize={14}>{state.profile.email}</Box>
             </Grid>
             <Grid item xs className={classes.profileGrid}>
               <div>
                 <img
                   alt="profile"
-                  src={profileChange.profilePicture || profile.profilePicture}
+                  src={state.profile.profilePicture || Placeholder}
                   className={classes.imgContainer}
                 />
               </div>
@@ -165,7 +181,7 @@ const MemberHome = () => {
           <Grid container spacing={3} className={classes.pb30}>
             <Grid item xs>
               <Box fontSize={14} className={classes.desc}>
-                Hello, My Name is {profile.memberName}
+                Hello, My Name is {state.profile.memberName}
               </Box>
             </Grid>
           </Grid>
@@ -180,7 +196,9 @@ const MemberHome = () => {
               <img alt="edit" src={ProfileIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>Edit Profile</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>
+                Edit Profile
+              </Box>
             </Grid>
           </Grid>
           <Grid
@@ -193,7 +211,9 @@ const MemberHome = () => {
               <img alt="history" src={HistoryIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>History</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>
+                History
+              </Box>
             </Grid>
           </Grid>
           <Grid
@@ -206,7 +226,9 @@ const MemberHome = () => {
               <img alt="contact" src={ContactsIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>Contact Support</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>
+                Contact Support
+              </Box>
             </Grid>
           </Grid>
           <Grid
@@ -219,7 +241,9 @@ const MemberHome = () => {
               <img alt="contact" src={LogoutIcon} />
             </Grid>
             <Grid item xs>
-              <Box fontSize={15}>Logout</Box>
+              <Box fontSize={15} className={classes.cursorPointer}>
+                Logout
+              </Box>
             </Grid>
           </Grid>
 
