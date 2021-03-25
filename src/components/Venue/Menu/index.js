@@ -37,7 +37,6 @@ const MenuList = () => {
         }
       } catch (error) {
         console.log(error)
-        console.log(error.response)
       }
     }
     http()
