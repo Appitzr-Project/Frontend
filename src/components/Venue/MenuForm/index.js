@@ -72,7 +72,7 @@ const MenuAdd = () => {
     const { name, value } = event.target;
     setState((prevState) => ({
       ...prevState,
-      [name]: name === "price" ? parseInt(value) : value,
+      [name]: name === "price" ? parseInt(value) | 0 : value,
     }));
   };
 
@@ -144,8 +144,9 @@ const MenuAdd = () => {
         </Grid>
         <Grid item xs={12}>
           <InputForm
-            type="text"
+            type="number"
             name="price"
+            min="0"
             value={state.price}
             label="Price"
             ref={inputFocus}

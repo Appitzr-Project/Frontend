@@ -110,7 +110,7 @@ const MenuEdit = () => {
     const { name, value } = event.target;
     setState((prevState) => ({
       ...prevState,
-      [name]: name === "price" ? parseInt(value) : value,
+      [name]: name === "price" ? parseInt(value) || 0 : value,
     }));
   };
 
@@ -216,10 +216,11 @@ const MenuEdit = () => {
         </Grid>
         <Grid item xs={12}>
           <InputForm
-            type="text"
+            type="number"
             name="price"
             value={state.price}
             label="Price"
+            min="0"
             ref={inputFocus}
             onChange={onChange}
           />

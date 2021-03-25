@@ -8,7 +8,8 @@ const InputForm = forwardRef((props, ref) => {
     label,
     name,
     type,
-    onChange
+    onChange,
+    min
   } = props
 
   const classes = useStyle({ value })
@@ -26,6 +27,7 @@ const InputForm = forwardRef((props, ref) => {
         type={type}
         className={classes.input}
         ref={ref}
+        {...{min}}
         value={value}
         onChange={onChange}
       />
