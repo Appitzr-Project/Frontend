@@ -98,17 +98,19 @@ const MenuList = ({item, index}) => {
                 <Box ml={2} fontSize={12} textAlign='justify' color='#9A9A9A'>
                   <span
                     dangerouslySetInnerHTML={{ 
-                      __html: more ? `${item.description.slice(0, 50)}...` : item.description
+                      __html: item.description.length > 100 && more ? `${item.description.slice(0, 100)}...` : item.description
                     }}
                     
                   />
-                  <Link
+                  {item.description.length > 100 && (
+                    <Link
                     to=''
                     style={{ color: 'black', cursor: 'pointer' }}
                     onClick={(e) => { e.preventDefault(); setMore(!more) }}
                   >
                     &nbsp;<b><u>{more ? strings.show_more : strings.show_less}</u></b>
                   </Link>
+                  )}
                 </Box>
                 <Box ml={2} my={2} fontSize={16} textAlign='justify' color='#5E4E63'>
                   ${item.price}
