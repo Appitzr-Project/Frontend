@@ -20,6 +20,7 @@ const DiscountInfo = lazy(() => import('./components/DiscountInfo'))
 const Login = lazy(() => import('./components/Authenticator/Login'))
 const Register = lazy(() => import('./components/Authenticator/Register'))
 const ConfirmationCode = lazy(() => import('./components/Authenticator/ConfirmationCode'))
+const ForgotPassword = lazy(() => import('./components/Authenticator/ForgotPassword'))
 
 function ProtectedRoute({ component: Component , levelAccess = null, ...restProps }) {
   const auth = useSelector(state => state.auth );
@@ -62,6 +63,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/confirmation-code" component={ConfirmationCode} />
+            <Route path="/forgot-password" component={ForgotPassword} />
             {/* <Route path="*" component={NotFound} /> */}
           </Switch>
         </Suspense>

@@ -14,7 +14,6 @@ const MemberOrderMenu = lazy(() => import('./OrderMenu'));
 
 function Member() {
   return (
-    <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/" component={MemberPage} />
@@ -30,7 +29,6 @@ function Member() {
           <Route exact path="/member/order-menu" component={MemberOrderMenu} />
         </Switch>
       </Suspense>
-    </Router>
   );
 }
 
