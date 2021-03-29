@@ -61,7 +61,7 @@ const VenueCard = ({items}) => {
                     pb="5px"
                     color="#0E0E0E"
                   >
-                    $$$ {item.cultureCategory}
+                    {item.cultureCategory}
                   </Box>
                     <Grid item>
                       <Box
