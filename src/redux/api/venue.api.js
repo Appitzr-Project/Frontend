@@ -59,3 +59,7 @@ export const getCurrentProductVenueApi = ( token, id  )=> (
     }
 }).then(res => res.data )
 )
+
+export const getAllVenueList = () => (
+  Axios.get(process.env.REACT_APP_API_URL+"venues").then(res => res.data)
+)

@@ -22,6 +22,7 @@ import VenueCarousel from './components/VenueCarousel';
 import VenueSVG from './assets/venue.svg';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getAllVenueList } from "../../../redux/api/venue.api"
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -68,8 +69,10 @@ const MemberHome = () => {
   const auth = useSelector(state => state.auth);
   const [category, setCategory] = useState();
   const [urlVenue, setUrlVenue] = useState();
+  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState([]);
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect( () => {
     const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
@@ -80,7 +83,29 @@ const MemberHome = () => {
     }
   }, []);
 
-  return (
+  // api
+  useEffect(() => {
+    let isActive = true;
+    const http = async () => {
+      try {
+        setLoading(true);
+        const res = await getAllVenueList();
+        if(isActive){
+          console.log(res.data);
+          setItems(res.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    http();
+    return () => {
+      isActive=false;
+    }
+  },[]);
+
+  return !loading && (
     <>
       <Container
         classes={{ root: classes.containerRoot }}
@@ -121,11 +146,13 @@ const MemberHome = () => {
               fontWeight={600}
               className={classes.white}
             >
-              Hi John
+              Hi jeff
             </Box>
           </Grid>
         </Grid>
-        <VenueCarousel />
+
+        <VenueCarousel items={items}/>
+
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <Box pb="16px">
             <FormControl fullWidth>
@@ -152,9 +179,11 @@ const MemberHome = () => {
             />
             <ButtonSearch />
           </form>
+
           <Box>
-            <VenueCard />
+            <VenueCard items={items} />
           </Box>
+
         </Card>
         <BottomNav ActiveMenu={MENU.HOME} />
       </Container>
