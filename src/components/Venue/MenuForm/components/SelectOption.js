@@ -7,6 +7,7 @@ import {
   MenuItem,
   Typography,
 } from "@material-ui/core";
+import { capitalizeFirstLetter } from "../../../../helpers/helper";
 
 const SelectInput = withStyles((theme) => ({
   input: {
@@ -43,7 +44,7 @@ const SelecOption = (props) => {
         >
           {data.map((item) => (
             <MenuItem key={item.id} value={item.name}>
-              {item.name}
+              {capitalizeFirstLetter(item.name)}
             </MenuItem>
           ))}
         </Select>
