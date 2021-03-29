@@ -35,7 +35,7 @@ const SelecOption = (props) => {
           labelId="demo-simple-select-outlined-label"
           name={inputName}
           id="demo-simple-select-outlined"
-          defaultValue={label === "Category" ? "Dessert" : "Vegan"}
+          defaultValue={label === "category" ? "dessert" : "vegan"}
           onChange={(e) => onHandleChange(e)}
           label="category"
           value={currentValue}
