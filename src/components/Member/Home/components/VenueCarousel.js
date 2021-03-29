@@ -2,6 +2,7 @@ import { Box, Card, Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 import StarSVG from '../assets/ic-star.svg';
 import VenuePNG from '../assets/venue.png';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -42,13 +43,14 @@ const useStyles = makeStyles({
   },
 });
 
-const VenueCarousel = () => {
+const VenueCarousel = ({items}) => {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.venueCardContainer}>
-      {Array.from({ length: 10 }).map((i, index) => (
+      {items.map((item, index) => (
         <Grid item key={index}>
+          <Link to={`/member/venue/${item.id}`}>
           <Box
             p="0 0 21px 0"
             pl={index === 0 ? '24px' : '18px'}
@@ -64,7 +66,7 @@ const VenueCarousel = () => {
                 pb="5px"
                 color="#7B00AB"
               >
-                Restaurant Hubert
+                {item.venueName}
               </Box>
               <Box
                 ml="21px"
@@ -73,10 +75,10 @@ const VenueCarousel = () => {
                 pb="5px"
                 color="#0E0E0E"
               >
-                $$$ French
+                {item.cultureCategory}
               </Box>
               <Grid container justify="space-between" alignItems="center">
-                <Grid item>
+                <Grid container item xs={8}>
                   <Box
                     ml="21px"
                     mb="14px"
@@ -85,25 +87,26 @@ const VenueCarousel = () => {
                     fontSize={12}
                     color="#0E0E0E"
                   >
-                    Sydney NSW
+                    {item.address}
                   </Box>
                 </Grid>
-                <Grid item>
+                <Grid container item xs={4}>
                   <Box
-                    mr="21px"
                     mb="14px"
+                    ml="15px"
                     fontWeight={600}
                     fontSize={16}
                     color="#5E4E63"
                   >
                     {Array.from({ length: 5 }).map((i, index) => (
-                      <img key={index} alt="star" src={StarSVG} />
+                      <img key={index} alt="star" width="17" src={StarSVG} />
                     ))}
                   </Box>
                 </Grid>
               </Grid>
             </Card>
           </Box>
+          </Link>
         </Grid>
       ))}
     </Grid>

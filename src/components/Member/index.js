@@ -11,6 +11,7 @@ const OrderThankYou = lazy(() => import('./OrderThankYou/OrderThankYou'));
 const Review = lazy(() => import('./Review/Review'));
 const OrderDetail = lazy(() => import('./OrderDetail'));
 const MemberOrderMenu = lazy(() => import('./OrderMenu'));
+const VenueDetail = lazy(()=> import("../Venue/Detail")); // untuk sementara, keperluan demo
 
 function Member() {
   return (
@@ -26,7 +27,8 @@ function Member() {
           <Route exact path="/member/contact/support" component={Support} />
           <Route path="/member/thank-you" component={OrderThankYou} />
           <Route path="/member/review" component={Review} />
-          <Route exact path="/member/order-menu" component={MemberOrderMenu} />
+          <Route exact path="/member/order-menu/:idVenue" component={MemberOrderMenu} />
+          <Route path="/member/venue/:idVenue" component={VenueDetail} /> {/* untuk sementara, keperluan demo */}
         </Switch>
       </Suspense>
   );
