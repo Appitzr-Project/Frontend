@@ -7,3 +7,7 @@ export const productsVenueList = (token) => (
     }
   }).then(res => res.data)
 )
+
+export const getAllProductsByVenueId = (idvenue) => (
+  Axios.get(process.env.REACT_APP_API_URL+`products?venueid=${idvenue}`).then(res => res.data)
+)
