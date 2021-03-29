@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 import { 
     withStyles,
@@ -230,22 +231,28 @@ const Detail = () => {
     const classes = useStyles();
     const history = useHistory();
     const params = useParams();
-    const [item, setItem] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const auth = useSelector(state => state.auth);
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(true);
+     
     // api
     useEffect(() => {
         let isActive = true;
         const http = async () => {
-        try {
-            setLoading(true);
-            const res = await getVenueById(params.idVenue);
-            if(isActive){
-                setItem(res.data);
-                setLoading(false);
+            if(params.idVenue){
+                try {
+                    setLoading(true);
+                    const res = await getVenueById(params.idVenue);
+                    if(isActive){
+                        setItem(res.data);
+                        setLoading(false);
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }else{
+                history.push("/venue");
             }
-        } catch (error) {
-            console.log(error);
-        }
         }
         http();
 
@@ -284,7 +291,10 @@ const Detail = () => {
                             </div>
                         </div>
                     </Grid>
-                    <Grid item xs={12}>  
+                    
+                    {/* di hide utk sementara */}
+
+                    {/* <Grid item xs={12}>  
                         <h3 className={classes.descriptionSectionTitle}>
                             Description 
                         </h3>
@@ -294,6 +304,7 @@ const Detail = () => {
                             We’re proud of Sydney, it’s the most beautiful city in the world. Yes, we may be biased but grab a seat at Opera Bar 
                         </p>
                     </Grid>
+
                     <Grid item xs={12}>  
                         <p className={classes.discountContainer}>
                             <span>20% OFF</span>
@@ -331,6 +342,10 @@ const Detail = () => {
                             </div>
                         </div>
                     </Grid>
+                     */}
+                    
+                    {/* end - di hide utk sementara */}
+
                     <Link to="/member/order-menu">
                         <MenuButton variant="contained">Menu</MenuButton>               
                     </Link>
