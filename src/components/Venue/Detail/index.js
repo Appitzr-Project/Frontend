@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import {useSelector} from "react-redux";
 
 import { 
     withStyles,
@@ -231,7 +230,6 @@ const Detail = () => {
     const classes = useStyles();
     const history = useHistory();
     const params = useParams();
-    const auth = useSelector(state => state.auth);
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(true);
      
@@ -346,7 +344,7 @@ const Detail = () => {
                     
                     {/* end - di hide utk sementara */}
 
-                    <Link to="/member/order-menu">
+                    <Link to={"/member/order-menu/"+item.id}>
                         <MenuButton variant="contained">Menu</MenuButton>               
                     </Link>
                 </Grid>
