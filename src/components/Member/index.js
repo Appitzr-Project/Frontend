@@ -28,7 +28,7 @@ function Member() {
           <Route path="/member/thank-you" component={OrderThankYou} />
           <Route path="/member/review" component={Review} />
           <Route exact path="/member/order-menu" component={MemberOrderMenu} />
-          <Route path="/member/venue/:idVenu" component={VenueDetail} /> {/* untuk sementara, keperluan demo */}
+          <Route path="/member/venue/:idVenue" component={VenueDetail} /> {/* untuk sementara, keperluan demo */}
         </Switch>
       </Suspense>
   );

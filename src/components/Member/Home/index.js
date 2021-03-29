@@ -91,7 +91,6 @@ const MemberHome = () => {
         setLoading(true);
         const res = await getAllVenueList();
         if(isActive){
-          console.log(res.data);
           setItems(res.data);
           setLoading(false);
         }

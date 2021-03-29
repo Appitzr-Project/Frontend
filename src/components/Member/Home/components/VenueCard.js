@@ -36,8 +36,8 @@ const VenueCard = ({items}) => {
   return (
     <Grid container spacing={0} direction="column">
       {items.map((item, index) => (
-        <Link to={`/member/venue/${item.id}`}>
-        <Box pb="20px" key={item.id}>
+        <Link to={`/member/venue/${item.id}`} key={item.id}>
+        <Box pb="20px">
           <Grid item className={classes.gridWrapper}>
             <Card elevation={0} className={classes.cardContainer}>
               <Grid container className={classes.gridContainer}>
