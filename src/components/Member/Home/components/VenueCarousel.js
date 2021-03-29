@@ -2,6 +2,7 @@ import { Box, Card, Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 import StarSVG from '../assets/ic-star.svg';
 import VenuePNG from '../assets/venue.png';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -49,6 +50,7 @@ const VenueCarousel = ({items}) => {
     <Grid container className={classes.venueCardContainer}>
       {items.map((item, index) => (
         <Grid item key={index}>
+          <Link to={`/member/venue/${item.id}`}>
           <Box
             p="0 0 21px 0"
             pl={index === 0 ? '24px' : '18px'}
@@ -104,6 +106,7 @@ const VenueCarousel = ({items}) => {
               </Grid>
             </Card>
           </Box>
+          </Link>
         </Grid>
       ))}
     </Grid>

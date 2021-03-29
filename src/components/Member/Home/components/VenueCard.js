@@ -3,6 +3,7 @@ import React from 'react';
 import HeartIcon from '../assets/heart.js';
 import StarSVG from '../assets/ic-star.svg';
 import VenueThumbnail from '../assets/venue-thumbnail.png';
+import {Link} from "react-router-dom"
 
 const useStyles = (img) =>
   makeStyles({
@@ -35,6 +36,7 @@ const VenueCard = ({items}) => {
   return (
     <Grid container spacing={0} direction="column">
       {items.map((item, index) => (
+        <Link to={`/member/venue/${item.id}`}>
         <Box pb="20px" key={item.id}>
           <Grid item className={classes.gridWrapper}>
             <Card elevation={0} className={classes.cardContainer}>
@@ -89,6 +91,7 @@ const VenueCard = ({items}) => {
             </Card>
           </Grid>
         </Box>
+        </Link>
       ))}
     </Grid>
   );
