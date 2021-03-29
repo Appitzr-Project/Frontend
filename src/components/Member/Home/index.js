@@ -21,6 +21,7 @@ import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
 import VenueSVG from './assets/venue.svg';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -68,6 +69,7 @@ const MemberHome = () => {
   const [category, setCategory] = useState();
   const [urlVenue, setUrlVenue] = useState();
   const classes = useStyles();
+  const history = useHistory()
 
   useEffect( () => {
     const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
@@ -98,7 +100,7 @@ const MemberHome = () => {
             </div>
           </Grid>
           <Box pr="23px">
-          <IconButton onClick={() => (window ? ( window.location.href = urlVenue ) : {})} >
+          <IconButton onClick={() => history.push(urlVenue) } >
             <img src={VenueSVG} alt="venue" />
           </IconButton>  
           </Box>

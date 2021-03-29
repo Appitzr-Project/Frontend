@@ -91,9 +91,10 @@ const MenuOption = () => {
   };
 
   const onLogout = () => {
-    dispatch(signOutAction())
-    history.push('/login')
-    setOpen(false)
+    dispatch(signOutAction()).then(() => {
+      history.push('/login')
+      setOpen(false)
+    })
   }
 
   return (

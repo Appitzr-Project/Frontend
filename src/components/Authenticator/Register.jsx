@@ -214,6 +214,7 @@ const Register = () => {
       <Wrapper
         title='Apptizr'
         textCenter={true}
+        isBack='/login'
       >
         <form onSubmit={onLogin}>
           <Grid container direction='column' justify='center' alignItems='center' >

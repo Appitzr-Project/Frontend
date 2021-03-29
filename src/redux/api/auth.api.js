@@ -44,3 +44,11 @@ export const refreshTokenApi =  () => (
         } )
     })
 )
+
+export const forgotPasswordApi = (username) => (
+    Auth.forgotPassword(username)
+)
+
+export const createNewPasswordApi = ({username, code, new_password}) => (
+    Auth.forgotPasswordSubmit(username, code, new_password)
+)
