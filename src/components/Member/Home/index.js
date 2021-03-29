@@ -104,7 +104,7 @@ const MemberHome = () => {
     }
   },[]);
 
-  return !loading && (
+  return !loading ? (
     <>
       <Container
         classes={{ root: classes.containerRoot }}
@@ -187,7 +187,7 @@ const MemberHome = () => {
         <BottomNav ActiveMenu={MENU.HOME} />
       </Container>
     </>
-  );
+  ) : "Loading...";
 };
 
 export default MemberHome;
