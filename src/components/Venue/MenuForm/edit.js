@@ -20,7 +20,6 @@ import {
 } from "../../../redux/api/venue.api";
 import { useSelector } from "react-redux";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
-import { capitalizeFirstLetter } from "../../../helpers/helper";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const MenuEdit = () => {
@@ -34,15 +33,15 @@ const MenuEdit = () => {
     category: [
       {
         id: 1,
-        name: "Dessert",
+        name: "dessert",
       },
       {
         id: 2,
-        name: "Spaghetti",
+        name: "sphagetti",
       },
       {
         id: 3,
-        name: "Drink",
+        name: "drink",
       },
     ],
     price: "",
@@ -50,15 +49,15 @@ const MenuEdit = () => {
     proteinType: [
       {
         id: 1,
-        name: "Vegan",
+        name: "vegan",
       },
       {
         id: 2,
-        name: "Meat",
+        name: "meat",
       },
       {
         id: 3,
-        name: "Vegetables",
+        name: "vegetables",
       },
     ],
   };
@@ -66,11 +65,11 @@ const MenuEdit = () => {
   const [state, setState] = useState({
     productName: "",
     description: "",
-    category: "Dessert",
+    category: "dessert",
     price: 0,
     images: [],
-    proteinType: "Vegan",
-    isActive: true,
+    proteinType: "vegan",
+    isActive: true
   });
   const classes = useStyle({ strings });
   const inputFocus = useRef(null);
@@ -196,7 +195,7 @@ const MenuEdit = () => {
             className={classes.label}
             data={rawData.category}
             inputName="category"
-            currentValue={capitalizeFirstLetter(state.category)}
+            currentValue={state.category}
             onHandleChange={(e) => onChange(e)}
           />
         </Grid>
@@ -284,7 +283,7 @@ const MenuEdit = () => {
             label={strings.label_protein_type}
             className={classes.label}
             data={rawData.proteinType}
-            currentValue={capitalizeFirstLetter(state.proteinType)}
+            currentValue={state.proteinType}
             inputName="proteinType"
             onHandleChange={(e) => onChange(e)}
           />
