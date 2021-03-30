@@ -11,7 +11,7 @@ import Wrapper from "../../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getCurrentProductVenueApi,
   uploadImageAddVenueApi,
@@ -25,7 +25,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 const MenuEdit = () => {
   const auth = useSelector((state) => state.auth);
   const { menuId } = useParams();
-  let history = useHistory();
 
   const rawData = {
     name: "",
@@ -103,7 +102,7 @@ const MenuEdit = () => {
 
       setPicturePreview((prevState) => prevState.concat(res.data.images));
     });
-  }, []);
+  }, [ auth , menuId ]);
 
   const onChange = (event) => {
     const { name, value } = event.target;

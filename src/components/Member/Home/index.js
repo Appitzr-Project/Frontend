@@ -81,7 +81,7 @@ const MemberHome = () => {
     } else {
       setUrlVenue('/venue/profile');
     }
-  }, []);
+  }, [auth]);
 
   // api
   useEffect(() => {

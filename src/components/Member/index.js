@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 const MemberPage = lazy(() => import('./Home/index.js'));
 const ProfilePage = lazy(() => import('./Profile/index.js'));
 const MemberOrderSummary = lazy(() => import('./OrderSummary/index.js'));

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
-import { IButtonAdd, IClose, IHeart, IMSpaghetti } from '../assets';
-import { Box, Card, Grid, makeStyles, withStyles } from '@material-ui/core';
+import { IButtonAdd, IClose, IHeart } from '../assets';
+import { Box, Card, Grid, makeStyles } from '@material-ui/core';
 import { strings } from '../utils';
 
 const useStyles = (img) =>

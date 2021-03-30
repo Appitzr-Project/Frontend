@@ -132,7 +132,7 @@ const ConfirmationCode = () => {
   return (
     <>
       <Wrapper
-        title='Apptizr'
+        title={`APPETIZR.CO`}
         textCenter={true}
       >
         <form onSubmit={onConfirmation}>

@@ -26,6 +26,7 @@ export const getCurrentUserAction = () => {
             })
         } catch (error) {
             dispatch({ type: SIGNOUT })
+            throw Error(error.message)
         }
     }
 }
