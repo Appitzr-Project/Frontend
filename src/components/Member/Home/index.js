@@ -145,7 +145,7 @@ const MemberHome = () => {
               fontWeight={600}
               className={classes.white}
             >
-              Hi jeff
+              Welcome
             </Box>
           </Grid>
         </Grid>

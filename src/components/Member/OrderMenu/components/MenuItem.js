@@ -19,7 +19,12 @@ const useStyles = (img) =>
     },
     menuWrapper: {
       backgroundImage: `url(${img})`,
-      background: 'no-repeat'
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      height: 90,
+      marginBottom: 8,
+      borderRadius: "18px"
     },
     alignRight: {
       display: 'flex',
@@ -52,7 +57,7 @@ const useStyles = (img) =>
 
 const MenuItem = ({item,index}) => {
   const [more, setMore] = useState(true);
-  const classes = useStyles(IMSpaghetti)();
+  const classes = useStyles(item.images[0])();
   return (
     <Grid item className={classes.gridWrapper} key={index}>
           <Card elevation={0} className={classes.cardContainer}>

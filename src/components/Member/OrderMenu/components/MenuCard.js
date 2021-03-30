@@ -12,7 +12,6 @@ const CustomRating = withStyles(() => ({
 }))(Rating);
 
 const MenuCard = ({items,venue}) => {
-  console.log(venue)
   return (
     <Grid container spacing={0} direction="column">
       <Grid item xs={12}>
@@ -25,7 +24,7 @@ const MenuCard = ({items,venue}) => {
           mb={3}
         >
           <Box fontSize={16} fontWeight="600" color="#0E0E0E" flexGrow={1}>
-            O{venue.venueName}
+            {venue.venueName}
           </Box>
           <Box m={0.5}>
             <CustomRating readOnly name="size-small" defaultValue={1} max={1} />
@@ -38,7 +37,8 @@ const MenuCard = ({items,venue}) => {
           </Box>
         </Box>
       </Grid>
-      {items.map((item, index) => <MenuItem item={item} index={index} key={index}/>)}
+      
+      {items.length ? items.map((item, index) => <MenuItem item={item} index={index} key={index}/>) : "The venue doesn't have a menu yet"}
     </Grid>
   );
 };
