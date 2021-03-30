@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 const MenuOption = lazy(() => import("./MenuOption"));

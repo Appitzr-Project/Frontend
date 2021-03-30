@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import StarIcon from '@material-ui/icons/Star';
-import Rating from '@material-ui/lab/Rating';
+// import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import {getVenueById} from "../../../redux/api/venue.api"
 
@@ -36,11 +36,11 @@ const MenuButton = withStyles((theme) => ({
     }
 }))(Button);
 
-const CustomRating = withStyles(() => ({
-    root: {
-        fontSize: 15
-    }
-}))(Rating);
+// const CustomRating = withStyles(() => ({
+//     root: {
+//         fontSize: 15
+//     }
+// }))(Rating);
 
 const useStyles = makeStyles({
     container : {
@@ -257,7 +257,7 @@ const Detail = () => {
         return () => {
             isActive=false;
         }
-    },[]);
+    },[ history , params ]);
     return !loading ? (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>

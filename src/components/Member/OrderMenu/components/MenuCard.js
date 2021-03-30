@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { Box, Card, Grid, makeStyles, withStyles } from '@material-ui/core';
-import { IButtonAdd, IClose, IHeart, IMSpaghetti } from '../assets';
+import React from 'react';
+import { Box, Grid, withStyles } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-import { strings } from '../utils';
 import MenuItem from './MenuItem';
 
 const CustomRating = withStyles(() => ({

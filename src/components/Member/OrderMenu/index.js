@@ -55,7 +55,7 @@ const MemberOrderMenu = () => {
     return () => {
         isActive=false;
     }
-  },[]);
+  },[ history, params ]);
 
   return !loading ? (
     <Container
