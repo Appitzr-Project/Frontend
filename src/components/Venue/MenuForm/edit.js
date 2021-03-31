@@ -11,21 +11,22 @@ import Wrapper from "../../shared/Wrapper";
 import { makeStyles } from "@material-ui/core/styles";
 import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {
   getCurrentProductVenueApi,
   uploadImageAddVenueApi,
   submitEditMenuApi,
   submitDeleteMenuApi,
-} from "../../../redux/api/venue.api";
+} from "../../../redux/api/products.api";
 import { useSelector } from "react-redux";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Spinner from "../../shared/Spinner";
 
 const MenuEdit = () => {
   const auth = useSelector((state) => state.auth);
   const { menuId } = useParams();
-
+  const history = useHistory();
   const rawData = {
     name: "",
     description: "",
@@ -36,7 +37,7 @@ const MenuEdit = () => {
       },
       {
         id: 2,
-        name: "sphagetti",
+        name: "spaghetti",
       },
       {
         id: 3,
@@ -75,6 +76,7 @@ const MenuEdit = () => {
 
   const [open, setOpen] = useState(false);
   const [picturePreview, setPicturePreview] = useState([]);
+  const [loadImage, setLoadImage] = useState(false);
 
   const handleToggle = () => setOpen(!open);
 
@@ -86,7 +88,6 @@ const MenuEdit = () => {
       auth.user.signInUserSession.idToken.jwtToken,
       menuId
     ).then((res) => {
-
       const firstData = {
         description: res.data.description,
         category: res.data.category,
@@ -99,7 +100,6 @@ const MenuEdit = () => {
         ...prevState,
         ...firstData,
       }));
-
       setPicturePreview((prevState) => prevState.concat(res.data.images));
     });
   }, [ auth , menuId ]);
@@ -115,33 +115,42 @@ const MenuEdit = () => {
   const _handleChangePicture = async (event) => {
     event.persist();
 
-    const file = event.target.files[0];
-
-    const formData = new FormData();
-    formData.append("data", file);
-    const result = await uploadImageAddVenueApi(
-      auth.user.signInUserSession.idToken.jwtToken,
-      formData
-    );
-
-    setState((prevState) => ({
-      ...prevState,
-      images: picturePreview.concat(result.data),
-    }));
-
-    setPicturePreview((prevState) => prevState.concat(result.data));
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("data", file);  
+      setLoadImage(true);
+      const result = await uploadImageAddVenueApi(
+        auth.user.signInUserSession.idToken.jwtToken,
+        formData
+      );
+      setLoadImage(false);
+      setState((prevState) => ({
+        ...prevState,
+        images: picturePreview.concat(result.data),
+      }));
+  
+      setPicturePreview((prevState) => prevState.concat(result.data));
+    } catch (error) {
+      console.log(error?.response);
+    }
+    
   };
 
   const handleSaveMenu = async () => {
-    const result = await submitEditMenuApi(
-      auth.user.signInUserSession.idToken.jwtToken,
-      state,
-      menuId
-    );
-    if (result.code === 200 && result.message === "success") {
-      // history.push("/venue/menu/list");
-      alert("success");
+    try {
+      const result = await submitEditMenuApi(
+        auth.user.signInUserSession.idToken.jwtToken,
+        state,
+        menuId
+      );
+      if (result.code === 200 && result.message === "success") {
+        history.push("/venue/menu/list");
+      }
+    } catch (error) {
+      console.log(error?.response);
     }
+    
   };
 
   const handleDelete = async () => {
@@ -150,8 +159,7 @@ const MenuEdit = () => {
       menuId
     );
     if (result.code === 200 && result.message === "success") {
-      // history.push("/venue/menu/list");
-      alert("success");
+      history.push("/venue/menu/list");
     }
   };
 
@@ -172,7 +180,6 @@ const MenuEdit = () => {
     <Wrapper
       title={strings.edit_menu}
       image="https://source.unsplash.com/random"
-      spacing="26px"
       isBack="/venue/menu/list"
     >
       <form>
@@ -259,6 +266,7 @@ const MenuEdit = () => {
                 </div>
               ))}
             </div>
+            {loadImage &&<Spinner /> }
             <div className={classes.formGroup}>
               <label for="upload-photo" className={classes.btnImg}>
                 {strings.add_img}
