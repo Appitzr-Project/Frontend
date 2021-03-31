@@ -6,7 +6,7 @@ import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/venue.api"
+import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/products.api"
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 
 const MenuAdd = () => {
@@ -23,7 +23,7 @@ const MenuAdd = () => {
       },
       {
         id: 2,
-        name: "sphagetti",
+        name: "spaghetti",
       },
       {
         id: 3,
@@ -106,7 +106,7 @@ const MenuAdd = () => {
       title={strings.add_menu}
       image="https://source.unsplash.com/random"
       spacing="26px"
-      isBack="/venue"
+      isBack="/venue/menu/list"
     >
       <form>
         <Grid container direction="column">
