@@ -9,13 +9,19 @@ import {
   MenuItem,
   Select,
   TextField,
-  IconButton
+  IconButton,
+  Hidden,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import BottomNav from '../../BottomNav';
 import { MENU } from '../../BottomNav/const';
 import BellSVG from './assets/ic-bell.svg';
 import Profile from './assets/profile.png';
+import headerAppetizr from './assets/header-appetizr.jpeg';
 import ButtonSearch from './components/ButtonSearch';
 import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
@@ -61,6 +67,12 @@ const useStyles = makeStyles({
   centered: {
     margin: '0 auto',
   },
+  headerDesktop: {
+    height: 'calc(100vh - 64px)',
+    background: `url(${headerAppetizr})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  }
 });
 
 
@@ -74,13 +86,13 @@ const MemberHome = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  useEffect( () => {
-    const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
-    if(auth.user && groupUser && groupUser.includes('venue')) {
-      setUrlVenue('/venue');
-    } else {
-      setUrlVenue('/venue/profile');
-    }
+  useEffect(() => {
+    // const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
+    // if(auth.user && groupUser && groupUser.includes('venue')) {
+    //   setUrlVenue('/venue');
+    // } else {
+    //   setUrlVenue('/venue/profile');
+    // }
   }, [auth]);
 
   // api
@@ -90,7 +102,7 @@ const MemberHome = () => {
       try {
         setLoading(true);
         const res = await getAllVenueList();
-        if(isActive){
+        if (isActive) {
           setItems(res.data);
           setLoading(false);
         }
@@ -100,43 +112,65 @@ const MemberHome = () => {
     }
     http();
     return () => {
-      isActive=false;
+      isActive = false;
     }
-  },[]);
+  }, []);
+
+  const renderAppBarMobile = (
+    <Hidden smUp >
+      <Grid
+        container
+        spacing={2}
+        className={classes.topContent}
+        justify="space-between"
+        alignItems="center"
+      >
+        <Grid item xs>
+          <div>
+            <img alt="notification" src={BellSVG} />
+          </div>
+        </Grid>
+        <Box pr="23px">
+          <IconButton onClick={() => history.push(urlVenue)} >
+            <img src={VenueSVG} alt="venue" />
+          </IconButton>
+        </Box>
+        <Grid
+          item
+          onClick={() => (window ? (window.location.href = '/member') : {})}
+        >
+          <div>
+            <img alt="profile" src={Profile} />
+          </div>
+        </Grid>
+      </Grid>
+    </Hidden>
+
+  )
+
+  const renderAppBarDesktop = (<Hidden xsDown ><>
+    <AppBar position="static">
+      <Toolbar >
+        <Typography variant="h6" >
+          Appetizr
+            </Typography>
+        <Grid item xs ></Grid>
+        <Button color='inherit' >Login</Button>
+      </Toolbar>
+    </AppBar>
+    <Grid container className={classes.headerDesktop } >
+      adas
+    </Grid>
+  </></Hidden>)
 
   return !loading ? (
     <>
-      <Container
-        classes={{ root: classes.containerRoot }}
-        maxWidth="sm"
-        disableGutters
+      <div
+        className={classes.containerRoot}
       >
-        <Grid
-          container
-          spacing={2}
-          className={classes.topContent}
-          justify="space-between"
-          alignItems="center"
-        >
-          <Grid item xs>
-            <div>
-              <img alt="notification" src={BellSVG} />
-            </div>
-          </Grid>
-          <Box pr="23px">
-          <IconButton onClick={() => history.push(urlVenue) } >
-            <img src={VenueSVG} alt="venue" />
-          </IconButton>  
-          </Box>
-          <Grid
-            item
-            onClick={() => (window ? (window.location.href = '/member') : {})}
-          >
-            <div>
-              <img alt="profile" src={Profile} />
-            </div>
-          </Grid>
-        </Grid>
+        {renderAppBarMobile }
+        {renderAppBarDesktop }
+
         <Grid container>
           <Grid item xs>
             <Box
@@ -150,7 +184,7 @@ const MemberHome = () => {
           </Grid>
         </Grid>
 
-        <VenueCarousel items={items}/>
+        <VenueCarousel items={items} />
 
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <Box pb="16px">
@@ -184,8 +218,10 @@ const MemberHome = () => {
           </Box>
 
         </Card>
-        <BottomNav ActiveMenu={MENU.HOME} />
-      </Container>
+        <Hidden smUp >
+          <BottomNav ActiveMenu={MENU.HOME} />
+        </Hidden>
+      </div>
     </>
   ) : "Loading...";
 };
