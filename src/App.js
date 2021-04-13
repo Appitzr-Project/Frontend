@@ -5,9 +5,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { CssBaseline } from "@material-ui/core";
 import { useSelector } from 'react-redux';
-
 
 const HomePage = lazy(() => import('./components/Member'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
@@ -48,7 +46,6 @@ function App() {
 
   return (
     <>
-      <CssBaseline />
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>

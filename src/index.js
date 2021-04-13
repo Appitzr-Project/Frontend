@@ -16,6 +16,8 @@ import { persistStore } from 'redux-persist';
 // import Authenticator from './components/Authenticator/Authenticator';
 import Amplify from 'aws-amplify';
 import awsExports from './aws-exports';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './components/palette';
 
 const store = createStore(rootReducer, applyMiddleware(thunk, apiMiddleware));
 const persistor = persistStore(store);
@@ -26,9 +28,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={<div>Loading..</div>}>
-        {/* <Authenticator>  */}
+        <ThemeProvider theme={theme} > 
           <App />
-        {/* </Authenticator> */}
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
