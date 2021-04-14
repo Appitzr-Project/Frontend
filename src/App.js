@@ -52,7 +52,7 @@ function App() {
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <ProtectedRoute exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage} />
             <ProtectedRoute path="/scan" component={Scan} />
             <ProtectedRoute path="/member" component={MemberLazy} />
             <ProtectedRoute exact path="/support" component={Support} />
