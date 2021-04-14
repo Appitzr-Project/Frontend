@@ -98,7 +98,7 @@ const MemberHome = () => {
 
   useEffect(() => {
     let scripts = [
-      { src: "assets/js/validate.js" },
+      // { src: "assets/js/validate.js" },
       { src: "assets/js/common_scripts.min.js" },
       { src: "assets/js/common_func.js" },
     ]
