@@ -51,7 +51,7 @@ const Login = () => {
       dispatch(signInAction(form.username, form.password))
         .then(() => {
           setLoading(false)
-          history.push('/')
+          history.push('/member/home')
         })
         .catch(err => {
           setErrorLogin(err.message)
