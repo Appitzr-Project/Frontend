@@ -29,6 +29,9 @@ package-lock.json
 #ignore .env
 .env
 
+# Amplify Ignore
+amplify
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
