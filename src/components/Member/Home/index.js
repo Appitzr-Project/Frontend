@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import FormLogin from './FormLogin';
@@ -22,6 +23,7 @@ const MemberHome = () => {
           <ul id="top_menu">
             <li><a href="#sign-in-dialog" id="sign-in" className="login">Sign In</a></li>
             {/* <li><a href="wishlist.html" className="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li> */}
+            <li><Link to="/login" className="login">Sign In</Link></li>
           </ul>
 
           <a href="#0" className="open_close">
@@ -103,6 +105,14 @@ const MemberHome = () => {
           </ul>
         </nav>
     */ }
+          <nav className="main-menu">
+            <div id="header_menu">
+              <a href="#0" className="open_close">
+                <i className="icon_close"></i><span>Menu</span>
+              </a>
+              <a href="index.html"><img src="img/logo.svg" width="162" height="35" alt="" /></a>
+            </div>
+          </nav>
         </div>
       </header>
 
@@ -124,29 +134,8 @@ const MemberHome = () => {
             <div className="container">
               <div className="row justify-content-lg-start justify-content-md-center">
                 <div className="col-xl-6 col-lg-8">
-                  <h1>Delivery or Takeaway Food</h1>
-                  <p>The best restaurants at the best price</p>
-                  <form method="post" action="grid-listing-filterscol.html">
-                    <div className="row no-gutters custom-search-input">
-                      <div className="col-lg-10">
-                        <div className="form-group">
-                          <input className="form-control no_border_r" type="text" id="autocomplete" placeholder="Address, neighborhood..." />
-                        </div>
-                      </div>
-                      <div className="col-lg-2">
-                        <button className="btn_1 gradient" type="submit">Search</button>
-                      </div>
-                    </div>
-                    <div className="search_trends">
-                      <h5>Trending:</h5>
-                      <ul>
-                        <li><a href="#0">Sushi</a></li>
-                        <li><a href="#0">Burgher</a></li>
-                        <li><a href="#0">Chinese</a></li>
-                        <li><a href="#0">Pizza</a></li>
-                      </ul>
-                    </div>
-                  </form>
+                  <h1>Just a touch away</h1>
+                  <p>Start searching for next dining experience</p>
                 </div>
               </div>
             </div>
@@ -154,102 +143,146 @@ const MemberHome = () => {
           <div className="wave hero"></div>
         </div>
 
-        <div className="container margin_30_60">
-          <div className="main_title center">
-            <span><em></em></span>
-            <h2>Popular Categories</h2>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
-          </div>
-
-
-          <div className="owl-carousel owl-theme categories_carousel">
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>98</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_pizza.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Pizza</h3>
-                    <small>Avg price $40</small>
+        <div className="shape_element_2">
+          <div className="container margin_60_0">
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="box_how">
+                      <figure><img src="img/lazy-placeholder-100-100-white.png" data-src="img/how_1.svg" alt="" width="150" height="167" className="lazy" /></figure>
+                      <h3>Have an Appetite?</h3>
+                      <p>Wheather you are sitting at your favourite cafe restaurant or looking for something new. Let Appitizr assit in your dining experience.</p>
+                    </div>
+                    <div className="box_how">
+                      <figure><img src="img/lazy-placeholder-100-100-white.png" data-src="img/how_2.svg" alt="" width="130" height="145" className="lazy" /></figure>
+                      <h3>Earn Rewards</h3>
+                      <p>Share and earn reward points to save on the next time you eat out.</p>
+                    </div>
                   </div>
-                </figure>
-              </a>
-            </div>
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>87</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_sushi.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Japanese</h3>
-                    <small>Avg price $50</small>
+                  <div className="col-lg-6 align-self-center">
+                    <div className="box_how">
+                      <figure><img src="img/lazy-placeholder-100-100-white.png" data-src="img/how_3.svg" alt="" width="150" height="132" className="lazy" /></figure>
+                      <h3>Enjoy Food</h3>
+                      <p>No need to wait for somone to bring you the menu. With a quick tap of your phone on the QR code on your table, you can start selecting your favourite dish and customise the order in your own time.</p>
+                    </div>
                   </div>
-                </figure>
-              </a>
-            </div>
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>55</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_hamburgher.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Burghers</h3>
-                    <small>Avg price $55</small>
+                </div>
+                <p className="text-center mt-3 d-block d-lg-none"><a href="#0" className="btn_1 medium gradient pulse_bt mt-2">Register Now!</a></p>
+              </div>
+              <div className="col-lg-5 offset-lg-1 align-self-center">
+                <div className="intro_txt">
+                  <div className="main_title">
+                    <span><em></em></span>
+                    <h2>How Appetizr Works</h2>
                   </div>
-                </figure>
-              </a>
-            </div>
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>55</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_vegetarian.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Vegetarian</h3>
-                    <small>Avg price $40</small>
-                  </div>
-                </figure>
-              </a>
-            </div>
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>65</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_bakery.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Bakery</h3>
-                    <small>Avg price $60</small>
-                  </div>
-                </figure>
-              </a>
-            </div>
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>25</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_chinesse.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Chinese</h3>
-                    <small>Avg price $40</small>
-                  </div>
-                </figure>
-              </a>
-            </div>
-            <div className="item_version_2">
-              <a href="grid-listing-filterscol.html">
-                <figure>
-                  <span>35</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_mexican.jpg" alt="" className="owl-lazy" width="350" height="450" />
-                  <div className="info">
-                    <h3>Mexican</h3>
-                    <small>Avg price $35</small>
-                  </div>
-                </figure>
-              </a>
+                  <p className="lead">Appetizr was developed with food lovers that like to experience new flavours and making the the wholes experience from search and explore to sit down dining with complete in mind</p>
+                  <p>From registering your attenance and helping improve the wellbing of others to ordering your favourite dish and tipping all on your phone.</p>
+                  <p><Link to="/login" className="btn_1 medium gradient pulse_bt mt-2">Register</Link></p>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
+
+        <div class="bg_gray">
+          <div className="container margin_30_60">
+            <div className="main_title center">
+              <span><em></em></span>
+              <h2>Popular Categories</h2>
+              <p>Have an appetite forsomething new?</p>
+            </div>
+
+            <div className="owl-carousel owl-theme categories_carousel">
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>98</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_pizza.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Pizza</h3>
+                      <small>Avg price $40</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>87</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_sushi.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Japanese</h3>
+                      <small>Avg price $50</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>55</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_hamburgher.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Burghers</h3>
+                      <small>Avg price $55</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>55</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_vegetarian.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Vegetarian</h3>
+                      <small>Avg price $40</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>65</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_bakery.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Bakery</h3>
+                      <small>Avg price $60</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>25</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_chinesse.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Chinese</h3>
+                      <small>Avg price $40</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+              <div className="item_version_2">
+                <a href="grid-listing-filterscol.html">
+                  <figure>
+                    <span>35</span>
+                    <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_mexican.jpg" alt="" className="owl-lazy" width="350" height="450" />
+                    <div className="info">
+                      <h3>Mexican</h3>
+                      <small>Avg price $35</small>
+                    </div>
+                  </figure>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
 
         <div className="bg_gray">
           <div className="container margin_60_40">
@@ -375,49 +408,6 @@ const MemberHome = () => {
             </div>
           </div>
         </div>
-
-        <div className="shape_element_2">
-          <div className="container margin_60_0">
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="row">
-                  <div className="col-lg-6">
-                    <div className="box_how">
-                      <figure><img src="img/lazy-placeholder-100-100-white.png" data-src="img/how_1.svg" alt="" width="150" height="167" className="lazy" /></figure>
-                      <h3>Easly Order</h3>
-                      <p>Faucibus ante, in porttitor tellus blandit et. Phasellus tincidunt metus lectus sollicitudin.</p>
-                    </div>
-                    <div className="box_how">
-                      <figure><img src="img/lazy-placeholder-100-100-white.png" data-src="img/how_2.svg" alt="" width="130" height="145" className="lazy" /></figure>
-                      <h3>Quick Delivery</h3>
-                      <p>Maecenas pulvinar, risus in facilisis dignissim, quam nisi hendrerit nulla, id vestibulum.</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 align-self-center">
-                    <div className="box_how">
-                      <figure><img src="img/lazy-placeholder-100-100-white.png" data-src="img/how_3.svg" alt="" width="150" height="132" className="lazy" /></figure>
-                      <h3>Enjoy Food</h3>
-                      <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros.</p>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-center mt-3 d-block d-lg-none"><a href="#0" className="btn_1 medium gradient pulse_bt mt-2">Register Now!</a></p>
-              </div>
-              <div className="col-lg-5 offset-lg-1 align-self-center">
-                <div className="intro_txt">
-                  <div className="main_title">
-                    <span><em></em></span>
-                    <h2>Start Ordering Now</h2>
-                  </div>
-                  <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur deserunt.</p>
-                  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                  <p><a href="#0" className="btn_1 medium gradient pulse_bt mt-2">Register</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </main>
 
       <footer>
@@ -524,6 +514,93 @@ const MemberHome = () => {
       <Helmet>
         <script src="js/common_func.js"></script>
         <script src="assets/validate.js"></script>
+            </div>
+          </div>
+          <hr />
+          <div className="row add_bottom_25">
+            <div className="col-lg-6">
+              <ul className="footer-selector clearfix">
+                <li>
+                  <div className="styled-select lang-selector">
+                    <select>
+                      <option value="English" selected>English</option>
+                      <option value="French">French</option>
+                      <option value="Spanish">Spanish</option>
+                      <option value="Russian">Russian</option>
+                    </select>
+                  </div>
+                </li>
+                <li>
+                  <div className="styled-select currency-selector">
+                    <select>
+                      <option value="US Dollars" selected>US Dollars</option>
+                      <option value="Euro">Euro</option>
+                    </select>
+                  </div>
+                </li>
+                <li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/cards_all.svg" alt="" width="230" height="35" className="lazy" /></li>
+              </ul>
+            </div>
+            <div className="col-lg-6">
+              <ul className="additional_links">
+                <li><a href="#0">Terms and conditions</a></li>
+                <li><a href="#0">Privacy</a></li>
+                <li><span>© FooYes</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <div id="toTop"></div>
+
+      <div id="sign-in-dialog" className="zoom-anim-dialog mfp-hide">
+        <div className="modal_header">
+          <h3>Sign In</h3>
+        </div>
+        <form>
+          <div className="sign-in-wrapper">
+            <a href="#0" className="social_bt facebook">Login with Facebook</a>
+            <a href="#0" className="social_bt google">Login with Google</a>
+            <div className="divider"><span>Or</span></div>
+            <div className="form-group">
+              <label>Email</label>
+              <input type="email" className="form-control" name="email" id="email" />
+              <i className="icon_mail_alt"></i>
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input type="password" className="form-control" name="password" id="password" value="" />
+              <i className="icon_lock_alt"></i>
+            </div>
+            <div className="clearfix add_bottom_15">
+              <div className="checkboxes float-left">
+                <label className="container_check">Remember me
+                        <input type="checkbox" />
+                  <span className="checkmark"></span>
+                </label>
+              </div>
+              <div className="float-right"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+            </div>
+            <div className="text-center">
+              <input type="submit" value="Log In" className="btn_1 full-width mb_5" />
+                Don’t have an account? <a href="account.html">Sign up</a>
+            </div>
+            <div id="forgot_pw">
+              <div className="form-group">
+                <label>Please confirm login email below</label>
+                <input type="email" className="form-control" name="email_forgot" id="email_forgot" />
+                <i className="icon_mail_alt"></i>
+              </div>
+              <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
+              <div className="text-center"><input type="submit" value="Reset Password" className="btn_1" /></div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <Helmet>
+        <script src="js/common_scripts.min.js"></script>
+        <script src="js/common_func.js"></script>
         <script>{`
 function initMap() {
     var input = document.getElementById('autocomplete');
