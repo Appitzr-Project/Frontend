@@ -21,7 +21,7 @@ import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
 import VenueSVG from './assets/venue.svg';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { getAllVenueList } from "../../../redux/api/venue.api";
 import { Helmet } from "react-helmet";
 
@@ -75,15 +75,6 @@ const MemberHome = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  useEffect(() => {
-    const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
-    if (auth.user && groupUser && groupUser.includes('venue')) {
-      setUrlVenue('/venue');
-    } else {
-      setUrlVenue('/venue/profile');
-    }
-  }, [auth]);
-
   // api
   useEffect(() => {
     let isActive = true;
@@ -110,7 +101,6 @@ const MemberHome = () => {
       { src: "assets/js/validate.js" },
       { src: "assets/js/common_scripts.min.js" },
       { src: "assets/js/common_func.js" },
-
     ]
     scripts.forEach(item => {
       const script = document.createElement("script")
@@ -144,7 +134,7 @@ const MemberHome = () => {
           </div>
           <div className="layer"></div>
           <ul id="top_menu">
-            <li><a href="#sign-in-dialog" id="sign-in" className="login">Sign In</a></li>
+            <li><Link to="/login" className="login">Sign In</Link></li>
           </ul>
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
@@ -156,73 +146,6 @@ const MemberHome = () => {
               </a>
               <a href="index.html"><h1>Appetizr</h1></a>
             </div>
-            <ul>
-              <li className="submenu">
-                <a href="#0" className="show-submenu">Home</a>
-                <ul>
-                  <li><a href="index.html">Address Autocomplete</a></li>
-                  <li><a href="index-2.html">Search by Keyword</a></li>
-                  <li><a href="index-3.html">Home Version 2</a></li>
-                  <li><a href="index-4.html">Video Background</a></li>
-                  <li><a href="index-6.html">Home with Slider</a></li>
-                  <li><a href="index-5.html">GDPR Cookie Bar EU Law</a></li>
-                  <li><a href="header-user-logged.html">Header User Logged</a></li>
-                  <li><a href="header-cart-top.html">Header Cart Top</a></li>
-                  <li><a href="modal-advertise.html">Modal 1 Cookie Session</a></li>
-                  <li><a href="modal-newsletter.html">Modal 2 Cookie Session</a></li>
-                </ul>
-              </li>
-              <li className="submenu">
-                <a href="#0" className="show-submenu">Listing</a>
-                <ul>
-                  <li className="third-level"><a href="#0">List pages</a>
-                    <ul>
-                      <li><a href="grid-listing-filterscol.html">List default</a></li>
-                      <li><a href="grid-listing-filterscol-map.html">List with map</a></li>
-                      <li><a href="listing-map.html">List side map</a></li>
-                      <li><a href="grid-listing-masonry.html">List Masonry Filter</a></li>
-                    </ul>
-                  </li>
-                  <li className="third-level"><a href="#0">Detail pages</a>
-                    <ul>
-                      <li><a href="detail-restaurant.html">Detail page 1</a></li>
-                      <li><a href="detail-restaurant-2.html">Detail page 2</a></li>
-                      <li><a href="detail-restaurant-3.html">Detail page 3</a></li>
-                      <li><a href="detail-restaurant-4.html">Detail page 4</a></li>
-                    </ul>
-                  </li>
-                  <li className="third-level"><a href="#0">OpenStreetMap</a>
-                    <ul>
-                      <li><a href="grid-listing-filterscol-openstreetmap.html">List with map</a></li>
-                      <li><a href="listing-map-openstreetmap.html">List side map</a></li>
-                      <li><a href="grid-listing-masonry-openstreetmap.html">List Masonry Filter</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="submit-restaurant.html">Submit Restaurant</a></li>
-                  <li><a href="submit-rider.html">Submit Rider</a></li>
-                  <li><a href="order.html">Order</a></li>
-                  <li><a href="confirm.html">Confirm Order</a></li>
-                </ul>
-              </li>
-              <li className="submenu">
-                <a href="#0" className="show-submenu">Other Pages</a>
-                <ul>
-                  <li><a href="admin_section/index.html" target="_blank">Admin Section</a></li>
-                  <li><a href="404.html">404 Error</a></li>
-                  <li><a href="help.html">Help and Faq</a></li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="leave-review.html">Leave a review</a></li>
-                  <li><a href="contacts.html">Contacts</a></li>
-                  <li><a href="coming_soon/index.html">Coming Soon</a></li>
-                  <li><a href="login.html">Sign In</a></li>
-                  <li><a href="register.html">Sign Up</a></li>
-                  <li><a href="icon-pack-1.html">Icon Pack 1</a></li>
-                  <li><a href="icon-pack-2.html">Icon Pack 2</a></li>
-                  <li><a href="shortcodes.html">Shortcodes</a></li>
-                </ul>
-              </li>
-              <li><a href="#0">Buy this template</a></li>
-            </ul>
           </nav>
         </div>
       </header>
@@ -296,7 +219,7 @@ const MemberHome = () => {
                   </div>
                   <p className="lead">Appetizr was developed with food lovers that like to experience new flavours and making the the wholes experience from search and explore to sit down dining with complete in mind</p>
                   <p>From registering your attenance and helping improve the wellbing of others to ordering your favourite dish and tipping all on your phone.</p>
-                  <p><a href="join-now.html" className="btn_1 medium gradient pulse_bt plus_icon btn_play mt-2">Join Now<i className="arrow_triangle-right"></i></a></p>
+                  <p><Link to="/login" className="btn_1 mt-2"><a>Join Now<i className="arrow_triangle-right"></i></a></Link></p>
                 </div>
               </div>
             </div>
