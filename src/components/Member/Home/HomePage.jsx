@@ -135,6 +135,7 @@ const MemberHome = () => {
           <div className="layer"></div>
           <ul id="top_menu">            
             <li><Link to="/login" className="login">Sign In</Link></li>
+            <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
           </ul>
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
