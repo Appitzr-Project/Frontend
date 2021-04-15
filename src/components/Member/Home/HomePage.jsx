@@ -135,6 +135,7 @@ const MemberHome = () => {
           <div className="layer"></div>
           <ul id="top_menu">            
             <li><Link to="/login" className="login">Sign In</Link></li>
+            <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
           </ul>
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
@@ -147,10 +148,19 @@ const MemberHome = () => {
               <a href="index.html"><h1>Appetizr</h1></a>
             </div>
             <ul>
-            <li className="submenu">
-            <Link to="/member/home" className="show-submenu" >Home</Link>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >Home</Link>
               </li>
-              </ul>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >About</Link>
+              </li>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >Venue signup</Link>
+              </li>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >Login</Link>
+              </li>
+            </ul>
           </nav>
         </div>
       </header>
