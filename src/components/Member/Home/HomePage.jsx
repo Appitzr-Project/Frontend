@@ -147,10 +147,19 @@ const MemberHome = () => {
               <a href="index.html"><h1>Appetizr</h1></a>
             </div>
             <ul>
-            <li className="submenu">
-            <Link to="/member/home" className="show-submenu" >Home</Link>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >Home</Link>
               </li>
-              </ul>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >About</Link>
+              </li>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >Venue signup</Link>
+              </li>
+              <li className="submenu">
+                <Link Link to="/member/home" className="show-submenu" >Login</Link>
+              </li>
+            </ul>
           </nav>
         </div>
       </header>
