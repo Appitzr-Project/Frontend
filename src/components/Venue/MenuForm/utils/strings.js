@@ -12,7 +12,7 @@ const strings = {
   label_name: 'Name',
   label_desc: 'Description',
   label_price: 'Price',
-  label_category: 'Category',
+  label_category: 'category',
   label_picture: 'Pictures',
   label_protein_type: 'Protein Type',
   add_img: 'Add Image',

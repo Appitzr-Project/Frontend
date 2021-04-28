@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 const MenuOption = lazy(() => import("./MenuOption"));
@@ -36,7 +36,6 @@ function ProtectedRouteVenue({ component: Component , ...restProps }) {
 
 const Venue = () => {
   return (
-    <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <ProtectedRouteVenue exact path="/venue" component={MenuOption} />
@@ -53,7 +52,6 @@ const Venue = () => {
           <ProtectedRouteVenue path="/venue/discount" component={DiscountLazy} />
         </Switch>
       </Suspense>
-    </Router>
   );
 };
 

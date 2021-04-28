@@ -43,9 +43,10 @@ const ConfirmationDialog = ({ id, keepMounted, open, onClick, onClose }) => {
   const history = useHistory()
 
   const onLogout = () => {
-    dispatch(signOutAction())
-    onClose()
-    history.push('/login')
+    dispatch(signOutAction()).then(() => {
+      onClose()
+      history.push('/login')
+    })
   }
 
   return (

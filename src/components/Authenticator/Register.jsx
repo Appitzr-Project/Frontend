@@ -212,8 +212,9 @@ const Register = () => {
   return (
     <>
       <Wrapper
-        title='Apptizr'
+        title={`APPETIZR.CO`}
         textCenter={true}
+        isBack='/login'
       >
         <form onSubmit={onLogin}>
           <Grid container direction='column' justify='center' alignItems='center' >

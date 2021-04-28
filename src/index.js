@@ -21,7 +21,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk, apiMiddleware));
 const persistor = persistStore(store);
 
 Amplify.configure(awsExports);
-
+ 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

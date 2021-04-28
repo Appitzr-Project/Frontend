@@ -21,6 +21,9 @@ import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
 import VenueSVG from './assets/venue.svg';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { getAllVenueList } from "../../../redux/api/venue.api";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -67,24 +70,50 @@ const MemberHome = () => {
   const auth = useSelector(state => state.auth);
   const [category, setCategory] = useState();
   const [urlVenue, setUrlVenue] = useState();
+  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState([]);
   const classes = useStyles();
+  const history = useHistory();
 
-  useEffect( () => {
-    const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
-    if(auth.user && groupUser && groupUser.includes('venue')) {
-      setUrlVenue('/venue');
-    } else {
-      setUrlVenue('/venue/profile');
+  useEffect(() => {
+    // const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
+    // if (auth.user && groupUser && groupUser.includes('venue')) {
+    //   setUrlVenue('/venue');
+    // } else {
+    //   setUrlVenue('/venue/profile');
+    // }
+  }, [auth]);
+
+  // api
+  useEffect(() => {
+    let isActive = true;
+    const http = async () => {
+      try {
+        setLoading(true);
+        const res = await getAllVenueList();
+        if (isActive) {
+          setItems(res.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    http();
+    return () => {
+      isActive = false;
     }
   }, []);
 
-  return (
+  return !loading ? (
     <>
+
       <Container
         classes={{ root: classes.containerRoot }}
         maxWidth="sm"
         disableGutters
       >
+       
         <Grid
           container
           spacing={2}
@@ -98,9 +127,9 @@ const MemberHome = () => {
             </div>
           </Grid>
           <Box pr="23px">
-          <IconButton onClick={() => (window ? ( window.location.href = urlVenue ) : {})} >
-            <img src={VenueSVG} alt="venue" />
-          </IconButton>  
+            <IconButton onClick={() => history.push(urlVenue)} >
+              <img src={VenueSVG} alt="venue" />
+            </IconButton>
           </Box>
           <Grid
             item
@@ -119,11 +148,13 @@ const MemberHome = () => {
               fontWeight={600}
               className={classes.white}
             >
-              Hi John
+              Welcome
             </Box>
           </Grid>
         </Grid>
-        <VenueCarousel />
+
+        <VenueCarousel items={items} />
+
         <Card classes={{ root: classes.cardRoot }} elevation={0}>
           <Box pb="16px">
             <FormControl fullWidth>
@@ -150,14 +181,16 @@ const MemberHome = () => {
             />
             <ButtonSearch />
           </form>
+
           <Box>
-            <VenueCard />
+            <VenueCard items={items} />
           </Box>
+
         </Card>
         <BottomNav ActiveMenu={MENU.HOME} />
       </Container>
     </>
-  );
+  ) : "Loading...";
 };
 
 export default MemberHome;

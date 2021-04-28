@@ -1,4 +1,4 @@
-import { signInApi, customSignInApi, signOutApi, getCurrentUserApi , signUpApi, confirmSignUp, resendConfirmationCodeApi, refreshTokenApi } from "../api/auth.api"
+import { signInApi, customSignInApi, signOutApi, getCurrentUserApi , signUpApi, confirmSignUp, resendConfirmationCodeApi, refreshTokenApi, forgotPasswordApi, createNewPasswordApi } from "../api/auth.api"
 import { SIGNIN , SIGNOUT } from "../types/auth.type"
 
 export const signInAction = (username, password) => {
@@ -26,6 +26,7 @@ export const getCurrentUserAction = () => {
             })
         } catch (error) {
             dispatch({ type: SIGNOUT })
+            throw Error(error.message)
         }
     }
 }
@@ -52,12 +53,14 @@ export const customSignInAction = (provider) => () => {
     }
 }
 
-export const signOutAction = () => async dispatch => {
-    try {
-        await signOutApi()
-        dispatch({ type: SIGNOUT })
-    } catch (error) {
-        console.log('[Error signin out ]', error)
+export const signOutAction = () => {
+    return async dispatch => {
+        try {
+            await signOutApi()
+            dispatch({ type: SIGNOUT })
+        } catch (error) {
+            console.log('[Error signin out ]', error)
+        }
     }
 }
 
@@ -89,6 +92,29 @@ export const resendConfirmationCodeAction = (username) => {
             await resendConfirmationCodeApi(username)
         } catch (error) {
             console.log('[Error Signup ]', error)
+            throw Error(error.message)
+        }
+    }
+}
+
+
+export const forgotPasswordAction = (username) => {
+    return async () => {
+        try {
+            return await forgotPasswordApi(username)
+        } catch (error) {
+            console.log('[Error Forgot Password ]', error)
+            throw Error(error.message)
+        }
+    }
+}
+
+export const createNewPasswordAction = (username) => {
+    return async () => {
+        try {
+            return await  createNewPasswordApi(username)
+        } catch (error) {
+            console.log('[Error New Password ]', error)
             throw Error(error.message)
         }
     }

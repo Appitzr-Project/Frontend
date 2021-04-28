@@ -28,7 +28,9 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(getCurrentUserAction())
-  }, [])
+    .then(() => history.push('/') )
+    .catch(() => false )
+  }, [ dispatch , history ])
 
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
   const setErrorLogin = (errorLogin) => setStates({ ...states, errorLogin, isLoading: false })
@@ -49,7 +51,7 @@ const Login = () => {
       dispatch(signInAction(form.username, form.password))
         .then(() => {
           setLoading(false)
-          history.push('/')
+          history.push('/member/home')
         })
         .catch(err => {
           setErrorLogin(err.message)
@@ -157,7 +159,7 @@ const Login = () => {
   return (
     <>
       <Wrapper
-        title='Apptizr'
+        title={`APPETIZR.CO`}
         textCenter={true}
       >
         <form onSubmit={onLogin}>

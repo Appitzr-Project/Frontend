@@ -6,7 +6,7 @@ import { strings } from "./utils";
 import { InputForm, SelectOption } from "./components";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/venue.api"
+import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/products.api"
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
 
 const MenuAdd = () => {
@@ -19,15 +19,15 @@ const MenuAdd = () => {
     category: [
       {
         id: 1,
-        name: "Dessert",
+        name: "dessert",
       },
       {
         id: 2,
-        name: "Sphagetti",
+        name: "spaghetti",
       },
       {
         id: 3,
-        name: "Drink",
+        name: "drink",
       },
     ],
     price: "",
@@ -35,15 +35,15 @@ const MenuAdd = () => {
     proteinType: [
       {
         id: 1,
-        name: "Vegan",
+        name: "vegan",
       },
       {
         id: 2,
-        name: "Meat",
+        name: "meat",
       },
       {
         id: 3,
-        name: "Vegetables",
+        name: "vegetables",
       },
     ],
   };
@@ -51,10 +51,10 @@ const MenuAdd = () => {
   const [state, setState] = useState({
     productName: "",
     description: "",
-    category: "Dessert",
+    category: "dessert",
     price: 0,
     images: [],
-    proteinType: "Vegan",
+    proteinType: "vegan",
     isActive: true
   });
 
@@ -70,9 +70,10 @@ const MenuAdd = () => {
 
   const onChange = (event) => {
     const { name, value } = event.target;
+    let number = (name === "price" && isNaN(value) ) || value.length > 15 ? state.price :  +value;
     setState((prevState) => ({
       ...prevState,
-      [name]: name === "price" ? parseInt(value) | 0 : value,
+      [name]: name === "price" ? number : value,
     }));
   };
 
@@ -105,7 +106,7 @@ const MenuAdd = () => {
       title={strings.add_menu}
       image="https://source.unsplash.com/random"
       spacing="26px"
-      isBack="/venue"
+      isBack="/venue/menu/list"
     >
       <form>
         <Grid container direction="column">
@@ -144,7 +145,7 @@ const MenuAdd = () => {
         </Grid>
         <Grid item xs={12}>
           <InputForm
-            type="number"
+            type="text"
             name="price"
             min="0"
             value={state.price}

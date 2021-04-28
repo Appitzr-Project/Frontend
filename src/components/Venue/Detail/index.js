@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import { 
     withStyles,
@@ -11,8 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import StarIcon from '@material-ui/icons/Star';
-import Rating from '@material-ui/lab/Rating';
+// import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
+import {getVenueById} from "../../../redux/api/venue.api"
 
 const MenuButton = withStyles((theme) => ({
     root: {
@@ -35,11 +36,11 @@ const MenuButton = withStyles((theme) => ({
     }
 }))(Button);
 
-const CustomRating = withStyles(() => ({
-    root: {
-        fontSize: 15
-    }
-}))(Rating);
+// const CustomRating = withStyles(() => ({
+//     root: {
+//         fontSize: 15
+//     }
+// }))(Rating);
 
 const useStyles = makeStyles({
     container : {
@@ -227,7 +228,37 @@ const useStyles = makeStyles({
 
 const Detail = () => {
     const classes = useStyles();
-    return (
+    const history = useHistory();
+    const params = useParams();
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(true);
+     
+    // api
+    useEffect(() => {
+        let isActive = true;
+        const http = async () => {
+            if(params.idVenue){
+                try {
+                    setLoading(true);
+                    const res = await getVenueById(params.idVenue);
+                    if(isActive){
+                        setItem(res.data);
+                        setLoading(false);
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }else{
+                history.push("/venue");
+            }
+        }
+        http();
+
+        return () => {
+            isActive=false;
+        }
+    },[ history , params ]);
+    return !loading ? (
         <div className="App">        
             <Container maxWidth="sm" className={classes.container}>
                 <Grid container spacing={0} className={classes.header} >
@@ -235,7 +266,7 @@ const Detail = () => {
                         alignItems="center" 
                         container
                         justify="space-between">
-                        <NavigateBeforeIcon className={classes.backIcon} />
+                        <NavigateBeforeIcon onClick={() => history.goBack()} className={classes.backIcon} />
                         <span>
                             <FavoriteIcon />
                             <MoreVertIcon />
@@ -246,10 +277,9 @@ const Detail = () => {
                 <Grid item xs={12} className={classes.detailBox}>
                     <Grid item xs={12} className={classes.detailSummary}>  
                         <div className={classes.venueAddress}>
-                            <div className={classes.venueName}>Opera Bar</div>
-                            <div className={classes.venueCompleteAddress}>Sydney Opera House, 
-                                Lower Concourse Level, 
-                                Sydney, New South Wales 2000
+                            <div className={classes.venueName}>{item.venueName}</div>
+                            <div className={classes.venueCompleteAddress}>
+                                {item.address}
                             </div>
                         </div>
                         <div className={classes.venueRate}>
@@ -259,7 +289,10 @@ const Detail = () => {
                             </div>
                         </div>
                     </Grid>
-                    <Grid item xs={12}>  
+                    
+                    {/* di hide utk sementara */}
+
+                    {/* <Grid item xs={12}>  
                         <h3 className={classes.descriptionSectionTitle}>
                             Description 
                         </h3>
@@ -269,6 +302,7 @@ const Detail = () => {
                             We’re proud of Sydney, it’s the most beautiful city in the world. Yes, we may be biased but grab a seat at Opera Bar 
                         </p>
                     </Grid>
+
                     <Grid item xs={12}>  
                         <p className={classes.discountContainer}>
                             <span>20% OFF</span>
@@ -306,11 +340,17 @@ const Detail = () => {
                             </div>
                         </div>
                     </Grid>
-                    <MenuButton variant="contained">Menu</MenuButton>               
+                     */}
+                    
+                    {/* end - di hide utk sementara */}
+
+                    <Link to={"/member/order-menu/"+item.id}>
+                        <MenuButton variant="contained">Menu</MenuButton>               
+                    </Link>
                 </Grid>
             </Container>
         </div>
-    )
+    ): "Loading...";
 };
 
 export default Detail; 

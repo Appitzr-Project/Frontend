@@ -7,7 +7,7 @@ import { useStyle } from './ProfileStyle'
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createVenueProfileAction, getVenueProfileAction, updateVenueProfileAction } from "../../../redux/actions/profile.action";
-import { useEffect } from "react";
+import { useEffect , useCallback } from "react";
 import { getCultureCategoryAction } from "../../../redux/actions/venue.action";
 import { useHistory } from "react-router-dom";
 import { getRefreshTokenAction } from "../../../redux/actions/auth.action";
@@ -52,14 +52,25 @@ const Profile = () => {
   })
 
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
-  const setErrorSave = (errorSave) => setStates({ ...states, errorSave, isLoading: false })
+  const setErrorSave = useCallback((errorSave) => {
+    setStates( s => ({ ...s, errorSave, isLoading: false }))
+  }, [setStates])
+  const getCurrentLocation = useCallback(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setForm( s => ({
+        ...s,
+        mapLong: position.coords.longitude,
+        mapLat: position.coords.latitude
+      }))
+    });
+  }, [ setForm ] )
 
   useEffect(() => {
     getCurrentLocation()
 
     dispatch(getCultureCategoryAction(idToken))
       .then(res => {
-        setStates({ ...states, cultureCategories: res.data })
+        setStates(s => ({ ...s , cultureCategories: res.data }) )
       })
       .catch(err => {
         setErrorSave(err.message || 'An error occured')
@@ -71,7 +82,7 @@ const Profile = () => {
       }).catch(() => false  )
 
    
-  }, [])
+  }, [ dispatch , getCurrentLocation , idToken , setErrorSave ] )
 
   const onChange = name => ev => {
     setForm({
@@ -157,16 +168,6 @@ const Profile = () => {
       </Alert>
     </Snackbar>
   )
-
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setForm({
-        ...form,
-        mapLong: position.coords.longitude,
-        mapLat: position.coords.latitude
-      })
-    });
-  }
 
   return (
     <>
@@ -266,7 +267,7 @@ const Profile = () => {
           <div className={classes.formControl}>
             <Typography className={classes.inputLabel}>Culture Category</Typography>
             <Select
-              value={form.cultureCategory}
+              value={form.cultureCategory || '' }
               fullWidth
               variant='outlined'
               classes={{ root: classes.select }}
@@ -278,8 +279,8 @@ const Profile = () => {
               }
               onChange={onChange('cultureCategory')}
             >
-              {states.cultureCategories.map(c => (
-                <MenuItem value={c}>{c}</MenuItem>
+              {states.cultureCategories.map( (c , key ) => (
+                <MenuItem value={c} key={key} >{c}</MenuItem>
               ))}
             </Select>
             {(states.errorCultureCategory && <FormHelperText error >{states.errorCultureCategory}</FormHelperText>) || ''}
