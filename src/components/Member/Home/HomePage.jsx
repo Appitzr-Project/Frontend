@@ -96,19 +96,19 @@ const MemberHome = () => {
     }
   }, []);
 
-  useEffect(() => {
-    let scripts = [
-      // { src: "assets/js/validate.js" },
-      { src: "assets/js/common_scripts.min.js" },
-      { src: "assets/js/common_func.js" },
-    ]
-    scripts.forEach(item => {
-      const script = document.createElement("script")
-      script.src = item.src
-      script.async = true
-      document.body.appendChild(script)
-    })
-  });
+  // useEffect(() => {
+  //   let scripts = [
+  //     // { src: "assets/js/validate.js" },
+  //     { src: "assets/js/common_scripts.min.js" },
+  //     { src: "assets/js/common_func.js" },
+  //   ]
+  //   scripts.forEach(item => {
+  //     const script = document.createElement("script")
+  //     script.src = item.src
+  //     script.async = true
+  //     document.body.appendChild(script)
+  //   })
+  // });
 
   return !loading ? (
     <>
