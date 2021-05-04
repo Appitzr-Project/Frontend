@@ -64,7 +64,7 @@ const useStyles = makeStyles({
   },
 });
 
-
+ 
 
 const MemberHome = () => {
   const auth = useSelector(state => state.auth);
@@ -139,7 +139,7 @@ const MemberHome = () => {
           </ul>
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
-          </a>
+          </a>  
           <nav className="main-menu">
             <div id="header_menu">
               <a href="#0" className="open_close">
@@ -250,7 +250,7 @@ const MemberHome = () => {
             </div>
             <div className="owl-carousel owl-theme categories_carousel">
               <div className="item_version_2">
-                <a href="grid-listing-filterscol.html">
+                <Link to='venue-detail'>
                   <figure>
                     <span>98</span>
                     <img src="assets/img/home_cat_pizza.jpg" alt="" className="owl-lazy " width="350" height="450" />
@@ -259,7 +259,7 @@ const MemberHome = () => {
                       <small>Avg price $40</small>
                     </div>
                   </figure>
-                </a>
+                </Link>
               </div>
               <div className="item_version_2">
                 <a href="grid-listing-filterscol.html">
