@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
-const VenueCard = ({ discount, src, category, venueName, location }) => {
+const VenueCard = ({ discount, src, category, venueName, location, star }) => {
   return (
     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
       <div class="strip">
