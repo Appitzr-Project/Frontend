@@ -1,15 +1,4 @@
-import { Checkbox, FormControlLabel, makeStyles } from "@material-ui/core"
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         '&:hover': {
-//             color: "#D50000",
-//          },
-//     },
-//   }));
-
 const CheckBox = (props) => {
-    // const classes = useStyles();
     return (
         <div className='col-sm-9 d-flex flex-wrap ' >
       <div className="form-check mr-2" >
