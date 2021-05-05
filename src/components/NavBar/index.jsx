@@ -6,21 +6,8 @@ const NavBar = () => {
 
   
   useEffect(() => {
-    let scripts = [
-      // { src: "assets/js/validate.js" },
-      { src: "assets/js/common_scripts.min.js" },
-      { src: "assets/js/common_func.js" },
-    ]
-    setTimeout(() => {
-
-      scripts.forEach(item => {
-        const script = document.createElement("script")
-        script.src = item.src
-        script.async = true
-        document.body.appendChild(script)
-      })
-    }, 1200 )
-  }, [] );
+    
+  });
 
   return(<>
     <Helmet>
@@ -31,7 +18,6 @@ const NavBar = () => {
         {'BASE CSS'}
         <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
         <link href="assets/css/style.css" rel="stylesheet" />
-
       </Helmet>
       <header className="header black_nav clearfix element_to_stick">
         <div className="container">
