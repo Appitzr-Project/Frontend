@@ -1,10 +1,62 @@
 import React from 'react';
+import {useDispatch} from 'react-redux'
+import { customSignInAction , signUpAction } from '../../redux/actions/auth.action';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 
 
 
 const Register = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [form, setForm] = useState({
+    username: '-' ,
+    password: '',
+    attributes: {
+        email : ''
+    }  
+  })
+
+  const onLoginFB = () => {
+    dispatch(customSignInAction('Facebook'))
+  }
+
+  const onLoginGoogle = () => {
+    dispatch(customSignInAction('Google'))
+  }
+
+  const handleFieldEmail = (e) => {
+    setForm({ ...form , attributes:{ email: e.target.value }})
+  }
+
+  const handleFieldPassword = (e) => {
+    setForm({ ...form , password: e.target.value })
+  }
+
+  const handleFieldConfirmPassword = (e) => {
+    setForm({ ...form , confirm_password: e.target.value })
+  }
+
+  const onClickRegisterNow = (e) => {
+  
+    dispatch(signUpAction({ ...form , username: form.attributes.email }))
+    .then(() => {
+      history.push('/')
+    })
+    .catch(err => {
+      alert(err.message)
+    })
+
+  }
+
+
+  const handleMouseDownPassword = (ev) => (
+    ev.preventDefault()
+  )
+  
+
   return (
     <>
     <Helmet>
@@ -23,9 +75,9 @@ const Register = () => {
           </a>
         </figure>
         <div className="access_social">
-            <a className="social_bt facebook" href="#0">
+            <a onClick={onLoginFB} className="social_bt facebook" href="#0">
             Register With Facebook</a>
-            <a className="social_bt google" href="#0">
+            <a onClick={onLoginGoogle} className="social_bt google" href="#0">
             Register With Google</a>
         </div>
         <div className="divider">
@@ -33,40 +85,30 @@ const Register = () => {
         </div>
         <form autoComplete="off">
             <div className="form-group">
-              <input className="form-control" type="Name"
-                placeholder="Name" />
-              <i className="icon_pencil-edit">
-              </i>
-            </div>
-            <div className="form-group">
-              <input className="form-control" type="LastName"
-                placeholder="Last Name" />
-              <i className="icon_pencil-edit">
-              </i>
-            </div>
-            <div className="form-group">
               <input className="form-control" type="Email"
-                placeholder="Email" />
+                placeholder="Email" onChange={handleFieldEmail} />
               <i className="icon_mail_alt">
               </i>
             </div>
             <div className="form-group">
               <div className="hideShowPassword-wrap" style={{ "position": "relative", display: "block", verticalAlign: "baseline", margin: "0px", }}>
-                <input id="password" className="form-control hideShowPassword-field" type="password" id="password" placeholder="Password" style={{ margin: "0px", paddingRight: "51.1px", }} />
+                <input id="password" className="form-control hideShowPassword-field" type="password" id="password" placeholder="Password"
+                onChange={handleFieldPassword} style={{ margin: "0px", paddingRight: "51.1px", }} />
               </div>
               <i className="icon_lock_alt">
               </i>
             </div>
             <div className="form-group">
               <div className="hideShowPassword-wrap" style={{ "position": "relative", display: "block", verticalAlign: "baseline", margin: "0px", }}>
-                <input id="password" className="form-control hideShowPassword-field" type="password" id="password" placeholder="Confirm Password" style={{ margin: "0px", paddingRight: "51.1px", }} />
+                <input id="password" className="form-control hideShowPassword-field" type="password" id="password" placeholder="Confirm Password" 
+                onChange={handleFieldConfirmPassword} style={{ margin: "0px", paddingRight: "51.1px", }} />
               </div>
               <i className="icon_lock_alt">
               </i>
             </div>
             <div id="pass-info" className="clearfix">
             </div>
-            <a className="btn_1 gradient full-width" href="#0">
+            <a onClick={onClickRegisterNow} className="btn_1 gradient full-width" href="#0">
               Register Now!
             </a>
             <div className="text-center mt-2">
