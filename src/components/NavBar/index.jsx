@@ -1,13 +1,48 @@
 import { Helmet } from "react-helmet"
-import { Link } from "react-router-dom"
-import { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux";
+import { signOutAction } from '../../redux/actions/auth.action';
 
 const NavBar = () => {
+  const dispatch = useDispatch()
+  const history = useHistory();
+  const auth = useSelector(state => state.auth);
+  const user = auth.user && auth.user.attributes
 
-  
-  useEffect(() => {
-    
-  });
+  const renderUserLogged = () => (
+    <ul id="top_menu" className="drop_user">
+      <li>
+          <div class="dropdown user clearfix">
+              <a href="#" data-toggle="dropdown" aria-expanded="false">
+                  <figure><img src="assets/img/avatar1.jpg" alt="" /></figure><span>{ user.email }</span>
+              </a>
+              <div className="dropdown-menu" >
+                  <div className="dropdown-menu-content">
+                      <ul>
+                          <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
+                          <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
+                          <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
+                          <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </li>
+  </ul>
+  )
+
+  const renderUserNotLogin = () => (
+    <ul id="top_menu">
+      <li><Link to="/login" className="login">Sign In</Link></li>
+      <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
+    </ul>
+  )
+
+  const onLogout = () => {
+    dispatch(signOutAction()).then(() => {
+      history.push('/login')      
+    })
+  }
 
   return(<>
     <Helmet>
@@ -27,10 +62,9 @@ const NavBar = () => {
             </a>
           </div>
           <div className="layer"></div>
-          <ul id="top_menu">            
-            <li><Link to="/login" className="login">Sign In</Link></li>
-            <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
-          </ul>
+         
+          { user && user.email ? renderUserLogged() : renderUserNotLogin() }
+
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
           </a>
