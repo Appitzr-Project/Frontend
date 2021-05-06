@@ -1,70 +1,11 @@
-import {
-  Box,
-  Card,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-  makeStyles,
-  MenuItem,
-  Select,
-  TextField,
-  IconButton
-} from '@material-ui/core';
+
 import React, { useEffect, useState } from 'react';
-import BottomNav from '../../BottomNav';
-import { MENU } from '../../BottomNav/const';
-import BellSVG from './assets/ic-bell.svg';
-import Profile from './assets/profile.png';
-import ButtonSearch from './components/ButtonSearch';
-import VenueCard from './components/VenueCard';
-import VenueCarousel from './components/VenueCarousel';
-import VenueSVG from './assets/venue.svg';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { getAllVenueList } from "../../../redux/api/venue.api";
 import { Helmet } from "react-helmet";
-
-const useStyles = makeStyles({
-  containerRoot: {
-    background: 'linear-gradient(90deg, #5263C8 0%, #303C83 100%)',
-  },
-  cardRoot: {
-    overflow: 'unset',
-    padding: '33px 24px 150px 24px',
-    marginTop: '24px',
-    borderRadius: '50px 50px 0 0',
-  },
-  venueCardContainer: {
-    flexWrap: 'nowrap',
-    overflow: 'scroll',
-  },
-  venueCard: {
-    background: '#FFFFFF',
-    boxShadow: '0px 4px 4px rgba(71, 71, 71, 0.1)',
-    borderRadius: '30px',
-  },
-  desc: {
-    color: '#878787',
-  },
-  white: {
-    color: '#FFFFFF',
-  },
-  topContent: {
-    padding: '55px 24px 35px',
-  },
-  pb30: {
-    paddingBottom: '30px',
-  },
-  pb75: {
-    paddingBottom: '75px',
-  },
-  centered: {
-    margin: '0 auto',
-  },
-});
-
-
+import NavBar from '../../NavBar/index.jsx';
+import Footer from '../../Footer';
 
 const MemberHome = () => {
   const auth = useSelector(state => state.auth);
@@ -72,7 +13,6 @@ const MemberHome = () => {
   const [urlVenue, setUrlVenue] = useState();
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
-  const classes = useStyles();
   const history = useHistory();
 
   // api
@@ -96,74 +36,13 @@ const MemberHome = () => {
     }
   }, []);
 
-  useEffect(() => {
-    let scripts = [
-      // { src: "assets/js/validate.js" },
-      { src: "assets/js/common_scripts.min.js" },
-      { src: "assets/js/common_func.js" },
-    ]
-    scripts.forEach(item => {
-      const script = document.createElement("script")
-      script.src = item.src
-      script.async = true
-      document.body.appendChild(script)
-    })
-  });
 
   return !loading ? (
-    <>
-      <Helmet>
-        <title>Appetizr</title>
-        <meta name="description" content="Appetizr Description" />
-        {'GOOGLE WEB FONT'}
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" />
-        {'BASE CSS'}
-        <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
-        <link href="assets/css/style.css" rel="stylesheet" />
-        {'SPECIFIC CSS'}
+    <>    
+    <NavBar />
+      <Helmet >
         <link href="assets/css/home.css" rel="stylesheet" />
-
-
       </Helmet>
-      <header className="header black_nav clearfix element_to_stick">
-        <div className="container">
-          <div id="logo">
-            <a href="index.html">
-              <h1>Appetizr</h1>
-            </a>
-          </div>
-          <div className="layer"></div>
-          <ul id="top_menu">            
-            <li><Link to="/login" className="login">Sign In</Link></li>
-            <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
-          </ul>
-          <a href="#0" className="open_close">
-            <i className="icon_menu"></i><span>Menu</span>
-          </a>
-          <nav className="main-menu">
-            <div id="header_menu">
-              <a href="#0" className="open_close">
-                <i className="icon_close"></i><span>Menu</span>
-              </a>
-              <a href="index.html"><h1>Appetizr</h1></a>
-            </div>
-            <ul>
-              <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Home</Link>
-              </li>
-              <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >About</Link>
-              </li>
-              <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Venue signup</Link>
-              </li>
-              <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Login</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
       <main>
         <div className="hero_single version_1">
           <div className="opacity-mask">
@@ -367,104 +246,7 @@ const MemberHome = () => {
         </div>
       </main>
 
-      <footer>
-        <div className="wave footer"></div>
-        <div className="container margin_60_40 fix_mobile">
-
-          <div className="row">
-            <div className="col-lg-3 col-md-6">
-              <h3 data-target="#collapse_1">Quick Links</h3>
-              <div className="collapse dont-collapse-sm links" id="collapse_1">
-                <ul>
-                  <li><a href="about.html">About us</a></li>
-                  <li><a href="submit-restaurant.html">Add your restaurant</a></li>
-                  <li><a href="help.html">Help</a></li>
-                  <li><a href="account.html">My account</a></li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="contacts.html">Contacts</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <h3 data-target="#collapse_2">Categories</h3>
-              <div className="collapse dont-collapse-sm links" id="collapse_2">
-                <ul>
-                  <li><a href="grid-listing-filterscol.html">Top Categories</a></li>
-                  <li><a href="grid-listing-filterscol-full-masonry.html">Best Rated</a></li>
-                  <li><a href="grid-listing-filterscol-full-width.html">Best Price</a></li>
-                  <li><a href="grid-listing-filterscol-full-masonry.html">Latest Submissions</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <h3 data-target="#collapse_3">Contacts</h3>
-              <div className="collapse dont-collapse-sm contacts" id="collapse_3">
-                <ul>
-                  <li><i className="icon_house_alt"></i>97845 Baker st. 567<br />Los Angeles - US</li>
-                  <li><i className="icon_mobile"></i>+94 423-23-221</li>
-                  <li><i className="icon_mail_alt"></i><a href="#0">info@domain.com</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <h3 data-target="#collapse_4">Keep in touch</h3>
-              <div className="collapse dont-collapse-sm" id="collapse_4">
-                <div id="newsletter">
-                  <div id="message-newsletter"></div>
-                  <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
-                    <div className="form-group">
-                      <input type="email" name="email_newsletter" id="email_newsletter" className="form-control" placeholder="Your email" />
-                      <button type="submit" id="submit-newsletter"><i className="arrow_carrot-right"></i></button>
-                    </div>
-                  </form>
-                </div>
-                <div className="follow_us">
-                  <h5>Follow Us</h5>
-                  <ul>
-                    <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/twitter_icon.svg" alt="" className="lazy" /></a></li>
-                    <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/facebook_icon.svg" alt="" className="lazy" /></a></li>
-                    <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/instagram_icon.svg" alt="" className="lazy" /></a></li>
-                    <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/youtube_icon.svg" alt="" className="lazy" /></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div className="row add_bottom_25">
-            <div className="col-lg-6">
-              <ul class="footer-selector clearfix">
-                <li>
-                  <div class="styled-select lang-selector">
-                    <select>
-                      <option defaultValue="English" selected>English</option>
-                      <option value="French">French</option>
-                      <option value="Spanish">Spanish</option>
-                      <option value="Russian">Russian</option>
-                    </select>
-                  </div>
-                </li>
-                <li>
-                  <div class="styled-select currency-selector">
-                    <select>
-                      <option value="US Dollars" selected>US Dollars</option>
-                      <option value="Euro">Euro</option>
-                    </select>
-                  </div>
-                </li>
-                <li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/cards_all.svg" alt="" width="230" height="35" class="lazy" /></li>
-              </ul>
-            </div>
-            <div className="col-lg-6">
-              <ul className="additional_links">
-                <li><a href="#0">Terms and conditions</a></li>
-                <li><a href="#0">Privacy</a></li>
-                <li><span>© FooYes</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <div id="toTop"></div>
 
