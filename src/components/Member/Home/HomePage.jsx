@@ -36,44 +36,6 @@ const MemberHome = () => {
     }
   }, []);
 
-
- 
-
-  const renderUserLogged = () => (
-    <ul id="top_menu" className="drop_user">
-      <li>
-          <div class="dropdown user clearfix">
-              <a href="#" data-toggle="dropdown" aria-expanded="false">
-                  <figure><img src="assets/img/avatar1.jpg" alt="" /></figure><span>{ user.email }</span>
-              </a>
-              <div className="dropdown-menu" >
-                  <div className="dropdown-menu-content">
-                      <ul>
-                          <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
-                          <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
-                          <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
-                          <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </li>
-  </ul>
-  )
-
-  const renderUserNotLogin = () => (
-    <ul id="top_menu">
-      <li><Link to="/login" className="login">Sign In</Link></li>
-      <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
-    </ul>
-  )
-
-  const onLogout = () => {
-    dispatch(signOutAction()).then(() => {
-      history.push('/login')      
-    })
-  }
-
   return !loading ? (
     <>    
     <NavBar />
