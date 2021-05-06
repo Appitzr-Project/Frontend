@@ -71,7 +71,7 @@ const Register = () => {
       <aside>
         <figure>
           <a href="index.html">
-            <img src="/assets/img/logo_sticky.svg" alt="" width="140" height="35"/>
+            <img src="/assets/img/logo_sticky1.jpeg" alt="" width="140" />
           </a>
         </figure>
         <div className="access_social">
