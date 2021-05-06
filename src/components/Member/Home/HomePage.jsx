@@ -20,10 +20,11 @@ import ButtonSearch from './components/ButtonSearch';
 import VenueCard from './components/VenueCard';
 import VenueCarousel from './components/VenueCarousel';
 import VenueSVG from './assets/venue.svg';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { getAllVenueList } from "../../../redux/api/venue.api";
 import { Helmet } from "react-helmet";
+import { signOutAction } from '../../../redux/actions/auth.action';
 
 const useStyles = makeStyles({
   containerRoot: {
@@ -68,6 +69,8 @@ const useStyles = makeStyles({
 
 const MemberHome = () => {
   const auth = useSelector(state => state.auth);
+  const user = auth.user && auth.user.attributes
+  const dispatch = useDispatch()
   const [category, setCategory] = useState();
   const [urlVenue, setUrlVenue] = useState();
   const [loading, setLoading] = useState(true);
@@ -110,6 +113,41 @@ const MemberHome = () => {
     })
   });
 
+  const renderUserLogged = () => (
+    <ul id="top_menu" className="drop_user">
+      <li>
+          <div class="dropdown user clearfix">
+              <a href="#" data-toggle="dropdown" aria-expanded="false">
+                  <figure><img src="assets/img/avatar1.jpg" alt="" /></figure><span>{ user.email }</span>
+              </a>
+              <div className="dropdown-menu" >
+                  <div className="dropdown-menu-content">
+                      <ul>
+                          <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
+                          <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
+                          <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
+                          <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </li>
+  </ul>
+  )
+
+  const renderUserNotLogin = () => (
+    <ul id="top_menu">
+      <li><Link to="/login" className="login">Sign In</Link></li>
+      <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
+    </ul>
+  )
+
+  const onLogout = () => {
+    dispatch(signOutAction()).then(() => {
+      history.push('/login')      
+    })
+  }
+
   return !loading ? (
     <>
       <Helmet>
@@ -133,10 +171,9 @@ const MemberHome = () => {
             </a>
           </div>
           <div className="layer"></div>
-          <ul id="top_menu">            
-            <li><Link to="/login" className="login">Sign In</Link></li>
-            <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
-          </ul>
+
+          { user && user.email ? renderUserLogged() : renderUserNotLogin() }
+
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
           </a>
@@ -156,9 +193,6 @@ const MemberHome = () => {
               </li>
               <li className="submenu">
                 <Link Link to="/member/home" className="show-submenu" >Venue signup</Link>
-              </li>
-              <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Login</Link>
               </li>
             </ul>
           </nav>
