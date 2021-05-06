@@ -19,6 +19,10 @@ const Register = () => {
     }  
   })
 
+  const [states , setState ] = useState({
+    isLoading: false
+  })
+
   const onLoginFB = () => {
     dispatch(customSignInAction('Facebook'))
   }
@@ -40,22 +44,22 @@ const Register = () => {
   }
 
   const onClickRegisterNow = (e) => {
-  
-    dispatch(signUpAction({ ...form , username: form.attributes.email }))
-    .then(() => {
-      history.push('/')
-    })
-    .catch(err => {
-      alert(err.message)
-    })
+    if(form.password === form.confirm_password){
+      setState({ isLoading : true })
+      dispatch(signUpAction({ ...form , username: form.attributes.email }))
+      .then(() => {
+        setState({ isLoading : false })
+        history.push('/')
+      })
+      .catch(err => {
+        setState({ isLoading : false })
+        alert(err.message)
+      })
+    }else{
+      alert('Please, Enter field confirm password correctly !')
+    }
 
   }
-
-
-  const handleMouseDownPassword = (ev) => (
-    ev.preventDefault()
-  )
-  
 
   return (
     <>
@@ -108,9 +112,9 @@ const Register = () => {
             </div>
             <div id="pass-info" className="clearfix">
             </div>
-            <a onClick={onClickRegisterNow} className="btn_1 gradient full-width" href="#0">
-              Register Now!
-            </a>
+            <button onClick={onClickRegisterNow} className="btn_1 gradient full-width" disabled={states.isLoading} >
+              { states.isLoading ? 'Loading...' : 'Register Now!' } 
+            </button>
             <div className="text-center mt-2">
               <small>
               Already have an acccount?  

@@ -12,6 +12,9 @@ const Login = () => {
     username: '',
     password: ''
   })
+  const [states , setState ] = useState({
+    isLoading: false
+  })
 
   const onLoginFB = () => {
     dispatch(customSignInAction('Facebook'))
@@ -30,11 +33,14 @@ const Login = () => {
   }
 
   const onClickLoginNow = (e) => {
+    setState({ isLoading : true })
     dispatch(signInAction(form.username, form.password))
     .then(() => {
+      setState({ isLoading : false })
       history.push('/')
     })
     .catch(err => {
+      setState({ isLoading : false })
       alert(err.message)
     })
 
@@ -104,9 +110,9 @@ const Login = () => {
                   <a id="forgot" href="#0">Forgot Password</a>
                 </div>
               </div>
-              <a onClick={onClickLoginNow} className="btn_1 gradient full-width" href="#0">
-                Login Now
-            </a>
+              <button onClick={onClickLoginNow} className="btn_1 gradient full-width" disabled={states.isLoading} >
+                { states.isLoading ? 'Loading...' : 'Login Now' }
+            </button>
               <div className="text-center mt-2">
                 <small>
                   Don't have an acccount?
