@@ -27,14 +27,14 @@ cd Frontend
 - Pull data Backend AWS Amplify
 
 ```
-amplify pull --appId dtggcy24dmivj --envName dev
+amplify pull --appId dtggcy24dmivj --envName prod
 ```
 
 - Amplify akan automatis membuka browser anda, dan diarahkan ke **Amplify Admin UI**, Silahkan gunakan sesuai dengan detail akun yang telah di invite.
 - Kemudian setelah sukses login, isi data sebagai berikut :
 
 ```
-$ amplify pull --appId dtggcy24dmivj --envName dev
+$ amplify pull --appId dtggcy24dmivj --envName prod
 Opening link: https://ap-southeast-2.admin.amplifyapp.com/admin/dtggcy24dmivj/dev/verify/
 ✔ Successfully received Amplify Admin tokens.
 Amplify AppID found: dtggcy24dmivj. Amplify App name is: appetizr
@@ -57,7 +57,7 @@ Run 'amplify pull' to sync upstream changes.
 
 ![](aws-amplify.png)
 
-- Setelah melakukan **amplify pull --appId dtggcy24dmivj --envName dev**, sekarang di folder **src** akan muncul file **aws-exports.js**
+- Setelah melakukan **amplify pull --appId dtggcy24dmivj --envName prod**, sekarang di folder **src** akan muncul file **aws-exports.js**
 
 ## 3. Environment Variables
 
