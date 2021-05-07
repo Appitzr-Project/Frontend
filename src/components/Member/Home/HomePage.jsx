@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { getAllVenueList } from "../../../redux/api/venue.api";
 import { Helmet } from "react-helmet";
@@ -8,7 +8,7 @@ import NavBar from '../../NavBar/index.jsx';
 import Footer from '../../Footer';
 
 const MemberHome = () => {
-  const auth = useSelector(state => state.auth);
+ 
   const [category, setCategory] = useState();
   const [urlVenue, setUrlVenue] = useState();
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,6 @@ const MemberHome = () => {
       isActive = false;
     }
   }, []);
-
 
   return !loading ? (
     <>    
