@@ -1,7 +1,6 @@
 import React from 'react';
 import OrderSummaryCard from '../../../Card/components/OrderSummaryCard';
 import MenuListCard from '../MenuListCard';
-import MenuListOrderSummary from '../MenuListOrderSummary';
 
 const MenuListContent = ({ handleShow, menu, sectionRef }) => {
   return (

@@ -65,7 +65,7 @@ const MenuListBanner = () => {
                   <div className="buttons clearfix">
                     <span className="magnific-gallery">
                       <a
-                        href="#"
+                        href="# "
                         className="btn_hero"
                         title="Photo title"
                         data-effect="mfp-zoom-in"
