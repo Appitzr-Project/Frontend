@@ -1,4 +1,5 @@
 import React from 'react';
+import OrderSummaryCard from '../../../Card/components/OrderSummaryCard';
 import MenuListCard from '../MenuListCard';
 import MenuListOrderSummary from '../MenuListOrderSummary';
 
@@ -29,7 +30,7 @@ const MenuListContent = ({ handleShow, menu, sectionRef }) => {
               </section>
             ))}
           </div>
-          <MenuListOrderSummary />
+          <OrderSummaryCard />
         </div>
       </div>
     </div>
