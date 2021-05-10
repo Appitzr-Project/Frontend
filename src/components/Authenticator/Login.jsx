@@ -1,9 +1,10 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { customSignInAction , signInAction } from '../../redux/actions/auth.action';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import LogoSticky1 from 'assets/img/logo_sticky1.jpeg';
+import 'assets/css/order-sign_up.css';
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -48,23 +49,12 @@ const Login = () => {
 
   return (
     <>
-      <Helmet>
-
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <link href="assets/css/order-sign_up.css" rel="stylesheet" />
-        <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
-
-
-      </Helmet>
       <div id="register_bg">
-
-
         <div id="register">
           <aside>
             <figure>
               <a href="index.html">
-                <img src="assets/img/logo_sticky1.jpeg" alt="" width="140" ></img>
-
+                <img src={LogoSticky1} alt="" width="140"></img>
               </a>
             </figure>
             <div className="access_sosial">
@@ -123,12 +113,10 @@ const Login = () => {
               </div>
             </form>
             <div className="copy">© 2021 Appetizr</div>
-
           </aside>
         </div>
       </div>
     </>
-
   );
 };
 

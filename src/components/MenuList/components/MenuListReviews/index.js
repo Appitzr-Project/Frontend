@@ -1,4 +1,7 @@
 import React from 'react';
+import Avatar from 'assets/img/avatar.jpg';
+import Avatar1 from 'assets/img/avatar1.jpg';
+import Avatar4 from 'assets/img/avatar4.jpg';
 
 const MenuListReviews = ({ sectionRef, categoryLength }) => {
   return (
@@ -110,7 +113,7 @@ const MenuListReviews = ({ sectionRef, categoryLength }) => {
                 <div className="row">
                   <div className="col-md-2 user_info">
                     <figure>
-                      <img src="../assets/img/avatar4.jpg" alt="" />
+                      <img src={Avatar4} alt="" />
                     </figure>
                     <h5>Lukas</h5>
                   </div>
@@ -157,7 +160,7 @@ const MenuListReviews = ({ sectionRef, categoryLength }) => {
                 <div className="row">
                   <div className="col-md-2 user_info">
                     <figure>
-                      <img src="../assets/img/avatar1.jpg" alt="" />
+                      <img src={Avatar1} alt="" />
                     </figure>
                     <h5>Marika</h5>
                   </div>
@@ -201,7 +204,7 @@ const MenuListReviews = ({ sectionRef, categoryLength }) => {
                 <div className="row reply">
                   <div className="col-md-2 user_info">
                     <figure>
-                      <img src="../assets/img/avatar.jpg" alt="" />
+                      <img src={Avatar} alt="" />
                     </figure>
                   </div>
                   <div className="col-md-10">
