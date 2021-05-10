@@ -8,7 +8,7 @@ const VenueCard = ({ discount, src, category, venueName, location, star, to }) =
         <figure>
           <span className="ribbon off">{discount}% off</span>
           <img src={src} data-src={src} className="img-fluid lazy" alt={category} />
-          <Link {...to} className="strip_info">
+          <Link to={to} className="strip_info">
             <small>{category}</small>
             <div className="item_title">
               <h3>{venueName}</h3>

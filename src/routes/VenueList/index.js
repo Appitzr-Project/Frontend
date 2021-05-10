@@ -1,4 +1,5 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import Axios from "axios"
 import FilterBox from "../../components/CheckBox/FilterBox"
 import CategoryCard from "../../components/Card/components/CategoryCard"
 import VenueCard from "../../components/Card/components/VenueCard"
@@ -8,12 +9,20 @@ import Slider from "react-slick";
 
 const Index = () => {
   const [distance, setDistance] = useState(0);
+  const [venues, setVenues] = useState([]);
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3
   };
+
+  useEffect(() => {
+    Axios.get(`${process.env.REACT_APP_API_URL}venues`)
+    .then(res => {
+      setVenues(res.data.data)
+    })
+  }, []);
 
   const changeDistanceHandle = (e) => {
     setDistance(e.target.value);
@@ -85,9 +94,9 @@ const Index = () => {
                 <div className="categories_carousel_in listing">
                 <Slider {...settings}>
                   <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Spagheti" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Juice" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Rendang" src="/assets/img/cat_listing_placeholder.png" />
                   <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
                   <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
                   <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
@@ -108,11 +117,7 @@ const Index = () => {
               <div className="col-12">
                 <h2 className="title_small">Restaurant/Venue</h2>
               </div>
-
-              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
+              {venues.length && venues.map(venue => <VenueCard key={venue.id} to="#" discount="15" src="/assets/img/cat_listing_placeholder.png" category={venue.cultureCategory} venueName={venue.venueName} location={venue.address} star="5" /> )}
               
             </div>
             {/* end - Restaurant/venue */}
