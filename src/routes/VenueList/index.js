@@ -1,3 +1,4 @@
+import React, {useState} from "react"
 import FilterBox from "../../components/CheckBox/FilterBox"
 import CategoryCard from "../../components/Card/components/CategoryCard"
 import VenueCard from "../../components/Card/components/VenueCard"
@@ -6,13 +7,17 @@ import Slider from "react-slick";
 
 
 const Index = () => {
-  
+  const [distance, setDistance] = useState(0);
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3
   };
+
+  const changeDistanceHandle = (e) => {
+    setDistance(e.target.value);
+  }
 
   return ( 
     <>
@@ -54,6 +59,19 @@ const Index = () => {
           <aside className="col-lg-3" id="sidebar_fixed">
             <a className="btn_map d-flex align-items-center justify-content-center" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" ><span className="btn_map_txt" data-text-swap="Hide Map" data-text-original="View on Map">View on Map</span></a>
             <FilterBox />
+
+            {/* <!-- /filter_type --> */}
+						<div className="filter_type">
+							<h4><a href="#filter_3" data-toggle="collapse" className="closed">Distance</a></h4>
+							<div className="collapse" id="filter_3">
+								<div className="distance"> Radius around selected destination <span></span> km</div>
+								<div className="">
+                  <input type="range" min="10" max="50" step="1" value={distance} data-orientation="horizontal" onChange={changeDistanceHandle} />
+                </div>
+							</div>
+						</div>
+						{/* <!-- /filter_type --> */}
+
             <p><a href="#" className="btn_1 outline full-width">Filter</a></p>
           </aside>
           {/* end - sidebar */}
