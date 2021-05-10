@@ -117,7 +117,7 @@ const Index = () => {
               <div className="col-12">
                 <h2 className="title_small">Restaurant/Venue</h2>
               </div>
-              {venues.length && venues.map(venue => <VenueCard key={venue.id} to="#" discount="15" src="/assets/img/cat_listing_placeholder.png" category={venue.cultureCategory} venueName={venue.venueName} location={venue.address} star="5" /> )}
+              {venues.length && venues.map(venue => <VenueCard key={venue.id} to={`/menulist/${venue.id}`} discount="15" src="/assets/img/cat_listing_placeholder.png" category={venue.cultureCategory} venueName={venue.venueName} location={venue.address} star="5" /> )}
               
             </div>
             {/* end - Restaurant/venue */}
