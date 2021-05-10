@@ -10,7 +10,7 @@ const Index = () => {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 3
   };
 
@@ -64,21 +64,26 @@ const Index = () => {
             <div className="row">
               <div className="col-12">
                 <h2 className="title_small">List Categories</h2>
+                <div className="categories_carousel_in listing">
                 <Slider {...settings}>
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
                 </Slider>
+                </div>
               </div>
             </div>
             {/* end - list categories */}
-
-            {/* banner */}
-            <div style={{width:"100%", height:"400px", borderRadius:"20px", overflow:"hidden", margin:"25px 0"}}>
-              <img src="/assets/img/access_bg.jpg" alt="" style={{width:"100%", height:"100%"}} />
-            </div>
-            {/* end - banner */}
 
             {/* Restaurant/venue */}
             <div className="row">
@@ -86,10 +91,10 @@ const Index = () => {
                 <h2 className="title_small">Restaurant/Venue</h2>
               </div>
 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
+              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
+              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
+              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
+              <VenueCard to={{to:"#"}} discount="15" src="/assets/img/cat_listing_placeholder.png" category="pizza" venueName="Mantap" location="123" star="5" /> 
               
             </div>
             {/* end - Restaurant/venue */}
