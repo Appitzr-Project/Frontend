@@ -31,10 +31,6 @@ const MenuListContentContainer = ({ handleShow }) => {
     };
   }, [params]);
 
-  const categories = items.map((i) => {
-    return i.category;
-  });
-
   const menu = items.reduce(
     (result, item) => ({
       ...result,
@@ -42,7 +38,10 @@ const MenuListContentContainer = ({ handleShow }) => {
     }),
     {}
   );
+
   const sectionRef = useRef([]);
+  const categories = Object.entries(menu).map(m =>  m[0]);
+    
 
   return (
     <>
@@ -53,10 +52,11 @@ const MenuListContentContainer = ({ handleShow }) => {
         menu={menu}
         sectionRef={sectionRef}
       />
-      <MenuListReviews
+      {/* Hide for now */}
+      {/* <MenuListReviews
         sectionRef={sectionRef}
         categoryLength={categories.length}
-      />
+      /> */}
     </>
   );
 };
