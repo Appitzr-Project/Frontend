@@ -49,9 +49,9 @@ const NavBar = () => {
       <header className="header black_nav clearfix element_to_stick" id="header-nav">
         <div className="container">
           <div id="logo">
-            <a href="index.html">
+            <Link to="/">
               <h1>Appetizr</h1>
-            </a>
+            </Link>
           </div>
           <div className="layer"></div>
          
