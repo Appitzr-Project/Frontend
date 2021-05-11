@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const VenueCard = ({ discount, src, category, venueName, location, star, to }) => {
   return (
-    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-      <div class="strip">
+    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+      <div className="strip">
         <figure>
-          <span class="ribbon off">{discount}% off</span>
-          <img {...src} data-src={src} class="img-fluid lazy" alt={category} />
-          <Link {...to} class="strip_info">
+          <span className="ribbon off">{discount}% off</span>
+          <img src={src} data-src={src} className="img-fluid lazy" alt={category} />
+          <Link to={to} className="strip_info">
             <small>{category}</small>
-            <div class="item_title">
+            <div className="item_title">
               <h3>{venueName}</h3>
               <small>{location}</small>
             </div>
@@ -18,7 +18,7 @@ const VenueCard = ({ discount, src, category, venueName, location, star, to }) =
         </figure>
         <ul>
           <li>
-            <div class="score">
+            <div className="score">
               <strong>{star}</strong>
             </div>
           </li>

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ src, name, to }) => {
   return (
-    <div class="item">
+    <div className="item" style={{margin:"10px"}}>
       <figure>
         <Link {...to}>
-          <img {...src} data-src={src} alt={name} class="owl-lazy" />
+          <img src={src} data-src={src} alt={name} className="owl-lazy" />
         </Link>
         <Link {...to}>
           <h3>{name}</h3>

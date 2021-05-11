@@ -1,6 +1,6 @@
 const CheckBox = (props) => {
     return (
-        <div className='col-sm-9 d-flex flex-wrap ' >
+    <div className='col-sm-9 d-flex flex-wrap ' >
       <div className="form-check mr-2" >
             <input
               className="form-check-input"
@@ -12,11 +12,6 @@ const CheckBox = (props) => {
              {props.title}
           </label>
       </div>
-      <div className="form-check mr-7" >
-          <label className="form-check-label" htmlFor={props.id}>
-            <small>{props.qty}</small>
-          </label>
-    </div>
     </div>
     )
 }

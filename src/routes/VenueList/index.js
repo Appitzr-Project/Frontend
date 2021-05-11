@@ -1,3 +1,5 @@
+import React, {useState, useEffect} from "react"
+import Axios from "axios"
 import FilterBox from "../../components/CheckBox/FilterBox"
 import CategoryCard from "../../components/Card/components/CategoryCard"
 import VenueCard from "../../components/Card/components/VenueCard"
@@ -6,13 +8,25 @@ import Slider from "react-slick";
 
 
 const Index = () => {
-  
+  const [distance, setDistance] = useState(0);
+  const [venues, setVenues] = useState([]);
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 3
   };
+
+  useEffect(() => {
+    Axios.get(`${process.env.REACT_APP_API_URL}venues`)
+    .then(res => {
+      setVenues(res.data.data)
+    })
+  }, []);
+
+  const changeDistanceHandle = (e) => {
+    setDistance(e.target.value);
+  }
 
   return ( 
     <>
@@ -54,6 +68,19 @@ const Index = () => {
           <aside className="col-lg-3" id="sidebar_fixed">
             <a className="btn_map d-flex align-items-center justify-content-center" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" ><span className="btn_map_txt" data-text-swap="Hide Map" data-text-original="View on Map">View on Map</span></a>
             <FilterBox />
+
+            {/* <!-- /filter_type --> */}
+						<div className="filter_type">
+							<h4><a href="#filter_3" data-toggle="collapse" className="closed">Distance</a></h4>
+							<div className="collapse" id="filter_3">
+								<div className="distance"> Radius around selected destination <span></span> km</div>
+								<div className="">
+                  <input type="range" min="10" max="50" step="1" value={distance} data-orientation="horizontal" onChange={changeDistanceHandle} />
+                </div>
+							</div>
+						</div>
+						{/* <!-- /filter_type --> */}
+
             <p><a href="#" className="btn_1 outline full-width">Filter</a></p>
           </aside>
           {/* end - sidebar */}
@@ -64,32 +91,33 @@ const Index = () => {
             <div className="row">
               <div className="col-12">
                 <h2 className="title_small">List Categories</h2>
+                <div className="categories_carousel_in listing">
                 <Slider {...settings}>
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src={{src:"/assets/img/cat_listing_placeholder.png"}} />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Spagheti" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Juice" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Rendang" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
                 </Slider>
+                </div>
               </div>
             </div>
             {/* end - list categories */}
-
-            {/* banner */}
-            <div style={{width:"100%", height:"400px", borderRadius:"20px", overflow:"hidden", margin:"25px 0"}}>
-              <img src="/assets/img/access_bg.jpg" alt="" style={{width:"100%", height:"100%"}} />
-            </div>
-            {/* end - banner */}
 
             {/* Restaurant/venue */}
             <div className="row">
               <div className="col-12">
                 <h2 className="title_small">Restaurant/Venue</h2>
               </div>
-
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
-              <VenueCard to={{to:"#"}} discount="15" src={{src:"/assets/img/cat_listing_placeholder.png"}} category="pizza" venueName="Mantap" location="123" star="5" /> 
+              {venues.length && venues.map(venue => <VenueCard key={venue.id} to={`/menulist/${venue.id}`} discount="15" src="/assets/img/cat_listing_placeholder.png" category={venue.cultureCategory} venueName={venue.venueName} location={venue.address} star="5" /> )}
               
             </div>
             {/* end - Restaurant/venue */}
