@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch} from 'react-redux'
 import { confirmSignUpAction, resendConfirmationCodeAction } from '../../redux/actions/auth.action';
 import { useHistory, useLocation,Link } from 'react-router-dom'
+import Helmet from 'react-helmet';
 
 
 const ConfirmationCode = () => {
@@ -77,16 +78,30 @@ const ConfirmationCode = () => {
     }
 
     return (
-    <>
-        <div className="container margin_60_40" >
-        <div className="row justify-content-center">
-            <div className="col-lg-6 col-md-8">
+<>
+<Helmet>
+
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <link href="assets/css/order-sign_up.css" rel="stylesheet" />
+        <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
+
+
+      </Helmet>
+      <div id="register_bg">
+        <div id="register">
+          <aside>
+            <figure>
+              <a href="index.html">
+                <img src="assets/img/logo_sticky1.jpeg" alt="" width="140" ></img>
+
+              </a>
+            </figure>
             <div className="main_title center text-center">
                     <h2>Apply your confirmation code</h2>
-                    <h4>Please check your email for confirmation code</h4>
             </div>
-            <Card>
-            <Card.Body>
+            <div className="divider">
+          
+            </div>
             <Form noValidate validated={validated} onSubmit={onConfirmation}>
                 <Form.Row>
                     <Form.Group controlId="validationCustomUsername" className="mt-3">
@@ -125,19 +140,19 @@ const ConfirmationCode = () => {
                     </InputGroup>
                     </Form.Group>
                 </Form.Row>
-                <div className="d-flex flex-row-reverse">
+                <div className="d-flex flex-row">
                 <Link href="/confirmation-code" onClick={resendCode}className="mt-3" >
                   Resend code
                 </Link>  
                 </div>
                 <Button type="submit" className="mt-3" variant= "danger" style={{width:'100%'}}>{states.isLoading ? renderLoading() : "Confirmation"}</Button>
             </Form>
-            </Card.Body>
-            </Card>
-            </div>
+            <div className="copy">© 2021 Appetizr</div>
+
+          </aside>
         </div>
-    </div>
-    </>
+      </div>
+</>
     )
 }
 export default ConfirmationCode
