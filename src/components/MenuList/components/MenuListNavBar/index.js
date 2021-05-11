@@ -32,8 +32,8 @@ const MenuListNavBar = ({ categories, sectionRef }) => {
               </button>
             </li>
           ))}
-
-          <li>
+          {/* Hide for now */}
+          {/* <li>
             <button
                 className={`list-group-item list-group-item-action ${
                   targetElement === categories.length ? 'active' : ''
@@ -43,7 +43,7 @@ const MenuListNavBar = ({ categories, sectionRef }) => {
             >
               <i className="icon_chat_alt"></i>Reviews
             </button>
-          </li>
+          </li> */}
         </ul>
       </div>
       <span></span>
