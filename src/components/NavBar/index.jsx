@@ -46,12 +46,12 @@ const NavBar = () => {
 
   return(
     <>
-      <header className="header black_nav clearfix element_to_stick">
+      <header className="header black_nav clearfix element_to_stick" id="header-nav">
         <div className="container">
           <div id="logo">
-            <a href="index.html">
+            <Link to="/">
               <h1>Appetizr</h1>
-            </a>
+            </Link>
           </div>
           <div className="layer"></div>
          
@@ -69,16 +69,13 @@ const NavBar = () => {
             </div>
             <ul>
               <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Home</Link>
+                <Link Link to="/" className="show-submenu" >Home</Link>
               </li>
               <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >About</Link>
+                <Link Link to="/" className="show-submenu" >About</Link>
               </li>
               <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Venue signup</Link>
-              </li>
-              <li className="submenu">
-                <Link Link to="/member/home" className="show-submenu" >Login</Link>
+                <Link Link to="/venue-list" className="show-submenu" >Venue List</Link>
               </li>
             </ul>
           </nav>

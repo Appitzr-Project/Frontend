@@ -6,7 +6,8 @@ import VenueCard from "../../components/Card/components/VenueCard"
 import Slider from "react-slick";
 import 'assets/css/leaflet.css';
 import 'assets/css/listing.css';
-
+import Navbar from "../../components/NavBar"
+import Footer from "components/Footer"
 
 const Index = () => {
   const [distance, setDistance] = useState(0);
@@ -23,6 +24,9 @@ const Index = () => {
     .then(res => {
       setVenues(res.data.data)
     })
+    
+    // change className in Header
+    document.getElementById("header-nav").className = "header_in clearfix";
   }, []);
 
   const changeDistanceHandle = (e) => {
@@ -31,7 +35,9 @@ const Index = () => {
 
   return ( 
     <>
+      <Navbar />
       {/*  change address and search banner */}
+      <main>
       <div className="page_header element_to_stick">
           <div className="container">
             <div className="row">
@@ -60,8 +66,8 @@ const Index = () => {
             <a className="btn_map d-flex align-items-center justify-content-center" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" ><span className="btn_map_txt" data-text-swap="Hide Map" data-text-original="View on Map">View on Map</span></a>
             <FilterBox />
 
-            {/* <!-- /filter_type --> */}
-						<div className="filter_type">
+            {/* Distance - hide utk sementara*/}
+						{/* <div className="filter_type">
 							<h4><a href="#filter_3" data-toggle="collapse" className="closed">Distance</a></h4>
 							<div className="collapse" id="filter_3">
 								<div className="distance"> Radius around selected destination <span></span> km</div>
@@ -69,8 +75,8 @@ const Index = () => {
                   <input type="range" min="10" max="50" step="1" value={distance} data-orientation="horizontal" onChange={changeDistanceHandle} />
                 </div>
 							</div>
-						</div>
-						{/* <!-- /filter_type --> */}
+						</div> */}
+						{/* end - Distance  */}
 
             <p><a href="#" className="btn_1 outline full-width">Filter</a></p>
           </aside>
@@ -127,6 +133,8 @@ const Index = () => {
           {/* end - main content */}
         </div>
       </div>
+      </main>
+      <Footer />
     </>
    );
 }
