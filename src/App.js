@@ -8,7 +8,6 @@ import {
 import { CssBaseline } from "@material-ui/core";
 import { useSelector } from 'react-redux';
 
-
 const HomePage = lazy(() => import('./components/Member'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
@@ -45,8 +44,6 @@ function ProtectedRoute({ component: Component , levelAccess = null, ...restProp
 }
 
 function App() { 
-
-
 
   return (
     <>

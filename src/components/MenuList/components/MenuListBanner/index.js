@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getVenueById } from '../../../../redux/api/venue.api';
 import MenuListBannerModal from './MenuListBannerModal';
+import HeroGeneral from 'assets/img/hero_general.jpg';
 
 const MenuListBanner = () => {
   const [show, setShow] = useState(false);
@@ -34,7 +35,7 @@ const MenuListBanner = () => {
     <>
       <div
         className="hero_in detail_page background-image"
-        data-background="url(../assets/img/hero_general.jpg)"
+        data-background={`url(${HeroGeneral})`}
       >
         <div
           className="wrapper opacity-mask"

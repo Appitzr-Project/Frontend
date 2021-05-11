@@ -3,8 +3,9 @@ import Axios from "axios"
 import FilterBox from "../../components/CheckBox/FilterBox"
 import CategoryCard from "../../components/Card/components/CategoryCard"
 import VenueCard from "../../components/Card/components/VenueCard"
-import {Helmet} from "react-helmet"
 import Slider from "react-slick";
+import 'assets/css/leaflet.css';
+import 'assets/css/listing.css';
 
 
 const Index = () => {
@@ -30,16 +31,6 @@ const Index = () => {
 
   return ( 
     <>
-      <Helmet>
-        <title>Appetizr</title>
-        <meta name="description" content="Appetizr Description" />
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" />
-        <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <link href="assets/css/custom.css" hrel="stylesheet" />
-        <link href="assets/css/listing.css" rel="stylesheet" />
-        <link href="assets/css/leaflet.css" rel="stylesheet" />
-      </Helmet>
       {/*  change address and search banner */}
       <div className="page_header element_to_stick">
           <div className="container">

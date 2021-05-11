@@ -316,7 +316,8 @@
   border-radius: 5px;
 }
 
-.leaflet-control-layers-toggle {
+/* TODO: FIX THIS BG IMAGE */
+/* .leaflet-control-layers-toggle {
   background-image: url(images/layers.png);
   width: 36px;
   height: 36px;
@@ -325,7 +326,7 @@
 .leaflet-retina .leaflet-control-layers-toggle {
   background-image: url(images/layers-2x.png);
   background-size: 26px 26px;
-}
+} */
 
 .leaflet-touch .leaflet-control-layers-toggle {
   width: 44px;

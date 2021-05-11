@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import MenuListBanner from '../../components/MenuList/components/MenuListBanner';
 import MenuListContentContainer from '../../components/MenuList/components/MenuListContentContainer';
 import MenuListModalDetail from '../../components/MenuList/components/MenuListModalDetail';
-import MenuHelmet from './MenuHelmet';
 import './styles.css';
-
+import 'assets/css/detail-page.css';
 
 const MenuList = () => {
   const [show, setShow] = useState(false);
@@ -34,7 +33,8 @@ const MenuList = () => {
     const imgEl = document.querySelectorAll('img');
     if (imgEl) {
       imgEl.forEach((el) => {
-        el.src = el.getAttribute('data-src');
+        const attSrc = el.getAttribute('data-src');
+        if (attSrc) el.src = el.getAttribute('data-src');
       });
     }
 
@@ -64,7 +64,6 @@ const MenuList = () => {
   }, []);
   return (
     <>
-      <MenuHelmet />
       <main>
         <MenuListBanner />
         <MenuListContentContainer handleShow={handleShow} />

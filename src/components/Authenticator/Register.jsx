@@ -3,10 +3,8 @@ import {useDispatch} from 'react-redux'
 import { customSignInAction , signUpAction } from '../../redux/actions/auth.action';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-
-
-
+import LogoSticky1 from 'assets/img/logo_sticky1.jpeg';
+import 'assets/css/order-sign_up.css';
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -63,19 +61,12 @@ const Register = () => {
 
   return (
     <>
-    <Helmet>
-
-      <link href="assets/css/style.css" rel="stylesheet" />
-      <link href="assets/css/order-sign_up.css" rel="stylesheet" />
-      <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
-
-    </Helmet>
     <div id="register_bg">
     <div id="register">
       <aside>
         <figure>
           <a href="index.html">
-            <img src="/assets/img/logo_sticky1.jpeg" alt="" width="140" />
+            <img src={LogoSticky1} alt="" width="140" />
           </a>
         </figure>
         <div className="access_social">

@@ -1,7 +1,7 @@
-import { Helmet } from "react-helmet"
 import { Link, useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { signOutAction } from '../../redux/actions/auth.action';
+import avatar1 from 'assets/img/avatar1.jpg';
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const NavBar = () => {
       <li>
           <div class="dropdown user clearfix">
               <a href="#" data-toggle="dropdown" aria-expanded="false">
-                  <figure><img src="assets/img/avatar1.jpg" alt="" /></figure><span>{ user.email }</span>
+                  <figure><img src={avatar1} alt="" /></figure><span>{ user.email }</span>
               </a>
               <div className="dropdown-menu" >
                   <div className="dropdown-menu-content">
@@ -44,16 +44,8 @@ const NavBar = () => {
     })
   }
 
-  return(<>
-    <Helmet>
-        <title>Appetizr</title>
-        <meta name="description" content="Appetizr Description" />
-        {'GOOGLE WEB FONT'}
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" />
-        {'BASE CSS'}
-        <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
-        <link href="assets/css/style.css" rel="stylesheet" />
-      </Helmet>
+  return(
+    <>
       <header className="header black_nav clearfix element_to_stick">
         <div className="container">
           <div id="logo">
