@@ -4,6 +4,8 @@ import MenuListContentContainer from '../../components/MenuList/components/MenuL
 import MenuListModalDetail from '../../components/MenuList/components/MenuListModalDetail';
 import './styles.css';
 import 'assets/css/detail-page.css';
+import Footer from 'components/Footer';
+import NavBar from 'components/NavBar';
 
 const MenuList = () => {
   const [show, setShow] = useState(false);
@@ -61,13 +63,18 @@ const MenuList = () => {
     if (sentinalEl) {
       observer.observe(sentinalEl);
     }
+
+    // change className in Header 
+    document.getElementById("header-nav").className = "header_in clearfix";
   }, []);
   return (
     <>
+      <NavBar />
       <main>
         <MenuListBanner />
         <MenuListContentContainer handleShow={handleShow} />
       </main>
+      <Footer />
       <MenuListModalDetail
         show={show}
         handleClose={handleClose}

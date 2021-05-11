@@ -24,8 +24,9 @@ const Index = () => {
     .then(res => {
       setVenues(res.data.data)
     })
-
-    document.getElementById("header-nav").className = "header_in clearfix"
+    
+    // change className in Header
+    document.getElementById("header-nav").className = "header_in clearfix";
   }, []);
 
   const changeDistanceHandle = (e) => {
