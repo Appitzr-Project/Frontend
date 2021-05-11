@@ -22,7 +22,8 @@ const OrderSummaryCard = (props) => {
                         <li>Delivery fee<span>$10</span></li>
                         <li class="total">Total<span>$66</span></li>
                     </ul>
-                    <div class="dropdown day" style={{ marginBottom: "25px" }}>
+                    {/* hide for now */}
+                    {/* <div class="dropdown day" style={{ marginBottom: "25px" }}>
                         <a href="#/" data-toggle="dropdown">Day <span id="selected_day"></span></a>
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-content">
@@ -41,7 +42,7 @@ const OrderSummaryCard = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div class="btn_1_mobile">
                         <a href="order.html" class="btn_1 gradient full-width mb_5">Order Now</a>
                         <div class="text-center"><small>No money charged on this steps</small></div>
