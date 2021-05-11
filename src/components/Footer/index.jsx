@@ -1,24 +1,11 @@
 const Footer = () => {
-    return(
-  
-      <footer>
-      <div className="wave footer"></div>
+  return (
+    <footer>
+      <div className="wave footer" />
       <div className="container margin_60_40 fix_mobile">
-  
+
         <div className="row">
-          <div className="col-lg-3 col-md-6">
-            <h3 data-target="#collapse_1">Quick Links</h3>
-            <div className="collapse dont-collapse-sm links" id="collapse_1">
-              <ul>
-                <li><a href="about.html">About us</a></li>
-                <li><a href="submit-restaurant.html">Add your restaurant</a></li>
-                <li><a href="help.html">Help</a></li>
-                <li><a href="account.html">My account</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-              </ul>
-            </div>
-          </div>
+
           <div className="col-lg-3 col-md-6">
             <h3 data-target="#collapse_2">Categories</h3>
             <div className="collapse dont-collapse-sm links" id="collapse_2">
@@ -52,55 +39,26 @@ const Footer = () => {
                   </div>
                 </form>
               </div>
-              <div className="follow_us">
-                <h5>Follow Us</h5>
-                <ul>
-                  <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/twitter_icon.svg" alt="" className="lazy" /></a></li>
-                  <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/facebook_icon.svg" alt="" className="lazy" /></a></li>
-                  <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/instagram_icon.svg" alt="" className="lazy" /></a></li>
-                  <li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/youtube_icon.svg" alt="" className="lazy" /></a></li>
-                </ul>
-              </div>
+
             </div>
           </div>
         </div>
         <hr />
         <div className="row add_bottom_25">
           <div className="col-lg-6">
-            <ul class="footer-selector clearfix">
-              <li>
-                <div class="styled-select lang-selector">
-                  <select>
-                    <option defaultValue="English" selected>English</option>
-                    <option value="French">French</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="Russian">Russian</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div class="styled-select currency-selector">
-                  <select>
-                    <option value="US Dollars" selected>US Dollars</option>
-                    <option value="Euro">Euro</option>
-                  </select>
-                </div>
-              </li>
-              <li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="assets/img/cards_all.svg" alt="" width="230" height="35" class="lazy" /></li>
-            </ul>
+
           </div>
           <div className="col-lg-6">
             <ul className="additional_links">
-              <li><a href="#0">Terms and conditions</a></li>
-              <li><a href="#0">Privacy</a></li>
-              <li><span>© FooYes</span></li>
+              <li><a href="/TOS">Terms and conditions</a></li>
+              <li><a href="/Privancy">Privacy</a></li>
+              <li><span>© Appetizr</span></li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
-  
-    )
-  }
+  )
+}
 
-  export default Footer
+export default Footer
