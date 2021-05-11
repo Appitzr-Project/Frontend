@@ -19,7 +19,7 @@ const ProfileEdit = lazy(() => import('./components/ProfileEdit'));
 const DiscountInfo = lazy(() => import('./components/DiscountInfo'))
 const Login = lazy(() => import('./components/Authenticator/Login'))
 const Register = lazy(() => import('./components/Authenticator/Register'))
-const ConfirmationCode = lazy(() => import('./components/Authenticator/ConfirmationCode'))
+const ConfirmationCode = lazy(() => import('./components/Authenticator/ConfirmationCodeTemplate'))
 const ForgotPassword = lazy(() => import('./components/Authenticator/ForgotPassword'))
 const VenueList = lazy(()=> import("./routes/VenueList/index"));
 const MenuList = lazy(() => import('./routes/MenuList'))
