@@ -6,7 +6,8 @@ import VenueCard from "../../components/Card/components/VenueCard"
 import Slider from "react-slick";
 import 'assets/css/leaflet.css';
 import 'assets/css/listing.css';
-
+import Navbar from "../../components/NavBar"
+import Footer from "components/Footer"
 
 const Index = () => {
   const [distance, setDistance] = useState(0);
@@ -23,6 +24,8 @@ const Index = () => {
     .then(res => {
       setVenues(res.data.data)
     })
+
+    document.getElementById("header-nav").className = "header_in clearfix"
   }, []);
 
   const changeDistanceHandle = (e) => {
@@ -31,7 +34,9 @@ const Index = () => {
 
   return ( 
     <>
+      <Navbar />
       {/*  change address and search banner */}
+      <main>
       <div className="page_header element_to_stick">
           <div className="container">
             <div className="row">
@@ -127,6 +132,8 @@ const Index = () => {
           {/* end - main content */}
         </div>
       </div>
+      </main>
+      <Footer />
     </>
    );
 }
