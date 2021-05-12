@@ -47,7 +47,7 @@ const Register = () => {
       dispatch(signUpAction({ ...form , username: form.attributes.email }))
       .then(() => {
         setState({ isLoading : false })
-        history.push('/')
+        history.push('/confirmation-code')
       })
       .catch(err => {
         setState({ isLoading : false })
