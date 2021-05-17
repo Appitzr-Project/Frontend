@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { getAllProductsByVenueId } from '../../../../redux/api/products.api';
 import MenuListContent from '../MenuListContent';
 import MenuListNavBar from '../MenuListNavBar';
-import MenuListReviews from '../MenuListReviews';
+// hide for now
+// import MenuListReviews from '../MenuListReviews';
 
 const MenuListContentContainer = ({ handleShow }) => {
   const [items, setItems] = useState([]);
