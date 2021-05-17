@@ -50,8 +50,8 @@ const Footer = () => {
           </div>
           <div className="col-lg-6">
             <ul className="additional_links">
-              <li><a href="#0">Terms and conditions</a></li>
-              <li><a href="#0">Privacy</a></li>
+              <li><a href="/Tos">Terms and conditions</a></li>
+              <li><a href="/Privacy">Privacy</a></li>
               <li><span>© Appetizr</span></li>
             </ul>
           </div>
