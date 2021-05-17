@@ -67,8 +67,8 @@ function App() {
             <Route path="/forgot-password" component={ForgotPassword} />
             <Route path="/venue-list" component={VenueList} />
             <Route path="/menulist/:idVenue" component={MenuList} />
-            <Route path="/tos" component={Tos} />
-            <Route path="/privacy" component={Privacy} />
+            <Route path="/Tos" component={Tos} />
+            <Route path="/Privacy" component={Privacy} />
             {/* <Route path="*" component={NotFound} /> */}
           </Switch>
         </Suspense>
