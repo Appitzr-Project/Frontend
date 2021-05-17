@@ -20,21 +20,21 @@ const Login = lazy(() => import('./components/Authenticator/Login'))
 const Register = lazy(() => import('./components/Authenticator/Register'))
 const ConfirmationCode = lazy(() => import('./components/Authenticator/ConfirmationCodeTemplate'))
 const ForgotPassword = lazy(() => import('./components/Authenticator/ForgotPassword'))
-const VenueList = lazy(()=> import("./routes/VenueList/index"));
+const VenueList = lazy(() => import("./routes/VenueList/index"));
 const MenuList = lazy(() => import('./routes/MenuList'))
 const Tos = lazy(() => import('./routes/TOS'))
 const Privacy = lazy(() => import('./routes/Privacy'))
 
-function ProtectedRoute({ component: Component , levelAccess = null, ...restProps }) {
-  const auth = useSelector(state => state.auth );
+function ProtectedRoute({ component: Component, levelAccess = null, ...restProps }) {
+  const auth = useSelector(state => state.auth);
 
-  return(<Route {...restProps } render={() => {
-    if(auth.user) {
+  return (<Route {...restProps} render={() => {
+    if (auth.user) {
       const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
 
-      if(levelAccess && groupUser && groupUser.includes('venue')) {
+      if (levelAccess && groupUser && groupUser.includes('venue')) {
         return <Component />
-      } else if(!levelAccess && groupUser && groupUser.includes('venue')) {
+      } else if (!levelAccess && groupUser && groupUser.includes('venue')) {
         return <Redirect to='/venue' />
       } else {
         return <Component />
@@ -45,7 +45,7 @@ function ProtectedRoute({ component: Component , levelAccess = null, ...restProp
   }} />)
 }
 
-function App() { 
+function App() {
 
   return (
     <>
@@ -67,8 +67,8 @@ function App() {
             <Route path="/forgot-password" component={ForgotPassword} />
             <Route path="/venue-list" component={VenueList} />
             <Route path="/menulist/:idVenue" component={MenuList} />
-            <Route path="/Tos" component={Tos} />
-            <Route path="/Privacy" component={Privacy} />
+            <Route path="/tos" component={Tos} />
+            <Route path="/privacy" component={Privacy} />
             {/* <Route path="*" component={NotFound} /> */}
           </Switch>
         </Suspense>
