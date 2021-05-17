@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { signOutAction } from '../../redux/actions/auth.action';
@@ -12,23 +13,23 @@ const NavBar = () => {
   const renderUserLogged = () => (
     <ul id="top_menu" className="drop_user">
       <li>
-          <div class="dropdown user clearfix">
-              <a href="#" data-toggle="dropdown" aria-expanded="false">
-                  <figure><img src={avatar1} alt="" /></figure><span>{ user.email }</span>
-              </a>
-              <div className="dropdown-menu" >
-                  <div className="dropdown-menu-content">
-                      <ul>
-                          <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
-                          <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
-                          <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
-                          <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
-                      </ul>
-                  </div>
-              </div>
+        <div class="dropdown user clearfix">
+          <a href="#" data-toggle="dropdown" aria-expanded="false">
+            <figure><img src={avatar1} alt="" /></figure><span>{user.email}</span>
+          </a>
+          <div className="dropdown-menu" >
+            <div className="dropdown-menu-content">
+              <ul>
+                <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
+                <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
+                <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
+                <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
+              </ul>
+            </div>
           </div>
+        </div>
       </li>
-  </ul>
+    </ul>
   )
 
   const renderUserNotLogin = () => (
@@ -40,11 +41,11 @@ const NavBar = () => {
 
   const onLogout = () => {
     dispatch(signOutAction()).then(() => {
-      history.push('/login')      
+      history.push('/login')
     })
   }
 
-  return(
+  return (
     <>
       <header className="header black_nav clearfix element_to_stick" id="header-nav">
         <div className="container">
@@ -54,8 +55,8 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="layer"></div>
-         
-          { user && user.email ? renderUserLogged() : renderUserNotLogin() }
+
+          {user && user.email ? renderUserLogged() : renderUserNotLogin()}
 
           <a href="#0" className="open_close">
             <i className="icon_menu"></i><span>Menu</span>
@@ -81,8 +82,8 @@ const NavBar = () => {
           </nav>
         </div>
       </header>
-      
-  </>)
+
+    </>)
 }
 
 export default NavBar
