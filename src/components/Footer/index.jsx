@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer>
@@ -50,8 +52,12 @@ const Footer = () => {
           </div>
           <div className="col-lg-6">
             <ul className="additional_links">
-              <li><a href="#0">Terms and conditions</a></li>
-              <li><a href="#0">Privacy</a></li>
+              <li>
+                <Link to="/tos">Terms and conditions</Link>
+              </li>
+              <li>
+                <Link to="/privacy">Privacy</Link>
+              </li>
               <li><span>© Appetizr</span></li>
             </ul>
           </div>
