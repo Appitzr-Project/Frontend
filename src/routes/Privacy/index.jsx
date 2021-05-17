@@ -4,15 +4,15 @@ import NavBar from '../../components/NavBar';
 import 'assets/css/review.css';
 
 const Privacy = () => {
-  return(
+  return (
     <>
-    <NavBar />
-    <main class="bg_gray">
+      <NavBar />
+      <main class="bg_gray">
         <div class="container margin_60_20">
           <div class="row justify-content-center">
             <div class="col-lg-12">
               <div class="box_general write_review">
-                <h1>Website Terms and Conditions of Use</h1>
+                <h1>Privacy Policy</h1>
 
                 <h2>1. Terms</h2>
 
