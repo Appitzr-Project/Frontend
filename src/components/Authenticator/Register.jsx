@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import { customSignInAction , signUpAction } from '../../redux/actions/auth.action';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import LogoSticky1 from 'assets/img/logo_sticky1.jpeg';
+import LogoSticky from 'assets/img/logo_sticky.svg';
 import 'assets/css/order-sign_up.css';
 
 const Register = () => {
@@ -66,7 +66,7 @@ const Register = () => {
       <aside>
         <figure>
           <a href="index.html">
-            <img src={LogoSticky1} alt="" width="140" />
+            <img src={LogoSticky} alt="" width="140" />
           </a>
         </figure>
         <div className="access_social">
