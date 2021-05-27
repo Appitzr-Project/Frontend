@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
 import { useSelector } from 'react-redux';
+import { getCurrentUserAction } from 'redux/actions/auth.action';
 
 const HomePage = lazy(() => import('./components/Member'))
 const Scan = lazy(() => import('./components/Scan/index.js'));
@@ -46,6 +47,11 @@ function ProtectedRoute({ component: Component, levelAccess = null, ...restProps
 }
 
 function App() {
+
+  useEffect(() => {
+    getCurrentUserAction()
+  } , [] )
+
 
   return (
     <>

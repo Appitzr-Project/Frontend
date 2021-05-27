@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { customSignInAction , signInAction } from '../../redux/actions/auth.action';
+import { customSignInAction , signInAction, getCurrentUserAction } from '../../redux/actions/auth.action';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LogoSticky from 'assets/img/logo_sticky.svg';
 import 'assets/css/order-sign_up.css';
+import { useEffect } from 'react';
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,10 @@ const Login = () => {
   const [states , setState ] = useState({
     isLoading: false
   })
+
+  useEffect(() => {
+    getCurrentUserAction()
+  } , [] )
 
   const onLoginFB = () => {
     dispatch(customSignInAction('Facebook'))
