@@ -31,6 +31,7 @@ function ProtectedRoute({ component: Component, levelAccess = null, ...restProps
 
   return (<Route {...restProps} render={() => {
     if (auth.user) {
+      debugger
       const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
 
       if (levelAccess && groupUser && groupUser.includes('venue')) {
@@ -49,6 +50,7 @@ function ProtectedRoute({ component: Component, levelAccess = null, ...restProps
 function App() {
 
   useEffect(() => {
+    debugger
     getCurrentUserAction()
   } , [] )
 
