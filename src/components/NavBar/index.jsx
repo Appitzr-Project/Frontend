@@ -7,26 +7,36 @@ import avatar1 from 'assets/img/avatar1.jpg';
 const NavBar = () => {
   const dispatch = useDispatch()
   const history = useHistory();
-  const [ states , setState ] = useState({
+  const [states, setState] = useState({
     isDisplaySidebar: false
-  })
+  });
+  const [picture, setPicture] = useState();
   const auth = useSelector(state => state.auth);
-  const user = auth.user && auth.user.attributes
+  const user = auth.user && auth.user.attributes;
+  const userPicture = user.picture ? user.picture : null;
 
+  if (userPicture && userPicture.includes('https://')) {
+    setPicture(userPicture)
+  } else if (userPicture && userPicture.includes('{"data":')) {
+    const fbPicture = JSON.parse(userPicture);
+    setPicture(fbPicture.data.url);
+  } else {
+    setPicture(avatar1);
+  }
 
   const renderUserLogged = () => (
     <ul id="top_menu" className="drop_user">
       <li>
         <div className="dropdown user clearfix">
           <a href="#" data-toggle="dropdown" aria-expanded="false">
-            <figure><img src={avatar1} alt="" /></figure><span>{user.email}</span>
+            <figure><img src={userPicture} alt="" /></figure><span>{user.name ? user.name : user.email}</span>
           </a>
           <div className="dropdown-menu" >
             <div className="dropdown-menu-content">
               <ul>
-                <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
+                {/* <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
                 <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
-                <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
+                <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li> */}
                 <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
               </ul>
             </div>
@@ -59,26 +69,26 @@ const NavBar = () => {
               <h1>Appetizr</h1>
             </Link>
           </div>
-          <div className={`layer ${ states.isDisplaySidebar ? 'layer-is-visible' : ''}`} 
-               onClick={() => setState({ ...states , isDisplaySidebar : false })} ></div>
+          <div className={`layer ${states.isDisplaySidebar ? 'layer-is-visible' : ''}`}
+            onClick={() => setState({ ...states, isDisplaySidebar: false })} ></div>
 
           {user && user.email ? renderUserLogged() : renderUserNotLogin()}
 
-          <a href="#0" className="open_close" 
-             onClick={() => setState({ ...states , isDisplaySidebar : true })} >
+          <a href="#0" className="open_close"
+            onClick={() => setState({ ...states, isDisplaySidebar: true })} >
             <i className="icon_menu"></i><span>Menu</span>
           </a>
-          <nav className={`main-menu ${ states.isDisplaySidebar ? 'show' : ''}`} >
+          <nav className={`main-menu ${states.isDisplaySidebar ? 'show' : ''}`} >
             <div id="header_menu">
               <a href="#0" className="open_close"
-                 onClick={() => setState({ ...states , isDisplaySidebar : false })} >
+                onClick={() => setState({ ...states, isDisplaySidebar: false })} >
                 <i className="icon_close"></i><span>Menu</span>
               </a>
               <a href="index.html"><h1>Appetizr</h1></a>
             </div>
             <ul>
               <li className="submenu">
-                <Link  to="/" className="show-submenu" >Home</Link>
+                <Link to="/" className="show-submenu" >Home</Link>
               </li>
               <li className="submenu">
                 <Link to="/" className="show-submenu" >About</Link>
