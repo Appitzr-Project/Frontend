@@ -10,14 +10,19 @@ const NavBar = () => {
   const [states, setState] = useState({
     isDisplaySidebar: false
   });
-  const [picture, setPicture] = useState();
   const auth = useSelector(state => state.auth);
   const user = auth.user && auth.user.attributes;
 
-  if (user && user.picture && user.picture.data && user.picture.data.url) {
-    setPicture(user.picture.data.url)
-  } else if (user && user.picture) {
-    setPicture(user.picture);
+  // check if user have profile picture or not
+  let profilePicture = null;
+  if (user && user.picture && user.picture.includes('https://') && !user.picture.includes('data')) {
+    profilePicture = user.picture;
+  } else if (user && user.picture && user.picture.includes('data')) {
+    const jsonPic = JSON.parse(user.picture);
+
+    if (jsonPic && jsonPic.data && jsonPic.data.url) {
+      profilePicture = jsonPic.data.url;
+    }
   }
 
   const renderUserLogged = () => (
@@ -25,7 +30,7 @@ const NavBar = () => {
       <li>
         <div className="dropdown user clearfix">
           <a href="#" data-toggle="dropdown" aria-expanded="false">
-            <figure><img src={picture ? picture : avatar1} alt="" /></figure><span>{user.name ? user.name : user.email}</span>
+            <figure><img src={profilePicture ?? avatar1} alt="" /></figure><span>{user.name ? user.name : user.email}</span>
           </a>
           <div className="dropdown-menu" >
             <div className="dropdown-menu-content">
