@@ -109,7 +109,7 @@ const MemberHome = () => {
                     <div className="box_how">
                       <figure><img src={placeholder} data-src={how1SVG} alt="" width="150" height="167" className="lazy" /></figure>
                       <h3>Have an Appetite?</h3>
-                      <p>Wheather you are sitting at your favourite cafe restaurant or looking for something new. Let Appitizr assit in your dining experience</p>
+                      <p>Whether at a cafe, club, pub, restaurant or if you are looking for something new Appetizr can improve your dining experience.</p>
                     </div>
                     <div className="box_how">
                       <figure><img src={placeholder} data-src={how2SVG} alt="" width="130" height="145" className="lazy" /></figure>
@@ -121,7 +121,7 @@ const MemberHome = () => {
                     <div className="box_how">
                       <figure><img src={placeholder} data-src={how3SVG} alt="" width="150" height="132" className="lazy" /></figure>
                       <h3>Enjoy Food</h3>
-                      <p>No need to wait for somone to bring you the menu. With a quick tap of your phone on the QR code on your table, you can start selecting your favourite dish and customise the order in your own time.</p>
+                      <p>No need for menus with Appetizr! Simply search for your venue or scan their QR code and Boom! The menu is on your screen. You can order and pay in your own time.</p>
                     </div>
                   </div>
                 </div>
@@ -132,9 +132,9 @@ const MemberHome = () => {
                     <span><em></em></span>
                     <h2>How Appetizr Works</h2>
                   </div>
-                  <p className="lead">Appetizr was developed with food lovers that like to experience new flavours and making the the wholes experience from search and explore to sit down dining with complete in mind</p>
-                  <p>From registering your attenance and helping improve the wellbing of others to ordering your favourite dish and tipping all on your phone.</p>
-                  <p><Link to="/login" className="btn_1 mt-2">Join Now<i className="arrow_triangle-right"></i></Link></p>
+                  <p className="lead">Appetizr was developed by food lovers for food lovers! You can search your local areas for new spots to eat, read their menu and order and pay.</p>
+                  <p>You can enjoy the atmosphere of dining while remaining being as contactless as possible. You can do it all on Appetizr, Order, Pay and Tip your service staff!</p>
+                  <p><Link to="/login" className="btn_1 mt-2"><a>Join Now<i className="arrow_triangle-right"></i></a></Link></p>
                 </div>
               </div>
             </div>
