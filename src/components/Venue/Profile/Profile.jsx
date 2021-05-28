@@ -205,7 +205,7 @@ const Profile = () => {
                       placeholder='Enter account number' />
                   </div>
                   <div className='text-center' >
-                    <img alt="mantap" src="/src/img/QRCODE.svg" />
+                    <img alt="mantap" src="/src/img/QRCODE.svg" width="200" />
                   </div>
                   <div className='text-center btn-link ' >
                     Send to email
