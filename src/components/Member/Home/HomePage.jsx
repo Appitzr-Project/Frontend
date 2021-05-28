@@ -134,7 +134,7 @@ const MemberHome = () => {
                   </div>
                   <p className="lead">Appetizr was developed with food lovers that like to experience new flavours and making the the wholes experience from search and explore to sit down dining with complete in mind</p>
                   <p>From registering your attenance and helping improve the wellbing of others to ordering your favourite dish and tipping all on your phone.</p>
-                  <p><Link to="/login" className="btn_1 mt-2"><a>Join Now<i className="arrow_triangle-right"></i></a></Link></p>
+                  <p><Link to="/login" className="btn_1 mt-2">Join Now<i className="arrow_triangle-right"></i></Link></p>
                 </div>
               </div>
             </div>

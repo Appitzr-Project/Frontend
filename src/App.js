@@ -6,7 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUserAction } from 'redux/actions/auth.action';
 
 const HomePage = lazy(() => import('./components/Member'))
@@ -31,7 +31,7 @@ function ProtectedRoute({ component: Component, levelAccess = null, ...restProps
 
   return (<Route {...restProps} render={() => {
     if (auth.user) {
-      debugger
+      
       const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
 
       if (levelAccess && groupUser && groupUser.includes('venue')) {
@@ -48,10 +48,10 @@ function ProtectedRoute({ component: Component, levelAccess = null, ...restProps
 }
 
 function App() {
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    debugger
-    getCurrentUserAction()
+    dispatch(getCurrentUserAction())
   } , [] )
 
 

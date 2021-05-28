@@ -17,7 +17,7 @@ const NavBar = () => {
   const renderUserLogged = () => (
     <ul id="top_menu" className="drop_user">
       <li>
-        <div class="dropdown user clearfix">
+        <div className="dropdown user clearfix">
           <a href="#" data-toggle="dropdown" aria-expanded="false">
             <figure><img src={avatar1} alt="" /></figure><span>{user.email}</span>
           </a>
@@ -78,13 +78,13 @@ const NavBar = () => {
             </div>
             <ul>
               <li className="submenu">
-                <Link Link to="/" className="show-submenu" >Home</Link>
+                <Link  to="/" className="show-submenu" >Home</Link>
               </li>
               <li className="submenu">
-                <Link Link to="/" className="show-submenu" >About</Link>
+                <Link to="/" className="show-submenu" >About</Link>
               </li>
               <li className="submenu">
-                <Link Link to="/venue-list" className="show-submenu" >Venue List</Link>
+                <Link to="/venue-list" className="show-submenu" >Venue List</Link>
               </li>
             </ul>
           </nav>
