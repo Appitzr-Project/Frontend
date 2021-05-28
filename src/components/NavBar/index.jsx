@@ -27,6 +27,7 @@ const NavBar = () => {
                 <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
                 <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
                 <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li>
+                <li><a href="/venue/profile"><i className="icon_heart"></i>Register as Venue</a></li>
                 <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
               </ul>
             </div>
