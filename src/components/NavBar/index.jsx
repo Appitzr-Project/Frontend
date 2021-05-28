@@ -13,15 +13,12 @@ const NavBar = () => {
   const [picture, setPicture] = useState();
   const auth = useSelector(state => state.auth);
   const user = auth.user && auth.user.attributes;
-  const userPicture = user.picture ? user.picture : null;
 
-  if (userPicture && userPicture.includes('https://')) {
-    setPicture(userPicture)
-  } else if (userPicture && userPicture.includes('{"data":')) {
-    const fbPicture = JSON.parse(userPicture);
+  if (user && user.picture && user.picture.includes('https://')) {
+    setPicture(user.picture)
+  } else if (user && user.picture && user.picture.includes('{"data":')) {
+    const fbPicture = JSON.parse(user.picture);
     setPicture(fbPicture.data.url);
-  } else {
-    setPicture(avatar1);
   }
 
   const renderUserLogged = () => (
@@ -29,7 +26,7 @@ const NavBar = () => {
       <li>
         <div className="dropdown user clearfix">
           <a href="#" data-toggle="dropdown" aria-expanded="false">
-            <figure><img src={userPicture} alt="" /></figure><span>{user.name ? user.name : user.email}</span>
+            <figure><img src={picture} alt="" /></figure><span>{user.name ? user.name : user.email}</span>
           </a>
           <div className="dropdown-menu" >
             <div className="dropdown-menu-content">
