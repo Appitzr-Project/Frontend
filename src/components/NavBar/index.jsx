@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { signOutAction } from '../../redux/actions/auth.action';
@@ -7,8 +7,12 @@ import avatar1 from 'assets/img/avatar1.jpg';
 const NavBar = () => {
   const dispatch = useDispatch()
   const history = useHistory();
+  const [ states , setState ] = useState({
+    isDisplaySidebar: false
+  })
   const auth = useSelector(state => state.auth);
   const user = auth.user && auth.user.attributes
+
 
   const renderUserLogged = () => (
     <ul id="top_menu" className="drop_user">
@@ -45,6 +49,7 @@ const NavBar = () => {
     })
   }
 
+
   return (
     <>
       <header className="header black_nav clearfix element_to_stick" id="header-nav">
@@ -54,16 +59,19 @@ const NavBar = () => {
               <h1>Appetizr</h1>
             </Link>
           </div>
-          <div className="layer"></div>
+          <div className={`layer ${ states.isDisplaySidebar ? 'layer-is-visible' : ''}`} 
+               onClick={() => setState({ ...states , isDisplaySidebar : false })} ></div>
 
           {user && user.email ? renderUserLogged() : renderUserNotLogin()}
 
-          <a href="#0" className="open_close">
+          <a href="#0" className="open_close" 
+             onClick={() => setState({ ...states , isDisplaySidebar : true })} >
             <i className="icon_menu"></i><span>Menu</span>
           </a>
-          <nav className="main-menu">
+          <nav className={`main-menu ${ states.isDisplaySidebar ? 'show' : ''}`} >
             <div id="header_menu">
-              <a href="#0" className="open_close">
+              <a href="#0" className="open_close"
+                 onClick={() => setState({ ...states , isDisplaySidebar : false })} >
                 <i className="icon_close"></i><span>Menu</span>
               </a>
               <a href="index.html"><h1>Appetizr</h1></a>
