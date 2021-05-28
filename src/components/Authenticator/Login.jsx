@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { customSignInAction , signInAction, getCurrentUserAction } from '../../redux/actions/auth.action';
+import { customSignInAction, signInAction, getCurrentUserAction } from '../../redux/actions/auth.action';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import LogoSticky from 'assets/img/logo_sticky.svg';
 import 'assets/css/order-sign_up.css';
 import { useEffect } from 'react';
@@ -14,13 +14,13 @@ const Login = () => {
     username: '',
     password: ''
   })
-  const [states , setState ] = useState({
+  const [states, setState] = useState({
     isLoading: false
   })
 
   useEffect(() => {
     getCurrentUserAction()
-  } , [] )
+  }, [])
 
   const onLoginFB = () => {
     dispatch(customSignInAction('Facebook'))
@@ -31,24 +31,24 @@ const Login = () => {
   }
 
   const handleFieldEmail = (e) => {
-    setForm({ ...form , username: e.target.value })
+    setForm({ ...form, username: e.target.value })
   }
 
   const handleFieldPassword = (e) => {
-    setForm({ ...form , password: e.target.value })
+    setForm({ ...form, password: e.target.value })
   }
 
   const onClickLoginNow = (e) => {
-    setState({ isLoading : true })
+    setState({ isLoading: true })
     dispatch(signInAction(form.username, form.password))
-    .then(() => {
-      setState({ isLoading : false })
-      history.push('/')
-    })
-    .catch(err => {
-      setState({ isLoading : false })
-      alert(err.message)
-    })
+      .then(() => {
+        setState({ isLoading: false })
+        history.push('/')
+      })
+      .catch(err => {
+        setState({ isLoading: false })
+        alert(err.message)
+      })
 
   }
 
@@ -58,9 +58,9 @@ const Login = () => {
         <div id="register">
           <aside>
             <figure>
-              <a href="index.html">
+              <Link to='/'>
                 <img src={LogoSticky} alt="" width="140"></img>
-              </a>
+              </Link>
             </figure>
             <div className="access_sosial">
               <a onClick={onLoginFB} className="social_bt facebook" href="#0">
@@ -75,8 +75,8 @@ const Login = () => {
             </div>
             <form autoComplete="off">
               <div className="form-group">
-                <input 
-                  className="form-control" 
+                <input
+                  className="form-control"
                   type="email"
                   placeholder="email"
                   onChange={handleFieldEmail} />
@@ -85,10 +85,10 @@ const Login = () => {
               </div>
               <div className="form-group">
                 <div className="hideShowPassword-wrap" style={{ "position": "relative", display: "block", verticalAlign: "baseline", margin: "0px", }}>
-                  <input id="password" 
-                  onChange={handleFieldPassword}
-                  className="form-control hideShowPassword-field" 
-                  type="password" id="password" placeholder="Password" style={{ margin: "0px", paddingRight: "51.1px", }} />
+                  <input id="password"
+                    onChange={handleFieldPassword}
+                    className="form-control hideShowPassword-field"
+                    type="password" id="password" placeholder="Password" style={{ margin: "0px", paddingRight: "51.1px", }} />
                 </div>
                 <i className="icon_lock_alt">
                 </i>
@@ -106,14 +106,11 @@ const Login = () => {
                 </div>
               </div>
               <button onClick={onClickLoginNow} className="btn_1 gradient full-width" disabled={states.isLoading} >
-                { states.isLoading ? 'Loading...' : 'Login Now' }
-            </button>
+                {states.isLoading ? 'Loading...' : 'Login Now'}
+              </button>
               <div className="text-center mt-2">
                 <small>
-                  Don't have an acccount?
-              <strong>
-                    <a href="/Register">Sign Up</a>
-                  </strong>
+                  Don't have an acccount? <strong><Link to="/register">Sign Up</Link></strong>
                 </small>
               </div>
             </form>
