@@ -20,6 +20,7 @@ export const getCurrentUserAction = () => {
     return async dispatch => {
         try {
             const { attributes , signInUserSession } = await getCurrentUserApi()
+            debugger
             dispatch({
                 type: SIGNIN,
                 payload: { user : { attributes , signInUserSession } }

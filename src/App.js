@@ -31,7 +31,6 @@ function ProtectedRoute({ component: Component, levelAccess = null, ...restProps
 
   return (<Route {...restProps} render={() => {
     if (auth.user) {
-      
       const groupUser = auth.user.signInUserSession.idToken.payload['cognito:groups'];
 
       if (levelAccess && groupUser && groupUser.includes('venue')) {
