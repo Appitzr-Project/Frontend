@@ -26,8 +26,9 @@ export const getCurrentUserAction = () => {
                 payload: { user : { attributes , signInUserSession } }
             })
         } catch (error) {
+            console.log('[error getCurrentUserAction ]' , error )
             dispatch({ type: SIGNOUT })
-            throw Error(error.message)
+            // throw Error(error.message)
         }
     }
 }
