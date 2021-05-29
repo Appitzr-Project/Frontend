@@ -38,7 +38,7 @@ const MenuListBanner = () => {
         data-background={`url(${HeroGeneral})`}
       >
         <div
-          className="wrapper opacity-mask"
+          className="wrapper `op`acity-mask"
           data-opacity-mask="rgba(0, 0, 0, 0.5)"
         >
           <div className="container">

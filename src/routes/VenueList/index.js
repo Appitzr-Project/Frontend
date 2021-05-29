@@ -38,7 +38,7 @@ const Index = () => {
       <Navbar />
       {/*  change address and search banner */}
       <main>
-      <div className="page_header element_to_stick">
+      {/* <div className="page_header element_to_stick">
           <div className="container">
             <div className="row">
               <div className="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
@@ -53,7 +53,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-      </div>
+      </div> */}
       {/*  end - change address and search banner */}
       <div className="collapse" id="collapseMap">
         <div id="map" className="map"></div>
@@ -108,6 +108,13 @@ const Index = () => {
               </div>
             </div>
             {/* end - list categories */}
+
+            {/* banner */}
+            <div class="promo">
+              <h3>20% off your first meal.</h3>
+              <p>Dine at one our hand selected restaurants below and receive 20% off</p>
+              <i class="icon-food_icon_delivery"></i>
+            </div>
 
             {/* Restaurant/venue */}
             <div className="row">

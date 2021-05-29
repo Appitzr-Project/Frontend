@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import MenuList from "./MenuList";
+import useWindowDimension from "../../../../helpers/useWindowDimension";
 
 const OrderSummaryCard = (props) => {
+    const { width } = useWindowDimension();
+    const [showOrder, setShowOrder] = useState(true);
+    useEffect(() => {
+        width>=990 ? setShowOrder(true) : setShowOrder(false)
+    }, [width]);
     return (
         <div class="col-lg-4" id="sidebar_fixed">
-            <div class="box_order mobile_fixed">
+            <div class="box_order mobile_fixed" style={{display: showOrder?"block":"none"}}>
                 <div class="head">
                     <h3>Order Summary</h3>
-                    <a href="#0" class="close_panel_mobile"><i class="icon_close"></i></a>
+                    <a href="#" class="close_panel_mobile" onClick={()=>setShowOrder(false)}><i class="icon_close"></i></a>
                 </div>
                 <div class="main">
                     <ul class="clearfix">
@@ -49,7 +55,7 @@ const OrderSummaryCard = (props) => {
                     </div>
                 </div>
             </div>
-            <div class="btn_reserve_fixed"><a href="#0" class="btn_1 gradient full-width">View Basket</a></div>
+            <div class="btn_reserve_fixed" onClick={()=>setShowOrder(true)}><a href="#" class="btn_1 gradient full-width" >View Basket</a></div>
         </div >
     );
 };
