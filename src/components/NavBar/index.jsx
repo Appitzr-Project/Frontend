@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signOutAction } from '../../redux/actions/auth.action';
 import avatar1 from 'assets/img/avatar1.jpg';
 
-const NavBar = () => {
+const NavBar = (props) => {
   const dispatch = useDispatch()
   const history = useHistory();
   const [states, setState] = useState({
@@ -12,7 +12,8 @@ const NavBar = () => {
   });
   const auth = useSelector(state => state.auth);
   const user = auth.user && auth.user.attributes;
-
+  const groupUser = (auth.user && auth.user.signInUserSession.idToken.payload['cognito:groups']) || [];
+  
   // check if user have profile picture or not
   let profilePicture = null;
   if (user && user.picture && user.picture.includes('https://') && !user.picture.includes('data')) {
@@ -38,6 +39,7 @@ const NavBar = () => {
                 {/* <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
                 <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
                 <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li> */}
+                <li><Link to='/venue/profile' className='d-flex' ><i className="icon_document"></i><span>{ groupUser.includes('venue') ? 'Profile Venue' : 'Register as Venue' }</span></Link></li>
                 <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
               </ul>
             </div>
@@ -50,7 +52,7 @@ const NavBar = () => {
   const renderUserNotLogin = () => (
     <ul id="top_menu">
       <li><Link to="/login" className="login">Sign In</Link></li>
-      <li><Link to="/" className="wishlist_bt_top">Love</Link></li>
+      {/* <li><Link to="/" className="wishlist_bt_top">Love</Link></li> */}
     </ul>
   )
 
@@ -63,11 +65,11 @@ const NavBar = () => {
 
   return (
     <>
-      <header className="header black_nav clearfix element_to_stick" id="header-nav">
+      <header className={ `header black_nav clearfix element_to_stick ${props.className}` } id="header-nav">
         <div className="container">
           <div id="logo">
             <Link to="/">
-              <h1>Appetizr</h1>
+              <h2>Appetizr</h2>
             </Link>
           </div>
           <div className={`layer ${states.isDisplaySidebar ? 'layer-is-visible' : ''}`}
@@ -88,13 +90,13 @@ const NavBar = () => {
               <a href="index.html"><h1>Appetizr</h1></a>
             </div>
             <ul>
-              <li className="submenu">
+              <li className="">
                 <Link to="/" className="show-submenu" >Home</Link>
               </li>
-              <li className="submenu">
+              {/* <li className="submenu">
                 <Link to="/" className="show-submenu" >About</Link>
-              </li>
-              <li className="submenu">
+              </li> */}
+              <li className="">
                 <Link to="/venue-list" className="show-submenu" >Venue List</Link>
               </li>
             </ul>

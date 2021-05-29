@@ -1,21 +1,17 @@
-import React from "react";
-import { TextField, Typography, Button, Grid, InputAdornment, FormHelperText, Snackbar, CircularProgress, Select, MenuItem, Input } from "@material-ui/core";
-import { Alert } from '@material-ui/lab';
-import Wrapper from "../../shared/Wrapper";
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { useStyle } from './ProfileStyle'
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createVenueProfileAction, getVenueProfileAction, updateVenueProfileAction } from "../../../redux/actions/profile.action";
-import { useEffect , useCallback } from "react";
-import { getCultureCategoryAction } from "../../../redux/actions/venue.action";
-import { useHistory } from "react-router-dom";
-import { getRefreshTokenAction } from "../../../redux/actions/auth.action";
+import NavBar from 'components/NavBar'
+import Footer from 'components/Footer'
 
-const inputStyle = { fontSize: 21, padding: "5px 10px" }
+import { useStyles } from './ProfileStyle'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { getCultureCategoryAction } from 'redux/actions/venue.action'
+import { getRefreshTokenAction } from 'redux/actions/auth.action'
+import { updateVenueProfileAction, createVenueProfileAction } from 'redux/actions/profile.action'
 
 const Profile = () => {
-  const classes = useStyle();
+  const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
   const { user: userState } = useSelector(state => state.auth)
@@ -35,27 +31,32 @@ const Profile = () => {
     createdAt: ''
   })
 
-  const [states, setStates] = useState({
-    errorVenueName: null,
-    errorPhoneNumber: null,
-    errorPostalCode: null,
-    errorLocation: null,
-    errorBankBSB: null,
-    errorBankName: null,
-    errorBankAccountNo: null,
-    errorAddress: null,
-    errorCultureCategory: null,
-
-    cultureCategories: [],
-    errorSave: null,
-    isLoading: false
-  })
-
+  const [states, setStates] = useState({ cultureCategories: [], isLoading: false })
+  
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
-  const setErrorSave = useCallback((errorSave) => {
-    setStates( s => ({ ...s, errorSave, isLoading: false }))
-  }, [setStates])
-  const getCurrentLocation = useCallback(() => {
+
+  useEffect(() => {
+    getCurrentLocation()
+    
+    dispatch(getCultureCategoryAction(idToken))
+    .then(res => {
+      setStates(s => ({ ...s , cultureCategories: res.data }) )
+    })
+    .catch(err => {
+      alert('[Error on get culture categories ] ', err.message || 'An error occured')
+    })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const onChange = name => ev => {
+    setForm({
+      ...form,
+      [name]: ev.target.value
+    })
+  }
+
+  const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setForm( s => ({
         ...s,
@@ -63,64 +64,26 @@ const Profile = () => {
         mapLat: position.coords.latitude
       }))
     });
-  }, [ setForm ] )
-
-  useEffect(() => {
-    getCurrentLocation()
-
-    dispatch(getCultureCategoryAction(idToken))
-      .then(res => {
-        setStates(s => ({ ...s , cultureCategories: res.data }) )
-      })
-      .catch(err => {
-        setErrorSave(err.message || 'An error occured')
-      })
-
-    dispatch(getVenueProfileAction(idToken))
-      .then(res => {
-        res.data && setForm(res.data)
-      }).catch(() => false  )
-
-   
-  }, [ dispatch , getCurrentLocation , idToken , setErrorSave ] )
-
-  const onChange = name => ev => {
-    setForm({
-      ...form,
-      [name]: ev.target.value
-    })
-    setStates({
-      ...states,
-      errorVenueName: null,
-      errorPhoneNumber: null,
-      errorPostalCode: null,
-      errorLocation: null,
-      errorBankBSB: null,
-      errorBankName: null,
-      errorBankAccountNo: null,
-      errorAddress: null,
-      errorCultureCategory: null
-    })
   }
 
   const onSave = (ev) => {
     ev.preventDefault()
-    if (validationState()) {
-      setLoading(true)
-      if(form.id)
-        updateVenue()
-      else
-        createNewVenue()
-    }
+
+    if(form.id)
+      updateVenue()
+    else
+      createNewVenue()
   }
 
   const createNewVenue = () => {
+    setLoading(true)
     dispatch(createVenueProfileAction(idToken, { ...form }))
       .then(() => {
         refreshTokenAction()
       })
       .catch(err => {
-        setErrorSave(err.message || 'An error occured')
+        setLoading(false)
+        alert(err.message || 'An error occured')
       })
   }
 
@@ -133,235 +96,132 @@ const Profile = () => {
   }
 
   const updateVenue = () => {
+    setLoading(true)
     dispatch(updateVenueProfileAction(idToken, { ...form }))
       .then(() => {
         setLoading(false)
         history.push('/venue')
       })
       .catch(err => {
-        setErrorSave(err.message || 'An error occured')
+        setLoading(false)
+        alert(err.message || 'An error occured')
       })
   }
 
-
-  const validationState = () => {
-    setStates({
-      ...states,
-      errorVenueName: !form.venueName ? 'This field is required ' : null,
-      errorPhoneNumber: !form.phoneNumber || form.phoneNumber.length < 2 ? 'This field is required ' : null,
-      errorPostalCode: !form.postalCode || form.postalCode.length < 2  ? 'This field is required ' : null,
-      errorLocation: !form.mapLong || !form.mapLat ? 'This field is required ' : null,
-      errorBankBSB: !form.bankBSB ? 'This field is required ' : null,
-      errorBankName: !form.bankName ? 'This field is required ' : null,
-      errorBankAccountNo: !form.bankAccountNo  ? 'This field is required ' : null,
-      errorAddress: !form.address ? 'This field is required ' : null,
-      errorCultureCategory: !form.cultureCategory ? 'This field is required ' : null,
-    })
-    const formValue = [form.venueName, form.phoneNumber, form.postalCode, form.mapLong, form.mapLat, form.bankBSB, form.bankName, form.bankAccountNo]
-    return !formValue.includes('') && !formValue.includes(undefined) && !formValue.includes(0) && !formValue.includes('0')
-  }
-
-  const renderSnackbar = () => (
-    <Snackbar open={states.errorSave !== null} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} autoHideDuration={6000} onClose={() => setErrorSave(null)}>
-      <Alert elevation={6} variant="filled" onClose={() => setErrorSave(null)} severity="error" >
-        {states.errorSave}
-      </Alert>
-    </Snackbar>
-  )
-
   return (
     <>
-      <Wrapper
-        title="Profile"
-        image="https://source.unsplash.com/random"
-        isBack="/venue"
-      >
-        <form onSubmit={onSave} >
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Name</Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.venueName}
-              onChange={onChange('venueName')}
-            />
-            {(states.errorVenueName && <FormHelperText error >{states.errorVenueName}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Email</Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={userState.attributes && userState.attributes.email}
-              readOnly
-            />
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Phone Number</Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.phoneNumber}
-              onChange={onChange('phoneNumber')}
-            />
-            {(states.errorPhoneNumber && <FormHelperText error >{states.errorPhoneNumber}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Postal Code</Typography>
-            <TextField
-              type='number'
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.postalCode}
-              onChange={onChange('postalCode')}
-            />
-            {(states.errorPostalCode && <FormHelperText error >{states.errorPostalCode}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Location</Typography>
-            <TextField
-              InputProps={{
-                style: inputStyle, className: classes.input, disableUnderline: true, startAdornment: (
-                  <InputAdornment position="start" component="div">
-                    <div className={classes.startIcon} onClick={getCurrentLocation} >
-                      <LocationOnIcon />
-                    </div>
-                  </InputAdornment>
-                )
-              }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.mapLong + ',' + form.mapLat}
-            />
-            {(states.errorLocation && <FormHelperText error >{states.errorLocation}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Address</Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              multiline
-              rows={2}
-              size="small"
-              value={form.address}
-              onChange={onChange('address')}
-            />
-            {(states.errorAddress && <FormHelperText error >{states.errorAddress}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Culture Category</Typography>
-            <Select
-              value={form.cultureCategory || '' }
-              fullWidth
-              variant='outlined'
-              classes={{ root: classes.select }}
-              input={
-                <Input
-                  disableUnderline
-                  inputProps={{ style: inputStyle, className: classes.input }}
-                />
-              }
-              onChange={onChange('cultureCategory')}
-            >
-              {states.cultureCategories.map( (c , key ) => (
-                <MenuItem value={c} key={key} >{c}</MenuItem>
-              ))}
-            </Select>
-            {(states.errorCultureCategory && <FormHelperText error >{states.errorCultureCategory}</FormHelperText>) || ''}
-          </div>
-
-          <Typography
-            style={{
-              fontSize: "18px",
-              fontWeight: " 600",
-              margin: "33px 0 25px 0",
-            }}
-          >
-            Bank Details
-          </Typography>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Bank BSB</Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.bankBSB}
-              onChange={onChange('bankBSB')}
-            />
-            {(states.errorBankBSB && <FormHelperText error >{states.errorBankBSB}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>Account Name</Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.bankName}
-              onChange={onChange('bankName')}
-            />
-            {(states.errorBankName && <FormHelperText error >{states.errorBankName}</FormHelperText>) || ''}
-          </div>
-
-          <div className={classes.formControl}>
-            <Typography className={classes.inputLabel}>
-              Account Number
-            </Typography>
-            <TextField
-              InputProps={{ style: inputStyle, className: classes.input, disableUnderline: true, }}
-              variant="standard"
-              fullWidth
-              size="small"
-              value={form.bankAccountNo}
-              onChange={onChange('bankAccountNo')}
-            />
-            {(states.errorBankAccountNo && <FormHelperText error >{states.errorBankAccountNo}</FormHelperText>) || ''}
-          </div>
-
-          <Grid container direction="column" alignItems="center" justify="center" className={classes.qrcode}>
-            <Grid item>
-              <img alt="mantap" src="/src/img/QRCODE.svg" />
-            </Grid>
-            <Grid item>
-              <div className={classes.sendEmail}>
-                Send to email
+      <NavBar className='header_in' />
+      <main className='bg_gray' >
+        <div className='container margin_60_20' >
+          <div className='row justify-content-center ' >
+            <div className='col-lg-8' >
+              <div className={classes.box_general} >
+                <h4>Profile Venue</h4>
+                <hr />
+                <form onSubmit={onSave} >
+                  <div className="form-group">
+                    <label>Name</label>
+                    <input className="form-control"
+                      type="text"
+                      placeholder='Enter name venue' 
+                      value={form.venueName}
+                      onChange={onChange('venueName')} />
+                  </div>
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input className="form-control"
+                      type="email"
+                      placeholder='Enter your email' 
+                      value={userState.attributes && userState.attributes.email}
+                      readOnly />
+                  </div>
+                  <div className="form-group">
+                    <label>Phone Number</label>
+                    <input className="form-control"
+                      type="text"
+                      placeholder='Enter your phone number' 
+                      value={form.phoneNumber}
+                      onChange={onChange('phoneNumber')} />
+                  </div>
+                  <div className="form-group">
+                    <label>Postal Code</label>
+                    <input className="form-control"
+                      type="text"
+                      placeholder='Enter postal code' 
+                      value={form.postalCode}
+                      onChange={onChange('postalCode')} />
+                  </div>
+                  <div className={`form-group ${classes.fieldLocation }`}>
+                    <label onClick={getCurrentLocation} >Location</label>
+                    <input className="form-control"
+                      type="text"
+                      value={ form.mapLong + ',' + form.mapLat }
+                      placeholder='Enter longitude and latitude' readOnly />
+                    <i className="icon_pin_alt"></i>
+                  </div>
+                  <div className="form-group">
+                    <label>Address</label>
+                    <textarea className="form-control"
+                      rows='3'
+                      value={form.address}
+                      onChange={onChange('address')}
+                      placeholder='Enter address' >
+                    </textarea>
+                  </div>
+                  <div className="form-group">
+                    <label>Culture Category</label>
+                    <select className="form-control" 
+                            value={form.cultureCategory || '' }
+                            onChange={onChange('cultureCategory')} >
+                    <option value={-1} >Select a Category</option>
+                    {states.cultureCategories.map( (c , key ) => (
+                      <option value={c} key={key} >{c}</option>
+                    ))}
+                    </select>
+                  </div>
+                  <h6>Bank Details</h6>
+                  <div className="form-group">
+                    <label>Bank BSB</label>
+                    <input className="form-control"
+                      type="text"
+                      value={form.bankBSB}
+                      onChange={onChange('bankBSB')}
+                      placeholder='Enter bank BSB' />
+                  </div>
+                  <div className="form-group">
+                    <label>Account Name</label>
+                    <input className="form-control"
+                      type="text"
+                      value={form.bankName}
+                      onChange={onChange('bankName')}
+                      placeholder='Enter account name' />
+                  </div>
+                  <div className="form-group">
+                    <label>Account Number</label>
+                    <input className="form-control"
+                      type="number"
+                      value={form.bankAccountNo}
+                      onChange={onChange('bankAccountNo')}
+                      placeholder='Enter account number' />
+                  </div>
+                  <div className='text-center' >
+                    <img alt="mantap" src="/src/img/QRCODE.svg" width="200" />
+                  </div>
+                  <div className='text-center btn-link ' >
+                    Send to email
+                  </div>
+                  <div className='text-right'>
+                    <button type='submit' className='btn_1' disabled={states.isLoading} > { states.isLoading ? 'Loading ...' : 'Save' }</button>
+                  </div>
+                </form>
               </div>
-            </Grid>
-          </Grid>
-
-          <Button
-            type='submit'
-            variant="outlined"
-            className={classes.submitBtn}
-            disableRipple
-            fullWidth
-          >
-            {states.isLoading ? <CircularProgress /> : 'Submit'}
-          </Button>
-        </form>
-        {renderSnackbar()}
-      </Wrapper>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

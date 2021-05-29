@@ -4,6 +4,8 @@ import { useHistory, Link } from 'react-router-dom';
 import { getAllVenueList } from '../../../redux/api/venue.api';
 import NavBar from '../../NavBar/index.jsx';
 import Footer from '../../Footer';
+import QRCode from 'qrcode.react'
+
 import placeholder from 'assets/img/lazy-placeholder-100-100-white.png';
 import how1SVG from 'assets/img/how_1.svg';
 import how2SVG from 'assets/img/how_2.svg';
@@ -69,7 +71,10 @@ const MemberHome = () => {
           <div className="opacity-mask">
             <div className="container">
               <div className="row justify-content-lg-start justify-content-md-center">
-                <div className="col-xl-6 col-lg-8">
+                <div className="col-xl-6 col-lg-8 d-block d-sm-none">
+                <QRCode value="https://appetizr.co/" size="250" />
+                </div>
+                <div className="col-xl-6 col-lg-8 d-none d-sm-block">
                   <h1>Just a touch away</h1>
                   <p>Start searching for next dining experience</p>
                   <form method="post" action="grid-listing-filterscol.html">
@@ -272,51 +277,6 @@ const MemberHome = () => {
       <Footer />
 
       <div id="toTop"></div>
-
-      <div id="sign-in-dialog" className="zoom-anim-dialog mfp-hide">
-        <div className="modal_header">
-          <h3>Sign In</h3>
-        </div>
-        <form>
-          <div className="sign-in-wrapper">
-            <a href="#0" className="social_bt facebook">Login with Facebook</a>
-            <a href="#0" className="social_bt google">Login with Google</a>
-            <div className="divider"><span>Or</span></div>
-            <div className="form-group">
-              <label>Email</label>
-              <input type="email" className="form-control" name="email" id="email" />
-              <i className="icon_mail_alt"></i>
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input type="password" className="form-control" name="password" id="password" defaultValue="" />
-              <i className="icon_lock_alt"></i>
-            </div>
-            <div className="clearfix add_bottom_15">
-              <div className="checkboxes float-left">
-                <label className="container_check">Remember me
-                        <input type="checkbox" />
-                  <span className="checkmark"></span>
-                </label>
-              </div>
-              <div className="float-right"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
-            </div>
-            <div className="text-center">
-              <input type="submit" defaultValue="Log In" className="btn_1 full-width mb_5" />
-                      Don’t have an account? <a href="account.html">Sign up</a>
-            </div>
-            <div id="forgot_pw">
-              <div className="form-group">
-                <label>Please confirm login email below</label>
-                <input type="email" className="form-control" name="email_forgot" id="email_forgot" />
-                <i className="icon_mail_alt"></i>
-              </div>
-              <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
-              <div className="text-center"><input type="submit" value="Reset Password" className="btn_1" /></div>
-            </div>
-          </div>
-        </form>
-      </div>
     </>
   ) : "Loading...";
 };
