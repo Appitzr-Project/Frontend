@@ -35,7 +35,7 @@ const MenuListBanner = () => {
     <>
       <div
         className="hero_in detail_page background-image"
-        data-background={`url(${HeroGeneral})`}
+        data-background={`url(${item.banner ? item.banner : HeroGeneral})`}
       >
         <div
           className="wrapper `op`acity-mask"
