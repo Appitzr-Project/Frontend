@@ -1,108 +1,98 @@
-import { Card, InputGroup,Button, Form,Spinner} from "react-bootstrap"
+import { InputGroup,Button, Form,Spinner} from "react-bootstrap"
 import { VpnKey, PersonOutline } from '@material-ui/icons'
-import { useState } from "react";
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { confirmSignUpAction, resendConfirmationCodeAction } from '../../redux/actions/auth.action';
+import { useState } from 'react';
 import { useHistory, useLocation,Link } from 'react-router-dom'
-import Helmet from 'react-helmet';
+import LogoSticky1 from 'assets/img/logo_sticky1.jpeg';
+import 'assets/css/order-sign_up.css';
+
+const ConfirmationCode = ({attributes}) => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
+  const [validated, setValidated] = useState(false);
+
+  const [form, setForm] = useState({
+    username: location.state.username|| "",
+    code: ''
+  })
 
 
-const ConfirmationCode = () => {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const location = useLocation()
-    const [validated, setValidated] = useState(false);
-    const [form, setForm] = useState({
-      username: (location.state && location.state.username) || '' ,
-      code: ''
+  const [states, setStates] = useState({
+    errorUsername: null,
+    errorCode: null,
+    errorLogin: null,
+    isLoading: false
+  })
+  
+
+  const onChangeForm = name => ev => {
+    setForm({
+      ...form,
+      [name]: ev.target.value
     })
-    const [states, setStates] = useState({
-      errorUsername: null,
-      errorCode: null,
-      errorLogin: null,
-      isLoading: false
-    })
-    
-    const onChangeForm = name => ev => {
-      setForm({
-        ...form,
-        [name]: ev.target.value
-      })
-      setStates({ ...states, errorUsername: null, errorCode: null })
-    }
+    setStates({ ...states, errorCode: null })
+  }
 
-    const onConfirmation = (ev) => {
-        ev.preventDefault()
-        const formValidation = ev.currentTarget;
-        if (formValidation.checkValidity() === false) {
-            ev.preventDefault();
-            ev.stopPropagation();
+  const onConfirmation = (ev) => {
+      ev.preventDefault()
+      const formValidation = ev.currentTarget;
+      if (formValidation.checkValidity() === false) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          }
+          if (validationState()) {
+              setStates({ isLoading : true })
+              dispatch(confirmSignUpAction(form))
+                .then(() => {
+                  setStates({ isLoading : false })
+                  history.push('/login')
+                })
+                .catch(err => {
+                  setStates({ isLoading : false })
+                  alert(err.message)
+                })
             }
-            if (validationState()) {
-                setStates({ isLoading : true })
-                dispatch(confirmSignUpAction(form))
-                  .then(() => {
-                    setStates({ isLoading : false })
-                    history.push('/login')
-                  })
-                  .catch(err => {
-                    setStates({ isLoading : false })
-                    alert(err.message)
-                  })
-              }
-        setValidated(true)
-      }
-
-    const validationState = () => {
-    setStates({
-        ...states,
-        errorUsername: form.username === '' ? 'This field is required ' : null,
-        errorCode: form.code === '' ? 'This field is required ' : null
-      })
-      return form.username !== '' && form.code !== '' 
+      setValidated(true)
     }
 
-    const renderLoading = () => (
-        <Spinner animation="border" role="status"></Spinner>
-   )
-
-   const resendCode = (ev) => {
-    ev.preventDefault()
-    setStates({ isLoading : true })
-    dispatch(resendConfirmationCodeAction(form.username))
-    .then(() => setStates({ isLoading : false}))
-    .catch((err) => {
-        setStates({ isLoading : false })
-        alert(err.message)
+  const validationState = () => {
+  setStates({
+      ...states,
+      errorUsername: form.username === '' ? 'This field is required ' : null,
+      errorCode: form.code === '' ? 'This field is required ' : null
     })
-    }
+    return form.username !== '' && form.code !== '' 
+  }
 
-    return (
-<>
-<Helmet>
+  const renderLoading = () => (
+      <Spinner animation="border" role="status"></Spinner>
+ )
 
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <link href="assets/css/order-sign_up.css" rel="stylesheet" />
-        <link href="assets/css/bootstrap_customized.min.css" rel="stylesheet" />
+ const resendCode = (ev) => {
+  ev.preventDefault()
+  setStates({ isLoading : true })
+  dispatch(resendConfirmationCodeAction(form.username))
+  .then(() => setStates({ isLoading : false}))
+  .catch((err) => {
+      setStates({ isLoading : false })
+      alert(err.message)
+  })
+  }
 
-
-      </Helmet>
+  
+  return (
+    <>
       <div id="register_bg">
         <div id="register">
           <aside>
             <figure>
               <a href="index.html">
-                <img src="assets/img/logo_sticky1.jpeg" alt="" width="140" ></img>
-
+                <img src={LogoSticky1} alt="" width="140"></img>
               </a>
             </figure>
-            <div className="main_title center text-center">
-                    <h2>Apply your confirmation code</h2>
-            </div>
-            <div className="divider">
-          
-            </div>
-            <Form noValidate validated={validated} onSubmit={onConfirmation}>
+              <Form noValidate validated={validated} onSubmit={onConfirmation}>
                 <Form.Row>
                     <Form.Group controlId="validationCustomUsername" className="mt-3">
                     <InputGroup hasValidation>
@@ -110,12 +100,13 @@ const ConfirmationCode = () => {
                         <InputGroup.Text id="inputGroupPrepend"><PersonOutline /></InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
+                        placeholder="Email"
                         type="text"
-                        placeholder="Username"
                         aria-describedby="inputGroupPrepend"
                         required
                         value={form.username}
-                        onChange={onChangeForm('username')}
+                        onChange={onChangeForm('name')}
+                        readonly
                         />
                         <Form.Control.Feedback type="invalid">
                         This field is required
@@ -141,18 +132,18 @@ const ConfirmationCode = () => {
                     </Form.Group>
                 </Form.Row>
                 <div className="d-flex flex-row">
-                <Link href="/confirmation-code" onClick={resendCode}className="mt-3" >
+                <Link to="/confirmation-code" onClick={resendCode}className="mt-3" >
                   Resend code
                 </Link>  
                 </div>
                 <Button type="submit" className="mt-3" variant= "danger" style={{width:'100%'}}>{states.isLoading ? renderLoading() : "Confirmation"}</Button>
             </Form>
             <div className="copy">© 2021 Appetizr</div>
-
           </aside>
         </div>
       </div>
-</>
-    )
-}
-export default ConfirmationCode
+    </>
+  );
+};
+
+export default ConfirmationCode;
