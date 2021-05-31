@@ -18,7 +18,6 @@ const MenuListBanner = () => {
           const res = await getVenueById(params.idVenue);
           if (isActive) {
             setItem(res.data);
-            console.log(res.data)
           }
         } catch (error) {
           console.log(error);
