@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 export const getCultureCategoryApi = ( token  )=> (
-    Axios.get( process.env.REACT_APP_API_URL +'venues/culture', {
+    Axios.get( process.env.REACT_APP_API_URL +'products/categories/CultureCategory', {
         headers : {
             'Authorization': token ,
             'Content-Type': 'application/json'
