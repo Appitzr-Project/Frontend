@@ -18,6 +18,7 @@ const MenuListBanner = () => {
           const res = await getVenueById(params.idVenue);
           if (isActive) {
             setItem(res.data);
+            console.log(res.data)
           }
         } catch (error) {
           console.log(error);
@@ -34,8 +35,8 @@ const MenuListBanner = () => {
   return (
     <>
       <div
-        className="hero_in detail_page background-image"
-        data-background={`url(${item.banner ? item.banner : HeroGeneral})`}
+        className="hero_in detail_page"
+        style={{backgroundImage:`url(${item.banner})`, backgroundSize:"cover"}}
       >
         <div
           className="wrapper `op`acity-mask"
