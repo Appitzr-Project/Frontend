@@ -63,7 +63,7 @@ const Index = () => {
         <div className="row">
           {/* sidebar */}
           <aside className="col-lg-3" id="sidebar_fixed">
-            <a className="btn_map d-flex align-items-center justify-content-center" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" ><span className="btn_map_txt" data-text-swap="Hide Map" data-text-original="View on Map">View on Map</span></a>
+            {/* <a className="btn_map d-flex align-items-center justify-content-center" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" ><span className="btn_map_txt" data-text-swap="Hide Map" data-text-original="View on Map">View on Map</span></a> */}
             <FilterBox />
 
             {/* Distance - hide utk sementara*/}
