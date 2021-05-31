@@ -72,7 +72,7 @@ const MemberHome = () => {
             <div className="container">
               <div className="row justify-content-lg-start justify-content-md-center">
                 <div className="col-xl-6 col-lg-8 d-block d-sm-none">
-                <QRCode value="https://appetizr.co/" size="250" />
+                <QRCode value="https://appetizr.co/" style={{ width : '70%' , height: 'auto' }} />
                 </div>
                 <div className="col-xl-6 col-lg-8 d-none d-sm-block">
                   <h1>Just a touch away</h1>
