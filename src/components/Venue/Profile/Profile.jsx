@@ -40,7 +40,7 @@ const Profile = () => {
     
     dispatch(getCultureCategoryAction(idToken))
     .then(res => {
-      setStates(s => ({ ...s , cultureCategories: res.data }) )
+      setStates(s => ({ ...s , cultureCategories: res.data && res.data.Items }) )
     })
     .catch(err => {
       alert('[Error on get culture categories ] ', err.message || 'An error occured')
