@@ -12,12 +12,34 @@ import Footer from "components/Footer"
 const Index = () => {
   const [distance, setDistance] = useState(0);
   const [venues, setVenues] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3
   };
+
+  useEffect(() => {
+    let isActive = true;
+    const http = async () => {
+        try {
+          const res = await Axios(process.env.REACT_APP_API_URL+"products/categories/ProductCategory");
+          if (isActive) {
+            setCategories(res.data.data.Items);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      return;
+    };
+    http();
+
+    return () => {
+      isActive = false;
+    };  
+  }, []);
 
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_API_URL}venues`)
@@ -90,19 +112,7 @@ const Index = () => {
                 <h2 className="title_small">List Categories</h2>
                 <div className="categories_carousel_in listing">
                 <Slider {...settings}>
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Spagheti" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Juice" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Rendang" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
-                  <CategoryCard to={{to:"#"}} name="Pizza" src="/assets/img/cat_listing_placeholder.png" />
+                  {!!categories.length && categories.map(cate => <CategoryCard to={{to:"#"}} name={cate.name} src="/assets/img/cat_listing_placeholder.png" />)}
                 </Slider>
                 </div>
               </div>
