@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { getCultureCategoryAction } from 'redux/actions/venue.action'
 import { getRefreshTokenAction } from 'redux/actions/auth.action'
-import { updateVenueProfileAction, createVenueProfileAction } from 'redux/actions/profile.action'
+import { updateVenueProfileAction, createVenueProfileAction, getVenueProfileAction } from 'redux/actions/profile.action'
 
 const Profile = () => {
   const classes = useStyles()
@@ -40,11 +40,16 @@ const Profile = () => {
     
     dispatch(getCultureCategoryAction(idToken))
     .then(res => {
-      setStates(s => ({ ...s , cultureCategories: res.data }) )
+      setStates(s => ({ ...s , cultureCategories: res.data && res.data.Items }) )
     })
     .catch(err => {
       alert('[Error on get culture categories ] ', err.message || 'An error occured')
     })
+
+    dispatch(getVenueProfileAction(idToken))
+    .then(res => {
+      res.data && setForm(res.data)
+    }).catch(() => false  )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
