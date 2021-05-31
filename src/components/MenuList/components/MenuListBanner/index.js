@@ -35,10 +35,10 @@ const MenuListBanner = () => {
     <>
       <div
         className="hero_in detail_page background-image"
-        data-background={`url(${HeroGeneral})`}
+        data-background={`url(${item.banner ? item.banner : HeroGeneral})`}
       >
         <div
-          className="wrapper opacity-mask"
+          className="wrapper `op`acity-mask"
           data-opacity-mask="rgba(0, 0, 0, 0.5)"
         >
           <div className="container">
