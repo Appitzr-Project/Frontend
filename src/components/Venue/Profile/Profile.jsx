@@ -180,7 +180,7 @@ const Profile = () => {
                             onChange={onChange('cultureCategory')} >
                     <option value={-1} >Select a Category</option>
                     {states.cultureCategories.map( (c , key ) => (
-                      <option value={c} key={key} >{c}</option>
+                      <option value={c.slug} key={key} >{c.name}</option>
                     ))}
                     </select>
                   </div>
