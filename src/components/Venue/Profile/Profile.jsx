@@ -32,24 +32,24 @@ const Profile = () => {
   })
 
   const [states, setStates] = useState({ cultureCategories: [], isLoading: false })
-  
+
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
 
   useEffect(() => {
     getCurrentLocation()
-    
+
     dispatch(getCultureCategoryAction(idToken))
-    .then(res => {
-      setStates(s => ({ ...s , cultureCategories: res.data && res.data.Items }) )
-    })
-    .catch(err => {
-      alert('[Error on get culture categories ] ', err.message || 'An error occured')
-    })
+      .then(res => {
+        setStates(s => ({ ...s, cultureCategories: res.data }))
+      })
+      .catch(err => {
+        alert('[Error on get culture categories ] ', err.message || 'An error occured')
+      })
 
     dispatch(getVenueProfileAction(idToken))
-    .then(res => {
-      res.data && setForm(res.data)
-    }).catch(() => false  )
+      .then(res => {
+        res.data && setForm(res.data)
+      }).catch(() => false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -63,7 +63,7 @@ const Profile = () => {
 
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      setForm( s => ({
+      setForm(s => ({
         ...s,
         mapLong: position.coords.longitude,
         mapLat: position.coords.latitude
@@ -74,7 +74,7 @@ const Profile = () => {
   const onSave = (ev) => {
     ev.preventDefault()
 
-    if(form.id)
+    if (form.id)
       updateVenue()
     else
       createNewVenue()
@@ -94,10 +94,10 @@ const Profile = () => {
 
   const refreshTokenAction = () => {
     dispatch(getRefreshTokenAction())
-    .then(() => {
-      setLoading(false)
-      history.push('/venue')
-    }).catch(() => false  )    
+      .then(() => {
+        setLoading(false)
+        history.push('/venue')
+      }).catch(() => false)
   }
 
   const updateVenue = () => {
@@ -128,7 +128,7 @@ const Profile = () => {
                     <label>Name</label>
                     <input className="form-control"
                       type="text"
-                      placeholder='Enter name venue' 
+                      placeholder='Enter name venue'
                       value={form.venueName}
                       onChange={onChange('venueName')} />
                   </div>
@@ -136,7 +136,7 @@ const Profile = () => {
                     <label>Email</label>
                     <input className="form-control"
                       type="email"
-                      placeholder='Enter your email' 
+                      placeholder='Enter your email'
                       value={userState.attributes && userState.attributes.email}
                       readOnly />
                   </div>
@@ -144,7 +144,7 @@ const Profile = () => {
                     <label>Phone Number</label>
                     <input className="form-control"
                       type="text"
-                      placeholder='Enter your phone number' 
+                      placeholder='Enter your phone number'
                       value={form.phoneNumber}
                       onChange={onChange('phoneNumber')} />
                   </div>
@@ -152,15 +152,15 @@ const Profile = () => {
                     <label>Postal Code</label>
                     <input className="form-control"
                       type="text"
-                      placeholder='Enter postal code' 
+                      placeholder='Enter postal code'
                       value={form.postalCode}
                       onChange={onChange('postalCode')} />
                   </div>
-                  <div className={`form-group ${classes.fieldLocation }`}>
+                  <div className={`form-group ${classes.fieldLocation}`}>
                     <label onClick={getCurrentLocation} >Location</label>
                     <input className="form-control"
                       type="text"
-                      value={ form.mapLong + ',' + form.mapLat }
+                      value={form.mapLong + ',' + form.mapLat}
                       placeholder='Enter longitude and latitude' readOnly />
                     <i className="icon_pin_alt"></i>
                   </div>
@@ -175,13 +175,13 @@ const Profile = () => {
                   </div>
                   <div className="form-group">
                     <label>Culture Category</label>
-                    <select className="form-control" 
-                            value={form.cultureCategory || '' }
-                            onChange={onChange('cultureCategory')} >
-                    <option value={-1} >Select a Category</option>
-                    {states.cultureCategories.map( (c , key ) => (
-                      <option value={c.slug} key={key} >{c.name}</option>
-                    ))}
+                    <select className="form-control"
+                      value={form.cultureCategory || ''}
+                      onChange={onChange('cultureCategory')} >
+                      <option value={-1} >Select a Category</option>
+                      {states.cultureCategories.map((c, key) => (
+                        <option value={c.slug} key={key} >{c.name}</option>
+                      ))}
                     </select>
                   </div>
                   <h6>Bank Details</h6>
@@ -216,7 +216,7 @@ const Profile = () => {
                     Send to email
                   </div>
                   <div className='text-right'>
-                    <button type='submit' className='btn_1' disabled={states.isLoading} > { states.isLoading ? 'Loading ...' : 'Save' }</button>
+                    <button type='submit' className='btn_1' disabled={states.isLoading} > {states.isLoading ? 'Loading ...' : 'Save'}</button>
                   </div>
                 </form>
               </div>
