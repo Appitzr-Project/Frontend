@@ -27,7 +27,7 @@ const Index = () => {
       try {
         const res = await Axios(process.env.REACT_APP_API_URL + "products/categories/ProductCategory");
         if (isActive) {
-          setCategories(res.data.data.Items);
+          setCategories(res.data.data);
         }
       } catch (error) {
         console.log(error);
