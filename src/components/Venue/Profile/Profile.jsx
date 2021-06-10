@@ -36,7 +36,7 @@ const Profile = () => {
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
 
   useEffect(() => {
-    getCurrentLocation()
+    // getCurrentLocation()
 
     dispatch(getCultureCategoryAction(idToken))
       .then(res => {
@@ -61,15 +61,15 @@ const Profile = () => {
     })
   }
 
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setForm(s => ({
-        ...s,
-        mapLong: position.coords.longitude,
-        mapLat: position.coords.latitude
-      }))
-    });
-  }
+  // const getCurrentLocation = () => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     setForm(s => ({
+  //       ...s,
+  //       mapLong: position.coords.longitude,
+  //       mapLat: position.coords.latitude
+  //     }))
+  //   });
+  // }
 
   const onSave = (ev) => {
     ev.preventDefault()
@@ -156,14 +156,14 @@ const Profile = () => {
                       value={form.postalCode}
                       onChange={onChange('postalCode')} />
                   </div>
-                  <div className={`form-group ${classes.fieldLocation}`}>
+                  {/* <div className={`form-group ${classes.fieldLocation}`}>
                     <label onClick={getCurrentLocation} >Location</label>
                     <input className="form-control"
                       type="text"
                       value={form.mapLong + ',' + form.mapLat}
                       placeholder='Enter longitude and latitude' readOnly />
                     <i className="icon_pin_alt"></i>
-                  </div>
+                  </div> */}
                   <div className="form-group">
                     <label>Address</label>
                     <textarea className="form-control"
