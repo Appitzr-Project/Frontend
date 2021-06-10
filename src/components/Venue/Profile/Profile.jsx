@@ -36,7 +36,7 @@ const Profile = () => {
   const setLoading = (isLoad) => setStates({ ...states, isLoading: isLoad })
 
   useEffect(() => {
-    getCurrentLocation()
+    // getCurrentLocation()
 
     dispatch(getCultureCategoryAction(idToken))
       .then(res => {
@@ -61,15 +61,15 @@ const Profile = () => {
     })
   }
 
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setForm(s => ({
-        ...s,
-        mapLong: position.coords.longitude,
-        mapLat: position.coords.latitude
-      }))
-    });
-  }
+  // const getCurrentLocation = () => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     setForm(s => ({
+  //       ...s,
+  //       mapLong: position.coords.longitude,
+  //       mapLat: position.coords.latitude
+  //     }))
+  //   });
+  // }
 
   const onSave = (ev) => {
     ev.preventDefault()
