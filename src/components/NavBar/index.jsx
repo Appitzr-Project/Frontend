@@ -69,7 +69,7 @@ const NavBar = (props) => {
         <div className="container">
           <div id="logo">
             <Link to="/">
-              <h2>Appetizr</h2>
+              <img src="/assets/img/logo-b.jpg" width="50px" height="50px" alt="logo"/>
             </Link>
           </div>
           <div className={`layer ${states.isDisplaySidebar ? 'layer-is-visible' : ''}`}
@@ -87,7 +87,9 @@ const NavBar = (props) => {
                 onClick={() => setState({ ...states, isDisplaySidebar: false })} >
                 <i className="icon_close"></i><span>Menu</span>
               </a>
-              <a href="index.html"><h1>Appetizr</h1></a>
+              <a href="index.html">
+                <img src="/assets/img/logo-a.jpg" width="85%" height="90%" alt="logo"/>
+              </a>
             </div>
             <ul>
               <li className="">
@@ -98,6 +100,9 @@ const NavBar = (props) => {
               </li> */}
               <li className="">
                 <Link to="/venue-list" className="show-submenu" >Venue List</Link>
+              </li>
+              <li className="">
+                <Link to="/" className="show-submenu" >QrCode</Link>
               </li>
             </ul>
           </nav>
