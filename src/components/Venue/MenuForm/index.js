@@ -39,13 +39,43 @@ const MenuAdd = () => {
       },
       {
         id: 2,
-        name: "meat",
+        name: "vegetables",
       },
       {
         id: 3,
-        name: "vegetables",
+        name: "Beef"
+      },
+      {
+        id: 3,
+        name: "lamb"
+      },
+      {
+        id: 3,
+        name: "chicken"
+      },
+      {
+        id: 3,
+        name: "seafod"
       },
     ],
+    option: [
+      {
+        id: 1,
+        name: "entree"
+      },
+      {
+        id: 2,
+        name: "mains desert"
+      },
+      {
+        id: 3,
+        name: "side"
+      },
+      {
+        id: 4,
+        name: "kids meal"
+      },
+    ]
   };
 
   const [state, setState] = useState({
@@ -210,6 +240,15 @@ const MenuAdd = () => {
             className={classes.label}
             data={rawData.proteinType}
             inputName="proteinType"
+            onHandleChange={(e) => onChange(e)}
+          />
+        </Grid>
+        <Grid item xs={12} style={{ margin: "10px 0px 54px 0px" }}>
+          <SelectOption
+            label="option"
+            className={classes.label}
+            data={rawData.option}
+            inputName="option"
             onHandleChange={(e) => onChange(e)}
           />
         </Grid>
