@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/products.api"
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
+import axios from "axios"
 
 const MenuAdd = () => {
   const auth = useSelector((state) => state.auth);
@@ -55,27 +56,9 @@ const MenuAdd = () => {
       },
       {
         id: 3,
-        name: "seafod"
+        name: "seafood"
       },
     ],
-    option: [
-      {
-        id: 1,
-        name: "entree"
-      },
-      {
-        id: 2,
-        name: "mains desert"
-      },
-      {
-        id: 3,
-        name: "side"
-      },
-      {
-        id: 4,
-        name: "kids meal"
-      },
-    ]
   };
 
   const [state, setState] = useState({
@@ -88,6 +71,8 @@ const MenuAdd = () => {
     isActive: true
   });
 
+  // const [category, setCategory] = useState([]);
+
   const [picturePreview, setPicturePreview] = useState([]);
   const classes = useStyle();
   const inputFocus = useRef(null);
@@ -97,6 +82,24 @@ const MenuAdd = () => {
       inputFocus.current.focus();
     }
   }, []);
+
+  // useEffect(() => {
+  //   let isActive = true;
+  //   const http = async () => {
+  //     try {
+  //       const res = await axios(process.env.REACT_APP_API_URL+"products/categories/ProductCategory");
+  //       if (isActive) {
+  //         setCategory(res.data.data);
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   http();
+  //   return () => {
+  //     isActive = false;
+  //   };
+  // }, []);
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -125,17 +128,20 @@ const MenuAdd = () => {
   };
 
   const handleSaveMenu = async () => {
+    console.log(auth.user.signInUserSession.idToken.jwtToken)
+    console.log("save", state)
     const result = await submitNewMenuApi(auth.user.signInUserSession.idToken.jwtToken, state);
     if (result.code === 200 && result.message === "success") {
       history.push("/venue/menu/list");
     }
   };
 
-  return (
+  console.log(state);
+
+  return  (
     <Wrapper
       title={strings.add_menu}
       image="https://source.unsplash.com/random"
-      spacing="26px"
       isBack="/venue/menu/list"
     >
       <form>
@@ -240,15 +246,6 @@ const MenuAdd = () => {
             className={classes.label}
             data={rawData.proteinType}
             inputName="proteinType"
-            onHandleChange={(e) => onChange(e)}
-          />
-        </Grid>
-        <Grid item xs={12} style={{ margin: "10px 0px 54px 0px" }}>
-          <SelectOption
-            label="option"
-            className={classes.label}
-            data={rawData.option}
-            inputName="option"
             onHandleChange={(e) => onChange(e)}
           />
         </Grid>

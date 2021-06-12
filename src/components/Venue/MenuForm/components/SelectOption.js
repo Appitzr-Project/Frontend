@@ -36,7 +36,7 @@ const SelecOption = (props) => {
           labelId="demo-simple-select-outlined-label"
           name={inputName}
           id="demo-simple-select-outlined"
-          defaultValue={label === "category" ? "dessert" : label === "option" ? "entree" : "vegan"}
+          defaultValue={label.toLowerCase() === "category" ? "dessert" :  "vegan"}
           onChange={(e) => onHandleChange(e)}
           label="category"
           value={currentValue}
