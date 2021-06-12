@@ -102,7 +102,7 @@ const MemberHome = () => {
               </div>
             </div>
           </div>
-          <div className="wave hero"></div>
+          {/* <div className="wave hero"></div> */}
         </div>
 
         <div className="shape_element_2">
