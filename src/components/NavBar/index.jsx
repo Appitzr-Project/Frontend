@@ -69,7 +69,7 @@ const NavBar = (props) => {
         <div className="container">
           <div id="logo">
             <Link to="/">
-              <img src="/assets/img/logo-a.png" width="270px" height="50px" alt="logo"/>
+              <img src="/assets/img/logo-a.png" width="140px" height="40px" alt="logo"/>
             </Link>
           </div>
           <div className={`layer ${states.isDisplaySidebar ? 'layer-is-visible' : ''}`}
