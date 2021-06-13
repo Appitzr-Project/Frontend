@@ -15,6 +15,7 @@ const Index = () => {
   const [distance, setDistance] = useState(0);
   const [venues, setVenues] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [allVenues, setallVenues] = useState([]); //sementara
 
   const settings = {
     infinite: true,
@@ -51,10 +52,10 @@ const Index = () => {
     }else{
       url = "venues"
     }
-    console.log(url)
     Axios.get(`${process.env.REACT_APP_API_URL}${url}`)
       .then(res => {
         setVenues(res.data.data)
+        setallVenues(res.data.data) //sementara
       })
 
     // change className in Header
@@ -63,6 +64,26 @@ const Index = () => {
 
   const changeDistanceHandle = (e) => {
     setDistance(e.target.value);
+  }
+
+  const filterHandler = (e) => {
+    const options = Array.from(document.querySelectorAll(".category-options"))
+    const newCat = []
+    options.map(opt => {
+      if(opt.checked) newCat.push(opt.value.toLowerCase())
+    })
+    if(newCat.length){
+      const currentVenue = [...allVenues]
+      const newVenues = []
+      currentVenue.map(cv => {
+        if(newCat.includes(cv.cultureCategory)){
+          newVenues.push(cv)
+        }
+      })
+      setVenues(newVenues);
+    }else{
+      setVenues(allVenues)
+    }
   }
 
   return (
@@ -115,7 +136,7 @@ const Index = () => {
 						</div> */}
               {/* end - Distance  */}
 
-              <p><a href="#" className="btn_1 outline full-width">Filter</a></p>
+            <div className="btn_1 outline full-width" onClick={filterHandler}>Filter</div>
             </aside>
             {/* end - sidebar */}
 
