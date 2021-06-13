@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { getAllVenueList } from '../../../redux/api/venue.api';
 import NavBar from '../../NavBar/index.jsx';
 import Footer from '../../Footer';
-import QRCode from 'qrcode.react'
+// import QRCode from 'qrcode.react'
 
 import placeholder from 'assets/img/lazy-placeholder-100-100-white.png';
 import how1SVG from 'assets/img/how_1.svg';
@@ -72,7 +72,8 @@ const MemberHome = () => {
             <div className="container">
               <div className="row justify-content-lg-start justify-content-md-center">
                 <div className="col-xl-6 col-lg-8 d-block d-sm-none">
-                <QRCode value="https://appetizr.co/menulist/ce268624-c3a2-4be6-94ae-94484447ebdf" style={{ width : '70%' , height: 'auto' }} />
+                {/* <QRCode value="https://appetizr.co/menulist/ce268624-c3a2-4be6-94ae-94484447ebdf" style={{ width : '70%' , height: 'auto' }} /> */}
+                <Link to="/scan" className="btn_1 full-width mb_5">Scan Qr Code</Link>
                 </div>
                 <div className="col-xl-6 col-lg-8 d-none d-sm-block">
                   <h1>Just a touch away</h1>
