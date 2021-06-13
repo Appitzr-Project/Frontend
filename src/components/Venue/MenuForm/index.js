@@ -113,13 +113,10 @@ const MenuAdd = () => {
     if(name === "price" ){
      if(/^-?\d*[.,]?\d*$/.test(value)){
        number = value
-       console.log("masuk")
       }else{
-       console.log("tidak pas")
        number = state.price
      }
     }
-    console.log(name,value, number)
     setState((prevState) => ({
       ...prevState,
       [name]: name === "price" ? number : value,
@@ -144,8 +141,6 @@ const MenuAdd = () => {
   };
 
   const handleSaveMenu = async () => {
-    console.log(auth.user.signInUserSession.idToken.jwtToken)
-    console.log("save", state)
     const result = await submitNewMenuApi(auth.user.signInUserSession.idToken.jwtToken, state);
     if (result.code === 200 && result.message === "success") {
       history.push("/venue/menu/list");
