@@ -34,12 +34,13 @@ const MenuListBanner = () => {
   return (
     <>
       <div
-        className="hero_in detail_page"
-        style={{backgroundImage:`url(${item.banner})`, backgroundSize:"cover"}}
+        className="hero_in detail_page background-image"
+        style={{ backgroundImage: `url(${item.banner})`, backgroundSize: "cover" }}
       >
         <div
-          className="wrapper `op`acity-mask"
+          className="wrapper opacity-mask"
           data-opacity-mask="rgba(0, 0, 0, 0.5)"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         >
           <div className="container">
             <div className="main_info">

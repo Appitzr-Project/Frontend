@@ -13,7 +13,7 @@ const NavBar = (props) => {
   const auth = useSelector(state => state.auth);
   const user = auth.user && auth.user.attributes;
   const groupUser = (auth.user && auth.user.signInUserSession.idToken.payload['cognito:groups']) || [];
-  
+
   // check if user have profile picture or not
   let profilePicture = null;
   if (user && user.picture && user.picture.includes('https://') && !user.picture.includes('data')) {
@@ -39,7 +39,7 @@ const NavBar = (props) => {
                 {/* <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
                 <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
                 <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li> */}
-                <li><Link to='/venue/profile' className='d-flex' ><i className="icon_document"></i><span>{ groupUser.includes('venue') ? 'Profile Venue' : 'Register as Venue' }</span></Link></li>
+                <li><Link to='/venue/profile' className='d-flex' ><i className="icon_document"></i><span>{groupUser.includes('venue') ? 'Profile Venue' : 'Register as Venue'}</span></Link></li>
                 <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
               </ul>
             </div>
@@ -65,11 +65,11 @@ const NavBar = (props) => {
 
   return (
     <>
-      <header className={ `header black_nav clearfix element_to_stick ${props.className}` } id="header-nav">
+      <header className={`header black_nav clearfix element_to_stick ${props.className}`} id="header-nav">
         <div className="container">
           <div id="logo">
             <Link to="/">
-              <h2>Appetizr</h2>
+              <img src="/assets/img/logo-a.png" width="120px" height="40px" alt="logo" />
             </Link>
           </div>
           <div className={`layer ${states.isDisplaySidebar ? 'layer-is-visible' : ''}`}
@@ -87,7 +87,9 @@ const NavBar = (props) => {
                 onClick={() => setState({ ...states, isDisplaySidebar: false })} >
                 <i className="icon_close"></i><span>Menu</span>
               </a>
-              <a href="index.html"><h1>Appetizr</h1></a>
+              <a href="index.html">
+                <img src="/assets/img/logo-b.png" width="70px" height="70px" alt="logo" />
+              </a>
             </div>
             <ul>
               <li className="">
@@ -99,6 +101,9 @@ const NavBar = (props) => {
               <li className="">
                 <Link to="/venue-list" className="show-submenu" >Venue List</Link>
               </li>
+              {/* <li className="">
+                <Link to="/" className="show-submenu" >QrCode</Link>
+              </li> */}
             </ul>
           </nav>
         </div>

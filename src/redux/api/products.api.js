@@ -23,7 +23,7 @@ export const uploadImageAddVenueApi = (token, formData) => {
     }).then(res => res.data )
 }
 
-export const submitNewMenuApi = ( token, payload  )=> (
+export const submitNewMenuApi = ( token, payload  ) => (
   Axios.post( process.env.REACT_APP_API_URL +'products/venue', {
     ...payload,
   }, {

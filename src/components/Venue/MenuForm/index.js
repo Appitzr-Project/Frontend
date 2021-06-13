@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { uploadImageAddVenueApi, submitNewMenuApi } from "../../../redux/api/products.api"
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary'
+import axios from "axios"
 
 const MenuAdd = () => {
   const auth = useSelector((state) => state.auth);
@@ -36,14 +37,32 @@ const MenuAdd = () => {
       {
         id: 1,
         name: "vegan",
+        slug: "vegan",
       },
       {
         id: 2,
-        name: "meat",
+        name: "vegetables",
+        slug: "vegetables",
       },
       {
         id: 3,
-        name: "vegetables",
+        name: "Beef",
+        slug: "Beef"
+      },
+      {
+        id: 3,
+        name: "lamb",
+        slug: "lamb"
+      },
+      {
+        id: 3,
+        name: "chicken",
+        slug: "chicken"
+      },
+      {
+        id: 3,
+        name: "seafood",
+        slug: "seafood"
       },
     ],
   };
@@ -52,11 +71,13 @@ const MenuAdd = () => {
     productName: "",
     description: "",
     category: "dessert",
-    price: 0,
+    price: 1,
     images: [],
     proteinType: "vegan",
     isActive: true
   });
+
+  const [category, setCategory] = useState([]);
 
   const [picturePreview, setPicturePreview] = useState([]);
   const classes = useStyle();
@@ -68,9 +89,34 @@ const MenuAdd = () => {
     }
   }, []);
 
+  useEffect(() => {
+    let isActive = true;
+    const http = async () => {
+      try {
+        const res = await axios(process.env.REACT_APP_API_URL+"products/categories/ProductCategory");
+        if (isActive) {
+          setCategory(res.data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    http();
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
   const onChange = (event) => {
     const { name, value } = event.target;
-    let number = (name === "price" && isNaN(value) ) || value.length > 15 ? state.price :  +value;
+    let number;
+    if(name === "price" ){
+     if(/^-?\d*[.,]?\d*$/.test(value)){
+       number = value
+      }else{
+       number = state.price
+     }
+    }
     setState((prevState) => ({
       ...prevState,
       [name]: name === "price" ? number : value,
@@ -101,11 +147,10 @@ const MenuAdd = () => {
     }
   };
 
-  return (
+  return  (
     <Wrapper
       title={strings.add_menu}
       image="https://source.unsplash.com/random"
-      spacing="26px"
       isBack="/venue/menu/list"
     >
       <form>
@@ -125,7 +170,7 @@ const MenuAdd = () => {
           <SelectOption
             label={strings.label_category}
             className={classes.label}
-            data={rawData.category}
+            data={category}
             inputName="category"
             onHandleChange={(e) => onChange(e)}
           />

@@ -6,12 +6,13 @@ import Axios from "axios"
 export default function FilterBox() {
   const [isDispalyCategories, toggleDisplayCategories] = useState(false)
   const [items, setItems] = useState([]);
+  const [culture, setCulture] = useState("");
 
   useEffect(() => {
     let isActive = true;
     const http = async () => {
       try {
-        const res = await Axios(process.env.REACT_APP_API_URL + "products/categories/ProductCategory");
+        const res = await Axios(process.env.REACT_APP_API_URL + "products/categories/CultureCategory");
         if (isActive) {
           setItems(res.data.data);
         }

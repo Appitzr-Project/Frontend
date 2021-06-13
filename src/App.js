@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUserAction } from 'redux/actions/auth.action';
 
 const HomePage = lazy(() => import('./components/Member'))
-const Scan = lazy(() => import('./components/Scan/index.js'));
+const Scan = lazy(() => import('./components/Scan/VenueScan'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Venue = lazy(() => import("./components/Venue"));
 const Venues = lazy(() => import("./components/Venues"));
@@ -61,7 +61,7 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <ProtectedRoute path="/scan" component={Scan} />
+            {/* <ProtectedRoute path="/scan" component={Scan} /> */}
             <ProtectedRoute path="/member" component={MemberLazy} />
             <ProtectedRoute exact path="/support" component={Support} />
             <ProtectedRoute path="/venue" component={Venue} levelAccess="venue" />
@@ -75,6 +75,7 @@ function App() {
             <Route path="/venue-list" component={VenueList} />
             <Route path="/menulist/:idVenue" component={MenuList} />
             <Route path="/tos" component={Tos} />
+            <Route path="/scan" component={Scan} />
             <Route path="/privacy" component={Privacy} />
             {/* <Route path="*" component={NotFound} /> */}
           </Switch>

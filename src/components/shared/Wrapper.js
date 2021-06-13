@@ -30,11 +30,11 @@ const Wrapper = (props) => {
   return (
     <>
       <Container maxWidth="sm" className={classes.wrapper}>
-        <header className={classes.wrapHeader}>
+        <div className={classes.wrapHeader}>
           <Container>
             <Header {...props} />
           </Container>
-        </header>
+        </div>
         <main className={classes.wrapMain}>{props.children}</main>
       </Container>
     </>
