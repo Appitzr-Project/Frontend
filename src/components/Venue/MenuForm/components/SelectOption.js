@@ -36,14 +36,14 @@ const SelecOption = (props) => {
           labelId="demo-simple-select-outlined-label"
           name={inputName}
           id="demo-simple-select-outlined"
-          defaultValue={label.toLowerCase() === "category" ? "dessert" :  "vegan"}
+          defaultValue={label.toLowerCase() === "category" ? "all-day-breakfast" :  "vegan"}
           onChange={(e) => onHandleChange(e)}
           label="category"
           value={currentValue}
           input={<SelectInput />}
         >
           {data.map((item) => (
-            <MenuItem key={item.id} value={item.name}>
+            <MenuItem key={item.id} value={item.slug}>
               {capitalizeFirstLetter(item.name)}
             </MenuItem>
           ))}

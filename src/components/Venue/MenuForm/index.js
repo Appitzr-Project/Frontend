@@ -37,26 +37,32 @@ const MenuAdd = () => {
       {
         id: 1,
         name: "vegan",
+        slug: "vegan",
       },
       {
         id: 2,
         name: "vegetables",
+        slug: "vegetables",
       },
       {
         id: 3,
-        name: "Beef"
+        name: "Beef",
+        slug: "Beef"
       },
       {
         id: 3,
-        name: "lamb"
+        name: "lamb",
+        slug: "lamb"
       },
       {
         id: 3,
-        name: "chicken"
+        name: "chicken",
+        slug: "chicken"
       },
       {
         id: 3,
-        name: "seafood"
+        name: "seafood",
+        slug: "seafood"
       },
     ],
   };
@@ -65,13 +71,13 @@ const MenuAdd = () => {
     productName: "",
     description: "",
     category: "dessert",
-    price: 0,
+    price: 1,
     images: [],
     proteinType: "vegan",
     isActive: true
   });
 
-  // const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState([]);
 
   const [picturePreview, setPicturePreview] = useState([]);
   const classes = useStyle();
@@ -83,27 +89,37 @@ const MenuAdd = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   let isActive = true;
-  //   const http = async () => {
-  //     try {
-  //       const res = await axios(process.env.REACT_APP_API_URL+"products/categories/ProductCategory");
-  //       if (isActive) {
-  //         setCategory(res.data.data);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   http();
-  //   return () => {
-  //     isActive = false;
-  //   };
-  // }, []);
+  useEffect(() => {
+    let isActive = true;
+    const http = async () => {
+      try {
+        const res = await axios(process.env.REACT_APP_API_URL+"products/categories/ProductCategory");
+        if (isActive) {
+          setCategory(res.data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    http();
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    let number = (name === "price" && isNaN(value) ) || value.length > 15 ? state.price :  +value;
+    let number;
+    if(name === "price" ){
+     if(/^-?\d*[.,]?\d*$/.test(value)){
+       number = value
+       console.log("masuk")
+      }else{
+       console.log("tidak pas")
+       number = state.price
+     }
+    }
+    console.log(name,value, number)
     setState((prevState) => ({
       ...prevState,
       [name]: name === "price" ? number : value,
@@ -136,8 +152,6 @@ const MenuAdd = () => {
     }
   };
 
-  console.log(state);
-
   return  (
     <Wrapper
       title={strings.add_menu}
@@ -161,7 +175,7 @@ const MenuAdd = () => {
           <SelectOption
             label={strings.label_category}
             className={classes.label}
-            data={rawData.category}
+            data={category}
             inputName="category"
             onHandleChange={(e) => onChange(e)}
           />
