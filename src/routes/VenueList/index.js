@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {Link} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 import Axios from "axios"
 import FilterBox from "../../components/CheckBox/FilterBox"
 import CategoryCard from "../../components/Card/components/CategoryCard"
@@ -11,6 +11,7 @@ import Navbar from "../../components/NavBar"
 import Footer from "components/Footer"
 
 const Index = () => {
+  const history = useHistory();
   const [distance, setDistance] = useState(0);
   const [venues, setVenues] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -26,7 +27,7 @@ const Index = () => {
     let isActive = true;
     const http = async () => {
       try {
-        const res = await Axios(process.env.REACT_APP_API_URL + "products/categories/ProductCategory");
+        const res = await Axios(process.env.REACT_APP_API_URL + "products/categories/CultureCategory");
         if (isActive) {
           setCategories(res.data.data);
         }
@@ -43,14 +44,22 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_API_URL}venues`)
+    const culture = history.location.search.split("=")[1]
+    let url;
+    if(history.location.search !== ""){
+      url = `venues?cultureCategory=${culture}`;
+    }else{
+      url = "venues"
+    }
+    console.log(url)
+    Axios.get(`${process.env.REACT_APP_API_URL}${url}`)
       .then(res => {
         setVenues(res.data.data)
       })
 
     // change className in Header
     document.getElementById("header-nav").className = "header_in clearfix";
-  }, []);
+  }, [history.location.search]);
 
   const changeDistanceHandle = (e) => {
     setDistance(e.target.value);
@@ -118,7 +127,7 @@ const Index = () => {
                   <h2 className="title_small">List Categories</h2>
                   <div className="categories_carousel_in listing">
                     <Slider {...settings}>
-                      {!!categories.length && categories.map(cate => <CategoryCard to={{ to: "#" }} name={cate.name} src="/assets/img/cat_listing_placeholder.png" />)}
+                      {!!categories.length && categories.map(cate => <CategoryCard to={cate.slug} name={cate.name} src="/assets/img/cat_listing_placeholder.png" />)}
                     </Slider>
                   </div>
                 </div>
@@ -137,7 +146,7 @@ const Index = () => {
                 <div className="col-12">
                   <h2 className="title_small">Restaurant/Venue</h2>
                 </div>
-                {!!venues.length && venues.map(venue => <VenueCard key={venue.id} to={`/menulist/${venue.id}`} discount="15" src={venue.banner || "/assets/img/cat_listing_placeholder.png"} category={venue.cultureCategory} venueName={venue.venueName} location={venue.address} star="5" />)}
+                {venues.length ? venues.map(venue => <VenueCard key={venue.id} to={`/menulist/${venue.id}`} discount="15" src={venue.banner || "/assets/img/cat_listing_placeholder.png"} category={venue.cultureCategory} venueName={venue.venueName} location={venue.address} star="5"/>) : <p style={{textAlign:"center",width:"100%", fontWeight:"bold",margin:"50px"}}> Venue with category {history.location.search.split("=")[1]} is not found </p>}
 
               </div>
               {/* end - Restaurant/venue */}
