@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUserAction } from 'redux/actions/auth.action';
 
 const HomePage = lazy(() => import('./components/Member'))
-const Scan = lazy(() => import('./components/Venue/Scan/index.js'));
+const Scan = lazy(() => import('./components/Scan/VenueScan'));
 const MemberLazy = lazy(() => import('./components/Member/index.js'));
 const Venue = lazy(() => import("./components/Venue"));
 const Venues = lazy(() => import("./components/Venues"));
