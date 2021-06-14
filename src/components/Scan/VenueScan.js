@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Button, Container } from '@material-ui/core';
@@ -10,7 +10,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#fff"
   },
 
-  container:{
+  container: {
     backgroundColor: "#fff",
     padding: "30px",
     marginTop: "60px",
@@ -21,7 +21,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "20px",
     fontWeight: "600",
   },
-  
+
   submitBtn: {
     backgroundColor: "#20D3C2",
     borderRadius: "18px",
@@ -55,7 +55,7 @@ const VenueScan = () => {
   };
   return (
     <>
-      <NavBar />
+      <NavBar className='header_in' />
       <Container maxWidth="sm" className={classes.container}>
         <Typography align="center" className={classes.title}>Scan Venue</Typography>
         <QrReader
@@ -63,7 +63,7 @@ const VenueScan = () => {
           onError={handleError}
           onScan={handleScan}
           className={classes.scanner}
-          // showViewFinder={false}
+        // showViewFinder={false}
         />
 
         <Button
@@ -71,11 +71,11 @@ const VenueScan = () => {
           className={classes.submitBtn}
           disabled={!result}
           href={result}
-          classes={{disabled: classes.disableBtn}}
+          classes={{ disabled: classes.disableBtn }}
           disableRipple
           fullWidth
-          >
-        Scan
+        >
+          Scan
         </Button>
       </Container>
     </>
