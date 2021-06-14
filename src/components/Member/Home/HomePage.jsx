@@ -65,15 +65,15 @@ const MemberHome = () => {
   }, [loading]);
   return !loading ? (
     <>
-      <NavBar />
+      <NavBar className='header_in' />
       <main>
         <div className="hero_single version_1">
           <div className="opacity-mask">
             <div className="container">
               <div className="row justify-content-lg-start justify-content-md-center">
                 <div className="col-xl-6 col-lg-8 d-block d-sm-none">
-                {/* <QRCode value="https://appetizr.co/menulist/ce268624-c3a2-4be6-94ae-94484447ebdf" style={{ width : '70%' , height: 'auto' }} /> */}
-                <Link to="/scan" className="btn_1 full-width mb_5">Scan Qr Code</Link>
+                  {/* <QRCode value="https://appetizr.co/menulist/ce268624-c3a2-4be6-94ae-94484447ebdf" style={{ width : '70%' , height: 'auto' }} /> */}
+                  <Link to="/scan" className="btn_1 full-width mb_5">Scan Qr Code</Link>
                 </div>
                 <div className="col-xl-6 col-lg-8 d-none d-sm-block">
                   <h1>Just a touch away</h1>
@@ -261,7 +261,7 @@ const MemberHome = () => {
                 <div className="col-md-6 ">
                   <div className="box_info_1 pl-lg-3">
                     <div className="wrapper_img">
-                        <figure><img src={LazyPlaceholder600x400} data-src={SubmitRiderHome} alt="" className="img-fluid lazy" /></figure>
+                      <figure><img src={LazyPlaceholder600x400} data-src={SubmitRiderHome} alt="" className="img-fluid lazy" /></figure>
                       <span></span>
                     </div>
                     <h3>Refer a Friend</h3>

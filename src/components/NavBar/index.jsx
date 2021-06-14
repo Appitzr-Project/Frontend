@@ -101,6 +101,9 @@ const NavBar = (props) => {
               <li className="">
                 <Link to="/venue-list" className="show-submenu" >Venue List</Link>
               </li>
+              <li className="">
+                <Link to="/scan" className="show-submenu" >Scan QR Code</Link>
+              </li>
               {/* <li className="">
                 <Link to="/" className="show-submenu" >QrCode</Link>
               </li> */}
