@@ -39,7 +39,7 @@ const NavBar = (props) => {
                 {/* <li><a href="#0"><i className="icon_cog"></i>Dashboard</a></li>
                 <li><a href="#0"><i className="icon_document"></i>Bookings</a></li>
                 <li><a href="#0"><i className="icon_heart"></i>Wish List</a></li> */}
-                <li><Link to='/venue/profile' className='d-flex' ><i className="icon_document"></i><span>{groupUser.includes('venue') ? 'Profile Venue' : 'Register as Venue'}</span></Link></li>
+                <li><Link to={groupUser.includes('venue') ? '/venue' : '/venue/profile'} className='d-flex' ><i className="icon_document"></i><span>{groupUser.includes('venue') ? 'Venue Home' : 'Register as Venue'}</span></Link></li>
                 <li><a href="#0" onClick={onLogout}><i className="icon_key"></i>Log out</a></li>
               </ul>
             </div>
