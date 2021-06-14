@@ -2833,14 +2833,14 @@ ul#top_menu li a.login:before {
 }
 
 .hero_single .search_trends {
-  color: #555;
+  color: rgb(255, 255, 255);
 }
 
 .hero_single .search_trends h5 {
   font-size: 14px;
   font-size: 0.875rem;
   display: inline-block;
-  color: #555;
+  color: rgb(255, 255, 255);
 }
 
 .hero_single .search_trends ul {
@@ -2863,7 +2863,7 @@ ul#top_menu li a.login:before {
 }
 
 .hero_single .search_trends ul li a {
-  color: #555;
+  color: rgb(255, 255, 255);
 }
 
 .hero_single .search_trends ul li a:hover {
@@ -2872,7 +2872,7 @@ ul#top_menu li a.login:before {
 
 .hero_single.version_1 {
   height: 620px;
-  background: #faf3cc url(../img/hero_5.svg) center top no-repeat;
+  background: #faf3cc url(../../src/img/desktop-homepage.jpeg) center top no-repeat;
   /* background: url(../img/bg-home.jpg);
   background-size: cover; */
 
@@ -2880,9 +2880,9 @@ ul#top_menu li a.login:before {
 
 @media (max-width: 991px) {
   .hero_single.version_1 {
-    background: #faf3cc url(../img/hero_5.svg) center top no-repeat;
-    /* background: #faf3cc url(../img/bg-home.jpg) no-repeat;
-    background-size: cover; */
+    background: #faf3cc url(../../src/img/mobile-homepage.jpeg) center top no-repeat;
+    /* background: #faf3cc url(../img/bg-home.jpg) no-repeat;*/
+    background-size: cover;
   }
 }
 
@@ -2894,11 +2894,11 @@ ul#top_menu li a.login:before {
 
 .hero_single.version_1 .opacity-mask h1,
 .hero_single.version_1 .opacity-mask h3 {
-  color: #222;
+  color: rgb(255, 255, 255);
 }
 
 .hero_single.version_1 .opacity-mask p {
-  color: #444;
+  color: rgb(255, 255, 255);
 }
 
 .hero_single.version_2 {
