@@ -30,6 +30,11 @@ const NavBar = (props) => {
     <ul id="top_menu" className="drop_user">
       <li>
         <div className="dropdown user clearfix">
+          <Link to="/scan" className="d-block d-sm-none">
+            <figure>
+              <img src="/assets/img/qrcode.png" alt="" width="34px" height="34px" />
+            </figure>
+          </Link>
           <a href="#" data-toggle="dropdown" aria-expanded="false">
             <figure><img src={profilePicture ?? avatar1} alt="" /></figure><span>{user.name ? user.name : user.email}</span>
           </a>
