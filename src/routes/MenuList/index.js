@@ -44,7 +44,7 @@ const MenuList = () => {
     const sentinalEl = document.querySelector('.hero_in');
     const spacerEl = document.querySelector('.spacer');
 
-    let handler = () => {};
+    let handler = () => { };
     if (headerEl && spacerEl) {
       handler = (entries) => {
         if (!entries[0].isIntersecting) {
@@ -69,7 +69,7 @@ const MenuList = () => {
   }, []);
   return (
     <>
-      <NavBar />
+      <NavBar className='header_in' />
       <main>
         <MenuListBanner />
         <MenuListContentContainer handleShow={handleShow} />
