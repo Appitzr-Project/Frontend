@@ -54,35 +54,39 @@ function App() {
   } , [] )
 
 
+  // return (
+  //   <>
+  //     <CssBaseline />
+  //     <Router>
+  //       <Suspense fallback={<div>Loading...</div>}>
+  //         <Switch>
+  //           <Route exact path="/" component={HomePage} />
+  //           {/* <ProtectedRoute path="/scan" component={Scan} /> */}
+  //           <ProtectedRoute path="/member" component={MemberLazy} />
+  //           <ProtectedRoute exact path="/support" component={Support} />
+  //           <ProtectedRoute path="/venue" component={Venue} levelAccess="venue" />
+  //           <ProtectedRoute path="/venues" component={Venues} />
+  //           <ProtectedRoute path="/profile-edit" component={ProfileEdit} />
+  //           <ProtectedRoute path="/promo" component={DiscountInfo} />
+  //           <Route path="/login" component={Login} />
+  //           <Route path="/register" component={Register} />
+  //           <Route path="/confirmation-code" component={ConfirmationCode} />
+  //           <Route path="/forgot-password" component={ForgotPassword} />
+  //           <Route path="/venue-list" component={VenueList} />
+  //           <Route path="/menulist/:idVenue" component={MenuList} />
+  //           <Route path="/tos" component={Tos} />
+  //           <Route path="/scan" component={Scan} />
+  //           <Route path="/privacy" component={Privacy} />
+  //           {/* <Route path="*" component={NotFound} /> */}
+  //         </Switch>
+  //       </Suspense>
+  //     </Router>
+  //   </>
+  // );
+
   return (
-    <>
-      <CssBaseline />
-      <Router>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            {/* <ProtectedRoute path="/scan" component={Scan} /> */}
-            <ProtectedRoute path="/member" component={MemberLazy} />
-            <ProtectedRoute exact path="/support" component={Support} />
-            <ProtectedRoute path="/venue" component={Venue} levelAccess="venue" />
-            <ProtectedRoute path="/venues" component={Venues} />
-            <ProtectedRoute path="/profile-edit" component={ProfileEdit} />
-            <ProtectedRoute path="/promo" component={DiscountInfo} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/confirmation-code" component={ConfirmationCode} />
-            <Route path="/forgot-password" component={ForgotPassword} />
-            <Route path="/venue-list" component={VenueList} />
-            <Route path="/menulist/:idVenue" component={MenuList} />
-            <Route path="/tos" component={Tos} />
-            <Route path="/scan" component={Scan} />
-            <Route path="/privacy" component={Privacy} />
-            {/* <Route path="*" component={NotFound} /> */}
-          </Switch>
-        </Suspense>
-      </Router>
-    </>
-  );
+    <h1>Under Maintenance</h1>
+  )
 }
 
 export default App;
